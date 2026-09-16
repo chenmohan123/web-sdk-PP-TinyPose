@@ -1,0 +1,11 @@
+node_modules/
+dist/
+demo-dist/
+.tmp/
+.superpowers/
+test-results/
+playwright-report/
+demo/public/models/*.onnx
+demo/public/ort/
+demo/public/sdk/
+*.tgz
