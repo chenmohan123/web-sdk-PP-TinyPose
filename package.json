@@ -5,13 +5,30 @@
   "type": "module",
   "private": false,
   "license": "Apache-2.0",
-  "repository": { "type": "git", "url": "https://github.com/chenmohan123/web-sdk-PP-TinyPose.git" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenmohan123/web-sdk-PP-TinyPose.git"
+  },
   "homepage": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
-  "files": ["dist", "README.md", "README.en.md", "LICENSE", "NOTICE"],
+  "files": [
+    "dist",
+    "README.md",
+    "README.en.md",
+    "LICENSE",
+    "NOTICE"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }, "./inference.worker.js": "./dist/inference.worker.js" },
-  "engines": { "node": ">=22.12.0" },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./inference.worker.js": "./dist/inference.worker.js"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
@@ -19,14 +36,18 @@
     "dev": "vite --config demo/vite.config.ts --host 127.0.0.1",
     "build:demo": "vite build --config demo/vite.config.ts",
     "preview": "vite preview --config demo/vite.config.ts --host 127.0.0.1",
-    "test:browser": "node tests/browser.mjs"
+    "test:browser": "node tests/browser.mjs",
+    "typecheck:demo": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --jsx react-jsx --resolveJsonModule --strict --skipLibCheck --lib ES2022,DOM,DOM.Iterable demo/src/main.tsx demo/src/App.tsx demo/vite.config.ts"
   },
-  "dependencies": { "onnxruntime-web": "1.27.0" },
+  "dependencies": {
+    "onnxruntime-web": "1.27.0"
+  },
   "devDependencies": {
     "@types/node": "^24.0.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "esbuild": "^0.25.0",
+    "fake-indexeddb": "^6.2.5",
     "playwright": "1.63.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -1,0 +1,68 @@
+{
+  "testedAt": "2026-09-16T17:03:21.052Z",
+  "browser": "153.0.8010.12",
+  "origin": "http://127.0.0.1:4186/",
+  "results": [
+    {
+      "backend": "wasm",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WASM / main"
+    },
+    {
+      "backend": "wasm",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WASM / worker"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WEBGPU / main"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WEBGPU / worker"
+    }
+  ],
+  "selectionKeepsImageY": true,
+  "languageToggle": true,
+  "upload": true,
+  "cancelAndRecover": true,
+  "currentAndAllCacheClear": true,
+  "vanillaPoints": 17,
+  "viewport390NoOverflow": true,
+  "viewport390ActionsDoNotOverlap": true,
+  "resetAndReload": true,
+  "pageErrors": [],
+  "source": [
+    {
+      "file": "demo/src/App.tsx",
+      "bytes": 22065,
+      "sha256": "7a2d278bac01dff690e79843c58d9220886fb682a69ba22c1157d61f596919c3"
+    },
+    {
+      "file": "demo/src/style.css",
+      "bytes": 7133,
+      "sha256": "864cd520460b976663bb3a58400d36a2088a1be4c25c0df902d4a348b1872622"
+    },
+    {
+      "file": "models/model.json",
+      "bytes": 215,
+      "sha256": "8fe02da3789def4a0d6e5c706cef73042b036aba546e52b2512d4cb3be2dd346"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 25631,
+      "sha256": "a1cc6c0a71ab70d2d0fd8136bb401336a8b1aa04779bb35c891b1d14f447be58"
+    },
+    {
+      "file": "dist/inference.worker.js",
+      "bytes": 13850,
+      "sha256": "e31d0775eff54bc8b895502ab5c00ed8ea627983ffeef08799d62464fd7f0f7f"
+    }
+  ]
+}

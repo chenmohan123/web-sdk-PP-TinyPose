@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "color": {
+    "page": "#f8fafc",
+    "panel": "#ffffff",
+    "text": "#0f172a",
+    "mutedText": "#64748b",
+    "border": "#cbd5e1",
+    "action": "#2563eb",
+    "actionText": "#ffffff",
+    "success": "#15803d",
+    "warning": "#b45309",
+    "error": "#b91c1c",
+    "experimental": "#7c3aed"
+  },
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "24px",
+    "6": "32px"
+  },
+  "typography": {
+    "body": "14px",
+    "small": "12px",
+    "heading": "clamp(1.25rem, 3vw, 2rem)",
+    "fontFamily": "ui-sans-serif, system-ui, sans-serif"
+  },
+  "radius": { "sm": "4px", "md": "8px" },
+  "focus": { "ring": "0 0 0 3px rgba(37, 99, 235, 0.28)" },
+  "states": ["idle", "downloading", "loading", "ready", "running", "success", "error", "unsupported"]
+}

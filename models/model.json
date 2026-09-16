@@ -1,0 +1,7 @@
+{
+  "id": "tinypose-enhance-256x192",
+  "version": "0.1.0-alpha.0",
+  "url": "models/tinypose-256x192-fp32.onnx",
+  "bytes": 5685847,
+  "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+}

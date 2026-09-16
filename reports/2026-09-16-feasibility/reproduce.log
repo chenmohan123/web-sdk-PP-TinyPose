@@ -1,0 +1,7 @@
+[Paddle2ONNX] Start to parse PaddlePaddle model...
+[Paddle2ONNX] Model file path: F:\git\00_chenmohan\github\web-sdk-PP-TinyPose\.tmp\reproduce-conversion\exported\tinypose_256x192\model.pdmodel
+[Paddle2ONNX] Parameters file path: F:\git\00_chenmohan\github\web-sdk-PP-TinyPose\.tmp\reproduce-conversion\exported\tinypose_256x192\model.pdiparams
+[Paddle2ONNX] Start to parsing Paddle model...
+[Paddle2ONNX] Use opset_version = 17 for ONNX export.
+[Paddle2ONNX] PaddlePaddle model is exported as ONNX format now.
+官方 ZIP、内部资产与重建 ONNX 摘要全部一致。

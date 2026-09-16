@@ -1,0 +1,74 @@
+schemaVersion: "1.1.0"
+id: pp-tinypose
+name: PP-TinyPose
+summary: 浏览器本地单人人体关键点估计首版，支持显式 CPU/GPU 与主线程/Worker，尚未公开发布。
+package: { name: web-sdk-pp-tinypose, version: 0.1.0-alpha.0 }
+repository: https://github.com/chenmohan123/web-sdk-PP-TinyPose
+demo:
+  url: http://localhost:4186/
+  defaultLanguage: zh-CN
+  framework: react
+  localProcessing: true
+docs: { zhCN: docs/zh-CN/quick-start.md, en: docs/en/quick-start.md }
+runtime:
+  backends: [wasm, webgpu]
+  executionModes: [main, worker]
+  actualBackendReported: true
+  runtimeVersion: onnxruntime-web@1.27.0
+model:
+  id: tinypose-enhance-256x192
+  version: 0.1.0-alpha.0
+  format: onnx
+  parameterCount: null
+  precision: [fp32]
+  source: https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose
+  license: Apache-2.0
+  defaultVariant: fp32
+  defaultSource: custom
+  assets:
+    - id: fp32
+      bytes: 5685847
+      precision: fp32
+      url: http://localhost:4186/models/tinypose-256x192-fp32.onnx
+      sha256: "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+performance:
+  timings:
+    [
+      modelDownloadMs,
+      modelCacheReadMs,
+      integrityMs,
+      sessionMs,
+      preprocessMs,
+      inferenceMs,
+      postprocessMs,
+      totalMs,
+    ]
+  coldStartDefined: true
+  warmRunDefined: true
+cache:
+  storage: [indexeddb]
+  versionedKeys: true
+  clearCurrent: true
+  clearAll: true
+  estimate: true
+examples:
+  vanilla: { status: available, path: examples/vanilla }
+  react: { status: available, path: examples/react }
+  vue: { status: unsupported }
+  cdn: { status: unsupported }
+  vite: { status: available, path: examples/vite }
+  wechatWebView: { status: unsupported }
+verification:
+  environments:
+    - browser: Chromium 153.0.8010.12
+      os: Windows 11 10.0.26200
+      device: Intel Core i5-10400F（main/worker）
+      testedAt: 2026-09-17
+      backend: wasm
+      runtimeVersion: onnxruntime-web@1.27.0
+    - browser: Chromium 153.0.8010.12
+      os: Windows 11 10.0.26200
+      device: NVIDIA Blackwell（main/worker）
+      testedAt: 2026-09-17
+      backend: webgpu
+      runtimeVersion: onnxruntime-web@1.27.0

@@ -1,0 +1,54 @@
+name: 准备 GitHub Release 草稿
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 已存在的不可变版本标签（例如 v0.1.0）
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: tinypose-release
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: pnpm/action-setup@v4
+        with: { version: 11.21.0 }
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
+      - name: 阻止本地候选误发布
+        run: node scripts/check-release-ready.mjs
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false pack --out package.tgz
+      - uses: actions/upload-artifact@v4
+        with: { name: sdk-package, path: package.tgz }
+  draft:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+        with:
+          script: |
+            await github.rest.repos.createRelease({
+              ...context.repo,
+              tag_name: process.env.RELEASE_TAG,
+              name: process.env.RELEASE_TAG,
+              draft: true,
+              generate_release_notes: true,
+            });

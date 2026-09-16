@@ -1,0 +1,38 @@
+{
+  "testedAt": "2026-09-16T17:04:11.487Z",
+  "package": "web-sdk-pp-tinypose",
+  "version": "0.1.0-alpha.0",
+  "releaseGuard": {
+    "exitCode": 1,
+    "reason": "本地 alpha 不可正式发布"
+  },
+  "packageSha256": "ec342dfd9e96f4aa30ce40804c2951dcd092d642c8f370d9b8a0c294c964908b",
+  "packageFiles": [
+    "package/LICENSE",
+    "package/NOTICE",
+    "package/dist/index.js",
+    "package/dist/inference.worker.js",
+    "package/package.json",
+    "package/dist/index.js.map",
+    "package/dist/inference.worker.js.map",
+    "package/README.en.md",
+    "package/README.md",
+    "package/dist/ort-wasm-simd-threaded.asyncify.mjs",
+    "package/dist/ort.webgpu.bundle.min.mjs",
+    "package/dist/cache.d.ts",
+    "package/dist/engine.d.ts",
+    "package/dist/errors.d.ts",
+    "package/dist/image.d.ts",
+    "package/dist/index.d.ts",
+    "package/dist/inference.worker.d.ts",
+    "package/dist/ort.d.ts",
+    "package/dist/pose.d.ts",
+    "package/dist/runtime.d.ts",
+    "package/dist/types.d.ts",
+    "package/dist/ort-wasm-simd-threaded.asyncify.wasm"
+  ],
+  "containsOnnx": false,
+  "runtimeDependencies": {
+    "onnxruntime-web": "1.27.0"
+  }
+}

@@ -1,0 +1,28 @@
+name: 本地首版检查
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: pnpm/action-setup@v4
+        with: { version: 11.21.0 }
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck:demo
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build:demo
+      # CI 验证代码构建；固定真实模型的桌面验收另有带环境的归档，不伪称此处已运行 GPU。

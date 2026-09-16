@@ -6,6 +6,7 @@ demo-dist/
 test-results/
 playwright-report/
 demo/public/models/*.onnx
+demo/public/models/model.json
 demo/public/ort/
 demo/public/sdk/
 *.tgz
