@@ -42,6 +42,7 @@ const copy = {
     result: "关键点",
     idle: "选择一张单人图片开始",
     picked: "图片已就绪",
+    preparing: "正在读取图片",
     running: "正在识别",
     loading: "正在加载模型",
     downloading: "正在下载模型",
@@ -95,6 +96,7 @@ const copy = {
     result: "Keypoints",
     idle: "Start with a single-person image",
     picked: "Image ready",
+    preparing: "Reading image",
     running: "Estimating pose",
     loading: "Loading model",
     downloading: "Downloading model",
@@ -143,6 +145,7 @@ export function App() {
   const [result, setResult] = useState<PoseResult>();
   const [threshold, setThreshold] = useState(0.3);
   const [busy, setBusy] = useState(false);
+  const [preparing, setPreparing] = useState(false);
   const [status, setStatus] = useState<keyof typeof copy.zh>("idle");
   const [error, setError] = useState("");
   const [cacheBytes, setCacheBytes] = useState(0);
@@ -153,6 +156,7 @@ export function App() {
   const instance = useRef<Estimator | undefined>(undefined);
   const instanceKey = useRef("");
   const controller = useRef<AbortController | undefined>(undefined);
+  const inputController = useRef<AbortController | undefined>(undefined);
   const start = useRef<{ x: number; y: number } | undefined>(undefined);
   const generation = useRef(0);
 
@@ -161,6 +165,8 @@ export function App() {
   useEffect(() => {
     void refreshCache().catch(() => {});
     return () => {
+      ++generation.current;
+      inputController.current?.abort();
       controller.current?.abort();
       void instance.current?.dispose();
     };
@@ -209,44 +215,65 @@ export function App() {
     }
   }, [source, result, region, threshold]);
 
-  async function pick(next: Blob, label: string) {
+  async function pick(
+    next: Blob | ((signal: AbortSignal) => Promise<Blob>),
+    label: string,
+  ) {
+    inputController.current?.abort();
     controller.current?.abort();
     const token = ++generation.current;
+    const inputAbort = new AbortController();
+    inputController.current = inputAbort;
+    setPreparing(true);
+    setBlob(undefined);
+    setSource(undefined);
+    setName("");
     setError("");
     setResult(undefined);
     setRegion(undefined);
     setSelecting(false);
-    const url = URL.createObjectURL(next);
+    start.current = undefined;
+    setStatus("preparing");
+    let url: string | undefined;
     try {
+      // 在请求发起时固定身份；旧请求的成功、失败均不能覆盖后选图片。
+      const nextBlob =
+        typeof next === "function" ? await next(inputAbort.signal) : next;
+      if (generation.current !== token || inputAbort.signal.aborted) return;
+      url = URL.createObjectURL(nextBlob);
       const img = new Image();
       img.src = url;
       await img.decode();
-      if (generation.current !== token) return;
-      setBlob(next);
+      if (generation.current !== token || inputAbort.signal.aborted) return;
+      setBlob(nextBlob);
       setSource(img);
       setName(label);
       setStatus("picked");
     } catch (cause) {
+      if (generation.current !== token || inputAbort.signal.aborted) return;
       setError(String(cause));
       setStatus("error");
     } finally {
-      URL.revokeObjectURL(url);
+      if (url) URL.revokeObjectURL(url);
+      if (generation.current === token) {
+        setPreparing(false);
+        if (inputController.current === inputAbort)
+          inputController.current = undefined;
+      }
     }
   }
   async function example() {
-    try {
+    await pick(async (signal) => {
       const response = await fetch(
         new URL("examples/person.jpg", document.baseURI),
+        { signal },
       );
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      await pick(await response.blob(), "person.jpg");
-    } catch (cause) {
-      setError(String(cause));
-      setStatus("error");
-    }
+      return response.blob();
+    }, "person.jpg");
   }
   async function run() {
-    if (!blob || busy) return;
+    if (!blob || busy || preparing) return;
     const token = generation.current;
     const abort = new AbortController();
     controller.current = abort;
@@ -291,6 +318,7 @@ export function App() {
       }
       await refreshCache();
     } catch (cause) {
+      if (generation.current !== token) return;
       if (
         abort.signal.aborted ||
         (cause as { code?: string })?.code === "ABORTED"
@@ -351,17 +379,19 @@ export function App() {
     result?.keypoints.filter((p) => p.score >= threshold).length ?? 0;
   const semanticState = error
     ? "error"
-    : busy
-      ? status === "running"
-        ? "running"
-        : status === "downloading"
-          ? "downloading"
-          : "loading"
-      : result
-        ? "success"
-        : blob
-          ? "ready"
-          : "idle";
+    : preparing
+      ? "loading"
+      : busy
+        ? status === "running"
+          ? "running"
+          : status === "downloading"
+            ? "downloading"
+            : "loading"
+        : result
+          ? "success"
+          : blob
+            ? "ready"
+            : "idle";
   return (
     <div className="app">
       <header className="brand">
@@ -412,9 +442,13 @@ export function App() {
                 {t.upload}
               </button>
               <button
-                disabled={!blob || busy}
+                disabled={(!blob && !preparing) || busy}
                 onClick={() => {
                   ++generation.current;
+                  inputController.current?.abort();
+                  inputController.current = undefined;
+                  setPreparing(false);
+                  start.current = undefined;
                   setBlob(undefined);
                   setSource(undefined);
                   setName("");
@@ -433,7 +467,7 @@ export function App() {
                 {t.backend}
                 <select
                   value={backend}
-                  disabled={busy}
+                  disabled={busy || preparing}
                   onChange={(e) => setBackend(e.target.value as Backend)}
                 >
                   <option value="wasm">CPU · WASM</option>
@@ -444,7 +478,7 @@ export function App() {
                 {t.mode}
                 <select
                   value={mode}
-                  disabled={busy}
+                  disabled={busy || preparing}
                   onChange={(e) => setMode(e.target.value as ExecutionMode)}
                 >
                   <option value="worker">Worker</option>
@@ -454,7 +488,7 @@ export function App() {
             </div>
             <button
               className="primary"
-              disabled={!blob || busy}
+              disabled={!blob || busy || preparing}
               onClick={() => void run()}
             >
               {t.run}

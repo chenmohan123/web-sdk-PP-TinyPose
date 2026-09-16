@@ -35,6 +35,8 @@ Paddle→ORT Python：热力图最大绝对误差 `0.000020862`，全部关键�
 
 390px 英文界面曾因输入按钮组挤在半宽网格内，与第一行运行按钮重叠；新增重叠断言先失败，改为输入组和运行按钮各占整行后通过。SDK 数学和运行时没有为这个布局修复改动。
 
+整体审查发现两处 Demo 异步输入问题，现已修复：准备新图期间禁止运行旧输入，示例请求从发起时绑定输入版本，旧成功/失败不能覆盖重置或后选图片。`demo-input-browser.json` 记录6个定向交错检查及源码摘要；`whole-branch-review.md` 保留原始审查，`final-fix.md` 记录修复和复核。该修复只改 Demo，SDK 32图证据仍绑定相同的运行时文件。
+
 28项核心单测与固定 OpenCV/DARK 小型夹具检验数学和可控生命周期，不能替代真实模型。`standard-before.json` 是空仓基线；`standard-after.json` 是本地规范扫描。远程治理规则 skip，不声称公开合规。全量关键点 AP、移动端与 NPU 尚未验证。
 
 `package-check.json` 记录本地打包资产摘要、22个包文件和运行时依赖；包内不含 ONNX，React 仅为开发依赖。发布前检查按预期拒绝当前 alpha。核心实现与独立审查归档为 `core-implementation.md` 和 `core-review.md`，仅表示本地交付验收。
@@ -56,4 +58,4 @@ pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versi
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test:browser
 ```
 
-先启动根 README 中的本地 Demo 或 preview，再运行 `node tests/demo-browser.mjs`。默认地址 localhost:4186，可用 `TINYPOSE_DEMO_URL` 指定。模型探针原始 float32 输入和热力图保存在本地 work/inputs、work/browser；Git 归档保存摘要和逐点/汇总结果，不声称仅靠 JSON 能复算没有归档的全部热力图。
+先启动根 README 中的本地 Demo 或 preview，再运行 `node tests/demo-browser.mjs` 和 `node tests/demo-input-browser.mjs`。默认地址 localhost:4186，可用 `TINYPOSE_DEMO_URL` 指定。模型探针原始 float32 输入和热力图保存在本地 work/inputs、work/browser；Git 归档保存摘要和逐点/汇总结果，不声称仅靠 JSON 能复算没有归档的全部热力图。

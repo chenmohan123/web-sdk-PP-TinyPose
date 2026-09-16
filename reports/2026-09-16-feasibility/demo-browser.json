@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-09-16T17:03:21.052Z",
+  "testedAt": "2026-09-16T17:19:17.524Z",
   "browser": "153.0.8010.12",
   "origin": "http://127.0.0.1:4186/",
   "results": [
@@ -41,8 +41,8 @@
   "source": [
     {
       "file": "demo/src/App.tsx",
-      "bytes": 22065,
-      "sha256": "7a2d278bac01dff690e79843c58d9220886fb682a69ba22c1157d61f596919c3"
+      "bytes": 23586,
+      "sha256": "380d1071ce27d01216e16ed69157ec2ffe3c5547d0dc24ccc62f6bdfe8260664"
     },
     {
       "file": "demo/src/style.css",
