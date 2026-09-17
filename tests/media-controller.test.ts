@@ -162,7 +162,9 @@ function createHarness(options: HarnessOptions = {}) {
       await options.dispose?.();
     },
   };
-  const track = { stop: vi.fn(options.stopTrack) };
+  const track = Object.assign(new EventTarget(), {
+    stop: vi.fn(options.stopTrack),
+  });
   const stream = {
     getTracks: () => [track],
   } as unknown as MediaStream;
@@ -357,6 +359,94 @@ describe("媒体控制器背压与生命周期", () => {
 
     expect(harness.states.at(-1)?.phase).toBe("ready");
     expect(harness.states.at(-1)?.kind).toBe("video");
+  });
+
+  it("停止等待会话释放期间拒绝已拆除来源的单帧识别", async () => {
+    const disposeGate = deferred<void>();
+    const harness = createHarness({ dispose: async () => disposeGate.promise });
+    await harness.controller.openVideo(new Blob(["video"]));
+    await harness.controller.step();
+
+    const stopping = harness.controller.stop();
+    await expect(harness.controller.step()).rejects.toMatchObject({
+      code: "INVALID_INPUT",
+    });
+    expect(harness.counts.run()).toBe(1);
+    disposeGate.resolve();
+    await stopping;
+    expect(harness.states.at(-1)?.phase).toBe("idle");
+  });
+
+  it("首帧后视频解码错误立即释放来源并丢弃在途结果", async () => {
+    const running = deferred<PoseResult>();
+    const harness = createHarness({ run: async () => running.promise });
+    await openVideoAndPlay(harness);
+    harness.video.fireFrame(0.1, 100, 28);
+    await vi.waitFor(() => expect(harness.counts.run()).toBe(1));
+
+    harness.video.dispatchEvent(new Event("error"));
+    expect(harness.revoked).toEqual(["blob:fixture"]);
+    expect(harness.video.callbacks.size).toBe(0);
+    expect(harness.video.src).toBe("");
+    expect(harness.counts.dispose()).toBe(1);
+    running.resolve(resultFor(harness.frames.at(-1)!));
+    await vi.waitFor(() => expect(harness.errors).toHaveLength(1));
+    expect(harness.errors[0].code).toBe("MEDIA_DECODE");
+    expect(harness.states.at(-1)?.phase).toBe("error");
+    expect(harness.results).toHaveLength(0);
+  });
+
+  it("暂停后视频解码错误仍会释放会话与对象 URL", async () => {
+    const harness = createHarness();
+    await harness.controller.openVideo(new Blob(["video"]));
+    await harness.controller.step();
+    harness.video.dispatchEvent(new Event("error"));
+
+    await vi.waitFor(() => expect(harness.errors).toHaveLength(1));
+    expect(harness.errors[0].code).toBe("MEDIA_DECODE");
+    expect(harness.revoked).toEqual(["blob:fixture"]);
+    expect(harness.counts.dispose()).toBe(1);
+  });
+
+  it("摄像头轨道中断释放会话和全部自有轨道", async () => {
+    const harness = createHarness();
+    await harness.controller.openCamera();
+    await harness.controller.step();
+    await harness.controller.play();
+    harness.track.dispatchEvent(new Event("ended"));
+
+    await vi.waitFor(() => expect(harness.errors).toHaveLength(1));
+    expect(harness.errors[0].code).toBe("CAMERA_UNAVAILABLE");
+    expect(harness.track.stop).toHaveBeenCalledOnce();
+    expect(harness.video.srcObject).toBeNull();
+    expect(harness.video.callbacks.size).toBe(0);
+    expect(harness.counts.dispose()).toBe(1);
+    expect(harness.states.at(-1)?.phase).toBe("error");
+  });
+
+  it("旧来源的延迟错误监听不能释放替换后的来源", async () => {
+    const harness = createHarness();
+    const videoListeners = vi.spyOn(harness.video, "addEventListener");
+    const trackListeners = vi.spyOn(harness.track, "addEventListener");
+    const removeVideoListener = vi.spyOn(harness.video, "removeEventListener");
+    const removeTrackListener = vi.spyOn(harness.track, "removeEventListener");
+    await harness.controller.openCamera();
+    const decode = videoListeners.mock.calls.find(([name]) => name === "error")?.[1];
+    const ended = trackListeners.mock.calls.find(([name]) => name === "ended")?.[1];
+    expect(decode).toBeTypeOf("function");
+    expect(ended).toBeTypeOf("function");
+    await harness.controller.openVideo(new Blob(["new-video"]));
+    expect(removeVideoListener).toHaveBeenCalledWith("error", decode);
+    expect(removeTrackListener).toHaveBeenCalledWith("ended", ended);
+
+    (decode as EventListener)(new Event("error"));
+    (ended as EventListener)(new Event("ended"));
+    await Promise.resolve();
+    expect(harness.states.at(-1)?.phase).toBe("ready");
+    expect(harness.video.src).toBe("blob:fixture");
+    expect(harness.revoked).toHaveLength(0);
+    expect(harness.errors).toHaveLength(0);
+    await harness.controller.stop();
   });
 
   it("旧推理错误等待释放时，不会把新来源覆盖为 error", async () => {

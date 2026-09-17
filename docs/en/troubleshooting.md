@@ -2,6 +2,8 @@
 
 [中文](../zh-CN/troubleshooting.md)
 
+Additional Demo media codes: `CAMERA_UNSUPPORTED` means check HTTPS/trusted localhost and media APIs; `CAMERA_PERMISSION` means check site permission; `CAMERA_UNAVAILABLE` means check the device connection or competing applications. For `MEDIA_READ/MEDIA_DECODE/MEDIA_PLAYBACK/MEDIA_CAPTURE`, check the file, browser codec support and valid video dimensions. `RESOURCE_RELEASE` reports a resource-release failure. Stop and select input again; permission is not retried automatically. Hiding the page stops the camera, and returning requires a new user action. A fixed person region does not follow motion.
+
 - `DOWNLOAD`: check the selected Hub's fixed URL, network/CORS, HTTP status and body. The response must not be HTML or a Git LFS pointer. Clear model cache before reproducing a download issue. Switching sources is explicit, never automatic.
 - `INTEGRITY`: size or SHA-256 does not match. Clear current cache and check formal metadata; never disable verification.
 - `UNSUPPORTED`: use HTTPS/trusted localhost and check the WebGPU adapter. Callers may explicitly choose CPU; there is no automatic fallback.

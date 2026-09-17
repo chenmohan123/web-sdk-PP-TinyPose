@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-PP-TinyPose **0.2.0 browser SDK** is framework-neutral and supports a single-person image or an image with a caller-supplied person box. It returns 17 COCO keypoints in original-image coordinates. CPU (WASM), GPU (WebGPU), main-thread and Worker execution are explicit choices, without silent fallback.
+PP-TinyPose **0.3.0 browser SDK** is framework-neutral and accepts one Blob/RGBA frame or an image with a caller-supplied person box. It returns 17 COCO keypoints in original-image coordinates. The standalone Demo supports images, local video and camera input. CPU (WASM), GPU (WebGPU), main-thread and Worker execution are explicit choices, without silent fallback.
 
 - [Live Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) · [GitHub](https://github.com/chenmohan123/web-sdk-PP-TinyPose) · [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose)
 - Stable models: 256×192 FP32 (default, 0.1.0), 128×96 FP32 (0.2.0), and 128×96 FP16 weights (FP32 compute, 0.2.0). All use ONNX opset 17; the upstream report states about 1.32M parameters.
@@ -46,6 +46,8 @@ try {
 
 The Demo starts in Chinese with an English toggle. It provides input-size/precision and source selection, upload, person-box selection, skeleton overlay, CPU/GPU and main/Worker controls, timing details and cache cleanup. It retains the PP-Detection workbench layout and stacks its panels at 390px. Changing the model or source cancels the previous task, disposes its session and clears its result. Clearing the region restores full-image inference.
 
+Video supports first-frame preview, playback/pause, frame estimation and seeking while paused. Camera permission is requested only after clicking Start camera, without audio. Media reuses one model session with at most one inference in flight; selectable limits are 5/10/15/30 FPS, defaulting to 15. A region can be selected while paused and remains fixed, without tracking. Stopping, changing input or configuration, hiding the page and clearing cache release the old media resources. Media adaptation belongs to the Demo and adds no DOM or React dependency to the SDK; cross-SDK detection composition remains a portal Workflow responsibility. Camera access requires HTTPS or trusted localhost; media frames are processed locally and never stored in IndexedDB.
+
 ```sh
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
@@ -62,8 +64,10 @@ Open the localhost URL printed in your terminal. No local ONNX setup is required
 
 All three stable models passed full GET and checksum verification from both fixed Hub commits on 2026-09-17; see the [0.2.0 distribution receipt](reports/2026-09-17-variants/distribution-variants-verified.json). All 24 model/source/backend/execution combinations passed against the current build; see the [release acceptance receipt](reports/release-acceptance.json). Current availability is determined by the actual content on [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose), [GitHub Releases](https://github.com/chenmohan123/web-sdk-PP-TinyPose/releases), and the [live Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/).
 
-Dated desktop evidence covers all three models under the four runtime combinations on Windows 11, Chromium 153 and ORT Web 1.27.0; see the compatibility guide. Mobile, other browsers, WeChat web-view, WebNN/NPU and full COCO AP remain unverified; 390px means a desktop viewport check only. Automatic multi-person detection, camera/video, tracking and action recognition are outside scope. Scores are heatmap responses, not visibility probabilities.
+The 0.3.0 continuous-frame acceptance covers three models × CPU/GPU × main/Worker, with at least 30 frames per combination. The production Demo separately exercises default-model video and Chromium fake-device camera input; see the [media receipt](reports/2026-09-17-media/media-acceptance.json) and [media lifecycle example](examples/media/README.en.md). The moving still-image fixture and simulated camera validate the pipeline, not real-action quality or physical-camera compatibility. Model URLs, SHA-256 digests, licenses and versions are unchanged.
 
-Validation: `pnpm … test`, `typecheck`, `build`, `typecheck:demo`, `build:demo`, `check:package`, where `…` means the two configuration flags above. `test:demo-input` and `test:demo-source` require a running development server. A release also runs `RELEASE_TAG=v0.2.0 node scripts/check-release-ready.mjs`; simulated local results must never stand in for a real acceptance receipt.
+Dated desktop evidence covers all three models under the four runtime combinations on Windows 11, Chromium 153 and ORT Web 1.27.0; see the compatibility guide. Physical cameras, mobile, other browsers, WeChat web-view, WebNN/NPU and full COCO AP remain unverified; 390px means a desktop viewport check only. Automatic multi-person detection, tracking, smoothing and action recognition are outside scope. Scores are heatmap responses, not visibility probabilities.
+
+Validation: `pnpm … test`, `typecheck`, `build`, `typecheck:demo`, `build:demo`, `check:package`, where `…` means the two configuration flags above. `test:demo-input`, `test:demo-source` and `test:demo-media` use the development server set through `TINYPOSE_DEMO_URL`. `test:media-acceptance` uses the production build, real weights and the Y4M fixture selected with `TINYPOSE_CAMERA_FIXTURE`; generation instructions are in `tests/fixtures/media/README.md`. A release also runs `RELEASE_TAG=v0.3.0 node scripts/check-release-ready.mjs`; simulated local results must never stand in for a real acceptance receipt.
 
 SDK and model are Apache-2.0. Retain [LICENSE](LICENSE), [NOTICE](NOTICE) and upstream attribution.

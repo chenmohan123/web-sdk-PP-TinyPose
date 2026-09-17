@@ -139,13 +139,17 @@ export const MediaWorkspace = forwardRef<MediaWorkspaceHandle, Props>(
     };
 
     async function stop() {
-      ++actionId.current;
-      setPending(false);
+      const token = ++actionId.current;
+      setPending(true);
       clearResult();
       setSelecting(false);
       dragStart.current = undefined;
-      if (controller.current) await controller.current.stop();
-      else await releasing.current;
+      try {
+        if (controller.current) await controller.current.stop();
+        else await releasing.current;
+      } finally {
+        if (token === actionId.current) setPending(false);
+      }
     }
     useImperativeHandle(ref, () => ({ stop }));
 

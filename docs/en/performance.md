@@ -2,6 +2,8 @@
 
 [简体中文](../zh-CN/performance.md)
 
+The 0.3.0 Demo initializes one session for continuous frames and permits at most one inference in flight, without retaining a backlog. The default cap is 15 FPS, with 5/10/15/30 options. Displayed FPS is the instantaneous completion rate between valid results, starting at zero. Skipped frames count only newly observed frames omitted because of backpressure or the cap, not hardware frame loss. Capture time includes conversion to RGBA and is separate from SDK `inferenceMs`. Pause retains the session; stop requires loading again. `1000/inferenceMs` is not camera FPS. Raw observations are in the [media receipt](../../reports/2026-09-17-media/media-acceptance.json).
+
 Cold load records modelDownloadMs, modelCacheReadMs, integrityMs, and sessionMs separately. Runs record preprocessMs, inferenceMs, postprocessMs, and totalMs. First inference includes compilation and is separate from warm measurements. Decoding, transport, and Worker round trips can affect total latency.
 
 The 2026-09-16 fixed-tensor model probe used 32 crops, one warmup plus three measured runs per crop. Median warm inference: WASM main 46.92ms / Worker 47.61ms; WebGPU main 28.84ms / Worker 29.98ms. Aggregation is the median of each crop's three-run median. It covers ORT session.run and CPU output readback only, excluding image preprocessing, DARK, downloads, detection, or video scheduling. It is not complete SDK latency or camera FPS.

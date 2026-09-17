@@ -300,6 +300,8 @@ export function App() {
   const inputController = useRef<AbortController | undefined>(undefined);
   const start = useRef<{ x: number; y: number } | undefined>(undefined);
   const generation = useRef(0);
+  const scenarioSwitch = useRef<object | undefined>(undefined);
+  const mediaCacheIdentity = useRef<string | undefined>(undefined);
 
   const refreshCache = async (target: PoseModel, token: number) => {
     const next = await getModelCacheInfo(target);
@@ -309,6 +311,7 @@ export function App() {
     void refreshCache(model, generation.current).catch(() => {});
     return () => {
       ++generation.current;
+      scenarioSwitch.current = undefined;
       inputController.current?.abort();
       controller.current?.abort();
       void instance.current?.dispose();
@@ -335,7 +338,9 @@ export function App() {
     setStatus("error");
   }
   async function changeScenario(next: typeof scenario) {
-    if (next === scenario || switching || clearing) return;
+    if (next === scenario || scenarioSwitch.current || clearing) return;
+    const switchIdentity = {};
+    scenarioSwitch.current = switchIdentity;
     const token = ++generation.current;
     setSwitching(true);
     inputController.current?.abort();
@@ -359,7 +364,11 @@ export function App() {
     } catch (cause) {
       if (token === generation.current) mediaError(cause);
     } finally {
-      if (token === generation.current) setSwitching(false);
+      // 输入失效不改变本次切换的释放责任。
+      if (scenarioSwitch.current === switchIdentity) {
+        scenarioSwitch.current = undefined;
+        setSwitching(false);
+      }
     }
   }
 
@@ -367,6 +376,7 @@ export function App() {
     next: Blob | ((signal: AbortSignal) => Promise<Blob>),
     label: string,
   ) {
+    if (scenarioSwitch.current || clearing || scenario !== "image") return;
     inputController.current?.abort();
     controller.current?.abort();
     const token = ++generation.current;
@@ -421,7 +431,7 @@ export function App() {
     }, "person.jpg");
   }
   async function run() {
-    if (!blob || busy || preparing) return;
+    if (!blob || busy || preparing || scenarioSwitch.current || clearing) return;
     const token = generation.current;
     const abort = new AbortController();
     controller.current = abort;
@@ -805,6 +815,7 @@ export function App() {
                   accept="image/*"
                   hidden
                   aria-label={t.upload}
+                  disabled={busy || switching || clearing}
                   onChange={(e) => {
                     const value = e.target.files?.[0];
                     if (value) void pick(value, value.name);
@@ -813,7 +824,7 @@ export function App() {
                 />
                 <button
                   className="file-button"
-                  disabled={busy}
+                  disabled={busy || switching || clearing}
                   onClick={() => file.current?.click()}
                 >
                   <ImageIcon size={16} aria-hidden="true" />
@@ -821,7 +832,7 @@ export function App() {
                 </button>
                 <button
                   className="primary-button"
-                  disabled={!blob || busy || preparing}
+                  disabled={!blob || busy || preparing || switching || clearing}
                   onClick={() => void run()}
                 >
                   <Check size={16} aria-hidden="true" />
@@ -837,8 +848,9 @@ export function App() {
                 </button>
                 <button
                   className="text-button reset-button"
-                  disabled={(!blob && !preparing) || busy}
+                  disabled={(!blob && !preparing) || busy || switching || clearing}
                   onClick={() => {
+                    if (scenarioSwitch.current || clearing) return;
                     ++generation.current;
                     inputController.current?.abort();
                     inputController.current = undefined;
@@ -908,6 +920,19 @@ export function App() {
             onState={(next) => {
               setMediaState(next);
               setLoadTimes(next.loadTimings);
+              if (!next.loadTimings) mediaCacheIdentity.current = undefined;
+              else {
+                const identity = JSON.stringify([
+                  model.id,
+                  model.version,
+                  model.sha256,
+                  model.url,
+                ]);
+                if (mediaCacheIdentity.current !== identity) {
+                  mediaCacheIdentity.current = identity;
+                  void refreshCache(model, generation.current).catch(() => {});
+                }
+              }
               setInitMs(
                 next.loadTimings
                   ? Object.values(next.loadTimings).reduce(
@@ -1213,7 +1238,7 @@ export function App() {
             <div className="sample-grid">
               <button
                 className="sample-card"
-                disabled={busy}
+                disabled={busy || switching || clearing}
                 onClick={() => void example()}
                 aria-label={t.choose}
               >

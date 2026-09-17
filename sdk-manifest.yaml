@@ -1,10 +1,10 @@
 schemaVersion: 1.1.0
 id: pp-tinypose
 name: PP-TinyPose
-summary: 浏览器单人人体关键点估计 SDK，支持两个输入规格、FP32 与 W16A32、显式 CPU/GPU 和主线程/Worker，模型双源固定提交分发。
+summary: 浏览器单帧人体关键点 SDK，支持两个输入规格、FP32 与 W16A32、显式 CPU/GPU 和主线程/Worker；独立 Demo 提供图片、本地视频与摄像头适配，模型双源固定提交分发。
 package:
   name: web-sdk-pp-tinypose
-  version: 0.2.0
+  version: 0.3.0
 repository: https://github.com/chenmohan123/web-sdk-PP-TinyPose
 demo:
   url: https://chenmohan123.github.io/web-sdk-PP-TinyPose/

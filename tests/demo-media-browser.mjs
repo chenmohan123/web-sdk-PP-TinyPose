@@ -9,24 +9,25 @@ const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-17-media";
 const fixture = resolve("tests/fixtures/media/person-motion.mp4");
 const fakeRuntime = `
 export const COCO_SKELETON = [[0,1]];
-window.mediaJobs=[]; window.cacheClears=[];
-export const clearAllModelCache=async()=>{window.cacheClears.push(window.mediaJobs.every(j=>j.disposed));};
+window.mediaJobs=[]; window.cacheClears=[]; window.cacheQueries=[]; window.modelCache={};
+export const clearAllModelCache=async()=>{window.cacheClears.push(window.mediaJobs.every(j=>j.disposed));window.modelCache={};};
 export const clearCurrentModelCache=clearAllModelCache;
-export const getModelCacheInfo=async()=>({bytes:0,entries:0});
+export const getModelCacheInfo=async(model)=>{window.cacheQueries.push(model.id);return {bytes:window.modelCache[model.id]??0,entries:window.modelCache[model.id]?1:0};};
 export function createTinyPose(options){
  const job={options,loads:0,runs:0,active:0,max:0,disposed:false};window.mediaJobs.push(job);
  return {loadTimings:{modelDownloadMs:1,modelCacheReadMs:0,integrityMs:1,sessionMs:1},
- load:async()=>{job.loads++},
- run:async(input)=>{job.runs++;job.max=Math.max(job.max,++job.active);await new Promise(r=>setTimeout(r,40));job.active--;
+ load:async()=>{job.loads++;window.modelCache[options.model.id]=options.model.bytes;},
+ run:async(input)=>{if(input.image instanceof Blob)input={...input,image:{width:640,height:480}};job.runs++;job.max=Math.max(job.max,++job.active);await new Promise(r=>setTimeout(r,40));job.active--;
  return {keypoints:Array.from({length:17},(_,id)=>({id,name:String(id),x:input.image.width/2+id,y:input.image.height/2+id,score:.9})),
  crop:input.region??{x:0,y:0,width:input.image.width,height:input.image.height},image:{width:input.image.width,height:input.image.height},
  model:options.model,runtime:{requestedBackend:options.backend,actualBackend:options.backend,executionMode:options.executionMode},
  timings:{decodeMs:0,preprocessMs:1,inferenceMs:40,postprocessMs:1,totalMs:42}}},
- dispose:async()=>{job.disposed=true}};
+ dispose:async()=>{if(window.delayDispose)await new Promise(resolve=>{window.releaseDispose=resolve});job.disposed=true}};
 }`;
 const browser = await chromium.launch({ channel: "chromium", headless: true });
 const results = [];
 async function check(name, action) {
+  if (process.env.TINYPOSE_MEDIA_CHECK && !name.includes(process.env.TINYPOSE_MEDIA_CHECK)) return;
   const page = await browser.newPage({
     viewport: { width: 1280, height: 900 },
   });
@@ -34,10 +35,11 @@ async function check(name, action) {
   const errors = [];
   page.on("pageerror", (error) => errors.push(String(error)));
   try {
-    await page.route("**/dist/index.js", (route) =>
+    await page.route((url) => url.pathname.endsWith("/dist/index.js"), (route) =>
       route.fulfill({ contentType: "text/javascript", body: fakeRuntime }),
     );
     await page.goto(origin);
+    await page.waitForFunction(() => Array.isArray(window.mediaJobs));
     await action(page);
     assert.deepEqual(errors, []);
     results.push(name);
@@ -131,6 +133,69 @@ async function camera(page, { late = false, deny = false } = {}) {
   await button(page, "开启摄像头").click();
 }
 try {
+  await check("回归：图片切换等待释放期间阻止输入和重置并恢复入口", async (page) => {
+    await page.getByLabel("选择图片", { exact: true }).setInputFiles(resolve("demo/public/examples/person.jpg"));
+    await button(page, "识别姿态").click();
+    await page.waitForFunction(() => document.querySelector('[data-state="success"]'));
+    await page.evaluate(() => { window.delayDispose = true; });
+    await tab(page, "视频").click();
+    await page.waitForFunction(() => typeof window.releaseDispose === "function");
+    assert(await button(page, "选择图片").isDisabled());
+    assert(await page.getByLabel("选择图片", { exact: true }).isDisabled());
+    assert(await button(page, "使用此示例").isDisabled());
+    assert(await button(page, "重置").isDisabled());
+    assert(await button(page, "识别姿态").isDisabled());
+    await page.getByLabel("选择图片", { exact: true }).setInputFiles({
+      name: "切换期间.jpg",
+      mimeType: "image/jpeg",
+      buffer: Buffer.from("无效图片"),
+    });
+    await page.evaluate(() => { window.delayDispose = false; window.releaseDispose(); });
+    await page.waitForFunction(() => document.querySelector('[role="tab"][aria-selected="true"]')?.textContent === "视频");
+    assert(await tab(page, "图片").isEnabled());
+    assert.equal(await page.locator('[role="alert"]').count(), 0);
+    await tab(page, "图片").click();
+    assert(await button(page, "重置").isEnabled());
+    await button(page, "重置").click();
+    await tab(page, "摄像头").click();
+    assert(await button(page, "开启摄像头").isEnabled());
+  });
+  await check("回归：停止等待释放期间禁止单帧并允许替换恢复", async (page) => {
+    await upload(page);
+    await button(page, "单帧识别").click();
+    await ready(page, "paused");
+    await page.evaluate(() => { window.delayDispose = true; });
+    await button(page, "停止").click();
+    await page.waitForFunction(() => typeof window.releaseDispose === "function");
+    assert(await button(page, "单帧识别").isDisabled());
+    assert(await button(page, "播放识别").isDisabled());
+    assert.equal(await page.locator("canvas[data-media-canvas]").count(), 0);
+    await page.evaluate(() => { window.delayDispose = false; window.releaseDispose(); });
+    await ready(page, "idle");
+    await upload(page);
+    assert(await button(page, "单帧识别").isEnabled());
+  });
+  await check("回归：媒体首次加载更新当前模型缓存且后续帧不重复查询", async (page) => {
+    await page.locator('[data-testid="cache-details"] > summary').click();
+    const cache = page.locator('[data-testid="cache-details"] dd');
+    assert.equal(await cache.textContent(), "0.00 MB");
+    for (const kind of ["video", "camera"]) {
+      const queries = await page.evaluate(() => window.cacheQueries.length);
+      if (kind === "video") await upload(page);
+      else await camera(page);
+      if (kind === "video") await button(page, "播放识别").click();
+      await page.waitForFunction(() => Number(document.querySelector("[data-media-processed]")?.textContent) >= 4);
+      const expected = await page.evaluate(() => `${(window.mediaJobs.at(-1).options.model.bytes / 1e6).toFixed(2)} MB`);
+      assert.equal(await cache.textContent(), expected);
+      assert.equal(await page.evaluate(() => window.cacheQueries.length), queries + 1);
+      const afterLoad = await page.evaluate(() => window.cacheQueries.length);
+      await page.waitForFunction(() => Number(document.querySelector("[data-media-processed]")?.textContent) >= 7);
+      assert.equal(await page.evaluate(() => window.cacheQueries.length), afterLoad);
+      await page.locator('[data-sdk-cache-clear="all"]').click();
+      await ready(page, "idle");
+      await page.waitForFunction(() => document.querySelector('[data-testid="cache-details"] dd')?.textContent === "0.00 MB");
+    }
+  });
   await check("图片、视频与摄像头独立切换", async (page) => {
     assert.equal(await tab(page, "图片").getAttribute("aria-selected"), "true");
     await tab(page, "视频").click();

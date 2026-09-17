@@ -285,6 +285,7 @@ export function createMediaController(
   let frameHandleKind: "video" | "animation" | undefined;
   let sourceUrl: string | undefined;
   let stream: MediaStream | undefined;
+  let removeSourceListeners: (() => void) | undefined;
   let pose: TinyPose | undefined;
   let poseLoaded = false;
   let operationAbort: AbortController | undefined;
@@ -390,6 +391,8 @@ export function createMediaController(
   };
 
   const detachOwned = (): Promise<void> => {
+    removeSourceListeners?.();
+    removeSourceListeners = undefined;
     cancelFrame();
     operationAbort?.abort();
     operationAbort = undefined;
@@ -422,6 +425,8 @@ export function createMediaController(
     const ownedPose = pose;
     pose = undefined;
     poseLoaded = false;
+    // 来源已同步拆除，等待会话释放期间不能再采帧或创建新会话。
+    reportState({ kind: "none", loadTimings: undefined });
     const waits: Promise<void>[] = [];
     if (activeProcessing)
       waits.push(
@@ -470,6 +475,28 @@ export function createMediaController(
     reportState({ phase: "error", kind: "none" });
     reportError(reported);
     return reported;
+  };
+
+  const watchSource = (generation: number, ownedStream?: MediaStream) => {
+    const decodeFailed = () => {
+      if (generation !== sourceGeneration) return;
+      void failAndTeardown(
+        new MediaControllerError("MEDIA_DECODE", "媒体解码失败"),
+      );
+    };
+    const trackEnded = () => {
+      if (generation !== sourceGeneration || stream !== ownedStream) return;
+      void failAndTeardown(
+        new MediaControllerError("CAMERA_UNAVAILABLE", "摄像头画面已中断"),
+      );
+    };
+    const tracks = ownedStream?.getTracks() ?? [];
+    video.addEventListener("error", decodeFailed);
+    for (const track of tracks) track.addEventListener("ended", trackEnded);
+    removeSourceListeners = () => {
+      video.removeEventListener("error", decodeFailed);
+      for (const track of tracks) track.removeEventListener("ended", trackEnded);
+    };
   };
 
   const beginSource = async (kind: Exclude<MediaKind, "none">) => {
@@ -720,6 +747,7 @@ export function createMediaController(
         sourceUrl = url;
         video.srcObject = null;
         video.src = url;
+        watchSource(generation);
         video.load();
         await dependencies.waitForReady(video, abort.signal);
         if (generation !== sourceGeneration || abort.signal.aborted) return;
@@ -767,6 +795,7 @@ export function createMediaController(
       }
       stream = acquired;
       video.srcObject = acquired;
+      watchSource(generation, acquired);
       try {
         await video.play();
         await dependencies.waitForReady(video, abort.signal);

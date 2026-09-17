@@ -2,6 +2,8 @@
 
 [English](../en/performance.md)
 
+0.3.0 Demo 连续帧只初始化一次会话，同一时间最多一个推理任务，不排队保存积压帧。默认上限15 FPS，可选5/10/15/30；显示的 FPS 是相邻有效结果完成间隔的瞬时处理率，首帧为0。已跳过帧只计调度器实际观察且因忙或限频跳过的新帧，不是硬件丢帧。采集耗时包含视频转 RGBA，不混入 SDK `inferenceMs`。暂停可复用会话，停止则下次重新加载；不能用 `1000/inferenceMs` 宣称摄像头FPS。连续帧原始观测见[媒体回执](../../reports/2026-09-17-media/media-acceptance.json)。
+
 冷启动分别记录 modelDownloadMs、modelCacheReadMs、integrityMs、sessionMs；热推理分别记录 preprocessMs、inferenceMs、postprocessMs、totalMs。首次推理包含着色器等初始化成本，不与热推理混用。浏览器往返、图像解码、主线程/Worker 通信会影响总耗时。
 
 2026-09-16 固定张量模型探针（32 裁剪，每图先一轮预热再三轮）热推理中位数：WASM main 46.92ms、Worker 47.61ms；WebGPU main 28.84ms、Worker 29.98ms。按每图三轮中位数再跨图取中位数。仅包含本机 ORT session.run 与输出回读，不含图片预处理、DARK、下载、检测器或视频调度；不能换算成完整摄像头 FPS，也不是完整 SDK 性能。

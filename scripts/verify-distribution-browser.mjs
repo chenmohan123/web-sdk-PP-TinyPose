@@ -8,10 +8,10 @@ import { readBuildAssets, verifySdkCopies, verifyServedAssets, verifyResponseByt
 
 const origin = new URL(process.env.TINYPOSE_DEMO_URL ?? "http://127.0.0.1:4186/").href;
 const online = process.argv.includes("--online");
-const reportDir = "reports/2026-09-17-variants";
+const reportDir = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-17-variants";
 const catalog = JSON.parse(await readFile("models/catalog.json", "utf8"));
 const pkg = JSON.parse(await readFile("package.json", "utf8"));
-const distribution = JSON.parse(await readFile(`${reportDir}/distribution-variants-verified.json`, "utf8"));
+const distribution = JSON.parse(await readFile("reports/2026-09-17-variants/distribution-variants-verified.json", "utf8"));
 assert.equal(distribution.status, "passed", "分发回执未通过");
 assert.deepEqual(distribution.catalog, catalog, "分发回执 catalog 与当前产品不一致");
 const distributionKeys = new Set(distribution.results.map(row => `${row.modelId}/${row.source}`));

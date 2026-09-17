@@ -2,6 +2,8 @@
 
 [English](../en/api.md)
 
+0.3.0 未新增摄像头权限或视频播放 API。Demo 的 `createMediaController` 不是 npm 公共接口；它负责将采样帧交给现有 `run`，复用一次 `load` 并保证最多一个在途推理。每次结果必须和对应的独立 RGBA 帧一起绘制。暂停保留会话但丢弃晚到结果；停止先释放媒体轨道并调用 `dispose`，随后等待收尾。AbortSignal 本身不保证立即终止 Worker，Worker 在 `dispose` 时终止；主线程已提交的内核可能需要等待。
+
 `createTinyPose({ model, backend?, executionMode?, runtimeBaseUrl? })` 创建独立实例；默认后端为 `wasm`，默认执行模式为 `worker`，建议在调用时显式配置。`model` 必须包含 `id/version/url/bytes/sha256`。`url` 来自正式 metadata 中所选来源的 `downloadUrl`；来源选择在调用者层完成，公共 API 不新增 Hub 特殊参数。
 
 `model.inputSize` 可选，格式为 `{ width, height }`；省略时兼容默认 `{ width: 192, height: 256 }`，也支持 `{ width: 96, height: 128 }`。从 `models/catalog.json` 选择完整模型项，再用该项 `sources` 中所选来源的 `downloadUrl` 覆盖 `url`。切换模型应取消旧操作、`dispose()` 旧实例并重新查询所选模型缓存；不能复用旧时序或结果。

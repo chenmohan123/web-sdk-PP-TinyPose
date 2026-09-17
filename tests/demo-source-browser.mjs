@@ -37,7 +37,7 @@ async function check(name, action, fake = true) {
   const page = await browser.newPage();
   page.setDefaultTimeout(10000);
   try {
-    if (fake) await page.route("**/dist/index.js", route => route.fulfill({contentType:"text/javascript", body:fakeRuntime}));
+    if (fake) await page.route(url => url.pathname.endsWith("/dist/index.js"), route => route.fulfill({contentType:"text/javascript", body:fakeRuntime}));
     await page.goto(origin);
     await action(page);
     results.push(name);
