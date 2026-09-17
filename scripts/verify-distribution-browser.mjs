@@ -37,18 +37,36 @@ try {
         const assetChecks = [];
         const requestFailures = [];
         const browserMessages = [];
-        // 被动校验原生响应；替换顶层文档会改变 Chromium 的地址空间判定。
-        // Hub 模型及其跨域重定向始终由浏览器原生下载，不代理或修改。
+        // 顶层文档必须保持原生响应，避免改变 Chromium 地址空间判定。
+        // 只拦截清单内本站非文档资源；Hub 模型与重定向完全不匹配此路由。
+        await context.route(url => {
+          const requested = new URL(url); requested.search = '';
+          const asset = servedByUrl.get(requested.href);
+          return Boolean(asset && asset.file !== 'demo-dist/index.html');
+        }, async route => {
+          const requested = new URL(route.request().url()); requested.search = '';
+          const asset = servedByUrl.get(requested.href);
+          try {
+            const response = await route.fetch();
+            verifyResponseBytes(asset, await response.body(), response.status());
+            browserAssetRequests.add(asset.file);
+            await route.fulfill({ response });
+          } catch (error) {
+            assetErrors.push({ file: asset.file, message: safeMessage(error) });
+            await route.abort();
+          }
+        });
+        // 文档体积很小，可直接读取实际原生响应；大 WASM 不依赖调试器响应缓存。
         context.on('response', response => {
           const requested = new URL(response.url());
           requested.search = '';
           const asset = servedByUrl.get(requested.href);
-          if (!asset) return;
+          if (!asset || asset.file !== 'demo-dist/index.html') return;
           assetChecks.push((async () => {
             try {
               verifyResponseBytes(asset, await response.body(), response.status());
               browserAssetRequests.add(asset.file);
-            } catch (error) { assetErrors.push(safeMessage(error)); }
+            } catch (error) { assetErrors.push({ file: asset.file, message: safeMessage(error) }); }
           })());
         });
         context.on('requestfailed', request => requestFailures.push({ url: safeUrl(request.url()), reason: request.failure()?.errorText }));
