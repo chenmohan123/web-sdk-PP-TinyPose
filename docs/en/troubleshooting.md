@@ -11,4 +11,6 @@
 
 A source switch without a download can be a valid cache hit for the same model ID/version/checksum. Clear cache before testing source availability. The Demo disposes the old instance and clears old results on source changes; late downloads or inference results must not overwrite current state.
 
+If old keypoints, timings or cache bytes remain after changing size/precision, verify that selection synchronously advances the task generation, aborts the old signal, disposes the old instance, and queries cache with the complete new model identity. 128×96 W16A32 must be labeled “FP16 weights (FP32 compute)”; describing it as FP16 compute is a metadata/UI error.
+
 Multiple people, cropped bodies and occlusion can reduce quality. Select one complete person; low responses are not action or visibility conclusions. For npm or Demo 404 errors, verify publication/deployment receipts first. A candidate version number is not proof of an upload.

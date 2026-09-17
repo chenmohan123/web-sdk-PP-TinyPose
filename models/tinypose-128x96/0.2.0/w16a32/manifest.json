@@ -1,0 +1,38 @@
+{
+  "id": "tinypose-enhance-128x96-w16a32",
+  "version": "0.2.0",
+  "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+  "bytes": 3150847,
+  "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea",
+  "defaultSource": "modelscope",
+  "sources": [
+    {
+      "kind": "modelscope",
+      "repository": "chenmohan/web-sdk-pp-tinypose",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "downloadUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "bytes": 3150847,
+      "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+    },
+    {
+      "kind": "huggingface",
+      "repository": "chenmohan/web-sdk-pp-tinypose",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "downloadUrl": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "bytes": 3150847,
+      "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+    }
+  ],
+  "inputSize": {
+    "width": 96,
+    "height": 128
+  },
+  "precision": "w16a32",
+  "backends": [
+    "wasm",
+    "webgpu"
+  ],
+  "parameterCount": null
+}

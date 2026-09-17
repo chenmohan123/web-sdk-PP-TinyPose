@@ -1,10 +1,10 @@
 schemaVersion: 1.1.0
 id: pp-tinypose
 name: PP-TinyPose
-summary: 浏览器单人人体关键点估计 SDK，支持显式 CPU/GPU 与主线程/Worker，模型双源固定提交分发。
+summary: 浏览器单人人体关键点估计 SDK，支持两个输入规格、FP32 与 W16A32、显式 CPU/GPU 和主线程/Worker，模型双源固定提交分发。
 package:
   name: web-sdk-pp-tinypose
-  version: 0.1.0
+  version: 0.2.0
 repository: https://github.com/chenmohan123/web-sdk-PP-TinyPose
 demo:
   url: https://chenmohan123.github.io/web-sdk-PP-TinyPose/
@@ -30,18 +30,29 @@ model:
   parameterCount: null
   precision:
     - fp32
+    - w16a32
   source: https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose
   license: Apache-2.0
-  defaultVariant: fp32
+  defaultVariant: tinypose-enhance-256x192
   defaultSource: modelscope
   assets:
-    - id: fp32
+    - id: tinypose-enhance-256x192
       bytes: 5685847
       precision: fp32
       url: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
       sha256: 7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9
+    - id: tinypose-enhance-128x96
+      bytes: 5685846
+      precision: fp32
+      url: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx
+      sha256: a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8
+    - id: tinypose-enhance-128x96-w16a32
+      bytes: 3150847
+      precision: w16a32
+      url: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx
+      sha256: 8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea
   variants:
-    - id: fp32
+    - id: tinypose-enhance-256x192
       precision: fp32
       quantization: null
       opset: 17
@@ -65,6 +76,54 @@ model:
           downloadUrl: https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
           bytes: 5685847
           sha256: 7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9
+    - id: tinypose-enhance-128x96
+      precision: fp32
+      quantization: null
+      opset: 17
+      bytes: 5685846
+      parameterCount: null
+      backends:
+        - wasm
+        - webgpu
+      sources:
+        - kind: modelscope
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 97c04100baef646f1b9c4d83295d8e2f14b4324d
+          path: tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx
+          downloadUrl: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx
+          bytes: 5685846
+          sha256: a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8
+        - kind: huggingface
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 3e6d980f819d42d652ce175d8fa34f054bff9457
+          path: tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx
+          downloadUrl: https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx
+          bytes: 5685846
+          sha256: a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8
+    - id: tinypose-enhance-128x96-w16a32
+      precision: w16a32
+      quantization: weight-fp16-compute-fp32
+      opset: 17
+      bytes: 3150847
+      parameterCount: null
+      backends:
+        - wasm
+        - webgpu
+      sources:
+        - kind: modelscope
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 97c04100baef646f1b9c4d83295d8e2f14b4324d
+          path: tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx
+          downloadUrl: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx
+          bytes: 3150847
+          sha256: 8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea
+        - kind: huggingface
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 3e6d980f819d42d652ce175d8fa34f054bff9457
+          path: tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx
+          downloadUrl: https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx
+          bytes: 3150847
+          sha256: 8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea
 performance:
   timings:
     - modelDownloadMs

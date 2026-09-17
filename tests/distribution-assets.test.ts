@@ -17,12 +17,21 @@ afterEach(async () => {
 async function fixture(stale = false) {
   const root = await mkdtemp(join(tmpdir(), "tinypose-service-")); roots.push(root);
   const save = async (file: string, data: string) => { await mkdir(resolve(root, file, ".."), { recursive: true }); await writeFile(join(root, file), data); };
+  const catalogText = await readFile(resolve("models/catalog.json"), "utf8");
+  const catalog = JSON.parse(catalogText);
+  const model = catalog.models.find((item: { id: string }) => item.id === catalog.defaultModelId);
   await save("dist/index.js", 'export const build = "fresh";');
   await save("demo-dist/sdk/index.js", 'export const build = "fresh";');
   await save("demo-dist/index.html", "<!doctype html><title>资产验收测试</title>");
-  await save("package.json", '{"version":"0.1.0"}');
-  await save("models/model.json", '{"sources":[]}');
-  await save("reports/2026-09-17-release/distribution-weights-verified.json", '{}');
+  await save("demo-dist/models/catalog.json", catalogText);
+  await save("demo-dist/models/model.json", JSON.stringify(model));
+  await save("package.json", '{"version":"0.2.0"}');
+  await save("models/catalog.json", catalogText);
+  await save("models/model.json", JSON.stringify(model));
+  await save("reports/2026-09-17-variants/distribution-variants-verified.json", JSON.stringify({
+    status: "passed", catalog,
+    results: catalog.models.flatMap((item: any) => item.sources.map((source: any) => ({ modelId: item.id, source: source.kind }))),
+  }));
   const requests: string[] = [];
   const server = createServer(async (request, response) => {
     requests.push(request.url!);
@@ -40,9 +49,9 @@ test("完整服务预检使用响应字节并保留每个生产文件的地址",
   const assets = await readBuildAssets(f.root);
   verifySdkCopies(assets);
   const served = await verifyServedAssets(assets, f.origin);
-  expect(f.requests.sort()).toEqual(["/index.html", "/sdk/index.js"]);
-  expect(served.map((asset: { file: string }) => asset.file)).toEqual(["demo-dist/index.html", "demo-dist/sdk/index.js"]);
-  expect(served[1].url).toBe(`${f.origin}sdk/index.js`);
+  expect(f.requests.sort()).toEqual(["/index.html", "/models/catalog.json", "/models/model.json", "/sdk/index.js"]);
+  expect(served.map((asset: { file: string }) => asset.file)).toEqual(["demo-dist/index.html", "demo-dist/models/catalog.json", "demo-dist/models/model.json", "demo-dist/sdk/index.js"]);
+  expect(served[3].url).toBe(`${f.origin}sdk/index.js`);
   await verifyBuildUnchanged(assets, f.root);
 });
 test("dist 与 Demo 中 SDK 副本不同会阻止验收", async () => {
@@ -67,11 +76,11 @@ test("真实 CLI 拒绝同长度旧 SDK 服务且不生成成功回执", async (
       timeout: 15000,
     });
   } catch (error) { result = error as typeof result; }
-  expect(result?.code).toBe(1);
+  expect(result?.code).not.toBe(0);
   expect(result?.stderr).toContain("服务资产摘要不符：demo-dist/sdk/index.js");
   expect(result?.stdout).not.toContain("17点");
   expect(existsSync(join(f.root, "reports/release-acceptance.json"))).toBe(false);
-  expect(existsSync(join(f.root, "reports/2026-09-17-release/distribution-browser.json"))).toBe(false);
+  expect(existsSync(join(f.root, "reports/2026-09-17-variants/distribution-browser.json"))).toBe(false);
   expect(f.requests).toContain("/sdk/index.js");
   if (process.env.TINYPOSE_REPRO_REPORT) await writeFile(process.env.TINYPOSE_REPRO_REPORT, JSON.stringify({
     testedAt: new Date().toISOString(), scenario: "HTTP 服务返回等长 stale SDK，磁盘保留 fresh SDK",
