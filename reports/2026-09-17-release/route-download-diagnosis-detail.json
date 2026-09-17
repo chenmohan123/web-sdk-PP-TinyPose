@@ -1,0 +1,101 @@
+{
+  "testedAt": "2026-09-17T03:25:31.922Z",
+  "results": [
+    {
+      "mode": "assets-only",
+      "result": {
+        "loaded": false,
+        "name": "TinyPoseError",
+        "code": "DOWNLOAD",
+        "message": "模型下载失败",
+        "cause": "Failed to fetch"
+      },
+      "assetErrors": [],
+      "events": [
+        {
+          "event": "request",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "headers": {
+            "origin": "http://127.0.0.1:4186"
+          }
+        },
+        {
+          "event": "console",
+          "corsError": true,
+          "message": "Access to fetch at 'https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx' from origin 'http://127.0.0.1:4186/' has been blocked by CORS policy: Permission was denied for this request to access the `local` address space."
+        },
+        {
+          "event": "failed",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "reason": "net::ERR_FAILED"
+        }
+      ]
+    },
+    {
+      "mode": "continue-only",
+      "result": {
+        "loaded": true
+      },
+      "assetErrors": [],
+      "events": [
+        {
+          "event": "request",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "headers": {
+            "origin": "http://127.0.0.1:4186"
+          }
+        },
+        {
+          "event": "response",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "status": 302,
+          "allowOrigin": "*"
+        },
+        {
+          "event": "request",
+          "url": "https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "headers": {
+            "origin": "null"
+          }
+        },
+        {
+          "event": "response",
+          "url": "https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "status": 200,
+          "allowOrigin": "*"
+        }
+      ]
+    },
+    {
+      "mode": "none",
+      "result": {
+        "loaded": true
+      },
+      "assetErrors": [],
+      "events": [
+        {
+          "event": "request",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "headers": {}
+        },
+        {
+          "event": "response",
+          "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "status": 302,
+          "allowOrigin": "*"
+        },
+        {
+          "event": "request",
+          "url": "https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "headers": {}
+        },
+        {
+          "event": "response",
+          "url": "https://cdn-lfs-cn-1.modelscope.cn/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "status": 200,
+          "allowOrigin": "*"
+        }
+      ]
+    }
+  ]
+}

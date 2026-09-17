@@ -19,6 +19,9 @@ const servedAssets = await verifyServedAssets(assets, origin);
 const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
 const servedByUrl = new Map(servedAssets.map(asset => [asset.url, asset]));
 servedByUrl.set(origin, servedByUrl.get(new URL('index.html', origin).href));
+// 不把 Hub 的临时重定向签名或凭证写入日志/验收文件。
+const safeUrl = value => { const url = new URL(value); url.search = ''; url.hash = ''; url.username = ''; url.password = ''; return url.href; };
+const safeMessage = value => String(value).replace(/https?:\/\/[^\s"'<>]+/g, safeUrl);
 const results = [];
 const browser = await chromium.launch({ channel: 'chromium', headless: true });
 const browserVersion = browser.version();
@@ -31,31 +34,39 @@ try {
       for (const executionMode of ['main', 'worker']) {
         const context = await browser.newContext({ serviceWorkers: 'block' });
         const assetErrors = [];
-        // 验证实际交给浏览器执行的响应，防止预检后服务切换或缓存命中旧产物。
-        await context.route('**/*', async route => {
-          const requested = new URL(route.request().url());
+        const assetChecks = [];
+        const requestFailures = [];
+        const browserMessages = [];
+        // 被动校验原生响应；替换顶层文档会改变 Chromium 的地址空间判定。
+        // Hub 模型及其跨域重定向始终由浏览器原生下载，不代理或修改。
+        context.on('response', response => {
+          const requested = new URL(response.url());
           requested.search = '';
           const asset = servedByUrl.get(requested.href);
-          if (!asset) return route.continue();
-          try {
-            const response = await route.fetch();
-            const body = await response.body();
-            verifyResponseBytes(asset, body, response.status());
-            browserAssetRequests.add(asset.file);
-            await route.fulfill({ response });
-          } catch (error) {
-            assetErrors.push(String(error));
-            await route.abort();
-          }
+          if (!asset) return;
+          assetChecks.push((async () => {
+            try {
+              verifyResponseBytes(asset, await response.body(), response.status());
+              browserAssetRequests.add(asset.file);
+            } catch (error) { assetErrors.push(safeMessage(error)); }
+          })());
         });
+        context.on('requestfailed', request => requestFailures.push({ url: safeUrl(request.url()), reason: request.failure()?.errorText }));
+        const diagnose = async error => {
+          await Promise.all(assetChecks);
+          throw new Error(`${source.kind}/${backend}/${executionMode} 验收失败：${safeMessage(error)}\n${JSON.stringify({ assetErrors, requestFailures, browserMessages })}`);
+        };
         const page = await context.newPage();
         const requests = [];
         const errors = [];
         context.on('request', (request) => {
-          if (/\.onnx(?:\?|$)/.test(request.url())) requests.push(request.url());
+          if (/\.onnx(?:\?|$)/.test(request.url())) requests.push(safeUrl(request.url()));
         });
-        page.on('pageerror', (error) => errors.push(String(error)));
-        await page.goto(origin);
+        page.on('pageerror', (error) => errors.push(safeMessage(error)));
+        page.on('console', message => {
+          if (message.type() === 'error' && /CORS|address space/.test(message.text())) browserMessages.push(safeMessage(message.text()));
+        });
+        await page.goto(origin).catch(diagnose);
         const row = await page.evaluate(async ({ metadata, source, backend, executionMode, origin }) => {
           const sdk = await import(new URL('sdk/index.js', origin).href);
           const model = { ...metadata, url: source.downloadUrl };
@@ -76,7 +87,8 @@ try {
           } finally {
             await pose.dispose();
           }
-        }, { metadata, source, backend, executionMode, origin });
+        }, { metadata, source, backend, executionMode, origin }).catch(diagnose);
+        await Promise.all(assetChecks);
         assert.deepEqual(errors, []);
         assert.deepEqual(assetErrors, [], '浏览器实际加载了与预检不一致的服务资产');
         assert.equal(row.result.keypoints.length, 17);
@@ -98,7 +110,7 @@ try {
           maxReliableErrorPx = Math.max(maxReliableErrorPx, Math.hypot(row.result.keypoints[i].x - baseline.keypoints[i].x, row.result.keypoints[i].y - baseline.keypoints[i].y));
         }
         assert(maxReliableErrorPx <= 0.1, '双源/运行模式结果与本轮 WASM 基线偏差过大');
-        results.push({ source: source.kind, backend, executionMode, status: 'passed', keypoints: 17, actualBackend: row.result.runtime.actualBackend, modelSha256: metadata.sha256, revision: source.revision, requests, maxReliableErrorPx, ...row });
+        results.push({ source: source.kind, backend, executionMode, status: 'passed', keypoints: 17, actualBackend: row.result.runtime.actualBackend, modelSha256: metadata.sha256, revision: source.revision, requests, requestFailures, assetErrors, maxReliableErrorPx, ...row });
         console.log(`${source.kind} / ${backend} / ${executionMode}：17点，冷启动下载及推理通过`);
         await context.close();
       }
