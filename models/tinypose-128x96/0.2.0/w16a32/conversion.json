@@ -1,0 +1,116 @@
+{
+  "version": "0.2.0",
+  "upstreamRevision": "b25522a0f4bde8c80603f3ba5e3472059972e3b5",
+  "archive": {
+    "url": "https://bj.bcebos.com/v1/paddledet/models/keypoint/tinypose_enhance/tinypose_128x96.zip",
+    "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\downloads\\tinypose_128x96.zip",
+    "bytes": 5397578,
+    "sha256": "b737aa851a1ce9403950280be5df4bdd9c0e0287dd7ecdaa16f534d9c940015d"
+  },
+  "paddleAssets": [
+    {
+      "path": "infer_cfg.yml",
+      "bytes": 343,
+      "sha256": "b3f7e023bfd403144455d75bfd6028cec6c5283d4ad8398cf24135948f8b7720"
+    },
+    {
+      "path": "model.pdiparams.info",
+      "bytes": 135248,
+      "sha256": "62b1cb256f4c53100e893ed4c07023506ac4e834c86bcf8a343f35a4280f3480"
+    },
+    {
+      "path": "model.pdiparams",
+      "bytes": 5456137,
+      "sha256": "8ae7262a63a27d7011bd9ac7993bd261ba1c5dbdfae1b2753dca9711b0b4b665"
+    },
+    {
+      "path": "model.pdmodel",
+      "bytes": 10928441,
+      "sha256": "4a416c423b2ddb8ca0e76b8edd965051cf35981a3ac331f6a1952217e97056bb"
+    }
+  ],
+  "model": {
+    "bytes": 3150847,
+    "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+  },
+  "opset": 17,
+  "input": [
+    1,
+    3,
+    128,
+    96
+  ],
+  "output": [
+    1,
+    17,
+    32,
+    24
+  ],
+  "parameterCount": null,
+  "tools": {
+    "python": "3.11.15 (main, Jul 18 2026, 17:06:27) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.26200-SP0",
+    "paddle": "2.6.2",
+    "paddle2onnx": "1.3.1",
+    "onnx": "1.16.2",
+    "onnxruntime": "1.20.1",
+    "onnxconverterCommon": "1.16.0",
+    "numpy": "1.26.4",
+    "opencv": "4.11.0"
+  },
+  "reproduction": "tools/variants/prepare.py",
+  "evidence": "reports/2026-09-17-variants",
+  "graphModification": {
+    "strategy": "Conv 常量权重 float16 存储，算子前 Cast 恢复 float32",
+    "storagePrecision": "float16",
+    "activationPrecision": "float32",
+    "operatorPrecision": "float32",
+    "inputType": "float32",
+    "outputType": "float32",
+    "label": "W16A32，不宣称 FP16 计算",
+    "conversion": {
+      "constantWeights": 270,
+      "initializerWeights": 0,
+      "castNodes": 270,
+      "elements": 1281729
+    },
+    "graphStatistics": {
+      "operators": {
+        "Add": 79,
+        "ArgMax": 1,
+        "BatchNormalization": 268,
+        "Cast": 270,
+        "Concat": 52,
+        "Constant": 1511,
+        "Conv": 269,
+        "Relu": 144,
+        "Reshape": 99,
+        "Resize": 29,
+        "Shape": 3,
+        "Slice": 3,
+        "Split": 49,
+        "Transpose": 49
+      },
+      "initializerTypes": {},
+      "constantTensorTypes": {
+        "FLOAT": 1130,
+        "FLOAT16": 270,
+        "INT64": 111
+      },
+      "constantTensorElements": {
+        "FLOAT": 73896,
+        "FLOAT16": 1281729,
+        "INT64": 459
+      },
+      "nodes": 2826,
+      "initializers": 0
+    },
+    "probeOutputShape": [
+      1,
+      17,
+      32,
+      24
+    ],
+    "probeOutputType": "float32"
+  }
+}

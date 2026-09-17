@@ -8,4 +8,6 @@
 
 固定张量探针与 SDK 图片路径分别验收，不能互相替代。全量 COCO 关键点 AP、其他浏览器、手机、微信 web-view 和 WebNN/NPU 尚未验证。390px 仅为桌面浏览器视口检查。功能探测成功不是兼容承诺，GPU 无适配器时应报告 UNSUPPORTED。
 
-2026-09-17 的双 Hub 固定来源已完成完整 GET 与摘要校验，见 [分发回执](../../reports/2026-09-17-release/distribution-weights-verified.json)。该回执仅证明分发字节，不替代浏览器推理。正式发布还需 reports/release-acceptance.json 中真实双源八组合与当前构建资产匹配的证据；来源切换回归使用可控延迟，不声称远程推理通过。
+0.1.0 默认 256×192 FP32 模型在 2026-09-17 完成双 Hub 固定来源的完整 GET 与摘要校验，见 [历史分发回执](../../reports/2026-09-17-release/distribution-weights-verified.json)。其历史发布验收覆盖单模型 × 双源 × 双后端 × 双执行模式共八组合，并与当时构建资产匹配。该回执仅证明对应版本的分发与浏览器推理范围；来源切换回归使用可控延迟，不单独证明远程推理通过。
+
+0.2.0 在同一桌面环境覆盖 128×96 FP32、保留的 256×192 FP32 与 128×96 W16A32 的 WASM/WebGPU × main/Worker，12 项数值与运行组合均通过；见 [浏览器对比](../../reports/2026-09-17-variants/browser-comparison.json)。W16A32 跨后端最大可靠点差为 `0.001567px`。三模型双源文件与卡已完成固定 revision 完整 GET，见 [变体分发回执](../../reports/2026-09-17-variants/distribution-variants-verified.json)；三模型 × 双源 × 双后端 × 双执行模式的 24 项真实分发验收也已与当前构建匹配并通过，见 [发布验收回执](../../reports/release-acceptance.json)。

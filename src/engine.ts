@@ -5,6 +5,7 @@ import type {
   Box,
   PixelImage,
   PoseResult,
+  PoseInputSize,
 } from "./types";
 import { TinyPoseError, checkAbort, wrapError } from "./errors";
 import { preprocessPose, decodePose } from "./pose";
@@ -26,6 +27,7 @@ export interface RunnerOptions {
   backend: Backend;
   executionMode: ExecutionMode;
   runtimeBaseUrl: string;
+  inputSize?: PoseInputSize;
 }
 export function createRunner(options: RunnerOptions): Runner {
   return options.executionMode === "worker"
@@ -77,12 +79,17 @@ class MainRunner implements Runner {
     if (!this.session || !this.ort)
       throw new TinyPoseError("NOT_LOADED", "会话尚未加载");
     const start = performance.now(),
-      prepared = preprocessPose(image, region),
+      prepared = preprocessPose(image, region, this.options.inputSize),
       preprocessMs = performance.now() - start;
     const tensor = new this.ort.Tensor(
       "float32",
       prepared.data,
-      [1, 3, 256, 192],
+      [
+        1,
+        3,
+        this.options.inputSize?.height ?? 256,
+        this.options.inputSize?.width ?? 192,
+      ],
     );
     let outputs: Ort.InferenceSession.ReturnType | undefined;
     try {
@@ -99,15 +106,19 @@ class MainRunner implements Runner {
             t.dims.length === 4 &&
             t.dims[0] === 1 &&
             t.dims[1] === 17 &&
-            t.dims[2] === 64 &&
-            t.dims[3] === 48,
+            t.dims[2] === (this.options.inputSize?.height ?? 256) / 4 &&
+            t.dims[3] === (this.options.inputSize?.width ?? 192) / 4,
         );
       if (!heatmap || !(heatmap.data instanceof Float32Array))
         throw new TinyPoseError(
           "INFERENCE",
-          "模型缺少 float32 [1,17,64,48] 热力图",
+          "模型缺少与输入规格匹配的 float32 热力图",
         );
-      const keypoints = decodePose(heatmap.data, prepared.crop),
+      const keypoints = decodePose(
+          heatmap.data,
+          prepared.crop,
+          this.options.inputSize,
+        ),
         postprocessMs = performance.now() - postStart;
       return {
         keypoints,

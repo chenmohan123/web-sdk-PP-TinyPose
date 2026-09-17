@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 2,
+  "status": "passed",
+  "phase": "weights",
+  "verifiedAt": "2026-09-17T07:21:09.772211+00:00",
+  "parents": {
+    "modelscope": "ddd1bc0b0b207040b63db3453f6edec30ae3eacc",
+    "huggingface": "9d291aea6c61b738ebb4ef22b23bdfb80149ff04"
+  },
+  "revisions": {
+    "modelscope": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+    "huggingface": "3e6d980f819d42d652ce175d8fa34f054bff9457"
+  },
+  "results": [
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/README.md",
+      "path": "README.md",
+      "bytes": 795,
+      "sha256": "2103aaba6d7edb51c5946f1de81eb7fdf51334b2a8d3855c6d1995e986f23d82",
+      "verifiedAt": "2026-09-17T07:20:55.328163+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/conversion.json",
+      "path": "tinypose-128x96/0.2.0/fp32/conversion.json",
+      "bytes": 1842,
+      "sha256": "fddefcedc71c85b174fc49f4b7b5778b6098f9d9f50763ff2a86cb6448468282",
+      "verifiedAt": "2026-09-17T07:20:55.610217+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/LICENSE",
+      "path": "tinypose-128x96/0.2.0/fp32/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "verifiedAt": "2026-09-17T07:20:55.912790+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/NOTICE",
+      "path": "tinypose-128x96/0.2.0/fp32/NOTICE",
+      "bytes": 1510,
+      "sha256": "609fe2358d69ae7f38f73959ed1176120bc240105d04da883ca3110fda5b77c6",
+      "verifiedAt": "2026-09-17T07:20:56.168458+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/README.en.md",
+      "path": "tinypose-128x96/0.2.0/fp32/README.en.md",
+      "bytes": 1992,
+      "sha256": "ff92adbea5215e8aed4b4cf07c7ef45d1a7fc2ea3f16cc592f578d3a9ae325e9",
+      "verifiedAt": "2026-09-17T07:20:56.462944+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/README.md",
+      "path": "tinypose-128x96/0.2.0/fp32/README.md",
+      "bytes": 1691,
+      "sha256": "4c36be358f4f17d9cf5644aa0d6a78bf9c81ea06a6008ba074d3302493b310b2",
+      "verifiedAt": "2026-09-17T07:20:56.737503+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+      "path": "tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+      "bytes": 5685846,
+      "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8",
+      "verifiedAt": "2026-09-17T07:20:57.671397+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/conversion.json",
+      "path": "tinypose-128x96/0.2.0/w16a32/conversion.json",
+      "bytes": 3016,
+      "sha256": "d31a9031afd8c3f066ad1c46d47e408b9615f97ddb4f27df4552e15301d56924",
+      "verifiedAt": "2026-09-17T07:20:57.978960+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/LICENSE",
+      "path": "tinypose-128x96/0.2.0/w16a32/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "verifiedAt": "2026-09-17T07:20:58.279725+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/NOTICE",
+      "path": "tinypose-128x96/0.2.0/w16a32/NOTICE",
+      "bytes": 1510,
+      "sha256": "609fe2358d69ae7f38f73959ed1176120bc240105d04da883ca3110fda5b77c6",
+      "verifiedAt": "2026-09-17T07:20:58.550921+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/README.en.md",
+      "path": "tinypose-128x96/0.2.0/w16a32/README.en.md",
+      "bytes": 2140,
+      "sha256": "36c52a153bed7f75f2c2bf68a8e8772daf37a18a87b852190701d740c3e70b63",
+      "verifiedAt": "2026-09-17T07:20:58.824933+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/README.md",
+      "path": "tinypose-128x96/0.2.0/w16a32/README.md",
+      "bytes": 1834,
+      "sha256": "af86ecb4acc838159648b09ad290e5a3dbde7413e3189426a3655a14640db987",
+      "verifiedAt": "2026-09-17T07:20:59.304972+00:00",
+      "passed": true
+    },
+    {
+      "source": "modelscope",
+      "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "bytes": 3150847,
+      "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea",
+      "verifiedAt": "2026-09-17T07:21:00.012864+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/README.md",
+      "path": "README.md",
+      "bytes": 795,
+      "sha256": "2103aaba6d7edb51c5946f1de81eb7fdf51334b2a8d3855c6d1995e986f23d82",
+      "verifiedAt": "2026-09-17T07:21:00.634800+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/conversion.json",
+      "path": "tinypose-128x96/0.2.0/fp32/conversion.json",
+      "bytes": 1842,
+      "sha256": "fddefcedc71c85b174fc49f4b7b5778b6098f9d9f50763ff2a86cb6448468282",
+      "verifiedAt": "2026-09-17T07:21:01.248761+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/LICENSE",
+      "path": "tinypose-128x96/0.2.0/fp32/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "verifiedAt": "2026-09-17T07:21:01.817888+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/NOTICE",
+      "path": "tinypose-128x96/0.2.0/fp32/NOTICE",
+      "bytes": 1510,
+      "sha256": "609fe2358d69ae7f38f73959ed1176120bc240105d04da883ca3110fda5b77c6",
+      "verifiedAt": "2026-09-17T07:21:02.435013+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/README.en.md",
+      "path": "tinypose-128x96/0.2.0/fp32/README.en.md",
+      "bytes": 1992,
+      "sha256": "ff92adbea5215e8aed4b4cf07c7ef45d1a7fc2ea3f16cc592f578d3a9ae325e9",
+      "verifiedAt": "2026-09-17T07:21:03.065762+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/README.md",
+      "path": "tinypose-128x96/0.2.0/fp32/README.md",
+      "bytes": 1691,
+      "sha256": "4c36be358f4f17d9cf5644aa0d6a78bf9c81ea06a6008ba074d3302493b310b2",
+      "verifiedAt": "2026-09-17T07:21:03.632686+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+      "path": "tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+      "bytes": 5685846,
+      "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8",
+      "verifiedAt": "2026-09-17T07:21:05.456852+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/conversion.json",
+      "path": "tinypose-128x96/0.2.0/w16a32/conversion.json",
+      "bytes": 3016,
+      "sha256": "d31a9031afd8c3f066ad1c46d47e408b9615f97ddb4f27df4552e15301d56924",
+      "verifiedAt": "2026-09-17T07:21:06.052658+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/LICENSE",
+      "path": "tinypose-128x96/0.2.0/w16a32/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "verifiedAt": "2026-09-17T07:21:06.599822+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/NOTICE",
+      "path": "tinypose-128x96/0.2.0/w16a32/NOTICE",
+      "bytes": 1510,
+      "sha256": "609fe2358d69ae7f38f73959ed1176120bc240105d04da883ca3110fda5b77c6",
+      "verifiedAt": "2026-09-17T07:21:07.162663+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/README.en.md",
+      "path": "tinypose-128x96/0.2.0/w16a32/README.en.md",
+      "bytes": 2140,
+      "sha256": "36c52a153bed7f75f2c2bf68a8e8772daf37a18a87b852190701d740c3e70b63",
+      "verifiedAt": "2026-09-17T07:21:07.727653+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/README.md",
+      "path": "tinypose-128x96/0.2.0/w16a32/README.md",
+      "bytes": 1834,
+      "sha256": "af86ecb4acc838159648b09ad290e5a3dbde7413e3189426a3655a14640db987",
+      "verifiedAt": "2026-09-17T07:21:08.301300+00:00",
+      "passed": true
+    },
+    {
+      "source": "huggingface",
+      "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+      "url": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "bytes": 3150847,
+      "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea",
+      "verifiedAt": "2026-09-17T07:21:09.772211+00:00",
+      "passed": true
+    }
+  ],
+  "catalog": {
+    "schemaVersion": 1,
+    "defaultModelId": "tinypose-enhance-256x192",
+    "models": [
+      {
+        "id": "tinypose-enhance-256x192",
+        "version": "0.1.0",
+        "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+        "bytes": 5685847,
+        "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+        "defaultSource": "modelscope",
+        "sources": [
+          {
+            "kind": "modelscope",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+            "path": "tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+            "downloadUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+            "bytes": 5685847,
+            "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+          },
+          {
+            "kind": "huggingface",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+            "path": "tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+            "downloadUrl": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+            "bytes": 5685847,
+            "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+          }
+        ],
+        "inputSize": {
+          "width": 192,
+          "height": 256
+        },
+        "precision": "fp32",
+        "backends": [
+          "wasm",
+          "webgpu"
+        ],
+        "parameterCount": null
+      },
+      {
+        "id": "tinypose-enhance-128x96",
+        "version": "0.2.0",
+        "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+        "bytes": 5685846,
+        "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8",
+        "defaultSource": "modelscope",
+        "sources": [
+          {
+            "kind": "modelscope",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+            "path": "tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+            "downloadUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+            "bytes": 5685846,
+            "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8"
+          },
+          {
+            "kind": "huggingface",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+            "path": "tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+            "downloadUrl": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/fp32/tinypose-128x96-fp32.onnx",
+            "bytes": 5685846,
+            "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8"
+          }
+        ],
+        "inputSize": {
+          "width": 96,
+          "height": 128
+        },
+        "precision": "fp32",
+        "backends": [
+          "wasm",
+          "webgpu"
+        ],
+        "parameterCount": null
+      },
+      {
+        "id": "tinypose-enhance-128x96-w16a32",
+        "version": "0.2.0",
+        "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+        "bytes": 3150847,
+        "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea",
+        "defaultSource": "modelscope",
+        "sources": [
+          {
+            "kind": "modelscope",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+            "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+            "downloadUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+            "bytes": 3150847,
+            "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+          },
+          {
+            "kind": "huggingface",
+            "repository": "chenmohan/web-sdk-pp-tinypose",
+            "revision": "3e6d980f819d42d652ce175d8fa34f054bff9457",
+            "path": "tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+            "downloadUrl": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/3e6d980f819d42d652ce175d8fa34f054bff9457/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+            "bytes": 3150847,
+            "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+          }
+        ],
+        "inputSize": {
+          "width": 96,
+          "height": 128
+        },
+        "precision": "w16a32",
+        "backends": [
+          "wasm",
+          "webgpu"
+        ],
+        "parameterCount": null
+      }
+    ]
+  }
+}

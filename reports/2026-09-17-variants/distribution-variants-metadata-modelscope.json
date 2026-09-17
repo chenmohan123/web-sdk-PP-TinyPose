@@ -1,0 +1,25 @@
+{
+  "source": "modelscope",
+  "repository": "chenmohan/web-sdk-pp-tinypose",
+  "phase": "metadata",
+  "parent": "97c04100baef646f1b9c4d83295d8e2f14b4324d",
+  "revision": "0b8f70459e8d38d797782bd12f1c9d3bebe9438c",
+  "uploadedAt": "2026-09-17T07:21:25.068680+00:00",
+  "files": [
+    {
+      "path": "catalog.json",
+      "bytes": 5294,
+      "sha256": "8a0e035aa5a76bb1fe978f5279e916ee7ef12b189407d42bfa9a4b62c5dd76cb"
+    },
+    {
+      "path": "tinypose-128x96/0.2.0/fp32/manifest.json",
+      "bytes": 1576,
+      "sha256": "68fba6fc499ca8713e1caf64dcf6d9eb84fadfb1c16485e90c5280895b327918"
+    },
+    {
+      "path": "tinypose-128x96/0.2.0/w16a32/manifest.json",
+      "bytes": 1605,
+      "sha256": "1cf45f2e0ec41eb3a065e771697da52881174937024d56c3af405f1d1d492f0d"
+    }
+  ]
+}

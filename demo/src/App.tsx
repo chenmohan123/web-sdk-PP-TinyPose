@@ -22,17 +22,24 @@ import type {
   PoseModel,
   PoseResult,
 } from "../../dist/index.js";
-import metadata from "../../models/model.json";
+import catalogData from "../../models/catalog.json";
 import packageInfo from "../../package.json";
 type ModelSource = { kind: "modelscope" | "huggingface"; downloadUrl: string };
-const publishedModel = metadata as PoseModel & {
+type PublishedModel = PoseModel & {
   defaultSource: ModelSource["kind"];
   sources: ModelSource[];
+  inputSize: { width: number; height: number };
+  precision: "fp32" | "w16a32";
+  backends: Backend[];
+  parameterCount: null;
 };
+const catalog = catalogData as { defaultModelId: string; models: PublishedModel[] };
+const publishedModels = catalog.models;
 const copy = {
   zh: {
     title: "人体姿态",
     modelLabel: "姿态模型",
+    inputSize: "输入规格",
     sourceLabel: "模型来源",
     sourceSelect: "来源",
     precision: "模型精度",
@@ -105,6 +112,7 @@ const copy = {
   en: {
     title: "Human pose",
     modelLabel: "Pose model",
+    inputSize: "Input size",
     sourceLabel: "Model source",
     sourceSelect: "Source",
     precision: "Precision",
@@ -225,6 +233,8 @@ export function App() {
   const t = copy[language];
   const [backend, setBackend] = useState<Backend>("wasm");
   const [mode, setMode] = useState<ExecutionMode>("worker");
+  const [modelId, setModelId] = useState(catalog.defaultModelId);
+  const publishedModel = publishedModels.find((item) => item.id === modelId)!;
   const [sourceKind, setSourceKind] = useState(publishedModel.defaultSource);
   const selectedSource = publishedModel.sources.find((item) => item.kind === sourceKind)!;
   const model: PoseModel = { ...publishedModel, url: selectedSource.downloadUrl };
@@ -251,10 +261,12 @@ export function App() {
   const start = useRef<{ x: number; y: number } | undefined>(undefined);
   const generation = useRef(0);
 
-  const refreshCache = async () =>
-    setCacheBytes((await getModelCacheInfo(model)).bytes);
+  const refreshCache = async (target: PoseModel, token: number) => {
+    const next = await getModelCacheInfo(target);
+    if (generation.current === token) setCacheBytes(next.bytes);
+  };
   useEffect(() => {
-    void refreshCache().catch(() => {});
+    void refreshCache(model, generation.current).catch(() => {});
     return () => {
       ++generation.current;
       inputController.current?.abort();
@@ -411,7 +423,7 @@ export function App() {
         setResult(next);
         setStatus("success");
       }
-      if (generation.current === token) await refreshCache();
+      if (generation.current === token) await refreshCache(model, token);
     } catch (cause) {
       if (generation.current !== token) return;
       if (
@@ -430,9 +442,9 @@ export function App() {
       if (controller.current === abort) controller.current = undefined;
     }
   }
-  function changeSource(next: ModelSource["kind"]) {
-    if (next === sourceKind) return;
-    ++generation.current;
+  function invalidateSelection(nextModel: PublishedModel, nextSourceKind: ModelSource["kind"]) {
+    if (nextModel.id === modelId && nextSourceKind === sourceKind) return;
+    const token = ++generation.current;
     controller.current?.abort();
     controller.current = undefined;
     inputController.current?.abort();
@@ -441,7 +453,8 @@ export function App() {
     instance.current = undefined;
     instanceKey.current = "";
     void previous?.dispose().catch(() => {});
-    setSourceKind(next);
+    setModelId(nextModel.id);
+    setSourceKind(nextSourceKind);
     setBusy(false);
     setPreparing(false);
     setResult(undefined);
@@ -449,6 +462,17 @@ export function App() {
     setLoadTimes(undefined);
     setError("");
     setStatus(blob ? "picked" : "idle");
+    const source = nextModel.sources.find(item => item.kind === nextSourceKind)!;
+    void refreshCache({ ...nextModel, url: source.downloadUrl }, token).catch(() => {});
+  }
+  function changeSource(next: ModelSource["kind"]) {
+    invalidateSelection(publishedModel, next);
+  }
+  function changeModel(nextModel: PublishedModel) {
+    const nextSource = nextModel.sources.some(item => item.kind === sourceKind)
+      ? sourceKind
+      : nextModel.defaultSource;
+    invalidateSelection(nextModel, nextSource);
   }
   async function clear(all: boolean) {
     const token = generation.current;
@@ -462,7 +486,7 @@ export function App() {
       instanceKey.current = "";
       if (all) await clearAllModelCache();
       else await clearCurrentModelCache(model);
-      await refreshCache();
+      await refreshCache(model, token);
       if (generation.current !== token) return;
       setStatus("deleted");
     } catch (cause) {
@@ -496,6 +520,14 @@ export function App() {
   }
   const shown =
     result?.keypoints.filter((p) => p.score >= threshold).length ?? 0;
+  const specification = `${publishedModel.inputSize.width}x${publishedModel.inputSize.height}`;
+  const specifications = [...new Map(publishedModels.map(item => [
+    `${item.inputSize.width}x${item.inputSize.height}`,
+    item.inputSize,
+  ])).entries()];
+  const precisionLabel = (precision: PublishedModel["precision"]) => precision === "w16a32"
+    ? language === "zh" ? "FP16 权重（FP32 计算）" : "FP16 weights (FP32 compute)"
+    : "FP32";
   const semanticState = error
     ? "error"
     : preparing
@@ -542,8 +574,14 @@ export function App() {
         <aside className="controls-panel">
           <div className="control-band">
             <div className="control-group model-control">
-              <span className="control-label">{t.modelLabel}</span>
-              <div className="control-value">PP-TinyPose 256 × 192</div>
+              <span className="control-label">{t.inputSize}</span>
+              <select className="control-value" aria-label={t.inputSize} value={specification}
+                onChange={(event) => {
+                  const candidates = publishedModels.filter(item => `${item.inputSize.width}x${item.inputSize.height}` === event.target.value);
+                  changeModel(candidates.find(item => item.precision === publishedModel.precision) ?? candidates.find(item => item.precision === "fp32")!);
+                }}>
+                {specifications.map(([value, size]) => <option key={value} value={value}>{size.height} × {size.width}</option>)}
+              </select>
             </div>
             <div className="control-group">
               <span className="control-label">{t.sourceLabel}</span>
@@ -571,7 +609,13 @@ export function App() {
             </div>
             <div className="control-group">
               <span className="control-label">{t.precision}</span>
-              <div className="control-value">FP32</div>
+              <select className="control-value" aria-label={t.precision} value={publishedModel.precision}
+                onChange={(event) => changeModel(publishedModels.find(item =>
+                  `${item.inputSize.width}x${item.inputSize.height}` === specification && item.precision === event.target.value,
+                )!)}>
+                {publishedModels.filter(item => `${item.inputSize.width}x${item.inputSize.height}` === specification)
+                  .map(item => <option key={item.id} value={item.precision}>{precisionLabel(item.precision)}</option>)}
+              </select>
             </div>
             <div className="control-group" role="group" aria-label={t.mode}>
               <span className="control-label">{t.mode}</span>
@@ -856,7 +900,7 @@ export function App() {
             <dl className="metric-list">
               <div>
                 <dt>{t.modelLabel}</dt>
-                <dd>PP-TinyPose Enhance 256 × 192</dd>
+                <dd>PP-TinyPose Enhance {publishedModel.inputSize.height} × {publishedModel.inputSize.width}</dd>
               </div>
               <div>
                 <dt>{t.modelVersion}</dt>
@@ -864,11 +908,11 @@ export function App() {
               </div>
               <div>
                 <dt>{t.modelSize}</dt>
-                <dd>5,685,847 bytes</dd>
+                <dd>{model.bytes.toLocaleString("en-US")} bytes</dd>
               </div>
               <div>
                 <dt>{t.format}</dt>
-                <dd>FP32 · ONNX opset 17</dd>
+                <dd>{precisionLabel(publishedModel.precision)} · ONNX opset 17</dd>
               </div>
               <div>
                 <dt>{t.runtime}</dt>

@@ -16,7 +16,7 @@ export default defineConfig({
       server.middlewares.use(async (request, response, next) => {
         const url = new URL(request.url ?? "/", "http://localhost");
         const relative = decodeURIComponent(url.pathname).replace(/^\/+/, "");
-        const source = relative === "models/model.json" ? path.join(root, relative)
+        const source = /^models\/(?:model|catalog)\.json$/.test(relative) ? path.join(root, relative)
           : /^(sdk|examples)\//.test(relative) ? path.join(root, "demo/public", relative) : undefined;
         if (!source || (relative.includes("..")) || relative.endsWith(".onnx")) return next();
         try {
@@ -31,6 +31,7 @@ export default defineConfig({
       for (const directory of ["sdk", "examples"]) await cp(path.join(root,"demo/public",directory),path.join(root,"demo-dist",directory),{recursive:true});
       await mkdir(path.join(root,"demo-dist/models"),{recursive:true});
       await copyFile(path.join(root,"models/model.json"),path.join(root,"demo-dist/models/model.json"));
+      await copyFile(path.join(root,"models/catalog.json"),path.join(root,"demo-dist/models/catalog.json"));
     },
   }],
   build: { outDir: "../demo-dist", emptyOutDir: true },

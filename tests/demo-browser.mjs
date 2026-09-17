@@ -4,7 +4,8 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 const origin = process.env.TINYPOSE_DEMO_URL ?? "http://127.0.0.1:4186/";
-const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-16-feasibility";
+const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-17-variants";
+const runTimeoutMs = Number(process.env.TINYPOSE_RUN_TIMEOUT_MS ?? 240000);
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: "chromium", headless: true });
 const results = [];
@@ -40,7 +41,9 @@ try {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.getByRole("button", { name: "使用此示例" }).click();
   await page.waitForFunction(() => document.querySelector("canvas")?.width > 0);
-  async function run() {
+  async function run(stage) {
+    const started = performance.now();
+    console.log(`[Demo] 开始：${stage}`);
     await page.getByRole("button", { name: "识别姿态", exact: true }).click();
     await page.waitForFunction(
       () =>
@@ -48,13 +51,14 @@ try {
           document.querySelector("[role=status]")?.textContent,
         ),
       null,
-      { timeout: 90000 },
+      { timeout: runTimeoutMs },
     );
     assert.equal(
       await page.locator(".status[role=status]").textContent(),
       "识别完成",
       await page.locator("body").innerText(),
     );
+    console.log(`[Demo] 完成：${stage}（${(performance.now() - started).toFixed(1)}ms）`);
   }
   for (const backend of ["wasm", "webgpu"])
     for (const mode of ["main", "worker"]) {
@@ -72,7 +76,7 @@ try {
           exact: true,
         })
         .click();
-      await run();
+      await run(`默认模型 ${backend}/${mode}`);
       const count = await page.locator(".count").textContent();
       assert.equal(count, "17 / 17");
       const actual = await page
@@ -81,6 +85,19 @@ try {
       assert.equal(actual, `${backend.toUpperCase()} / ${mode}`);
       results.push({ backend, mode, count, actual });
     }
+  const specification = page.getByRole("combobox", { name: "输入规格", exact: true });
+  const precision = page.getByRole("combobox", { name: "模型精度", exact: true });
+  assert.equal(await specification.inputValue(), "192x256");
+  await specification.selectOption("96x128");
+  assert.equal(await page.locator(".count").textContent(), "0 / 17");
+  await run("128x96 FP32 webgpu/worker");
+  assert((await page.locator("[data-sdk-model-info]").textContent()).includes("5,685,846 bytes"));
+  results.push({ modelId: "tinypose-enhance-128x96", backend: "webgpu", mode: "worker", count: "17 / 17" });
+  await precision.selectOption("w16a32");
+  assert.equal(await page.locator(".count").textContent(), "0 / 17");
+  assert((await page.locator("[data-sdk-model-info]").textContent()).includes("FP16 权重（FP32 计算）"));
+  await run("128x96 W16A32 webgpu/worker");
+  results.push({ modelId: "tinypose-enhance-128x96-w16a32", backend: "webgpu", mode: "worker", count: "17 / 17" });
   const canvas = page.locator("canvas");
   const before = await canvas.boundingBox();
   await page.getByRole("button", { name: "框选人体", exact: true }).click();
@@ -101,14 +118,14 @@ try {
   );
   const after = await canvas.boundingBox();
   assert.equal(after.y, before.y, "框选不能导致图片下移");
-  await run();
+  await run("W16A32 框选后推理");
   await page.screenshot({ path: `${out}/demo-desktop.png`, fullPage: true });
   await page.getByRole("button", { name: "清除选框" }).click();
   assert.equal(
     await page.getByRole("button", { name: "清除选框" }).isDisabled(),
     true,
   );
-  await run();
+  await run("W16A32 清除选框后推理");
   await page
     .getByRole("button", { name: "切换语言 / Switch language" })
     .click();
@@ -156,22 +173,35 @@ try {
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "图片已就绪",
   );
+  await page
+    .getByRole("group", { name: "运行后端" })
+    .getByRole("button", { name: "CPU", exact: true })
+    .click();
   await page.locator('[data-testid="cache-details"] > summary').click();
   await page.locator("[data-sdk-cache-clear=current]").click();
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "缓存已清理",
   );
-  await page.route("**/models/*.onnx", async (route) => {
+  let intercepted;
+  const interceptedPromise = new Promise(resolve => { intercepted = resolve; });
+  const routeModel = async (route) => {
+    intercepted(route.request().url());
     await new Promise((r) => setTimeout(r, 500));
     await route.continue().catch(() => {});
-  });
+  };
+  const modelRoute = /\.onnx(?:\?.*)?$/;
+  await page.route(modelRoute, routeModel);
   await page.getByRole("button", { name: "识别姿态", exact: true }).click();
+  await Promise.race([
+    interceptedPromise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error("10 秒内未拦截到 ONNX 请求")), 10000)),
+  ]);
   await page.getByRole("button", { name: "取消", exact: true }).click();
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "已取消",
   );
-  await page.unroute("**/models/*.onnx");
-  await run();
+  await page.unroute(modelRoute, routeModel).catch(() => {});
+  await run("W16A32 WASM/worker 取消后恢复");
   await page.locator("[data-sdk-cache-clear=all]").click();
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "缓存已清理",
@@ -214,6 +244,7 @@ try {
         "demo/src/App.tsx",
         "demo/src/style.css",
         "models/model.json",
+        "models/catalog.json",
         "dist/index.js",
         "dist/inference.worker.js",
       ].map(hash),
@@ -224,7 +255,7 @@ try {
     JSON.stringify(evidence, null, 2) + "\n",
   );
   console.log(
-    "Demo 四组合、框选稳定布局、上传、取消恢复、双语、缓存、390px和Vanilla均通过。",
+    "Demo 默认模型四组合、两项128模型切换、框选稳定布局、上传、取消恢复、双语、缓存、390px和Vanilla均通过。",
   );
 } finally {
   await browser.close();

@@ -1,4 +1,6 @@
 node_modules/
+__pycache__/
+*.pyc
 dist/
 demo-dist/
 .tmp/
@@ -10,3 +12,4 @@ demo/public/models/model.json
 demo/public/ort/
 demo/public/sdk/
 *.tgz
+/.worktrees/

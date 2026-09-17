@@ -11,12 +11,17 @@ export interface PixelImage {
   width: number;
   height: number;
 }
+export interface PoseInputSize {
+  width: number;
+  height: number;
+}
 export interface PoseModel {
   id: string;
   version: string;
   url: string;
   bytes: number;
   sha256: string;
+  inputSize?: PoseInputSize;
 }
 export interface Keypoint {
   id: number;

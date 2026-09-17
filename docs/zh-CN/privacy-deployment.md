@@ -4,7 +4,7 @@
 
 图片仅在浏览器解码、预处理和推理，Demo 不上传图片。模型请求发送到用户选择的 ModelScope 或 Hugging Face，ORT/Worker、页面和示例图片来自站点服务器；这些服务能看到常规网络请求信息。IndexedDB 只保存模型字节，不保存用户图片。缓存键由模型 ID、版本、SHA-256 构成，相同摘要的两源可复用。清理当前模型和全部缓存仅限 TinyPose 命名空间。
 
-先构建 SDK，再运行 `build:demo`，部署 `demo-dist/` 到 HTTPS 静态站点。构建只复制 SDK、ORT、示例和正式 metadata，不复制本地 ONNX。npm 的 `files` 也排除权重。集成 npm 时把 `dist/` 的 ORT JS/WASM 和 `inference.worker.js`（建议完整目录）复制到 `runtimeBaseUrl`；保持同源和相同版本，`.js/.mjs` 使用 JavaScript MIME，`.wasm` 使用 `application/wasm`。
+先构建 SDK，再运行 `build:demo`，部署 `demo-dist/` 到 HTTPS 静态站点。构建只复制 SDK、ORT、示例、`models/catalog.json` 和兼容 `models/model.json`，不复制本地 ONNX 或 `.tmp`。npm 的 `files` 也排除权重。集成 npm 时把 `dist/` 的 ORT JS/WASM 和 `inference.worker.js`（建议完整目录）复制到 `runtimeBaseUrl`；保持同源和相同版本，`.js/.mjs` 使用 JavaScript MIME，`.wasm` 使用 `application/wasm`。
 
 生产默认 ModelScope，仅提供 ModelScope/Hugging Face 两源；下载地址固定到不可变提交，检查字节数与 SHA-256。显式来源失败不会静默访问另一 Hub。CDN 重定向由选定 Hub 控制；不能把任意镜像替换为未经核验的权重。
 

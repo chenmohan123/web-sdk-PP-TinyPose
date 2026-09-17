@@ -29,6 +29,20 @@ function validateOptions(options: TinyPoseOptions): void {
       "INVALID_MANIFEST",
       "模型清单需包含身份、版本、地址、字节数及 SHA-256",
     );
+  if (m.inputSize !== undefined) {
+    const size = m.inputSize;
+    if (
+      !size ||
+      typeof size !== "object" ||
+      !Number.isInteger(size.width) ||
+      !Number.isInteger(size.height) ||
+      !(
+        (size.width === 192 && size.height === 256) ||
+        (size.width === 96 && size.height === 128)
+      )
+    )
+      throw new TinyPoseError("INVALID_MANIFEST", "模型输入规格仅支持 192×256 或 96×128");
+  }
   if (
     options.backend !== undefined &&
     !["wasm", "webgpu"].includes(options.backend)
@@ -42,9 +56,14 @@ function validateOptions(options: TinyPoseOptions): void {
 }
 export function createTinyPose(options: TinyPoseOptions): TinyPose {
   validateOptions(options);
+  const inputSize = Object.freeze({
+    width: options.model.inputSize?.width ?? 192,
+    height: options.model.inputSize?.height ?? 256,
+  });
   const model = Object.freeze({
       ...options.model,
       sha256: options.model.sha256.toLowerCase(),
+      inputSize,
     }),
     backend = options.backend ?? "wasm",
     executionMode = options.executionMode ?? "worker";
@@ -217,7 +236,12 @@ export function createTinyPose(options: TinyPoseOptions): TinyPose {
           }
           checkAbort(signal);
           loadOptions.onProgress?.({ phase: "loading" });
-          runner = createRunner({ backend, executionMode, runtimeBaseUrl });
+          runner = createRunner({
+            backend,
+            executionMode,
+            runtimeBaseUrl,
+            inputSize,
+          });
           const sessionStart = performance.now();
           await runner.load(bytes, signal);
           timings.sessionMs = performance.now() - sessionStart;

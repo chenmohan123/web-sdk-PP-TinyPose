@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "scope": "默认 256x192 FP32 模型：原生 ModelScope 下载与同哈希本地回放对照",
+  "testedAt": "2026-09-17T08:12:21.498Z",
+  "origin": "http://127.0.0.1:4186/",
+  "native": {
+    "observationMs": 20000,
+    "statusEvents": [
+      {
+        "atMs": 71.30000001192093,
+        "text": "选择一张单人图片开始"
+      },
+      {
+        "atMs": 190.09999999403954,
+        "text": "正在读取图片"
+      },
+      {
+        "atMs": 197.30000001192093,
+        "text": "图片已就绪"
+      },
+      {
+        "atMs": 412.30000001192093,
+        "text": "正在加载模型"
+      },
+      {
+        "atMs": 425.7000000178814,
+        "text": "正在下载模型"
+      },
+      {
+        "atMs": 5617.700000017881,
+        "text": "正在校验模型"
+      },
+      {
+        "atMs": 5638.4000000059605,
+        "text": "正在加载模型"
+      },
+      {
+        "atMs": 7091.0999999940395,
+        "text": "正在识别"
+      },
+      {
+        "atMs": 7298.200000017881,
+        "text": "识别完成"
+      }
+    ],
+    "networkEvents": [
+      {
+        "type": "request",
+        "atMs": 432.8023999999999,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        }
+      },
+      {
+        "type": "response",
+        "atMs": 5168.4883,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        },
+        "status": 302,
+        "contentLength": "396"
+      },
+      {
+        "type": "requestfinished",
+        "atMs": 5168.5444,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        }
+      },
+      {
+        "type": "request",
+        "atMs": 5168.6106,
+        "url": {
+          "origin": "https://cdn-lfs-cn-1.modelscope.cn",
+          "pathname": "/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "queryKeys": [
+            "auth_key",
+            "filename",
+            "namespace",
+            "repository",
+            "revision",
+            "tag"
+          ]
+        }
+      },
+      {
+        "type": "response",
+        "atMs": 5252.7625,
+        "url": {
+          "origin": "https://cdn-lfs-cn-1.modelscope.cn",
+          "pathname": "/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "queryKeys": [
+            "auth_key",
+            "filename",
+            "namespace",
+            "repository",
+            "revision",
+            "tag"
+          ]
+        },
+        "status": 200,
+        "contentLength": "5685847"
+      },
+      {
+        "type": "requestfinished",
+        "atMs": 5624.908,
+        "url": {
+          "origin": "https://cdn-lfs-cn-1.modelscope.cn",
+          "pathname": "/prod/lfs-objects/76/14/d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+          "queryKeys": [
+            "auth_key",
+            "filename",
+            "namespace",
+            "repository",
+            "revision",
+            "tag"
+          ]
+        }
+      }
+    ],
+    "elapsedMs": 20437.4782,
+    "finalStatus": "识别完成"
+  },
+  "controlled": {
+    "fixture": ".tmp/variants/models/tinypose-enhance-256x192-fp32.onnx",
+    "statusEvents": [
+      {
+        "atMs": 138.69999998807907,
+        "text": "选择一张单人图片开始"
+      },
+      {
+        "atMs": 207.2999999821186,
+        "text": "正在读取图片"
+      },
+      {
+        "atMs": 228.69999998807907,
+        "text": "图片已就绪"
+      },
+      {
+        "atMs": 337.5,
+        "text": "正在加载模型"
+      },
+      {
+        "atMs": 349.90000000596046,
+        "text": "正在下载模型"
+      },
+      {
+        "atMs": 464,
+        "text": "正在校验模型"
+      },
+      {
+        "atMs": 487.40000000596046,
+        "text": "正在加载模型"
+      },
+      {
+        "atMs": 1903.2999999821186,
+        "text": "正在识别"
+      },
+      {
+        "atMs": 2078.199999988079,
+        "text": "识别完成"
+      }
+    ],
+    "networkEvents": [
+      {
+        "type": "request",
+        "atMs": 355.69070000000283,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        }
+      },
+      {
+        "type": "response",
+        "atMs": 441.3626000000004,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        },
+        "status": 200,
+        "contentLength": "5685847"
+      },
+      {
+        "type": "requestfinished",
+        "atMs": 469.4962000000014,
+        "url": {
+          "origin": "https://www.modelscope.cn",
+          "pathname": "/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+          "queryKeys": []
+        }
+      }
+    ],
+    "elapsedMs": 2085.7083999999995,
+    "finalStatus": "识别完成",
+    "runtime": "WASM / main",
+    "count": "17 / 17"
+  },
+  "conclusion": "本轮原生页面完成下载与推理；同一构建使用同 SHA-256 本地模型也可完成，先前超时属于 Hub/CDN 网络波动。"
+}

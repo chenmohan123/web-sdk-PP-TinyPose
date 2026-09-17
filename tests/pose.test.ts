@@ -71,6 +71,49 @@ describe("官方 OpenCV 与 DARK 数学路径", () => {
       preprocessPose(pixels(9, 11), { x: NaN, y: 0, width: 1, height: 2 }),
     ).toThrow();
   });
+  it("128 规格预处理使用 96×128 NCHW，并匹配官方固定病例", () => {
+    const result = preprocessPose(
+      pixels(27, 31),
+      { x: 4.7, y: 5.2, width: 8.9, height: 19.8 },
+      { width: 96, height: 128 },
+    );
+    expect(result.crop).toEqual({ x: 0, y: 2, width: 18, height: 26 });
+    expect(result.data).toHaveLength(3 * 128 * 96);
+    const expected = [
+      [0, -1.7582842111587524],
+      [997, 2.1461596488952637],
+      [12287, -1.467163324356079],
+      [12288, -1.0378150939941406],
+      [36863, -1.5430065393447876],
+    ] as const;
+    for (const [index, value] of expected)
+      expect(result.data[index]).toBeCloseTo(value, 6);
+  });
+  it("128 DARK 按 24×32 热图还原原图坐标", () => {
+    const heatmap = new Float32Array(17 * 32 * 24).fill(-1);
+    for (let j = 0; j < 17; j++) heatmap[j * 32 * 24 + 8 * 24 + 6] = 2;
+    const points = decodePose(
+      heatmap,
+      { x: 10, y: 20, width: 48, height: 64 },
+      { width: 96, height: 128 },
+    );
+    expect(points[0]).toMatchObject({ x: 22, y: 36, score: 2 });
+  });
+  it("省略规格保持默认预处理和解码数值", () => {
+    const image = pixels(9, 11);
+    expect(preprocessPose(image)).toEqual(
+      preprocessPose(image, undefined, { width: 192, height: 256 }),
+    );
+    const heatmap = new Float32Array(17 * 64 * 48).fill(-1);
+    heatmap[8 * 48 + 6] = 2;
+    expect(decodePose(heatmap, { x: 0, y: 0, width: 48, height: 64 })).toEqual(
+      decodePose(
+        heatmap,
+        { x: 0, y: 0, width: 48, height: 64 },
+        { width: 192, height: 256 },
+      ),
+    );
+  });
 });
 it("拒绝会使框端点溢出的有限数值", () => {
   expect(() =>

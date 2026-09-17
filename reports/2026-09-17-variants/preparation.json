@@ -1,0 +1,726 @@
+{
+  "status": "prepared",
+  "upstreamRevision": "b25522a0f4bde8c80603f3ba5e3472059972e3b5",
+  "sourceEvidence": [
+    {
+      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-Detection\\.tmp\\phase2\\upstream\\PaddleDetection-b25522a0f4bde8c80603f3ba5e3472059972e3b5\\configs\\keypoint\\tiny_pose\\README.md",
+      "bytes": 22471,
+      "sha256": "8593fc029f79462b1cebd34b4c61aeea7708cf18baf9e742e12377acd3523fc3"
+    },
+    {
+      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-Detection\\.tmp\\phase2\\upstream\\PaddleDetection-b25522a0f4bde8c80603f3ba5e3472059972e3b5\\configs\\keypoint\\tiny_pose\\tinypose_128x96.yml",
+      "bytes": 3245,
+      "sha256": "b1c181d7f757a88a2abc73c663acfebae18f1fd88e4783c90fdb7c96ed3818ea"
+    }
+  ],
+  "archive128": {
+    "url": "https://bj.bcebos.com/v1/paddledet/models/keypoint/tinypose_enhance/tinypose_128x96.zip",
+    "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\downloads\\tinypose_128x96.zip",
+    "bytes": 5397578,
+    "sha256": "b737aa851a1ce9403950280be5df4bdd9c0e0287dd7ecdaa16f534d9c940015d"
+  },
+  "paddleAssets128": [
+    {
+      "path": "infer_cfg.yml",
+      "bytes": 343,
+      "sha256": "b3f7e023bfd403144455d75bfd6028cec6c5283d4ad8398cf24135948f8b7720"
+    },
+    {
+      "path": "model.pdiparams.info",
+      "bytes": 135248,
+      "sha256": "62b1cb256f4c53100e893ed4c07023506ac4e834c86bcf8a343f35a4280f3480"
+    },
+    {
+      "path": "model.pdiparams",
+      "bytes": 5456137,
+      "sha256": "8ae7262a63a27d7011bd9ac7993bd261ba1c5dbdfae1b2753dca9711b0b4b665"
+    },
+    {
+      "path": "model.pdmodel",
+      "bytes": 10928441,
+      "sha256": "4a416c423b2ddb8ca0e76b8edd965051cf35981a3ac331f6a1952217e97056bb"
+    }
+  ],
+  "legacy256": {
+    "source": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.tmp\\feasibility\\tinypose-256x192-fp32.onnx",
+    "bytes": 5685847,
+    "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+  },
+  "conversionAttempts": [
+    {
+      "id": "tinypose-enhance-128x96-fp16",
+      "source": "tinypose-enhance-128x96",
+      "attempts": [
+        {
+          "method": "普通 FP16 图转换（float32 I/O）",
+          "status": "failed",
+          "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Load model from F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp16.onnx.tmp failed:Node (Resize.26) Op (Resize) [ShapeInferenceError] Either `sizes` or `scales` must be provided, but not both of them"
+        },
+        {
+          "method": "onnxconverter-common，Resize 保持 FP32",
+          "status": "failed",
+          "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Load model from F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp16.onnx.tmp failed:Node (Resize.26) Op (Resize) [ShapeInferenceError] Either `sizes` or `scales` must be provided, but not both of them"
+        },
+        {
+          "method": "混合 FP16 图：规范化空 Resize 输入，Resize 与默认阻塞算子保持 FP32",
+          "status": "prepared",
+          "normalizedEmptyResizeInputs": 32
+        }
+      ],
+      "status": "prepared",
+      "sizeReductionRatio": 0.4552710361835336,
+      "conversion": {
+        "strategy": "onnxruntime.transformers.float16，转换前规范化零元素 Resize 可选输入",
+        "inputType": "float32",
+        "outputType": "float32",
+        "graphPrecision": "mixed-fp16，Resize 与工具默认阻塞算子保持 FP32",
+        "runtimeComputePrecision": "由后端实现决定，不宣称全 FP16 计算",
+        "blockedOperators": [
+          "ArrayFeatureExtractor",
+          "Binarizer",
+          "CastMap",
+          "CategoryMapper",
+          "CumSum",
+          "DictVectorizer",
+          "FeatureVectorizer",
+          "Imputer",
+          "LabelEncoder",
+          "LinearClassifier",
+          "LinearRegressor",
+          "Max",
+          "Min",
+          "NonMaxSuppression",
+          "Normalizer",
+          "OneHotEncoder",
+          "RandomUniformLike",
+          "Range",
+          "Resize",
+          "RoiAlign",
+          "SVMClassifier",
+          "SVMRegressor",
+          "Scaler",
+          "TopK",
+          "TreeEnsembleClassifier",
+          "TreeEnsembleRegressor",
+          "Upsample",
+          "ZipMap"
+        ],
+        "normalizedEmptyResizeInputs": 32,
+        "graphStatistics": {
+          "operators": {
+            "Add": 79,
+            "ArgMax": 1,
+            "BatchNormalization": 268,
+            "Cast": 86,
+            "Concat": 52,
+            "Constant": 1511,
+            "Conv": 269,
+            "Relu": 144,
+            "Reshape": 99,
+            "Resize": 29,
+            "Shape": 3,
+            "Slice": 3,
+            "Split": 49,
+            "Transpose": 49
+          },
+          "initializerTypes": {},
+          "constantTensorTypes": {
+            "FLOAT16": 1400,
+            "INT64": 111
+          },
+          "constantTensorElements": {
+            "FLOAT16": 1355625,
+            "INT64": 459
+          },
+          "nodes": 2642,
+          "initializers": 0
+        },
+        "probeOutputShape": [
+          1,
+          17,
+          32,
+          24
+        ],
+        "probeOutputType": "float32"
+      },
+      "bytes": 3097245,
+      "sha256": "21432b9e5c26b68c37764dff2100ac56f0a1da04beefd022ae5e32e2a26d488c"
+    },
+    {
+      "id": "tinypose-enhance-256x192-fp16",
+      "source": "tinypose-enhance-256x192",
+      "attempts": [
+        {
+          "method": "普通 FP16 图转换（float32 I/O）",
+          "status": "failed",
+          "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Load model from F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp16.onnx.tmp failed:Node (Resize.26) Op (Resize) [ShapeInferenceError] Either `sizes` or `scales` must be provided, but not both of them"
+        },
+        {
+          "method": "onnxconverter-common，Resize 保持 FP32",
+          "status": "failed",
+          "error": "Fail: [ONNXRuntimeError] : 1 : FAIL : Load model from F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp16.onnx.tmp failed:Node (Resize.26) Op (Resize) [ShapeInferenceError] Either `sizes` or `scales` must be provided, but not both of them"
+        },
+        {
+          "method": "混合 FP16 图：规范化空 Resize 输入，Resize 与默认阻塞算子保持 FP32",
+          "status": "prepared",
+          "normalizedEmptyResizeInputs": 32
+        }
+      ],
+      "status": "prepared",
+      "sizeReductionRatio": 0.4552693732349815,
+      "conversion": {
+        "strategy": "onnxruntime.transformers.float16，转换前规范化零元素 Resize 可选输入",
+        "inputType": "float32",
+        "outputType": "float32",
+        "graphPrecision": "mixed-fp16，Resize 与工具默认阻塞算子保持 FP32",
+        "runtimeComputePrecision": "由后端实现决定，不宣称全 FP16 计算",
+        "blockedOperators": [
+          "ArrayFeatureExtractor",
+          "Binarizer",
+          "CastMap",
+          "CategoryMapper",
+          "CumSum",
+          "DictVectorizer",
+          "FeatureVectorizer",
+          "Imputer",
+          "LabelEncoder",
+          "LinearClassifier",
+          "LinearRegressor",
+          "Max",
+          "Min",
+          "NonMaxSuppression",
+          "Normalizer",
+          "OneHotEncoder",
+          "RandomUniformLike",
+          "Range",
+          "Resize",
+          "RoiAlign",
+          "SVMClassifier",
+          "SVMRegressor",
+          "Scaler",
+          "TopK",
+          "TreeEnsembleClassifier",
+          "TreeEnsembleRegressor",
+          "Upsample",
+          "ZipMap"
+        ],
+        "normalizedEmptyResizeInputs": 32,
+        "graphStatistics": {
+          "operators": {
+            "Add": 79,
+            "ArgMax": 1,
+            "BatchNormalization": 268,
+            "Cast": 86,
+            "Concat": 52,
+            "Constant": 1511,
+            "Conv": 269,
+            "Relu": 144,
+            "Reshape": 99,
+            "Resize": 29,
+            "Shape": 3,
+            "Slice": 3,
+            "Split": 49,
+            "Transpose": 49
+          },
+          "initializerTypes": {},
+          "constantTensorTypes": {
+            "FLOAT16": 1400,
+            "INT64": 111
+          },
+          "constantTensorElements": {
+            "FLOAT16": 1355625,
+            "INT64": 459
+          },
+          "nodes": 2642,
+          "initializers": 0
+        },
+        "probeOutputShape": [
+          1,
+          17,
+          64,
+          48
+        ],
+        "probeOutputType": "float32"
+      },
+      "bytes": 3097255,
+      "sha256": "8008eb4c8d0dd04f406841a49650255142a7012e836be5c66499054000b7f17e"
+    }
+  ],
+  "w16a32Conversions": [
+    {
+      "id": "tinypose-enhance-128x96-w16a32",
+      "source": "tinypose-enhance-128x96",
+      "status": "prepared",
+      "sizeReductionRatio": 0.4458437671368518,
+      "conversion": {
+        "strategy": "Conv 常量权重 float16 存储，算子前 Cast 恢复 float32",
+        "storagePrecision": "float16",
+        "activationPrecision": "float32",
+        "operatorPrecision": "float32",
+        "inputType": "float32",
+        "outputType": "float32",
+        "label": "W16A32，不宣称 FP16 计算",
+        "conversion": {
+          "constantWeights": 270,
+          "initializerWeights": 0,
+          "castNodes": 270,
+          "elements": 1281729
+        },
+        "graphStatistics": {
+          "operators": {
+            "Add": 79,
+            "ArgMax": 1,
+            "BatchNormalization": 268,
+            "Cast": 270,
+            "Concat": 52,
+            "Constant": 1511,
+            "Conv": 269,
+            "Relu": 144,
+            "Reshape": 99,
+            "Resize": 29,
+            "Shape": 3,
+            "Slice": 3,
+            "Split": 49,
+            "Transpose": 49
+          },
+          "initializerTypes": {},
+          "constantTensorTypes": {
+            "FLOAT": 1130,
+            "FLOAT16": 270,
+            "INT64": 111
+          },
+          "constantTensorElements": {
+            "FLOAT": 73896,
+            "FLOAT16": 1281729,
+            "INT64": 459
+          },
+          "nodes": 2826,
+          "initializers": 0
+        },
+        "probeOutputShape": [
+          1,
+          17,
+          32,
+          24
+        ],
+        "probeOutputType": "float32"
+      },
+      "bytes": 3150847,
+      "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+    },
+    {
+      "id": "tinypose-enhance-256x192-w16a32",
+      "source": "tinypose-enhance-256x192",
+      "status": "prepared",
+      "sizeReductionRatio": 0.4458436887239491,
+      "conversion": {
+        "strategy": "Conv 常量权重 float16 存储，算子前 Cast 恢复 float32",
+        "storagePrecision": "float16",
+        "activationPrecision": "float32",
+        "operatorPrecision": "float32",
+        "inputType": "float32",
+        "outputType": "float32",
+        "label": "W16A32，不宣称 FP16 计算",
+        "conversion": {
+          "constantWeights": 270,
+          "initializerWeights": 0,
+          "castNodes": 270,
+          "elements": 1281729
+        },
+        "graphStatistics": {
+          "operators": {
+            "Add": 79,
+            "ArgMax": 1,
+            "BatchNormalization": 268,
+            "Cast": 270,
+            "Concat": 52,
+            "Constant": 1511,
+            "Conv": 269,
+            "Relu": 144,
+            "Reshape": 99,
+            "Resize": 29,
+            "Shape": 3,
+            "Slice": 3,
+            "Split": 49,
+            "Transpose": 49
+          },
+          "initializerTypes": {},
+          "constantTensorTypes": {
+            "FLOAT": 1130,
+            "FLOAT16": 270,
+            "INT64": 111
+          },
+          "constantTensorElements": {
+            "FLOAT": 73896,
+            "FLOAT16": 1281729,
+            "INT64": 459
+          },
+          "nodes": 2826,
+          "initializers": 0
+        },
+        "probeOutputShape": [
+          1,
+          17,
+          64,
+          48
+        ],
+        "probeOutputType": "float32"
+      },
+      "bytes": 3150848,
+      "sha256": "35963a83335155913e35e12ddc120e15a72a2b1587dbebc86fb3fabbd317016f"
+    }
+  ],
+  "tools": {
+    "python": "3.11.15 (main, Jul 18 2026, 17:06:27) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.26200-SP0",
+    "paddle": "2.6.2",
+    "paddle2onnx": "1.3.1",
+    "onnx": "1.16.2",
+    "onnxruntime": "1.20.1",
+    "onnxconverterCommon": "1.16.0",
+    "numpy": "1.26.4",
+    "opencv": "4.11.0"
+  },
+  "candidates": {
+    "schemaVersion": 1,
+    "models": [
+      {
+        "id": "tinypose-enhance-128x96",
+        "precision": "fp32",
+        "inputSize": {
+          "width": 96,
+          "height": 128
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-128x96-fp32.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp32.onnx",
+        "status": "prepared",
+        "bytes": 5685846,
+        "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8"
+      },
+      {
+        "id": "tinypose-enhance-256x192",
+        "precision": "fp32",
+        "inputSize": {
+          "width": 192,
+          "height": 256
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-256x192-fp32.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp32.onnx",
+        "status": "prepared",
+        "bytes": 5685847,
+        "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+        "legacyIdentityPreserved": true
+      },
+      {
+        "id": "tinypose-enhance-128x96-fp16",
+        "precision": "fp16",
+        "inputSize": {
+          "width": 96,
+          "height": 128
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-128x96-fp16.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp16.onnx",
+        "status": "prepared",
+        "bytes": 3097245,
+        "sha256": "21432b9e5c26b68c37764dff2100ac56f0a1da04beefd022ae5e32e2a26d488c",
+        "conversion": {
+          "strategy": "onnxruntime.transformers.float16，转换前规范化零元素 Resize 可选输入",
+          "inputType": "float32",
+          "outputType": "float32",
+          "graphPrecision": "mixed-fp16，Resize 与工具默认阻塞算子保持 FP32",
+          "runtimeComputePrecision": "由后端实现决定，不宣称全 FP16 计算",
+          "blockedOperators": [
+            "ArrayFeatureExtractor",
+            "Binarizer",
+            "CastMap",
+            "CategoryMapper",
+            "CumSum",
+            "DictVectorizer",
+            "FeatureVectorizer",
+            "Imputer",
+            "LabelEncoder",
+            "LinearClassifier",
+            "LinearRegressor",
+            "Max",
+            "Min",
+            "NonMaxSuppression",
+            "Normalizer",
+            "OneHotEncoder",
+            "RandomUniformLike",
+            "Range",
+            "Resize",
+            "RoiAlign",
+            "SVMClassifier",
+            "SVMRegressor",
+            "Scaler",
+            "TopK",
+            "TreeEnsembleClassifier",
+            "TreeEnsembleRegressor",
+            "Upsample",
+            "ZipMap"
+          ],
+          "normalizedEmptyResizeInputs": 32,
+          "graphStatistics": {
+            "operators": {
+              "Add": 79,
+              "ArgMax": 1,
+              "BatchNormalization": 268,
+              "Cast": 86,
+              "Concat": 52,
+              "Constant": 1511,
+              "Conv": 269,
+              "Relu": 144,
+              "Reshape": 99,
+              "Resize": 29,
+              "Shape": 3,
+              "Slice": 3,
+              "Split": 49,
+              "Transpose": 49
+            },
+            "initializerTypes": {},
+            "constantTensorTypes": {
+              "FLOAT16": 1400,
+              "INT64": 111
+            },
+            "constantTensorElements": {
+              "FLOAT16": 1355625,
+              "INT64": 459
+            },
+            "nodes": 2642,
+            "initializers": 0
+          },
+          "probeOutputShape": [
+            1,
+            17,
+            32,
+            24
+          ],
+          "probeOutputType": "float32"
+        },
+        "sizeReductionRatio": 0.4552710361835336
+      },
+      {
+        "id": "tinypose-enhance-256x192-fp16",
+        "precision": "fp16",
+        "inputSize": {
+          "width": 192,
+          "height": 256
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-256x192-fp16.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp16.onnx",
+        "status": "prepared",
+        "bytes": 3097255,
+        "sha256": "8008eb4c8d0dd04f406841a49650255142a7012e836be5c66499054000b7f17e",
+        "conversion": {
+          "strategy": "onnxruntime.transformers.float16，转换前规范化零元素 Resize 可选输入",
+          "inputType": "float32",
+          "outputType": "float32",
+          "graphPrecision": "mixed-fp16，Resize 与工具默认阻塞算子保持 FP32",
+          "runtimeComputePrecision": "由后端实现决定，不宣称全 FP16 计算",
+          "blockedOperators": [
+            "ArrayFeatureExtractor",
+            "Binarizer",
+            "CastMap",
+            "CategoryMapper",
+            "CumSum",
+            "DictVectorizer",
+            "FeatureVectorizer",
+            "Imputer",
+            "LabelEncoder",
+            "LinearClassifier",
+            "LinearRegressor",
+            "Max",
+            "Min",
+            "NonMaxSuppression",
+            "Normalizer",
+            "OneHotEncoder",
+            "RandomUniformLike",
+            "Range",
+            "Resize",
+            "RoiAlign",
+            "SVMClassifier",
+            "SVMRegressor",
+            "Scaler",
+            "TopK",
+            "TreeEnsembleClassifier",
+            "TreeEnsembleRegressor",
+            "Upsample",
+            "ZipMap"
+          ],
+          "normalizedEmptyResizeInputs": 32,
+          "graphStatistics": {
+            "operators": {
+              "Add": 79,
+              "ArgMax": 1,
+              "BatchNormalization": 268,
+              "Cast": 86,
+              "Concat": 52,
+              "Constant": 1511,
+              "Conv": 269,
+              "Relu": 144,
+              "Reshape": 99,
+              "Resize": 29,
+              "Shape": 3,
+              "Slice": 3,
+              "Split": 49,
+              "Transpose": 49
+            },
+            "initializerTypes": {},
+            "constantTensorTypes": {
+              "FLOAT16": 1400,
+              "INT64": 111
+            },
+            "constantTensorElements": {
+              "FLOAT16": 1355625,
+              "INT64": 459
+            },
+            "nodes": 2642,
+            "initializers": 0
+          },
+          "probeOutputShape": [
+            1,
+            17,
+            64,
+            48
+          ],
+          "probeOutputType": "float32"
+        },
+        "sizeReductionRatio": 0.4552693732349815
+      },
+      {
+        "id": "tinypose-enhance-128x96-w16a32",
+        "precision": "w16a32",
+        "inputSize": {
+          "width": 96,
+          "height": 128
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-128x96-w16a32.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-w16a32.onnx",
+        "status": "prepared",
+        "bytes": 3150847,
+        "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea",
+        "conversion": {
+          "strategy": "Conv 常量权重 float16 存储，算子前 Cast 恢复 float32",
+          "storagePrecision": "float16",
+          "activationPrecision": "float32",
+          "operatorPrecision": "float32",
+          "inputType": "float32",
+          "outputType": "float32",
+          "label": "W16A32，不宣称 FP16 计算",
+          "conversion": {
+            "constantWeights": 270,
+            "initializerWeights": 0,
+            "castNodes": 270,
+            "elements": 1281729
+          },
+          "graphStatistics": {
+            "operators": {
+              "Add": 79,
+              "ArgMax": 1,
+              "BatchNormalization": 268,
+              "Cast": 270,
+              "Concat": 52,
+              "Constant": 1511,
+              "Conv": 269,
+              "Relu": 144,
+              "Reshape": 99,
+              "Resize": 29,
+              "Shape": 3,
+              "Slice": 3,
+              "Split": 49,
+              "Transpose": 49
+            },
+            "initializerTypes": {},
+            "constantTensorTypes": {
+              "FLOAT": 1130,
+              "FLOAT16": 270,
+              "INT64": 111
+            },
+            "constantTensorElements": {
+              "FLOAT": 73896,
+              "FLOAT16": 1281729,
+              "INT64": 459
+            },
+            "nodes": 2826,
+            "initializers": 0
+          },
+          "probeOutputShape": [
+            1,
+            17,
+            32,
+            24
+          ],
+          "probeOutputType": "float32"
+        },
+        "sizeReductionRatio": 0.4458437671368518
+      },
+      {
+        "id": "tinypose-enhance-256x192-w16a32",
+        "precision": "w16a32",
+        "inputSize": {
+          "width": 192,
+          "height": 256
+        },
+        "path": ".tmp/variants/models/tinypose-enhance-256x192-w16a32.onnx",
+        "absolutePath": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-w16a32.onnx",
+        "status": "prepared",
+        "bytes": 3150848,
+        "sha256": "35963a83335155913e35e12ddc120e15a72a2b1587dbebc86fb3fabbd317016f",
+        "conversion": {
+          "strategy": "Conv 常量权重 float16 存储，算子前 Cast 恢复 float32",
+          "storagePrecision": "float16",
+          "activationPrecision": "float32",
+          "operatorPrecision": "float32",
+          "inputType": "float32",
+          "outputType": "float32",
+          "label": "W16A32，不宣称 FP16 计算",
+          "conversion": {
+            "constantWeights": 270,
+            "initializerWeights": 0,
+            "castNodes": 270,
+            "elements": 1281729
+          },
+          "graphStatistics": {
+            "operators": {
+              "Add": 79,
+              "ArgMax": 1,
+              "BatchNormalization": 268,
+              "Cast": 270,
+              "Concat": 52,
+              "Constant": 1511,
+              "Conv": 269,
+              "Relu": 144,
+              "Reshape": 99,
+              "Resize": 29,
+              "Shape": 3,
+              "Slice": 3,
+              "Split": 49,
+              "Transpose": 49
+            },
+            "initializerTypes": {},
+            "constantTensorTypes": {
+              "FLOAT": 1130,
+              "FLOAT16": 270,
+              "INT64": 111
+            },
+            "constantTensorElements": {
+              "FLOAT": 73896,
+              "FLOAT16": 1281729,
+              "INT64": 459
+            },
+            "nodes": 2826,
+            "initializers": 0
+          },
+          "probeOutputShape": [
+            1,
+            17,
+            64,
+            48
+          ],
+          "probeOutputType": "float32"
+        },
+        "sizeReductionRatio": 0.4458436887239491
+      }
+    ]
+  }
+}

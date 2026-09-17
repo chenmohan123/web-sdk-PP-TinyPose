@@ -1,0 +1,85 @@
+{
+  "testedAt": "2026-09-17T08:17:19.828Z",
+  "browser": "153.0.8010.12",
+  "origin": "http://127.0.0.1:4186/",
+  "results": [
+    {
+      "backend": "wasm",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WASM / main"
+    },
+    {
+      "backend": "wasm",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WASM / worker"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WEBGPU / main"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WEBGPU / worker"
+    },
+    {
+      "modelId": "tinypose-enhance-128x96",
+      "backend": "webgpu",
+      "mode": "worker",
+      "count": "17 / 17"
+    },
+    {
+      "modelId": "tinypose-enhance-128x96-w16a32",
+      "backend": "webgpu",
+      "mode": "worker",
+      "count": "17 / 17"
+    }
+  ],
+  "selectionKeepsImageY": true,
+  "languageToggle": true,
+  "upload": true,
+  "cancelAndRecover": true,
+  "currentAndAllCacheClear": true,
+  "vanillaPoints": 17,
+  "viewport390NoOverflow": true,
+  "viewport390ActionsDoNotOverlap": true,
+  "resetAndReload": true,
+  "pageErrors": [],
+  "source": [
+    {
+      "file": "demo/src/App.tsx",
+      "bytes": 36138,
+      "sha256": "0df3494367e720e10b8411d5d069715c66b2d221c65529ec4bbcc973e78c28e6"
+    },
+    {
+      "file": "demo/src/style.css",
+      "bytes": 14167,
+      "sha256": "4cfa7b57208a1822899befc22fa2248653628326edc2bffbb0d7febdb805d053"
+    },
+    {
+      "file": "models/model.json",
+      "bytes": 1563,
+      "sha256": "7162a20c8bd37ccf8a6b56eb5893e98a9d2350c06e608ca913bc7bdb1b728ebd"
+    },
+    {
+      "file": "models/catalog.json",
+      "bytes": 5294,
+      "sha256": "8a0e035aa5a76bb1fe978f5279e916ee7ef12b189407d42bfa9a4b62c5dd76cb"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 27209,
+      "sha256": "60b236b4b7d4e8f0c16a02c3c4992d9e5796f3c06046be001c2e227538f78807"
+    },
+    {
+      "file": "dist/inference.worker.js",
+      "bytes": 14796,
+      "sha256": "3b072681f9e39c4af47855327f41da0968cd786a4300e2295ab9018e9b9318be"
+    }
+  ]
+}

@@ -4,15 +4,16 @@ import { chromium } from "playwright";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 const origin = process.env.TINYPOSE_DEMO_URL ?? "http://127.0.0.1:4186/";
-const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-17-release";
+const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-17-variants";
 const browser = await chromium.launch({ channel: "chromium", headless: true });
 const results = [];
 const fakeRuntime = `
 export const COCO_SKELETON = [];
 export const clearAllModelCache = async () => {};
 export const clearCurrentModelCache = async () => {};
-export const getModelCacheInfo = async () => ({entries:0, bytes:0});
 window.poseJobs = [];
+window.cacheQueries = [];
+export const getModelCacheInfo = async model => { window.cacheQueries.push(model.id); return {entries:0, bytes:0}; };
 export function createTinyPose(options) {
   const job = {options, disposed:false};
   window.poseJobs.push(job);
@@ -52,6 +53,32 @@ async function begin(page, index) {
   await page.waitForFunction(i => !!window.poseJobs?.[i]?.load, index);
 }
 try {
+  await check("模型规格与精度切换取消旧任务并绑定新缓存身份", async page => {
+    const specification = page.getByRole("combobox", {name:"输入规格", exact:true});
+    const precision = page.getByRole("combobox", {name:"模型精度", exact:true});
+    assert.equal(await specification.inputValue(), "192x256");
+    assert.equal(await precision.inputValue(), "fp32");
+    await pick(page); await begin(page,0);
+    await specification.selectOption("96x128");
+    assert.equal(await page.evaluate(() => window.poseJobs[0].disposed), true);
+    assert.equal(await precision.inputValue(), "fp32");
+    await begin(page,1);
+    assert.equal(await page.evaluate(() => window.poseJobs[1].options.model.id), "tinypose-enhance-128x96");
+    await page.evaluate(() => window.poseJobs[0].load());
+    await page.waitForTimeout(100);
+    assert.equal(await page.locator(".status").textContent(), "正在下载模型");
+    await page.evaluate(() => window.poseJobs[1].load());
+    await page.waitForFunction(() => !!window.poseJobs[1].run);
+    await page.evaluate(() => window.poseJobs[1].run());
+    await page.waitForFunction(() => document.querySelector(".count")?.textContent === "17 / 17");
+    await precision.selectOption("w16a32");
+    assert.equal(await page.locator(".count").textContent(), "0 / 17");
+    assert.equal(await page.locator("[data-sdk-model-info]").textContent().then(text => text.includes("FP16 权重（FP32 计算）")), true);
+    await page.waitForFunction(() => window.cacheQueries.includes("tinypose-enhance-128x96-w16a32"));
+    await page.getByRole("button", {name:"切换语言 / Switch language"}).click();
+    assert.equal(await page.getByRole("combobox", {name:"Input size", exact:true}).inputValue(), "96x128");
+    assert.equal(await page.getByRole("combobox", {name:"Precision", exact:true}).inputValue(), "w16a32");
+  });
   await check("默认 ModelScope、仅两个来源且中英文可访问", async page => {
     const select = page.getByRole("combobox", {name:"来源", exact:true});
     assert.equal(await select.count(), 1, "必须提供来源选择");
@@ -101,5 +128,5 @@ try {
     assert.match(requests[0],/^https:\/\/(?:www\.)?modelscope.cn\//);
   }, false);
   await mkdir(out, {recursive:true});
-  await writeFile(`${out}/demo-source-browser.json`,JSON.stringify({testedAt:new Date().toISOString(),browser:browser.version(),origin,results,scope:"UI 竞争使用可控 SDK 边界；来源失败使用真实 SDK 和拦截的 HTTP 503；不代表远程 Hub 推理验收",source:await Promise.all(["demo/src/App.tsx","tests/demo-source-browser.mjs","models/model.json"].map(async file=>{const data=await readFile(file);return {file,bytes:data.length,sha256:createHash("sha256").update(data).digest("hex")};}))},null,2)+"\n");
+  await writeFile(`${out}/demo-source-browser.json`,JSON.stringify({testedAt:new Date().toISOString(),browser:browser.version(),origin,results,scope:"UI 竞争使用可控 SDK 边界；来源失败使用真实 SDK 和拦截的 HTTP 503；不代表远程 Hub 推理验收",source:await Promise.all(["demo/src/App.tsx","tests/demo-source-browser.mjs","models/model.json","models/catalog.json"].map(async file=>{const data=await readFile(file);return {file,bytes:data.length,sha256:createHash("sha256").update(data).digest("hex")};}))},null,2)+"\n");
 } finally { await browser.close(); }

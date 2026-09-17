@@ -4,6 +4,8 @@
 
 `createTinyPose({ model, backend?, executionMode?, runtimeBaseUrl? })` 创建独立实例；默认后端为 `wasm`，默认执行模式为 `worker`，建议在调用时显式配置。`model` 必须包含 `id/version/url/bytes/sha256`。`url` 来自正式 metadata 中所选来源的 `downloadUrl`；来源选择在调用者层完成，公共 API 不新增 Hub 特殊参数。
 
+`model.inputSize` 可选，格式为 `{ width, height }`；省略时兼容默认 `{ width: 192, height: 256 }`，也支持 `{ width: 96, height: 128 }`。从 `models/catalog.json` 选择完整模型项，再用该项 `sources` 中所选来源的 `downloadUrl` 覆盖 `url`。切换模型应取消旧操作、`dispose()` 旧实例并重新查询所选模型缓存；不能复用旧时序或结果。
+
 - `load({ signal?, onProgress? })`：加载与校验，进度阶段为 `downloading/integrity/loading/ready`。
 - `run({ image, region? }, { signal? })`：image 为 Blob 或 `{ data, width, height }` RGBA；region 为原图像素坐标 `{ x, y, width, height }`，需与图像相交且尺寸为正。
 - `dispose()`：释放实例持有的会话、Worker 和 GPU 资源；释放后不复用实例。
