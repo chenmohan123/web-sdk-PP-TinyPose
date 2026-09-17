@@ -1,9 +1,9 @@
 // 发布校验只消费真实验收回执；此脚本不生成通过标记或远程证据。
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
-import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
 import { execSync } from "node:child_process";
 import { parse } from "yaml";
+import { readBuildAssets, verifySdkCopies, verifyServedReceipt } from "./release-assets.mjs";
 
 const json = async file => JSON.parse(await readFile(file, "utf8"));
 const pkg = await json("package.json");
@@ -40,21 +40,8 @@ assert.deepEqual({id:variant.id,precision:variant.precision,quantization:variant
 assert.deepEqual(variant.sources, model.sources, "清单双源与发布 metadata 不一致");
 assert.deepEqual(manifest.model.assets, [{id:"fp32",bytes:model.bytes,precision:"fp32",url:model.url,sha256:model.sha256}]);
 
-async function inventory(directory) {
-  const files = [];
-  for (const entry of await readdir(directory, {withFileTypes:true})) {
-    const file = `${directory}/${entry.name}`;
-    assert(!entry.isSymbolicLink(), `构建资产不能是符号链接：${file}`);
-    if (entry.isDirectory()) files.push(...await inventory(file));
-    else {
-      assert(!/\.onnx$/i.test(file), `发布目录不能含 ONNX：${file}`);
-      const data = await readFile(file);
-      files.push({file,bytes:data.length,sha256:createHash("sha256").update(data).digest("hex")});
-    }
-  }
-  return files;
-}
-const assets = (await Promise.all(["dist", "demo-dist"].map(inventory))).flat().sort((a,b)=>a.file.localeCompare(b.file,"en"));
+const assets = await readBuildAssets();
+verifySdkCopies(assets);
 for (const file of ["dist/index.js","dist/inference.worker.js","dist/ort.webgpu.bundle.min.mjs","dist/ort-wasm-simd-threaded.asyncify.mjs","dist/ort-wasm-simd-threaded.asyncify.wasm","demo-dist/index.html"]) assert(assets.some(asset => asset.file === file), `构建缺少 ${file}`);
 assert.deepEqual(pkg.files, ["dist","README.md","README.en.md","LICENSE","NOTICE"], "npm 仅发布 SDK、ORT 与许可文档");
 if (packageOnly) {
@@ -76,6 +63,7 @@ if (packageOnly) {
   assert(Array.isArray(report.assets), "缺少构建资产回执");
   assert.equal(new Set(report.assets.map(asset=>asset.file)).size,report.assets.length,"资产回执重复");
   assert.deepEqual([...report.assets].sort((a,b)=>a.file.localeCompare(b.file,"en")),assets,"验收资产必须完整匹配当前构建");
+  verifyServedReceipt(report.servedAssets, assets, report.origin);
   assert(Array.isArray(report.results) && report.results.length === 8,"需要双源 × CPU/GPU × main/worker 八项验收");
   const expected = new Set(model.sources.flatMap(source=>["wasm","webgpu"].flatMap(backend=>["main","worker"].map(mode=>`${source.kind}/${backend}/${mode}`))));
   for (const result of report.results) {

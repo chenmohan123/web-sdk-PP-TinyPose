@@ -1,0 +1,13 @@
+{
+  "testedAt": "2026-09-17T03:16:37.466Z",
+  "scenario": "HTTP 服务返回等长 stale SDK，磁盘保留 fresh SDK",
+  "command": "node scripts/verify-distribution-browser.mjs",
+  "exitCode": 1,
+  "observedFailure": "服务资产摘要不符：demo-dist/sdk/index.js",
+  "requestedPaths": [
+    "/index.html",
+    "/sdk/index.js"
+  ],
+  "emittedAcceptance": false,
+  "enteredInference": false
+}

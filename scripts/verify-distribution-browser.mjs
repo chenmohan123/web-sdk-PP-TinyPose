@@ -1,25 +1,53 @@
 // 对正式构建运行真实双源 × 双后端 × 双执行模式，生成可复查发布证据。
 import assert from 'node:assert/strict';
-import { readFile, readdir, mkdir, writeFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
+import { platform, release } from 'node:os';
 import { chromium } from 'playwright';
+import { readBuildAssets, verifySdkCopies, verifyServedAssets, verifyResponseBytes, verifyBuildUnchanged } from './release-assets.mjs';
 
-const origin = process.env.TINYPOSE_DEMO_URL ?? 'http://127.0.0.1:4186/';
+const origin = new URL(process.env.TINYPOSE_DEMO_URL ?? 'http://127.0.0.1:4186/').href;
 const online = process.argv.includes('--online');
 const reportDir = 'reports/2026-09-17-release';
 const metadata = JSON.parse(await readFile('models/model.json', 'utf8'));
 const pkg = JSON.parse(await readFile('package.json', 'utf8'));
 const distribution = JSON.parse(await readFile(`${reportDir}/distribution-weights-verified.json`, 'utf8'));
-const hash = (data) => createHash('sha256').update(data).digest('hex');
+// 先固定本机构建身份，再核对全部 HTTP 文件；错误服务不得进入推理或生成回执。
+const assets = await readBuildAssets();
+verifySdkCopies(assets);
+const servedAssets = await verifyServedAssets(assets, origin);
+const sourceCommit = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+const servedByUrl = new Map(servedAssets.map(asset => [asset.url, asset]));
+servedByUrl.set(origin, servedByUrl.get(new URL('index.html', origin).href));
 const results = [];
 const browser = await chromium.launch({ channel: 'chromium', headless: true });
+const browserVersion = browser.version();
+const operatingSystem = { platform: platform(), release: release() };
+const browserAssetRequests = new Set();
 let baseline;
 try {
   for (const source of metadata.sources) {
     for (const backend of ['wasm', 'webgpu']) {
       for (const executionMode of ['main', 'worker']) {
-        const context = await browser.newContext();
+        const context = await browser.newContext({ serviceWorkers: 'block' });
+        const assetErrors = [];
+        // 验证实际交给浏览器执行的响应，防止预检后服务切换或缓存命中旧产物。
+        await context.route('**/*', async route => {
+          const requested = new URL(route.request().url());
+          requested.search = '';
+          const asset = servedByUrl.get(requested.href);
+          if (!asset) return route.continue();
+          try {
+            const response = await route.fetch();
+            const body = await response.body();
+            verifyResponseBytes(asset, body, response.status());
+            browserAssetRequests.add(asset.file);
+            await route.fulfill({ response });
+          } catch (error) {
+            assetErrors.push(String(error));
+            await route.abort();
+          }
+        });
         const page = await context.newPage();
         const requests = [];
         const errors = [];
@@ -50,6 +78,7 @@ try {
           }
         }, { metadata, source, backend, executionMode, origin });
         assert.deepEqual(errors, []);
+        assert.deepEqual(assetErrors, [], '浏览器实际加载了与预检不一致的服务资产');
         assert.equal(row.result.keypoints.length, 17);
         assert.equal(row.warm.keypoints.length, 17);
         assert.equal(row.result.runtime.actualBackend, backend);
@@ -78,17 +107,9 @@ try {
 } finally {
   await browser.close();
 }
-const assets = [];
-for (const directory of ['dist', 'demo-dist']) {
-  for (const entry of (await readdir(directory, { recursive: true, withFileTypes: true })).filter(e => e.isFile())) {
-    const file = `${entry.parentPath}/${entry.name}`.replaceAll('\\', '/');
-    const data = await readFile(file);
-    assets.push({ file, bytes: data.length, sha256: hash(data) });
-  }
-}
-assets.sort((a, b) => a.file.localeCompare(b.file));
-assert(!assets.some(a => /\.onnx$/i.test(a.file)), '正式构建不得包含权重');
-const report = { schemaVersion: 1, version: pkg.version, testedAt: new Date().toISOString(), sourceCommit: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), origin, model: metadata, assets, results, distributionVerifiedAt: distribution.verifiedAt, browser: 'Chromium 153.0.8010.12', os: 'Windows 11 10.0.26200', scope: '桌面双源冷启动与实际公开 SDK 图片推理；非全量 AP，不新增手机或 NPU 兼容承诺' };
+await verifyBuildUnchanged(assets);
+assert.equal(execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(), sourceCommit, '验收期间源代码提交发生变化');
+const report = { schemaVersion: 1, version: pkg.version, testedAt: new Date().toISOString(), sourceCommit, origin, model: metadata, assets, servedAssets, browserAssetRequests: [...browserAssetRequests].sort(), results, distributionVerifiedAt: distribution.verifiedAt, browser: browserVersion, os: operatingSystem, scope: '桌面双源冷启动与实际公开 SDK 图片推理；非全量 AP，不新增手机或 NPU 兼容承诺' };
 await mkdir(reportDir, { recursive: true });
 await writeFile(`${reportDir}/${online ? 'online-browser' : 'distribution-browser'}.json`, JSON.stringify(report, null, 2) + '\n');
 if (!online) await writeFile('reports/release-acceptance.json', JSON.stringify(report, null, 2) + '\n');
