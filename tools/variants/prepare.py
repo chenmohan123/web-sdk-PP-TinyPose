@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import platform
 import shutil
@@ -24,8 +23,11 @@ from onnxconverter_common.float16 import convert_float_to_float16 as common_conv
 from onnxruntime.transformers.float16 import DEFAULT_OP_BLOCK_LIST, convert_float_to_float16 as ort_convert_float_to_float16
 from onnxruntime.transformers.onnx_model import OnnxModel
 
+try:
+    from .evidence import UPSTREAM_REVISION, file_identity, verify_identity, verify_upstream, write_json
+except ImportError:
+    from evidence import UPSTREAM_REVISION, file_identity, verify_identity, verify_upstream, write_json
 
-UPSTREAM_REVISION = "b25522a0f4bde8c80603f3ba5e3472059972e3b5"
 SOURCE_128 = {
     "url": "https://bj.bcebos.com/v1/paddledet/models/keypoint/tinypose_enhance/tinypose_128x96.zip",
     "bytes": 5397578,
@@ -39,25 +41,9 @@ SOURCE_128 = {
 }
 
 
-def identity(path: Path) -> dict[str, Any]:
-    digest = hashlib.sha256()
-    size = 0
-    with path.open("rb") as stream:
-        while chunk := stream.read(1024 * 1024):
-            size += len(chunk)
-            digest.update(chunk)
-    return {"bytes": size, "sha256": digest.hexdigest()}
-
-
-def write_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-
-
 def verify(path: Path, expected: dict[str, Any], label: str) -> None:
-    actual = identity(path)
-    if actual["bytes"] != expected["bytes"] or actual["sha256"] != expected["sha256"]:
-        raise ValueError(f"{label} 字节数或 SHA-256 与固定值不符：{actual}")
+    actual = file_identity(path)
+    verify_identity(actual, expected, label)
 
 
 def download_locked(url: str, output: Path, expected: dict[str, Any]) -> None:
@@ -77,7 +63,7 @@ def extract_locked(archive_path: Path, output: Path) -> list[dict[str, Any]]:
             target = output / name
             target.write_bytes(archive.read(f"tinypose_128x96/{name}"))
             verify(target, expected, name)
-            results.append({"path": name, **identity(target)})
+            results.append({"path": name, **file_identity(target)})
     return results
 
 
@@ -348,7 +334,7 @@ def candidate(model_id: str, precision: str, width: int, height: int, path: Path
         "path": f".tmp/variants/models/{path.name}",
         "absolutePath": str(path.resolve()),
         "status": "prepared",
-        **identity(path),
+        **file_identity(path),
     }
     value.update(extra)
     return value
@@ -361,6 +347,7 @@ def prepare(args: argparse.Namespace) -> None:
     import paddle
     import paddle2onnx
 
+    upstream_evidence = verify_upstream(args.upstream)
     work = args.work.resolve()
     models_dir = work / "models"
     models_dir.mkdir(parents=True, exist_ok=True)
@@ -455,7 +442,7 @@ def prepare(args: argparse.Namespace) -> None:
 
         if conversion is not None:
             reduction = 1.0 - output.stat().st_size / source.stat().st_size
-            attempt.update({"status": "prepared", "sizeReductionRatio": reduction, "conversion": conversion, **identity(output)})
+            attempt.update({"status": "prepared", "sizeReductionRatio": reduction, "conversion": conversion, **file_identity(output)})
             models.append(candidate(fp16_id, "fp16", width, height, output, conversion=conversion, sizeReductionRatio=reduction))
         else:
             error = attempt["attempts"][-1]["error"]
@@ -486,7 +473,7 @@ def prepare(args: argparse.Namespace) -> None:
         try:
             conversion = convert_w16a32(source, output)
             reduction = 1.0 - output.stat().st_size / source.stat().st_size
-            record.update({"status": "prepared", "sizeReductionRatio": reduction, "conversion": conversion, **identity(output)})
+            record.update({"status": "prepared", "sizeReductionRatio": reduction, "conversion": conversion, **file_identity(output)})
             models.append(candidate(model_id, "w16a32", width, height, output, conversion=conversion, sizeReductionRatio=reduction))
         except Exception as error:
             record.update({"status": "failed", "error": f"{type(error).__name__}: {error}"})
@@ -510,13 +497,14 @@ def prepare(args: argparse.Namespace) -> None:
     report = {
         "status": "prepared" if all(item["status"] == "prepared" for item in models) else "prepared-with-failures",
         "upstreamRevision": UPSTREAM_REVISION,
+        "upstream": upstream_evidence,
         "sourceEvidence": [
-            {"path": str(source_readme), **identity(source_readme)},
-            {"path": str(source_config), **identity(source_config)},
+            {"path": str(source_readme), **file_identity(source_readme)},
+            {"path": str(source_config), **file_identity(source_config)},
         ],
-        "archive128": {"url": SOURCE_128["url"], "path": str(archive_128), **identity(archive_128)},
+        "archive128": {"url": SOURCE_128["url"], "path": str(archive_128), **file_identity(archive_128)},
         "paddleAssets128": assets_128,
-        "legacy256": {"source": str(args.legacy_model.resolve()), **identity(fp32_256)},
+        "legacy256": {"source": str(args.legacy_model.resolve()), **file_identity(fp32_256)},
         "conversionAttempts": conversion_attempts,
         "w16a32Conversions": w16a32_conversions,
         "tools": {

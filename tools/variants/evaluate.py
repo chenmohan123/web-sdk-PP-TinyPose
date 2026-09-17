@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import platform
 import sys
@@ -12,6 +11,29 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+
+try:
+    from .evidence import (
+        bytes_identity,
+        file_identity,
+        load_verified_candidates,
+        validate_frozen_sample,
+        validate_or_create_lock,
+        verify_identity,
+        verify_upstream,
+        write_json,
+    )
+except ImportError:
+    from evidence import (
+        bytes_identity,
+        file_identity,
+        load_verified_candidates,
+        validate_frozen_sample,
+        validate_or_create_lock,
+        verify_identity,
+        verify_upstream,
+        write_json,
+    )
 
 
 COCO_KEYPOINT_SIGMAS = np.array(
@@ -70,32 +92,8 @@ def select_people(annotations: list[dict[str, Any]], image_ids: set[int]) -> lis
     )
 
 
-def identity(path: Path) -> dict[str, Any]:
-    digest = hashlib.sha256()
-    size = 0
-    with path.open("rb") as stream:
-        while chunk := stream.read(1024 * 1024):
-            size += len(chunk)
-            digest.update(chunk)
-    return {"bytes": size, "sha256": digest.hexdigest()}
-
-
-def bytes_identity(data: bytes) -> dict[str, Any]:
-    return {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
-
-
-def write_json(path: Path, value: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-
-
-def _verify_identity(actual: dict[str, Any], expected: dict[str, Any], label: str) -> None:
-    if actual["bytes"] != expected["bytes"] or actual["sha256"] != expected["sha256"]:
-        raise ValueError(f"{label} 字节数或 SHA-256 与固定值不符")
-
-
 def _load_keypoints(archive_path: Path, output_path: Path) -> dict[str, Any]:
-    _verify_identity(identity(archive_path), KEYPOINT_ARCHIVE, "COCO 标注 ZIP")
+    verify_identity(file_identity(archive_path), KEYPOINT_ARCHIVE, "COCO 标注 ZIP")
     with zipfile.ZipFile(archive_path) as archive:
         raw = archive.read(KEYPOINT_ARCHIVE["member"])
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -113,14 +111,14 @@ def _summarize_oks(values: list[float]) -> dict[str, Any]:
     }
 
 
-def _model_session(path: Path):
+def _model_session(model_bytes: bytes):
     import onnxruntime as ort
 
     options = ort.SessionOptions()
     options.intra_op_num_threads = 1
     options.inter_op_num_threads = 1
     options.log_severity_level = 3
-    return ort.InferenceSession(str(path), sess_options=options, providers=["CPUExecutionProvider"])
+    return ort.InferenceSession(model_bytes, sess_options=options, providers=["CPUExecutionProvider"])
 
 
 def _paddle_predictor(exported: Path):
@@ -164,10 +162,9 @@ def _points(postprocess, heatmap: np.ndarray, center: np.ndarray, scale: np.ndar
 
 
 def _save_fixture_image(path: Path, rgba: np.ndarray) -> dict[str, Any]:
-    if not path.exists():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        rgba.tofile(path)
-    return identity(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    rgba.tofile(path)
+    return file_identity(path)
 
 
 def _build_lock(
@@ -181,9 +178,9 @@ def _build_lock(
     image_ids = selection["imageIds"]
     return {
         "status": "locked-before-inference",
-        "selection": {"path": str(dataset / "selection.json"), **identity(dataset / "selection.json")},
-        "keypointsArchive": {"path": str(keypoints_archive), "url": KEYPOINT_ARCHIVE["url"], **identity(keypoints_archive)},
-        "keypointsAnnotations": {"path": str(keypoints_path), **identity(keypoints_path)},
+        "selection": {"path": str(dataset / "selection.json"), **file_identity(dataset / "selection.json")},
+        "keypointsArchive": {"path": str(keypoints_archive), "url": KEYPOINT_ARCHIVE["url"], **file_identity(keypoints_archive)},
+        "keypointsAnnotations": {"path": str(keypoints_path), **file_identity(keypoints_path)},
         "requestedImageIds": image_ids,
         "requestedImages": len(image_ids),
         "people": [{"imageId": item["image_id"], "annotationId": item["id"]} for item in people],
@@ -193,7 +190,7 @@ def _build_lock(
             {
                 "imageId": image_id,
                 "file": images[image_id]["file_name"],
-                **identity(dataset / "images" / images[image_id]["file_name"]),
+                **file_identity(dataset / "images" / images[image_id]["file_name"]),
             }
             for image_id in image_ids
         ],
@@ -206,30 +203,32 @@ def evaluate(args: argparse.Namespace) -> None:
     import onnxruntime as ort
     import paddle
 
-    sys.path.insert(0, str(args.upstream.resolve() / "deploy/python"))
-    from keypoint_postprocess import HRNetPostProcess
-    from keypoint_preprocess import TopDownEvalAffine, expand_crop
-
     work = args.work.resolve()
     dataset = args.dataset.resolve()
     report_dir = args.report_dir.resolve()
     fixtures = work / "fixtures"
+    upstream_evidence = verify_upstream(args.upstream)
+    models, verified_model_bytes, candidate_evidence = load_verified_candidates(work / "candidates.json")
+
     keypoints_path = work / "annotations/person_keypoints_val2017.json"
     keypoints = _load_keypoints(args.keypoints_zip.resolve(), keypoints_path)
     selection = json.loads((dataset / "selection.json").read_text(encoding="utf-8"))
-    selected_ids = set(selection["imageIds"])
+    requested_image_ids = selection["imageIds"]
+    selected_ids = set(requested_image_ids)
     people = select_people(keypoints["annotations"], selected_ids)
     images = {item["id"]: item for item in keypoints["images"] if item["id"] in selected_ids}
+    validate_frozen_sample(requested_image_ids, people)
+    if set(images) != selected_ids:
+        raise ValueError("COCO 关键点标注未完整覆盖冻结的 64 张图片")
     lock = _build_lock(dataset, args.keypoints_zip.resolve(), keypoints_path, selection, people, images)
-    write_json(report_dir / "evaluation-lock.json", lock)
+    lock_evidence = validate_or_create_lock(report_dir / "evaluation-lock.json", lock)
 
-    candidates = json.loads((work / "candidates.json").read_text(encoding="utf-8"))
-    models = {item["id"]: item for item in candidates["models"] if item["status"] == "prepared"}
     specs = {
         (96, 128): ("tinypose-enhance-128x96", "tinypose_128x96"),
         (192, 256): ("tinypose-enhance-256x192", "tinypose_256x192"),
     }
-    detections = json.loads((dataset / "instances_val2017.json").read_text(encoding="utf-8"))
+    instances_path = dataset / "instances_val2017.json"
+    detections = json.loads(instances_path.read_text(encoding="utf-8"))
     parity_people = sorted(
         [
             item
@@ -242,15 +241,29 @@ def evaluate(args: argparse.Namespace) -> None:
         key=lambda item: (item["image_id"], item["id"]),
     )[:32]
     detection_images = {item["id"]: item for item in detections["images"]}
+
+    sys.path.insert(0, str(args.upstream.resolve() / "deploy/python"))
+    from keypoint_postprocess import HRNetPostProcess
+    from keypoint_preprocess import TopDownEvalAffine, expand_crop
+
+    if verify_upstream(args.upstream) != upstream_evidence:
+        raise ValueError("固定上游文件在校验与导入之间发生变化")
+
+    base_evidence = {
+        "candidates": candidate_evidence,
+        "evaluationLock": lock_evidence,
+        "upstream": upstream_evidence,
+        "instancesAnnotations": {"path": str(instances_path), **file_identity(instances_path)},
+    }
     postprocess = HRNetPostProcess(use_dark=True)
     parity_report: dict[str, Any] = {"thresholds": PARITY_THRESHOLDS, "specs": {}}
 
     for (width, height), (model_id, export_name) in specs.items():
         candidate = models[model_id]
-        model_path = Path(candidate["absolutePath"])
-        graph = onnx.load(model_path)
+        model_bytes = verified_model_bytes[model_id]
+        graph = onnx.load_model_from_string(model_bytes)
         onnx.checker.check_model(graph)
-        session = _model_session(model_path)
+        session = _model_session(model_bytes)
         predictor = _paddle_predictor(work / "exported" / export_name)
         affine = TopDownEvalAffine([width, height])
         heatmap_shape = (1, 17, height // 4, width // 4)
@@ -285,8 +298,11 @@ def evaluate(args: argparse.Namespace) -> None:
                 "bbox": annotation["bbox"],
                 "expanded": expanded,
                 "originalRgba": {"path": str(image_fixture), "width": rgba.shape[1], "height": rgba.shape[0], **image_identity},
-                "input": {"path": str(case_dir / "input.f32"), **identity(case_dir / "input.f32")},
-                "paddleHeatmap": {"path": str(case_dir / "paddle-heatmap.f32"), **identity(case_dir / "paddle-heatmap.f32")},
+                "input": {"path": str(case_dir / "input.f32"), **file_identity(case_dir / "input.f32")},
+                "paddleHeatmap": {
+                    "path": str(case_dir / "paddle-heatmap.f32"),
+                    **file_identity(case_dir / "paddle-heatmap.f32"),
+                },
             }
             write_json(case_dir / "case.json", metadata)
             cases.append(
@@ -308,20 +324,49 @@ def evaluate(args: argparse.Namespace) -> None:
             and summary["maxReliablePointErrorPx"] <= PARITY_THRESHOLDS["maxReliablePointErrorPx"]
         )
         parity_report["specs"][model_id] = {"summary": summary, "cases": cases}
-    write_json(report_dir / "conversion-consistency.json", parity_report)
 
-    sessions = {model_id: _model_session(Path(candidate["absolutePath"])) for model_id, candidate in models.items()}
+    sessions = {model_id: _model_session(verified_model_bytes[model_id]) for model_id in models}
     quality_cases: dict[str, list[dict[str, Any]]] = {model_id: [] for model_id in models}
+    quality_fixture_cases: dict[str, list[dict[str, Any]]] = {model_id: [] for model_id in models}
     point_outputs: dict[str, dict[int, np.ndarray]] = {model_id: {} for model_id in models}
     heatmap_outputs: dict[str, dict[int, np.ndarray]] = {model_id: {} for model_id in models}
     image_cache: dict[int, np.ndarray] = {}
+    rgba_evidence: dict[int, dict[str, Any]] = {}
+    shared_cases = []
+    locked_images = {item["imageId"]: item for item in lock["images"]}
     for case_index, annotation in enumerate(people):
         image_id = annotation["image_id"]
         if image_id not in image_cache:
             image_path = dataset / "images" / images[image_id]["file_name"]
-            image_cache[image_id] = cv2.cvtColor(cv2.imread(str(image_path)), cv2.COLOR_BGR2RGB)
+            bgr = cv2.imread(str(image_path))
+            if bgr is None:
+                raise FileNotFoundError(f"无法读取图片：{image_path}")
+            image_cache[image_id] = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+            rgba = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGBA)
+            rgba_path = fixtures / "images" / f"{image_id}.rgba"
+            rgba_evidence[image_id] = {
+                "path": str(rgba_path),
+                "width": rgba.shape[1],
+                "height": rgba.shape[0],
+                **_save_fixture_image(rgba_path, rgba),
+            }
         rgb = image_cache[image_id]
         ground_truth = np.asarray(annotation["keypoints"], dtype=np.float64).reshape(17, 3)
+        shared_cases.append(
+            {
+                "case": case_index,
+                "imageId": image_id,
+                "annotationId": annotation["id"],
+                "bbox": annotation["bbox"],
+                "area": annotation["area"],
+                "groundTruth": ground_truth.tolist(),
+                "sourceImage": {
+                    "path": str(dataset / "images" / images[image_id]["file_name"]),
+                    **locked_images[image_id],
+                },
+                "originalRgba": rgba_evidence[image_id],
+            }
+        )
         for model_id, candidate in models.items():
             width = candidate["inputSize"]["width"]
             height = candidate["inputSize"]["height"]
@@ -334,11 +379,64 @@ def evaluate(args: argparse.Namespace) -> None:
             points = _points(postprocess, heatmap, center, scale, expanded)
             oks = compute_oks(points[:, :2], ground_truth, float(annotation["area"]))
             quality_cases[model_id].append({"case": case_index, "imageId": image_id, "annotationId": annotation["id"], "oks": oks})
+            quality_fixture_cases[model_id].append(
+                {
+                    "case": case_index,
+                    "imageId": image_id,
+                    "annotationId": annotation["id"],
+                    "expanded": expanded,
+                    "points": points.tolist(),
+                    "oks": oks,
+                }
+            )
             point_outputs[model_id][case_index] = points
             heatmap_outputs[model_id][case_index] = heatmap
 
+    quality_fixture_dir = fixtures / "quality"
+    shared_fixture_path = quality_fixture_dir / "cases.json"
+    write_json(
+        shared_fixture_path,
+        {
+            "schemaVersion": 1,
+            "coordinateSpace": "原始图片像素坐标；points 每项为 [x, y, score]",
+            "evaluationLock": lock_evidence,
+            "cases": shared_cases,
+        },
+    )
+    fixture_models = []
+    for model_id in models:
+        fixture_path = quality_fixture_dir / f"{model_id}.json"
+        write_json(
+            fixture_path,
+            {
+                "schemaVersion": 1,
+                "model": candidate_evidence["models"][model_id],
+                "evaluationLock": lock_evidence,
+                "cases": quality_fixture_cases[model_id],
+            },
+        )
+        fixture_models.append({"id": model_id, "path": str(fixture_path), **file_identity(fixture_path)})
+    fixture_manifest_path = quality_fixture_dir / "manifest.json"
+    write_json(
+        fixture_manifest_path,
+        {
+            "schemaVersion": 1,
+            "candidateManifest": candidate_evidence["manifest"],
+            "evaluationLock": lock_evidence,
+            "sharedCases": {"path": str(shared_fixture_path), **file_identity(shared_fixture_path)},
+            "models": fixture_models,
+        },
+    )
+    evidence = {
+        **base_evidence,
+        "qualityFixtures": {"path": str(fixture_manifest_path), **file_identity(fixture_manifest_path)},
+    }
+    parity_report["evidence"] = evidence
+    write_json(report_dir / "conversion-consistency.json", parity_report)
+
     quality_report = {
         "method": "固定 64 图中的全部有效人体，使用 GT 框、上游扩框、DARK、COCO sigma 与 segmentation area；结果不是全量 AP",
+        "evidence": evidence,
         "models": {
             model_id: {"summary": _summarize_oks([item["oks"] for item in cases]), "cases": cases}
             for model_id, cases in quality_cases.items()
@@ -391,12 +489,26 @@ def evaluate(args: argparse.Namespace) -> None:
         comparisons[fp16_id] = summary
     thresholds = {**FP16_THRESHOLDS, "minSizeReductionRatio": .3}
     fp16_comparisons = {key: value for key, value in comparisons.items() if key.endswith("-fp16")}
-    write_json(report_dir / "fp16-comparison.json", {"thresholds": thresholds, "comparisons": fp16_comparisons})
-    write_json(report_dir / "reduced-precision-comparison.json", {"thresholds": thresholds, "comparisons": comparisons})
+    write_json(
+        report_dir / "fp16-comparison.json",
+        {"thresholds": thresholds, "evidence": evidence, "comparisons": fp16_comparisons},
+    )
+    write_json(
+        report_dir / "reduced-precision-comparison.json",
+        {"thresholds": thresholds, "evidence": evidence, "comparisons": comparisons},
+    )
+
+    python_qualified = [
+        model_id
+        for _, (model_id, _) in specs.items()
+        if parity_report["specs"][model_id]["summary"]["passed"]
+    ]
+    python_qualified.extend(model_id for model_id, result in comparisons.items() if result["passed"])
 
     summary = {
         "status": "evaluated",
         "scope": "固定 64 图子集；不是 COCO 全量 AP、手机或 NPU 验证",
+        "evidence": evidence,
         "environment": {
             "python": sys.version,
             "os": platform.platform(),
@@ -410,6 +522,7 @@ def evaluate(args: argparse.Namespace) -> None:
         "quality": {model_id: item["summary"] for model_id, item in quality_report["models"].items()},
         "fp16": fp16_comparisons,
         "reducedPrecision": comparisons,
+        "pythonQualifiedCandidateIds": python_qualified,
     }
     write_json(report_dir / "summary.json", summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2, allow_nan=False))

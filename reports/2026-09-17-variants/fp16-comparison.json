@@ -6,6 +6,92 @@
     "maxReliablePointErrorPx": 5.0,
     "minSizeReductionRatio": 0.3
   },
+  "evidence": {
+    "candidates": {
+      "manifest": {
+        "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\candidates.json",
+        "bytes": 10800,
+        "sha256": "2cd1d85cfb84a0ffb79fa0680fa2611d7efc1b492ee400181e9b7cd16ee42ef9"
+      },
+      "models": {
+        "tinypose-enhance-128x96": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp32.onnx",
+          "bytes": 5685846,
+          "sha256": "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8"
+        },
+        "tinypose-enhance-256x192": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp32.onnx",
+          "bytes": 5685847,
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        },
+        "tinypose-enhance-128x96-fp16": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-fp16.onnx",
+          "bytes": 3097245,
+          "sha256": "21432b9e5c26b68c37764dff2100ac56f0a1da04beefd022ae5e32e2a26d488c"
+        },
+        "tinypose-enhance-256x192-fp16": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-fp16.onnx",
+          "bytes": 3097255,
+          "sha256": "8008eb4c8d0dd04f406841a49650255142a7012e836be5c66499054000b7f17e"
+        },
+        "tinypose-enhance-128x96-w16a32": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-128x96-w16a32.onnx",
+          "bytes": 3150847,
+          "sha256": "8671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea"
+        },
+        "tinypose-enhance-256x192-w16a32": {
+          "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\models\\tinypose-enhance-256x192-w16a32.onnx",
+          "bytes": 3150848,
+          "sha256": "35963a83335155913e35e12ddc120e15a72a2b1587dbebc86fb3fabbd317016f"
+        }
+      }
+    },
+    "evaluationLock": {
+      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\reports\\2026-09-17-variants\\evaluation-lock.json",
+      "bytes": 21546,
+      "sha256": "aef9f134dd872ae103a69922317e5bee666f7825ddebca7bbd9d5d9a89d67e35"
+    },
+    "upstream": {
+      "revision": "b25522a0f4bde8c80603f3ba5e3472059972e3b5",
+      "files": [
+        {
+          "path": "configs/keypoint/tiny_pose/README.md",
+          "bytes": 22471,
+          "sha256": "8593fc029f79462b1cebd34b4c61aeea7708cf18baf9e742e12377acd3523fc3"
+        },
+        {
+          "path": "configs/keypoint/tiny_pose/tinypose_128x96.yml",
+          "bytes": 3245,
+          "sha256": "b1c181d7f757a88a2abc73c663acfebae18f1fd88e4783c90fdb7c96ed3818ea"
+        },
+        {
+          "path": "configs/keypoint/tiny_pose/tinypose_256x192.yml",
+          "bytes": 3189,
+          "sha256": "fab0d5d5a43cb163393b39225ee54b2b9fe860e6f8b9d07cc39a8b1df6a81744"
+        },
+        {
+          "path": "deploy/python/keypoint_preprocess.py",
+          "bytes": 8238,
+          "sha256": "0bb7c833ca65105267adc2f083e1fe95ab645daa830358aff46cbb9f8948155c"
+        },
+        {
+          "path": "deploy/python/keypoint_postprocess.py",
+          "bytes": 14967,
+          "sha256": "2ccf000782204fa155ecbce1d022c8a90f424926b1bcf9497d1c153bcd382925"
+        }
+      ]
+    },
+    "instancesAnnotations": {
+      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-Detection\\.tmp\\phase2\\dataset\\instances_val2017.json",
+      "bytes": 19987840,
+      "sha256": "e8c7f7908f1d7278341fae127d0da654f102f11bd7b21d8aeefa635b8c810b6f"
+    },
+    "qualityFixtures": {
+      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\quality\\manifest.json",
+      "bytes": 2837,
+      "sha256": "57a42c59fcea81836ac017f1590b97f42a7ffe1dc64d4ee9e04c67d5ff9abaa7"
+    }
+  },
   "comparisons": {
     "tinypose-enhance-128x96-fp16": {
       "status": "evaluated",
