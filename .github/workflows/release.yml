@@ -81,7 +81,38 @@ jobs:
           else
             npm publish package.tgz --provenance --access public
           fi
-          npm view "web-sdk-pp-tinypose@$package_version" dist.integrity --json > published-integrity.json
+          integrity_ready=false
+          poll_deadline=$((SECONDS + 600))
+          attempt=0
+          while [ "$SECONDS" -lt "$poll_deadline" ]; do
+            attempt=$((attempt + 1))
+            attempt_started=$SECONDS
+            remaining_seconds=$((poll_deadline - SECONDS))
+            query_timeout=$((remaining_seconds < 10 ? remaining_seconds : 10))
+            if timeout "${query_timeout}s" npm view "web-sdk-pp-tinypose@$package_version" dist.integrity --json > published-integrity.tmp 2>/dev/null \
+              && node --input-type=module -e 'import {readFileSync} from "node:fs"; const value=JSON.parse(readFileSync(process.argv[1],"utf8")); if(typeof value!=="string" || !value.startsWith("sha512-")) process.exit(1)' published-integrity.tmp; then
+              mv published-integrity.tmp published-integrity.json
+              integrity_ready=true
+              break
+            fi
+            rm -f published-integrity.tmp
+            remaining_seconds=$((poll_deadline - SECONDS))
+            if [ "$remaining_seconds" -le 0 ]; then
+              break
+            fi
+            sleep_seconds=$((attempt_started + 10 - SECONDS))
+            if [ "$sleep_seconds" -gt "$remaining_seconds" ]; then
+              sleep_seconds=$remaining_seconds
+            fi
+            if [ "$sleep_seconds" -gt 0 ]; then
+              echo "npm 元数据尚未可见，${sleep_seconds} 秒后重试 dist.integrity（第 ${attempt} 次）"
+              sleep "$sleep_seconds"
+            fi
+          done
+          if [ "$integrity_ready" != true ]; then
+            echo "npm 版本在 10 分钟等待窗口内仍未返回有效 dist.integrity" >&2
+            exit 1
+          fi
           node --input-type=module -e 'import {readFileSync} from "node:fs"; import {createHash} from "node:crypto"; import assert from "node:assert/strict"; const actual="sha512-"+createHash("sha512").update(readFileSync("package.tgz")).digest("base64"); assert.equal(JSON.parse(readFileSync("published-integrity.json")),actual,"npm 资产与已验收打包产物不一致")'
       # setup-node 不写入 token 占位配置；发布身份由 npm Trusted Publishing 的 OIDC 提供。
   release:
