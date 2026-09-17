@@ -10,3 +10,4 @@ demo/public/models/model.json
 demo/public/ort/
 demo/public/sdk/
 *.tgz
+/.worktrees/
