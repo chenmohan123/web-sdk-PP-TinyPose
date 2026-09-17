@@ -1,9 +1,11 @@
 // 只验证输入交错，不加载模型；可控延迟复现解码、示例下载和重置的竞争。
 import assert from "node:assert/strict";
 import { chromium } from "playwright";
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 const origin = process.env.TINYPOSE_DEMO_URL ?? "http://127.0.0.1:4186/";
+const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-16-feasibility";
+await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: "chromium", headless: true });
 const results = [];
 const failures = [];
@@ -159,7 +161,7 @@ try {
   });
   assert.deepEqual(failures, []);
   await writeFile(
-    "reports/2026-09-16-feasibility/demo-input-browser.json",
+    `${out}/demo-input-browser.json`,
     JSON.stringify(
       {
         testedAt: new Date().toISOString(),

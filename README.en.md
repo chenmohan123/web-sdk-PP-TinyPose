@@ -20,6 +20,8 @@ pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versi
 
 Open the [local Demo](http://localhost:4186/). It starts in Chinese and supports English, manual person selection, skeleton overlay, explicit CPU/GPU, main/Worker, timing details, and this SDK's cache cleanup. Model bytes are downloaded and verified on first use and reused by digest. Images stay in the browser.
 
+The Demo follows the PP-Detection workbench style: a dark header, controls on the left, preview and samples in the center, and keypoints with collapsible information on the right. These regions stack vertically on narrow screens.
+
 Production distribution will use ModelScope by default and Hugging Face as the other source. Local development assets are not a third production source; no hub revisions have been invented. The planned [GitHub repository](https://github.com/chenmohan123/web-sdk-PP-TinyPose), [npm package](https://www.npmjs.com/package/web-sdk-pp-tinypose), and [production Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) are not published or availability evidence.
 
 ## Documentation and checks

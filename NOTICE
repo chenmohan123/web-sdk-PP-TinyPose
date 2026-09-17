@@ -19,3 +19,4 @@ COCO、AI Challenger 和上游业务训练数据的说明不构成额外的权�
 Demo 样图来自上述固定源码 demo/hrnet_demo.jpg，保留为上游姿态示例。
 运行依赖 ONNX Runtime Web（Microsoft，MIT）；其发行包保留自身许可。
 共享 UI token 来源：chenmohan123.github.io/standards/v1/ui-tokens.json。
+Demo 图标使用 Lucide（ISC）；仅用于 Demo，不是 SDK 运行依赖。

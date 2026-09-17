@@ -21,6 +21,8 @@ pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versi
 
 打开 [本地 Demo](http://localhost:4186/)。Demo 默认中文，提供英文切换、手工框选、骨架叠加、CPU/GPU、主线程/Worker、分项耗时和本 SDK 缓存清理。模型首次使用下载并校验，后续按摘要复用缓存；图片留在浏览器。
 
+Demo 沿用 PP-Detection 的工作台风格：深色顶栏、左侧参数、中间预览及示例、右侧关键点与折叠信息。窄屏按区域纵向排列。
+
 正式发布时使用 ModelScope 与 Hugging Face，默认 ModelScope。当前本地模型不是第三个生产来源；没有填写虚构 Hub revision。计划的 [GitHub 仓库](https://github.com/chenmohan123/web-sdk-PP-TinyPose)、[npm 包](https://www.npmjs.com/package/web-sdk-pp-tinypose) 和 [正式 Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) 尚未发布，不能作为可用链接或发布证据。
 
 ## 文档与验证

@@ -4,7 +4,7 @@ import { readFile, mkdir, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { chromium } from "playwright";
 const origin = process.env.TINYPOSE_DEMO_URL ?? "http://127.0.0.1:4186/";
-const out = "reports/2026-09-16-feasibility";
+const out = process.env.TINYPOSE_REPORT_DIR ?? "reports/2026-09-16-feasibility";
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: "chromium", headless: true });
 const results = [];
@@ -58,8 +58,20 @@ try {
   }
   for (const backend of ["wasm", "webgpu"])
     for (const mode of ["main", "worker"]) {
-      await page.getByLabel("运行后端").selectOption(backend);
-      await page.getByLabel("执行模式").selectOption(mode);
+      await page
+        .getByRole("group", { name: "运行后端" })
+        .getByRole("button", {
+          name: backend === "wasm" ? "CPU" : "GPU",
+          exact: true,
+        })
+        .click();
+      await page
+        .getByRole("group", { name: "执行模式" })
+        .getByRole("button", {
+          name: mode === "main" ? "主线程" : "Worker",
+          exact: true,
+        })
+        .click();
       await run();
       const count = await page.locator(".count").textContent();
       assert.equal(count, "17 / 17");
@@ -144,7 +156,7 @@ try {
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "图片已就绪",
   );
-  await page.locator("summary").click();
+  await page.locator('[data-testid="cache-details"] > summary').click();
   await page.locator("[data-sdk-cache-clear=current]").click();
   await page.waitForFunction(
     () => document.querySelector("[role=status]")?.textContent === "缓存已清理",

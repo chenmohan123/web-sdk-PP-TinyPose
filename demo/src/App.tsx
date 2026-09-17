@@ -1,5 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
+  Github,
+  Image as ImageIcon,
+  Check,
+  X,
+  RotateCcw,
+  Scan,
+  ChevronDown,
+} from "lucide-react";
+import {
   createTinyPose,
   COCO_SKELETON,
   clearAllModelCache,
@@ -22,6 +31,25 @@ const model: PoseModel = {
 const copy = {
   zh: {
     title: "人体姿态",
+    modelLabel: "姿态模型",
+    sourceLabel: "模型来源",
+    localSource: "本地验证模型",
+    precision: "模型精度",
+    preview: "姿态预览",
+    resultEmpty: "识别后在这里查看关键点",
+    timingDetails: "耗时明细",
+    modelDetails: "模型信息",
+    cacheDetails: "缓存管理",
+    requestedBackend: "请求后端",
+    actualBackend: "实际运行",
+    score: "响应分数",
+    upstream: "GitHub（上游）",
+    modelVersion: "模型版本",
+    format: "模型格式",
+    modelSize: "模型大小",
+    runtime: "运行时",
+    license: "许可",
+    verification: "验证环境",
     subtitle: "PP-TinyPose",
     alpha: "本地验证版",
     upload: "选择图片",
@@ -76,6 +104,25 @@ const copy = {
   },
   en: {
     title: "Human pose",
+    modelLabel: "Pose model",
+    sourceLabel: "Model source",
+    localSource: "Local preview model",
+    precision: "Precision",
+    preview: "Pose preview",
+    resultEmpty: "Keypoints will appear here after estimation",
+    timingDetails: "Timing details",
+    modelDetails: "Model information",
+    cacheDetails: "Cache management",
+    requestedBackend: "Requested backend",
+    actualBackend: "Actual runtime",
+    score: "Response score",
+    upstream: "GitHub (upstream)",
+    modelVersion: "Model version",
+    format: "Format",
+    modelSize: "Model size",
+    runtime: "Runtime",
+    license: "License",
+    verification: "Verified environment",
     subtitle: "PP-TinyPose",
     alpha: "Local preview",
     upload: "Choose image",
@@ -130,6 +177,48 @@ const copy = {
     choose: "Use this example",
   },
 };
+const keypointNames = {
+  zh: [
+    "鼻子",
+    "左眼",
+    "右眼",
+    "左耳",
+    "右耳",
+    "左肩",
+    "右肩",
+    "左肘",
+    "右肘",
+    "左腕",
+    "右腕",
+    "左髋",
+    "右髋",
+    "左膝",
+    "右膝",
+    "左踝",
+    "右踝",
+  ],
+  en: [
+    "Nose",
+    "Left eye",
+    "Right eye",
+    "Left ear",
+    "Right ear",
+    "Left shoulder",
+    "Right shoulder",
+    "Left elbow",
+    "Right elbow",
+    "Left wrist",
+    "Right wrist",
+    "Left hip",
+    "Right hip",
+    "Left knee",
+    "Right knee",
+    "Left ankle",
+    "Right ankle",
+  ],
+};
+const formatMs = (value?: number) =>
+  value === undefined ? "—" : `${value.toFixed(1)} ms`;
 type Estimator = ReturnType<typeof createTinyPose>;
 
 export function App() {
@@ -393,55 +482,132 @@ export function App() {
             ? "ready"
             : "idle";
   return (
-    <div className="app">
-      <header className="brand">
-        <div>
-          <a
-            className="wordmark"
-            href="https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.9/configs/keypoint/tiny_pose"
-          >
-            {t.subtitle}
-          </a>
-          <span className="badge">0.1.0-alpha.0</span>
+    <div className="demo-shell">
+      <header className="topbar">
+        <div className="brand-block">
+          <span className="eyebrow">ONNX RUNTIME WEB</span>
+          <h1>{t.subtitle}</h1>
+          <span className="version">SDK 0.1.0-alpha.0</span>
         </div>
-        <div className="header-right">
+        <div className="top-actions">
           <span className="preview-badge">{t.alpha}</span>
+          <a
+            className="text-button repository-link"
+            href="https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Github size={16} aria-hidden="true" />
+            {t.upstream}
+          </a>
           <button
+            className="language-button"
             onClick={() => setLanguage(language === "zh" ? "en" : "zh")}
             aria-label="切换语言 / Switch language"
           >
-            {language === "zh" ? "EN" : "中文"}
+            {language === "zh" ? "English" : "中文"}
           </button>
         </div>
       </header>
-      <main>
-        <div className="page-title">
-          <h1>{t.title}</h1>
-          <span>{t.local}</span>
-        </div>
-        <div className="layout">
-          <aside className="controls panel">
-            <input
-              ref={file}
-              type="file"
-              accept="image/*"
-              hidden
-              aria-label={t.upload}
-              onChange={(e) => {
-                const value = e.target.files?.[0];
-                if (value) void pick(value, value.name);
-                e.target.value = "";
-              }}
-            />
-            <div className="input-actions">
+      <main className="demo-workspace">
+        <aside className="controls-panel">
+          <div className="control-band">
+            <div className="control-group model-control">
+              <span className="control-label">{t.modelLabel}</span>
+              <div className="control-value">PP-TinyPose 256 × 192</div>
+            </div>
+            <div className="control-group">
+              <span className="control-label">{t.sourceLabel}</span>
+              <div className="control-value">{t.localSource}</div>
+            </div>
+            <div className="control-group" role="group" aria-label={t.backend}>
+              <span className="control-label">{t.backend}</span>
+              <div className="segmented">
+                {(["webgpu", "wasm"] as const).map((value) => (
+                  <button
+                    key={value}
+                    className={backend === value ? "selected" : ""}
+                    aria-pressed={backend === value}
+                    disabled={busy || preparing}
+                    onClick={() => setBackend(value)}
+                  >
+                    {value === "webgpu" ? "GPU" : "CPU"}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="control-group">
+              <span className="control-label">{t.precision}</span>
+              <div className="control-value">FP32</div>
+            </div>
+            <div className="control-group" role="group" aria-label={t.mode}>
+              <span className="control-label">{t.mode}</span>
+              <div className="segmented">
+                {(["worker", "main"] as const).map((value) => (
+                  <button
+                    key={value}
+                    className={mode === value ? "selected" : ""}
+                    aria-pressed={mode === value}
+                    disabled={busy || preparing}
+                    onClick={() => setMode(value)}
+                  >
+                    {value === "worker" ? "Worker" : t.main}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <label className="threshold-control">
+              <span>{t.threshold}</span>
+              <input
+                aria-label={t.threshold}
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={threshold}
+                onChange={(e) => setThreshold(Number(e.target.value))}
+              />
+              <output>{threshold.toFixed(2)}</output>
+            </label>
+            <div className="control-actions">
+              <input
+                ref={file}
+                type="file"
+                accept="image/*"
+                hidden
+                aria-label={t.upload}
+                onChange={(e) => {
+                  const value = e.target.files?.[0];
+                  if (value) void pick(value, value.name);
+                  e.target.value = "";
+                }}
+              />
               <button
-                className="upload"
+                className="file-button"
                 disabled={busy}
                 onClick={() => file.current?.click()}
               >
+                <ImageIcon size={16} aria-hidden="true" />
                 {t.upload}
               </button>
               <button
+                className="primary-button"
+                disabled={!blob || busy || preparing}
+                onClick={() => void run()}
+              >
+                <Check size={16} aria-hidden="true" />
+                {t.run}
+              </button>
+              <button
+                className="secondary-button"
+                disabled={!busy}
+                onClick={() => controller.current?.abort()}
+              >
+                <X size={16} aria-hidden="true" />
+                {t.cancel}
+              </button>
+              <button
+                className="text-button reset-button"
                 disabled={(!blob && !preparing) || busy}
                 onClick={() => {
                   ++generation.current;
@@ -459,246 +625,317 @@ export function App() {
                   setStatus("idle");
                 }}
               >
+                <RotateCcw size={14} aria-hidden="true" />
                 {t.reset}
               </button>
             </div>
-            <div className="selectors">
-              <label>
-                {t.backend}
-                <select
-                  value={backend}
-                  disabled={busy || preparing}
-                  onChange={(e) => setBackend(e.target.value as Backend)}
-                >
-                  <option value="wasm">CPU · WASM</option>
-                  <option value="webgpu">GPU · WebGPU</option>
-                </select>
-              </label>
-              <label>
-                {t.mode}
-                <select
-                  value={mode}
-                  disabled={busy || preparing}
-                  onChange={(e) => setMode(e.target.value as ExecutionMode)}
-                >
-                  <option value="worker">Worker</option>
-                  <option value="main">{t.main}</option>
-                </select>
-              </label>
-            </div>
-            <button
-              className="primary"
-              disabled={!blob || busy || preparing}
-              onClick={() => void run()}
-            >
-              {t.run}
-            </button>
-            {busy && (
-              <button onClick={() => controller.current?.abort()}>
-                {t.cancel}
-              </button>
-            )}
-            <p className="status" role="status" data-state={semanticState}>
+          </div>
+          <div className="status-line" data-state={semanticState}>
+            <span className="status-dot" aria-hidden="true" />
+            <p className="status" role="status">
               {t[status]}
             </p>
-            {error && (
-              <p className="error" role="alert">
-                {error}
-              </p>
-            )}
-            <div className="example">
-              <h2>{t.example}</h2>
+            <span className="status-hint filename" title={name}>
+              {name || t.title}
+            </span>
+          </div>
+          {error && (
+            <p className="error error-banner" role="alert">
+              {error}
+            </p>
+          )}
+          <p className="privacy">{t.privacy}</p>
+        </aside>
+        <section className="result-panel" aria-label={t.preview}>
+          <div className="result-toolbar">
+            <h2>{t.preview}</h2>
+            <span className="region-state">{region ? t.region : t.full}</span>
+            <div className="region-actions">
               <button
-                className="example-image"
-                disabled={busy}
-                onClick={() => void example()}
-                aria-label={t.choose}
+                className={`text-button ${selecting ? "selected" : ""}`}
+                disabled={!source || busy}
+                aria-pressed={selecting}
+                onClick={() => setSelecting(!selecting)}
               >
-                <img src="./examples/person.jpg" alt="" />
+                <Scan size={15} aria-hidden="true" />
+                {t.select}
+              </button>
+              <button
+                className="text-button"
+                disabled={!region || busy}
+                onClick={() => {
+                  setRegion(undefined);
+                  setResult(undefined);
+                }}
+              >
+                {t.clearRegion}
               </button>
             </div>
-          </aside>
-          <section className="workspace panel" aria-label={t.result}>
-            <div className="workspace-toolbar">
-              <div>
-                <strong>{t.result}</strong>
-                <span className="count">{shown} / 17</span>
+          </div>
+          <div className="preview canvas-wrap">
+            {source ? (
+              <canvas
+                ref={canvas}
+                aria-label={t.fileName}
+                style={{
+                  touchAction: selecting ? "none" : "auto",
+                  cursor: selecting ? "crosshair" : "default",
+                }}
+                onPointerDown={(event) => {
+                  if (!selecting || busy) return;
+                  event.currentTarget.setPointerCapture(event.pointerId);
+                  start.current = coordinate(event);
+                  setRegion(undefined);
+                  setResult(undefined);
+                }}
+                onPointerMove={(event) => {
+                  if (!start.current) return;
+                  const p = coordinate(event),
+                    s = start.current;
+                  setRegion({
+                    x: Math.min(s.x, p.x),
+                    y: Math.min(s.y, p.y),
+                    width: Math.abs(p.x - s.x),
+                    height: Math.abs(p.y - s.y),
+                  });
+                }}
+                onPointerUp={(event) => {
+                  if (!start.current) return;
+                  const p = coordinate(event),
+                    s = start.current;
+                  const box = {
+                    x: Math.min(s.x, p.x),
+                    y: Math.min(s.y, p.y),
+                    width: Math.abs(p.x - s.x),
+                    height: Math.abs(p.y - s.y),
+                  };
+                  setRegion(
+                    box.width >= 2 && box.height >= 2 ? box : undefined,
+                  );
+                  start.current = undefined;
+                  setSelecting(false);
+                }}
+                onPointerCancel={() => {
+                  start.current = undefined;
+                  setSelecting(false);
+                  setRegion(undefined);
+                }}
+              />
+            ) : (
+              <div className="empty-state">
+                <ImageIcon size={30} aria-hidden="true" />
+                <span>{t.empty}</span>
               </div>
-              <div className="region-actions">
-                <span>{region ? t.region : t.full}</span>
-                <button
-                  disabled={!source || busy}
-                  className={selecting ? "selected" : ""}
-                  aria-pressed={selecting}
-                  onClick={() => setSelecting(!selecting)}
-                >
-                  {t.select}
-                </button>
-                <button
-                  disabled={!region || busy}
-                  onClick={() => {
-                    setRegion(undefined);
-                    setResult(undefined);
-                  }}
-                >
-                  {t.clearRegion}
-                </button>
-              </div>
+            )}
+          </div>
+        </section>
+        <aside className="details-panel" aria-label={t.result}>
+          <section className="detail-section keypoints-section">
+            <div className="section-title">
+              <h2>{t.result}</h2>
+              <span className="count count-badge">{shown} / 17</span>
             </div>
-            <div className="preview">
-              {source ? (
-                <canvas
-                  ref={canvas}
-                  aria-label={t.fileName}
-                  style={{
-                    touchAction: selecting ? "none" : "auto",
-                    cursor: selecting ? "crosshair" : "default",
-                  }}
-                  onPointerDown={(event) => {
-                    if (!selecting || busy) return;
-                    event.currentTarget.setPointerCapture(event.pointerId);
-                    start.current = coordinate(event);
-                    setRegion(undefined);
-                    setResult(undefined);
-                  }}
-                  onPointerMove={(event) => {
-                    if (!start.current) return;
-                    const p = coordinate(event),
-                      s = start.current;
-                    setRegion({
-                      x: Math.min(s.x, p.x),
-                      y: Math.min(s.y, p.y),
-                      width: Math.abs(p.x - s.x),
-                      height: Math.abs(p.y - s.y),
-                    });
-                  }}
-                  onPointerUp={(event) => {
-                    if (!start.current) return;
-                    const p = coordinate(event),
-                      s = start.current;
-                    const box = {
-                      x: Math.min(s.x, p.x),
-                      y: Math.min(s.y, p.y),
-                      width: Math.abs(p.x - s.x),
-                      height: Math.abs(p.y - s.y),
-                    };
-                    setRegion(
-                      box.width >= 2 && box.height >= 2 ? box : undefined,
-                    );
-                    start.current = undefined;
-                    setSelecting(false);
-                  }}
-                  onPointerCancel={() => {
-                    start.current = undefined;
-                    setSelecting(false);
-                    setRegion(undefined);
-                  }}
-                />
+            <div className="keypoint-list">
+              {result ? (
+                result.keypoints
+                  .filter((point) => point.score >= threshold)
+                  .map((point) => (
+                    <div className="keypoint-row" key={point.id}>
+                      <span className="keypoint-index">
+                        {String(point.id + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <strong>{keypointNames[language][point.id]}</strong>
+                        <small>
+                          x {point.x.toFixed(1)} · y {point.y.toFixed(1)}
+                        </small>
+                      </div>
+                      <span className="keypoint-score" title={t.score}>
+                        {point.score.toFixed(3)}
+                      </span>
+                    </div>
+                  ))
               ) : (
-                <div className="empty">{t.empty}</div>
+                <p className="result-empty">{t.resultEmpty}</p>
               )}
-            </div>
-            <div className="result-footer">
-              <span className="filename" title={name}>
-                {name || "—"}
-              </span>
-              <label>
-                {t.threshold}
-                <input
-                  aria-label={t.threshold}
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.05"
-                  value={threshold}
-                  onChange={(e) => setThreshold(Number(e.target.value))}
-                />
-                <output>{threshold.toFixed(2)}</output>
-              </label>
-            </div>
-            <div className="metrics" data-sdk-timing>
-              <span>
-                {t.inference}{" "}
-                <strong>
-                  {result ? `${result.timings.inferenceMs.toFixed(1)} ms` : "—"}
-                </strong>
-              </span>
-              <span>
-                {t.total}{" "}
-                <strong>
-                  {result ? `${result.timings.totalMs.toFixed(1)} ms` : "—"}
-                </strong>
-              </span>
-              <span data-sdk-runtime-info>
-                {result
-                  ? `${result.runtime.actualBackend.toUpperCase()} / ${result.runtime.executionMode}`
-                  : t.unavailable}
-              </span>
             </div>
           </section>
-        </div>
-        <details className="information panel">
-          <summary>{t.details}</summary>
-          <div className="information-grid">
-            <div data-sdk-model-info>
-              <p>PP-TinyPose Enhance · 256 × 192 · FP32</p>
-              <p>5.69 MB · ONNX opset 17 · ORT Web 1.27.0</p>
-              <p>{t.parameters} · Apache-2.0</p>
-              <p>
-                <a href="https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose">
-                  PaddleDetection · tinypose_enhance
-                </a>
-              </p>
-              <p className="checksum">SHA-256: {model.sha256}</p>
-              <p>{t.scope}</p>
-              <p>
-                2026-09-17 · Windows 11 · Chromium 153 · WASM / WebGPU · main /
-                Worker
-              </p>
-              <p>{t.limitation}</p>
-            </div>
-            <div>
-              <p>
-                {t.init}:{" "}
-                {initMs === undefined ? "—" : `${initMs.toFixed(1)} ms`}
-              </p>
-              <p>
-                {t.preprocess}: {result?.timings.preprocessMs.toFixed(1) ?? "—"}{" "}
-                ms · {t.postprocess}:{" "}
-                {result?.timings.postprocessMs.toFixed(1) ?? "—"} ms
-              </p>
-              {loadTimes && (
-                <p>
-                  {t.downloadTime}: {loadTimes.modelDownloadMs.toFixed(1)} ms ·{" "}
-                  {t.cacheTime}: {loadTimes.modelCacheReadMs.toFixed(1)} ms
-                  <br />
-                  {t.integrityTime}: {loadTimes.integrityMs.toFixed(1)} ms ·{" "}
-                  {t.sessionTime}: {loadTimes.sessionMs.toFixed(1)} ms
-                </p>
-              )}
-              <p>
-                {t.cache}: {(cacheBytes / 1e6).toFixed(2)} MB
-              </p>
-              <div className="cache-actions">
-                <button
-                  data-sdk-cache-clear="current"
-                  disabled={busy}
-                  onClick={() => void clear(false)}
-                >
-                  {t.clearCurrent}
-                </button>
-                <button
-                  data-sdk-cache-clear="all"
-                  disabled={busy}
-                  onClick={() => void clear(true)}
-                >
-                  {t.clearAll}
-                </button>
+          <section className="detail-section" data-sdk-timing>
+            <dl className="timing-summary">
+              <div>
+                <dt>{t.total}</dt>
+                <dd>{formatMs(result?.timings.totalMs)}</dd>
               </div>
+              <div>
+                <dt>{t.inference}</dt>
+                <dd>{formatMs(result?.timings.inferenceMs)}</dd>
+              </div>
+            </dl>
+            <details className="detail-disclosure" data-testid="timing-details">
+              <summary className="section-title">
+                <h2>{t.timingDetails}</h2>
+                <ChevronDown size={17} aria-hidden="true" />
+              </summary>
+              <dl className="metric-list">
+                <div>
+                  <dt>{t.init}</dt>
+                  <dd>{formatMs(initMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.downloadTime}</dt>
+                  <dd>{formatMs(loadTimes?.modelDownloadMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.cacheTime}</dt>
+                  <dd>{formatMs(loadTimes?.modelCacheReadMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.integrityTime}</dt>
+                  <dd>{formatMs(loadTimes?.integrityMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.sessionTime}</dt>
+                  <dd>{formatMs(loadTimes?.sessionMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.preprocess}</dt>
+                  <dd>{formatMs(result?.timings.preprocessMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.inference}</dt>
+                  <dd>{formatMs(result?.timings.inferenceMs)}</dd>
+                </div>
+                <div>
+                  <dt>{t.postprocess}</dt>
+                  <dd>{formatMs(result?.timings.postprocessMs)}</dd>
+                </div>
+              </dl>
+            </details>
+          </section>
+          <details
+            className="detail-section detail-disclosure"
+            data-sdk-model-info
+          >
+            <summary className="section-title">
+              <h2>{t.modelDetails}</h2>
+              <ChevronDown size={17} aria-hidden="true" />
+            </summary>
+            <dl className="metric-list">
+              <div>
+                <dt>{t.modelLabel}</dt>
+                <dd>PP-TinyPose Enhance 256 × 192</dd>
+              </div>
+              <div>
+                <dt>{t.modelVersion}</dt>
+                <dd>{model.version}</dd>
+              </div>
+              <div>
+                <dt>{t.modelSize}</dt>
+                <dd>5,685,847 bytes</dd>
+              </div>
+              <div>
+                <dt>{t.format}</dt>
+                <dd>FP32 · ONNX opset 17</dd>
+              </div>
+              <div>
+                <dt>{t.runtime}</dt>
+                <dd>ORT Web 1.27.0</dd>
+              </div>
+              <div>
+                <dt>{t.requestedBackend}</dt>
+                <dd>
+                  {backend.toUpperCase()} / {mode}
+                </dd>
+              </div>
+              <div>
+                <dt>{t.actualBackend}</dt>
+                <dd data-sdk-runtime-info>
+                  {result
+                    ? `${result.runtime.actualBackend.toUpperCase()} / ${result.runtime.executionMode}`
+                    : t.unavailable}
+                </dd>
+              </div>
+              <div>
+                <dt>{t.license}</dt>
+                <dd>Apache-2.0</dd>
+              </div>
+              <div>
+                <dt>{t.sourceLabel}</dt>
+                <dd>
+                  <a
+                    href="https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    PaddleDetection · tinypose_enhance
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>SHA-256</dt>
+                <dd>{model.sha256}</dd>
+              </div>
+              <div>
+                <dt>{t.verification}</dt>
+                <dd>
+                  2026-09-17 · Windows 11 · Chromium 153 · WASM / WebGPU · main
+                  / Worker
+                </dd>
+              </div>
+            </dl>
+            <p className="muted">{t.parameters}</p>
+            <p className="muted">{t.scope}</p>
+            <p className="muted">{t.limitation}</p>
+          </details>
+          <details
+            className="detail-section detail-disclosure"
+            data-testid="cache-details"
+          >
+            <summary className="section-title">
+              <h2>{t.cacheDetails}</h2>
+              <ChevronDown size={17} aria-hidden="true" />
+            </summary>
+            <dl className="metric-list">
+              <div>
+                <dt>{t.cache}</dt>
+                <dd>{(cacheBytes / 1e6).toFixed(2)} MB</dd>
+              </div>
+            </dl>
+            <div className="cache-actions">
+              <button
+                className="secondary-button"
+                data-sdk-cache-clear="current"
+                disabled={busy || preparing}
+                onClick={() => void clear(false)}
+              >
+                {t.clearCurrent}
+              </button>
+              <button
+                className="secondary-button"
+                data-sdk-cache-clear="all"
+                disabled={busy || preparing}
+                onClick={() => void clear(true)}
+              >
+                {t.clearAll}
+              </button>
             </div>
+          </details>
+        </aside>
+        <section className="sample-gallery" aria-label={t.example}>
+          <div className="sample-gallery-heading">
+            <span className="control-label">{t.example}</span>
           </div>
-        </details>
-        <footer>{t.privacy}</footer>
+          <div className="sample-grid">
+            <button
+              className="sample-card"
+              disabled={busy}
+              onClick={() => void example()}
+              aria-label={t.choose}
+            >
+              <img src="./examples/person.jpg" alt="" />
+            </button>
+          </div>
+        </section>
       </main>
     </div>
   );
