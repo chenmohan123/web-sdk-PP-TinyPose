@@ -1,0 +1,86 @@
+{
+  "upstreamRevision": "b25522a0f4bde8c80603f3ba5e3472059972e3b5",
+  "model": {
+    "bytes": 5685847,
+    "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+  },
+  "opset": [
+    [
+      "",
+      17
+    ]
+  ],
+  "inputs": [
+    {
+      "name": "image",
+      "shape": [
+        "DynamicDimension.0",
+        3,
+        256,
+        192
+      ],
+      "type": "tensor(float)"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "conv2d_441.tmp_1",
+      "shape": [
+        "DynamicDimension.1",
+        17,
+        64,
+        48
+      ],
+      "type": "tensor(float)"
+    },
+    {
+      "name": "argmax_0.tmp_0",
+      "shape": [
+        "DynamicDimension.2",
+        17
+      ],
+      "type": "tensor(int64)"
+    }
+  ],
+  "versions": {
+    "python": "3.11.15 (main, Jul 18 2026, 17:06:27) [MSC v.1944 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.26200-SP0",
+    "paddle": "2.6.2",
+    "paddle2onnx": "1.3.1",
+    "onnx": "1.16.2",
+    "onnxruntime": "1.20.1",
+    "numpy": "1.26.4",
+    "opencv": "4.11.0"
+  },
+  "archiveUrl": "https://bj.bcebos.com/v1/paddledet/models/keypoint/tinypose_enhance/tinypose_256x192.zip",
+  "archive": {
+    "bytes": 5392188,
+    "sha256": "78b53eba62159efa617f37cc026c913bfa486555d85c71390f5ddb2a10b70b61"
+  },
+  "paddleAssets": [
+    {
+      "path": "infer_cfg.yml",
+      "bytes": 344,
+      "sha256": "6943ff04a7157ed923e43cd17d4e99cd2c5eaf194baf5a4066f203cbca0d8f54"
+    },
+    {
+      "path": "model.pdiparams",
+      "bytes": 5456137,
+      "sha256": "f7cdb6c4b3fe9f275113d9555d015d08b788bd710f88183c9851c60600b3744d"
+    },
+    {
+      "path": "model.pdiparams.info",
+      "bytes": 135248,
+      "sha256": "62b1cb256f4c53100e893ed4c07023506ac4e834c86bcf8a343f35a4280f3480"
+    },
+    {
+      "path": "model.pdmodel",
+      "bytes": 10928450,
+      "sha256": "a8d81e0e985ee15566311970aee57aa28e5566f4ba758b2bf73716ef94e45039"
+    }
+  ],
+  "version": "0.1.0",
+  "graphModification": "无；Paddle2ONNX 1.3.1 opset17 原样转换",
+  "reproduction": "tools/feasibility/convert.py",
+  "reference": "reports/2026-09-16-feasibility"
+}

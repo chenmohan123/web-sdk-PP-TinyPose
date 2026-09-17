@@ -1,0 +1,45 @@
+{
+  "source": "huggingface",
+  "repository": "chenmohan/web-sdk-pp-tinypose",
+  "phase": "weights",
+  "parent": "acc4569a220a3956d080de6a8e767af9d958dbe0",
+  "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+  "uploadedAt": "2026-09-17T02:47:01.951630+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 849,
+      "sha256": "c4be80d5535a0af5ba925d14641e481f47e27b315656db10a0b225bbc9274b7b"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/conversion.json",
+      "bytes": 2177,
+      "sha256": "f800fdcd82493f67f832a29f53bad04276e22ac5c71797acc04ddb356ffabf80"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/NOTICE",
+      "bytes": 1225,
+      "sha256": "1d2aae756ac861818d41f3c5f759f0fac624bedb607c65d4158b93e633fbbb19"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/README.en.md",
+      "bytes": 1938,
+      "sha256": "d1ccd399502b1e36c1860343890ffb356d393f5c92995765dc4e0488d0a05490"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/README.md",
+      "bytes": 1682,
+      "sha256": "4a0aa6a15c3b33410f37e551768feb3899ed52402c9512cdba6a1bdb3c810ddd"
+    },
+    {
+      "path": "tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+      "bytes": 5685847,
+      "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+    }
+  ]
+}
