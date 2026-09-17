@@ -18,7 +18,7 @@
 - 同一媒体控制器最多一个未完成推理；结果与采样帧绑定，晚到结果不得覆盖新源。
 - 暂停可保留会话；停止、配置切换、清缓存、隐藏和卸载释放自有媒体与推理资源。
 - 保留固定人体框，清除恢复整帧；不提供自动检测、多人、跟踪、平滑或动作判断。
-- 测试资产和证据放 reports/2026-09-17-media；不覆盖已发布历史证据。npm 和生产 Demo 不含 ONNX。
+- 运行证据放 reports/2026-09-17-media；可复用的媒体测试素材及归属说明放 tests/fixtures/media；不覆盖已发布历史证据。npm 和生产 Demo 不含 ONNX。
 - 所有 pnpm 命令加 --config.verify-deps-before-run=false --config.manage-package-manager-versions=false。
 - 改 SDK 前后从门户运行 sdk:check；gh 复用宿主 GH_CONFIG_DIR 并在 finally 恢复。
 - 不把 390px、fake-device 相机或桌面证据说成物理摄像头、手机、NPU 或全量 AP 兼容。
