@@ -247,6 +247,7 @@ export function createMediaController(
   let sourceGeneration = 0;
   let resultGeneration = 0;
   let loopGeneration = 0;
+  let commandGeneration = 0;
   let frameHandle: number | undefined;
   let frameHandleKind: "video" | "animation" | undefined;
   let sourceUrl: string | undefined;
@@ -260,6 +261,7 @@ export function createMediaController(
   let lastProcessedAt = Number.NEGATIVE_INFINITY;
   let lastCompletedAt: number | undefined;
   let maxFps = 15;
+  let desiredPlaying = false;
   let disposed = false;
   let disposing: Promise<void> | undefined;
 
@@ -346,10 +348,11 @@ export function createMediaController(
     return failures;
   };
 
-  const teardownOwned = async (): Promise<void> => {
+  const detachOwned = (): Promise<void> => {
     cancelFrame();
     operationAbort?.abort();
     operationAbort = undefined;
+    const activeProcessing = processing;
     const failures: unknown[] = [];
     try {
       video.pause();
@@ -378,28 +381,43 @@ export function createMediaController(
     const ownedPose = pose;
     pose = undefined;
     poseLoaded = false;
+    const waits: Promise<void>[] = [];
+    if (activeProcessing)
+      waits.push(
+        activeProcessing.catch((error) => {
+          failures.push(error);
+        }),
+      );
     if (ownedPose) {
       try {
-        await ownedPose.dispose();
+        waits.push(
+          Promise.resolve(ownedPose.dispose()).catch((error) => {
+            failures.push(error);
+          }),
+        );
       } catch (error) {
         failures.push(error);
       }
     }
-    if (failures.length)
-      throw new MediaControllerError("RESOURCE_RELEASE", "媒体资源释放失败", {
-        cause: failures[0],
-      });
+    return Promise.all(waits).then(() => {
+      if (failures.length)
+        throw new MediaControllerError("RESOURCE_RELEASE", "媒体资源释放失败", {
+          cause: failures[0],
+        });
+    });
   };
 
   const failAndTeardown = async (error: MediaControllerError) => {
     sourceGeneration += 1;
+    const generation = sourceGeneration;
     resultGeneration += 1;
     loopGeneration += 1;
-    cancelFrame();
-    operationAbort?.abort();
+    commandGeneration += 1;
+    desiredPlaying = false;
+    const release = detachOwned();
     let reported = error;
     try {
-      await teardownOwned();
+      await release;
     } catch (releaseError) {
       reported = mediaError(
         releaseError,
@@ -407,6 +425,7 @@ export function createMediaController(
         "媒体资源释放失败",
       );
     }
+    if (generation !== sourceGeneration) return reported;
     reportState({ phase: "error", kind: "none" });
     reportError(reported);
     return reported;
@@ -418,15 +437,17 @@ export function createMediaController(
     const generation = sourceGeneration;
     resultGeneration += 1;
     loopGeneration += 1;
-    cancelFrame();
-    operationAbort?.abort();
-    await processing?.catch(() => undefined);
+    commandGeneration += 1;
+    desiredPlaying = false;
+    const release = detachOwned();
     try {
-      await teardownOwned();
+      await release;
     } catch (error) {
       const normalized = mediaError(error, "RESOURCE_RELEASE", "媒体资源释放失败");
-      reportState({ phase: "error", kind: "none" });
-      reportError(normalized);
+      if (generation === sourceGeneration) {
+        reportState({ phase: "error", kind: "none" });
+        reportError(normalized);
+      }
       throw normalized;
     }
     if (generation !== sourceGeneration) return generation;
@@ -578,24 +599,23 @@ export function createMediaController(
 
   const stopInternal = async (finalPhase: "idle" | "disposed") => {
     sourceGeneration += 1;
+    const generation = sourceGeneration;
     resultGeneration += 1;
     loopGeneration += 1;
-    cancelFrame();
-    operationAbort?.abort();
+    commandGeneration += 1;
+    desiredPlaying = false;
+    const release = detachOwned();
     try {
-      video.pause();
-    } catch {
-      // teardownOwned 会汇总并报告实际释放错误。
-    }
-    await processing?.catch(() => undefined);
-    try {
-      await teardownOwned();
+      await release;
     } catch (error) {
       const normalized = mediaError(error, "RESOURCE_RELEASE", "媒体资源释放失败");
-      reportState({ phase: "error", kind: "none" });
-      reportError(normalized);
+      if (generation === sourceGeneration) {
+        reportState({ phase: "error", kind: "none" });
+        reportError(normalized);
+      }
       throw normalized;
     }
+    if (generation !== sourceGeneration) return;
     region = undefined;
     reportState({
       phase: finalPhase,
@@ -614,6 +634,8 @@ export function createMediaController(
     assertUsable();
     if (state.kind === "none") return;
     const expectedSource = sourceGeneration;
+    commandGeneration += 1;
+    desiredPlaying = false;
     resultGeneration += 1;
     loopGeneration += 1;
     cancelFrame();
@@ -683,8 +705,6 @@ export function createMediaController(
             "晚到的摄像头轨道释放失败",
             { cause: failures[0] },
           );
-          reportState({ phase: "error", kind: "none" });
-          reportError(releaseError);
           throw releaseError;
         }
         return;
@@ -711,15 +731,41 @@ export function createMediaController(
       assertUsable();
       if (state.kind === "none" || !["ready", "paused"].includes(state.phase))
         throw new MediaControllerError("INVALID_INPUT", "当前没有可播放的媒体");
-      await processing?.catch(() => undefined);
       const expectedSource = sourceGeneration;
+      commandGeneration += 1;
+      const expectedCommand = commandGeneration;
+      desiredPlaying = true;
+      await processing?.catch(() => undefined);
+      if (
+        expectedSource !== sourceGeneration ||
+        expectedCommand !== commandGeneration
+      )
+        return;
       try {
         await video.play();
       } catch (error) {
+        if (
+          expectedSource !== sourceGeneration ||
+          expectedCommand !== commandGeneration
+        )
+          return;
+        desiredPlaying = false;
         const normalized = mediaError(error, "MEDIA_PLAYBACK", "媒体播放失败");
         throw await failAndTeardown(normalized);
       }
-      if (expectedSource !== sourceGeneration) return;
+      if (
+        expectedSource !== sourceGeneration ||
+        expectedCommand !== commandGeneration
+      ) {
+        if (expectedSource === sourceGeneration && !desiredPlaying) {
+          try {
+            video.pause();
+          } catch {
+            // 当前命令已接管错误处理；旧播放结果不得再改变其状态。
+          }
+        }
+        return;
+      }
       resultGeneration += 1;
       loopGeneration += 1;
       syncMediaState({ phase: "playing" });

@@ -112,6 +112,7 @@ type HarnessOptions = {
   getUserMedia?: MediaControllerDependencies["getUserMedia"];
   createObjectURL?: MediaControllerDependencies["createObjectURL"];
   run?: TinyPose["run"];
+  dispose?: TinyPose["dispose"];
   stopTrack?: () => void;
 };
 
@@ -158,6 +159,7 @@ function createHarness(options: HarnessOptions = {}) {
     },
     async dispose() {
       disposeCalls += 1;
+      await options.dispose?.();
     },
   };
   const track = { stop: vi.fn(options.stopTrack) };
@@ -337,6 +339,134 @@ describe("媒体控制器背压与生命周期", () => {
     expect(harness.counts.run()).toBe(1);
     expect(harness.results).toHaveLength(0);
     expect(harness.states.at(-1)?.phase).toBe("idle");
+  });
+
+  it("旧停止等待释放时，新来源就绪状态不会被晚到的 idle 覆盖", async () => {
+    const disposeGate = deferred<void>();
+    const harness = createHarness({ dispose: async () => disposeGate.promise });
+    await openVideoAndPlay(harness);
+    harness.video.fireFrame(0.1, 100, 24);
+    await vi.waitFor(() => expect(harness.results).toHaveLength(1));
+
+    const stopping = harness.controller.stop();
+    await vi.waitFor(() => expect(harness.counts.dispose()).toBe(1));
+    const opening = harness.controller.openVideo(new Blob(["new-video"]));
+    await vi.waitFor(() => expect(harness.states.at(-1)?.phase).toBe("ready"));
+    disposeGate.resolve();
+    await Promise.all([stopping, opening]);
+
+    expect(harness.states.at(-1)?.phase).toBe("ready");
+    expect(harness.states.at(-1)?.kind).toBe("video");
+  });
+
+  it("旧推理错误等待释放时，不会把新来源覆盖为 error", async () => {
+    const disposeGate = deferred<void>();
+    const failure = deferred<PoseResult>();
+    const harness = createHarness({
+      run: async () => failure.promise,
+      dispose: async () => disposeGate.promise,
+    });
+    await openVideoAndPlay(harness);
+    harness.video.fireFrame(0.1, 100, 25);
+    await vi.waitFor(() => expect(harness.counts.run()).toBe(1));
+
+    failure.reject(Object.assign(new Error("旧来源推理失败"), { code: "INFERENCE" }));
+    await vi.waitFor(() => expect(harness.counts.dispose()).toBe(1));
+    const opening = harness.controller.openVideo(new Blob(["new-video"]));
+    await vi.waitFor(() => expect(harness.states.at(-1)?.phase).toBe("ready"));
+    disposeGate.resolve();
+    await opening;
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(harness.states.at(-1)?.phase).toBe("ready");
+    expect(harness.errors).toHaveLength(0);
+  });
+
+  it("停止会在等待在途推理前停止轨道并调用 SDK dispose", async () => {
+    const running = deferred<PoseResult>();
+    const disposeGate = deferred<void>();
+    const harness = createHarness({
+      run: async () => running.promise,
+      dispose: async () => disposeGate.promise,
+    });
+    await harness.controller.openCamera();
+    await harness.controller.play();
+    harness.video.fireFrame(0.1, 100, 26);
+    await vi.waitFor(() => expect(harness.counts.run()).toBe(1));
+
+    const stopping = harness.controller.stop();
+    await vi.waitFor(() => expect(harness.track.stop).toHaveBeenCalledOnce());
+    expect(harness.counts.dispose()).toBe(1);
+    expect(harness.counts.inFlight()).toBe(1);
+
+    running.resolve(resultFor(harness.frames.at(-1)!));
+    disposeGate.resolve();
+    await stopping;
+    expect(harness.states.at(-1)?.phase).toBe("idle");
+  });
+
+  it("换源会在等待旧推理前停止旧轨道并调用 SDK dispose", async () => {
+    const running = deferred<PoseResult>();
+    const disposeGate = deferred<void>();
+    const harness = createHarness({
+      run: async () => running.promise,
+      dispose: async () => disposeGate.promise,
+    });
+    await harness.controller.openCamera();
+    await harness.controller.play();
+    harness.video.fireFrame(0.1, 100, 27);
+    await vi.waitFor(() => expect(harness.counts.run()).toBe(1));
+
+    const opening = harness.controller.openVideo(new Blob(["new-video"]));
+    await vi.waitFor(() => expect(harness.track.stop).toHaveBeenCalledOnce());
+    expect(harness.counts.dispose()).toBe(1);
+    expect(harness.counts.inFlight()).toBe(1);
+
+    running.resolve(resultFor(harness.frames.at(-1)!));
+    disposeGate.resolve();
+    await opening;
+    expect(harness.states.at(-1)?.phase).toBe("ready");
+    expect(harness.states.at(-1)?.kind).toBe("video");
+  });
+
+  it("延迟 play 成功不会撤销同来源的后续暂停", async () => {
+    const playGate = deferred<void>();
+    const harness = createHarness();
+    await harness.controller.openVideo(new Blob(["video"]));
+    harness.video.play = vi.fn(async () => {
+      await playGate.promise;
+      harness.video.paused = false;
+    });
+
+    const playing = harness.controller.play();
+    await vi.waitFor(() => expect(harness.video.play).toHaveBeenCalledOnce());
+    await harness.controller.pause();
+    playGate.resolve();
+    await playing;
+
+    expect(harness.video.paused).toBe(true);
+    expect(harness.states.at(-1)?.phase).toBe("paused");
+    expect(harness.video.callbacks.size).toBe(0);
+  });
+
+  it("延迟 play 失败不会释放随后打开的新来源", async () => {
+    const playGate = deferred<void>();
+    let urlId = 0;
+    const harness = createHarness({
+      createObjectURL: () => `blob:fixture-${++urlId}`,
+    });
+    await harness.controller.openVideo(new Blob(["old-video"]));
+    harness.video.play = vi.fn(async () => playGate.promise);
+    const playing = harness.controller.play();
+    await vi.waitFor(() => expect(harness.video.play).toHaveBeenCalledOnce());
+
+    await harness.controller.openVideo(new Blob(["new-video"]));
+    playGate.reject(new Error("旧播放失败"));
+    await expect(playing).resolves.toBeUndefined();
+
+    expect(harness.video.src).toBe("blob:fixture-2");
+    expect(harness.states.at(-1)?.phase).toBe("ready");
+    expect(harness.errors).toHaveLength(0);
   });
 
   it("同一来源只加载一次模型，并对多个帧连续推理", async () => {

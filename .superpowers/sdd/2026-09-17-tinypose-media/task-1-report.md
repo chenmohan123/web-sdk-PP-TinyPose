@@ -112,7 +112,7 @@ type MediaControllerErrorCode =
 - `pause()` 先使当前结果代失效、取消调度并中止信号，再等待在途操作完成；成功加载的 SDK 会话继续保留。
 - `seek()` 只适用于视频，先暂停并使旧结果失效，再交付定位后的预览；同一视频的框选保持不变。
 - 来源替换、尺寸变化、停止和销毁清除框选；`setRegion` 只接受暂停/就绪状态内且位于原图范围内的框。
-- `stop()` 和 `dispose()` 使来源代失效，取消帧回调，停止全部自有摄像头轨道，撤销对象 URL，并释放 SDK 会话。
+- `stop()`、来源替换和 `dispose()` 先使来源代失效并同步摘下资源：取消帧回调、停止全部自有摄像头轨道、撤销对象 URL并立即调用 SDK `dispose()`；随后才等待在途推理与释放完成。
 - 晚到的 `getUserMedia` 结果不会绑定到视频元素，其全部轨道会立即停止。
 - `getUserMedia` 固定请求 `{ video: true, audio: false }`。
 - `poseOptions` 原样交给 `createTinyPose`，不修改来源、后端或执行模式，也不实施回退。
@@ -130,7 +130,7 @@ Test Files  1 passed (1)
 Tests       11 passed (11)
 ```
 
-覆盖：单并发与忙时跳过、暂停/恢复晚到结果、晚到摄像头权限、seek 失效旧结果、像素绑定、step/stop 竞争、会话单次加载多次推理、15 FPS 默认限制及允许值、推理错误释放、URL/回调/会话释放、释放失败可观察、媒体读取错误分类和摄像头禁用音频。
+首轮覆盖：单并发与忙时跳过、暂停/恢复晚到结果、晚到摄像头权限、seek 失效旧结果、像素绑定、step/stop 竞争、会话单次加载多次推理、15 FPS 默认限制及允许值、推理错误释放、URL/回调/会话释放、释放失败可观察、媒体读取错误分类和摄像头禁用音频。
 
 ```text
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck:demo
@@ -150,7 +150,25 @@ tinypose-media | locally-compliant | required failed 0 | required skipped 4
 ## 限制与风险
 
 - 本任务使用可控媒体替身验证调度和资源所有权，没有宣称物理摄像头、手机或特定视频编码兼容；Chromium fake-device 和真实 SDK 连续帧验收由后续任务执行。
-- `pause()` 的 AbortSignal 能立即终止 Worker 路径；主线程已提交的 GPU/CPU 内核仍可能在后台完成，但其结果受代号保护，不会回写。
+- `pause()` 为保留会话只中止 AbortSignal 并等待在途操作结束；AbortSignal 本身不保证立即终止 Worker 或已提交的主线程内核，但其结果受代号保护，不会回写。`stop()`、来源替换和 `dispose()` 会立即调用 SDK `dispose()`；SDK 的 Worker 路径可由该释放调用立即终止，主线程路径仍可能等待已提交内核完成。
 - `step()` 识别当前已解码帧，不负责推进到下一视频帧；视频推进由 `seek()` 或播放负责。
 - `fps` 是控制器已交付结果的瞬时完成率，不代表摄像头硬件采集率，也不把硬件丢帧计入 `skipped`。
 - 用户回调抛出的异常会被隔离，避免破坏控制器持有资源的释放流程。
+
+## 审查修复轮次 1
+
+独立审查发现三个 P1 竞态，本轮已逐项修复：
+
+1. 释放开始时捕获当前来源资源并同步从控制器摘下；旧 `stop()` 或旧推理错误等待释放完成后，只有来源代仍匹配才可提交 `idle`/`error` 和错误回调，因此不会覆盖已经 `ready` 的新来源。
+2. 停止、换源和错误清理不再先等待 `processing`。控制器先取消调度与信号、停止轨道、撤销 URL并调用 SDK `dispose()`，再等待捕获的在途推理和释放 Promise。释放失败仍通过调用 Promise 可观察；只有当前代失败才更新 UI 错误状态。
+3. `play()` 使用独立命令代号并记录期望播放状态。延迟成功若已被同来源 `pause()` 取代，会再次暂停且不启动帧循环；延迟失败若来源或命令已变化，只结束旧调用，不释放新来源或写入错误。
+
+修复轮次先运行新增测试得到 4 项失败，分别复现旧停止覆盖、释放顺序、延迟播放成功和延迟播放失败；旧错误覆盖测试随后增加一个事件循环等待，确保能稳定观察晚提交。修复后的新鲜定向结果：
+
+```text
+pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false exec vitest run tests/media-controller.test.ts
+Test Files  1 passed (1)
+Tests       17 passed (17)
+```
+
+本轮新增 6 项竞态测试：旧停止晚提交、旧推理错误晚提交、停止立即释放、换源立即释放、延迟播放成功后暂停，以及延迟播放失败后换源。
