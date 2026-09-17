@@ -2,6 +2,8 @@
 
 [中文](../zh-CN/privacy-deployment.md)
 
+Local video and camera frames in 0.3.0 are also neither uploaded nor stored in IndexedDB. The Demo calls `getUserMedia({video:true,audio:false})` only after Start camera is clicked. Stop, configuration changes, page hiding/pagehide and unmount release owned tracks, object URLs and SDK sessions. Cache cleanup waits for media shutdown to prevent an older download from refilling it, and does not delete original user files. Camera access requires HTTPS/trusted localhost; iframe integrations also need an appropriate `camera` permissions policy.
+
 Images are decoded, preprocessed and inferred inside the browser; the Demo does not upload them. Model requests go to the selected ModelScope or Hugging Face source. ORT/Worker files, the page and sample image come from the site host, which can observe ordinary request metadata. IndexedDB stores only model bytes, not user images. Cache identity uses model ID, version and SHA-256, so both sources can share identical weights. Current-model and all-cache cleanup affect only TinyPose's namespace.
 
 Build the SDK, then run `build:demo` and deploy `demo-dist/` on HTTPS. The build copies only SDK, ORT, sample assets, `models/catalog.json`, and compatible `models/model.json`; it never copies local ONNX weights or `.tmp`. npm's `files` excludes weights as well. For npm integration, copy ORT JS/WASM and `inference.worker.js` from `dist/` to `runtimeBaseUrl` (copying the entire directory is recommended). Keep them same-origin and on matching versions; serve `.js/.mjs` as JavaScript and `.wasm` as `application/wasm`.

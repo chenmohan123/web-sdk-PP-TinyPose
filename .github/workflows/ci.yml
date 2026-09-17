@@ -20,9 +20,9 @@ jobs:
       - uses: pnpm/action-setup@v4
         with: { version: 11.21.0 }
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
-      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck:demo
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build:demo
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false check:package
@@ -30,7 +30,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with: { name: sdk-package, path: package.tgz }
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false exec playwright install --with-deps chromium
-      - name: Demo 输入与来源竞争回归
+      - name: Demo 输入、来源与媒体生命周期回归
         env:
           TINYPOSE_DEMO_URL: http://127.0.0.1:4187/
           TINYPOSE_REPORT_DIR: reports/ci-browser
@@ -41,6 +41,7 @@ jobs:
           node -e 'for(let i=0;i<60;i++){try{if((await fetch(process.env.TINYPOSE_DEMO_URL)).ok)process.exit(0)}catch{}await new Promise(r=>setTimeout(r,500))}process.exit(1)'
           node tests/demo-input-browser.mjs
           node tests/demo-source-browser.mjs
+          node tests/demo-media-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: demo-regression, path: reports/ci-browser, if-no-files-found: ignore }

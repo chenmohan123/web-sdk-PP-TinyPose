@@ -2,6 +2,8 @@
 
 [English](../en/quick-start.md)
 
+0.3.0 Demo 可在图片、视频、摄像头间切换；视频先选本地文件，摄像头由用户点击开启。暂停后可定位视频或框选固定区域。默认256×192 FP32、ModelScope、CPU/WASM、Worker；不会自动检测人体或跟踪选框。媒体接入及停止顺序见[媒体生命周期示例](../../examples/media/README.md)。SDK 本身仍接收单帧 Blob/RGBA。
+
 运行 `npm install web-sdk-pp-tinypose`。将包内 `dist/` 完整复制到静态目录 `public/sdk/`；这里包含同版本 ORT JS/WASM 和 Worker。不要只复制 `index.js`。将同一源码版本的 `models/catalog.json` 保存为项目 `catalog.json`，保持来源的固定 revision 和 SHA-256；旧集成可继续使用默认 `models/model.json`。
 
 ```js

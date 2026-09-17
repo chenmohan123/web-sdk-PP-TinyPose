@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 import { execSync } from "node:child_process";
 import { parse } from "yaml";
 import { readBuildAssets, verifySdkCopies, verifyServedReceipt } from "./release-assets.mjs";
+import { verifyMediaAcceptance } from "./media-release-guard.mjs";
 
 const json = async file => JSON.parse(await readFile(file, "utf8"));
 const dated = value => typeof value === "string" && Number.isFinite(Date.parse(value));
@@ -143,7 +144,7 @@ function verifyReceiptRows(rows, expected, revisions, label) {
   assert.equal(expected.size, 0, `${label}回执缺项：${[...expected.keys()].join(", ")}`);
 }
 
-async function verifyDistribution({ pkg, catalog, distribution }) {
+async function verifyDistribution({ catalog, distribution }) {
   assert.equal(distribution.schemaVersion, 2, "分发回执 schemaVersion 必须为 2");
   assert.equal(distribution.status, "passed", "分发回执未通过");
   assert(dated(distribution.verifiedAt), "分发验证时间缺失");
@@ -164,8 +165,9 @@ async function verifyDistribution({ pkg, catalog, distribution }) {
   verifyRevisionMap(metadata.revisions, "metadata revisions");
   assert.deepEqual(metadata.parents, weights.revisions, "metadata 必须承接 weights revision");
 
-  const published = catalog.models.filter(item => item.version === pkg.version);
-  assert.equal(published.length, 2, "当前版本必须恰好分发两个新模型");
+  // 分发批次由不可变 Hub 提交确定，独立于复用这些资产的 SDK 版本。
+  const published = catalog.models.filter(item => item.sources.some(source => source.revision === weights.revisions[source.kind]));
+  assert.equal(published.length, 2, "已验证的变体分发批次必须包含两个模型");
   const expectedWeights = new Map();
   const expectedMetadata = new Map();
   const catalogIdentity = await identity("models/catalog.json");
@@ -226,8 +228,12 @@ if (packageOnly) {
   const report = await json("reports/release-acceptance.json");
   verifyAcceptance({ pkg, catalog, report, assets, manifest });
   verifyServedReceipt(report.servedAssets, assets, report.origin);
+  const controllerPath = "demo/src/media/controller.ts";
+  verifyMediaAcceptance({ pkg, catalog, imageReport: report, assets,
+    media: await json("reports/2026-09-17-media/media-acceptance.json"),
+    controllerSource: { path: controllerPath, ...await identity(controllerPath) } });
   const distribution = await json("reports/2026-09-17-variants/distribution-variants-verified.json");
-  await verifyDistribution({ pkg, catalog, distribution });
+  await verifyDistribution({ catalog, distribution });
   const expected = new Set(catalog.models.flatMap(item => item.sources.map(source => `${item.id}/${source.kind}`)));
   for (const row of distribution.results) {
     const key = `${row.modelId}/${row.source}`;
@@ -239,5 +245,5 @@ if (packageOnly) {
     assert.deepEqual({ revision: row.revision, url: row.url, path: row.path, bytes: row.bytes, sha256: row.sha256 }, { revision: source.revision, url: source.downloadUrl, path: source.path, bytes: item.bytes, sha256: item.sha256 }, `分发模型身份不符：${key}`);
   }
   assert.equal(expected.size, 0, `分发回执缺项：${[...expected].join(", ")}`);
-  console.log("正式版本、三模型双源完整 GET、24 组合验收与全部构建资产摘要检查通过。");
+  console.log("正式版本、三模型双源完整 GET、图片24组合、媒体12组合与全部构建资产摘要检查通过。");
 }

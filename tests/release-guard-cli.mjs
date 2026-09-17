@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
+import { parse, stringify } from "yaml";
+import { readBuildAssets, servedAssetManifest } from "../scripts/release-assets.mjs";
+import { controllerPath, mediaReceiptPath, mediaReceiptFixture } from "./media-receipt-fixture.mjs";
 
 const guard = resolve("scripts/check-release-ready.mjs");
 const revision = "a".repeat(40);
@@ -167,6 +170,47 @@ try {
   assert.match(result.stderr, /构建资产回执/);
 
   console.log("发布守卫 CLI fixture 正负场景通过。")
+
+  // 临时完整仓库走真实 CLI 分发路径；这些合成回执只供守卫测试，不是发布证据。
+  const full = join(folder, "full");
+  await mkdir(full);
+  for (const directory of ["dist", "demo-dist", "models"]) {
+    await cp(resolve(directory), join(full, directory), { recursive: true });
+  }
+  const pkg = JSON.parse(await readFile("package.json", "utf8"));
+  pkg.version = "0.3.0";
+  const manifest = parse(await readFile("sdk-manifest.yaml", "utf8"));
+  manifest.package.version = pkg.version;
+  const report = JSON.parse(await readFile("reports/release-acceptance.json", "utf8"));
+  report.version = pkg.version;
+  report.assets = await readBuildAssets(full);
+  report.servedAssets = servedAssetManifest(report.assets, report.origin);
+  await writeFile(join(full, "package.json"), JSON.stringify(pkg));
+  await writeFile(join(full, "sdk-manifest.yaml"), stringify(manifest));
+  await mkdir(join(full, "reports/2026-09-17-variants"), { recursive: true });
+  await writeFile(join(full, "reports/release-acceptance.json"), JSON.stringify(report));
+  const controller = await readFile(controllerPath);
+  await mkdir(join(full, "demo/src/media"), { recursive: true });
+  await writeFile(join(full, controllerPath), controller);
+  await mkdir(join(full, "reports/2026-09-17-media"), { recursive: true });
+  await writeFile(join(full, mediaReceiptPath), JSON.stringify(mediaReceiptFixture({ version: pkg.version, catalog: JSON.parse(await readFile("models/catalog.json", "utf8")), report, controller })));
+  const receiptPath = "reports/2026-09-17-variants/distribution-variants-verified.json";
+  const receipt = JSON.parse(await readFile(receiptPath, "utf8"));
+  await writeFile(join(full, receiptPath), JSON.stringify(receipt));
+  const runFull = () => spawnSync(process.execPath, [guard], { cwd: full, encoding: "utf8", env: { ...process.env, RELEASE_TAG: "v0.3.0" } });
+  result = runFull();
+  assert.equal(result.status, 0, `0.3.0 应可复用完整旧模型分发：${result.stderr || result.stdout}`);
+  for (const file of ["README.md", "LICENSE"]) {
+    const broken = structuredClone(receipt);
+    const rowIndex = broken.weights.results.findIndex(row => row.path.includes("/") && row.path.endsWith(`/${file}`));
+    assert(rowIndex >= 0);
+    broken.weights.results.splice(rowIndex, 1);
+    await writeFile(join(full, receiptPath), JSON.stringify(broken));
+    result = runFull();
+    assert.notEqual(result.status, 0, `缺少 ${file} 回执必须拒绝发布`);
+    assert.match(result.stderr, /weights回执缺项/);
+  }
+  console.log("真实 CLI：0.3.0 复用分发通过，缺少模型卡或许可证回执均被拒绝。");
 } finally {
   await rm(folder, { recursive: true, force: true });
 }

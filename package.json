@@ -1,6 +1,6 @@
 {
   "name": "web-sdk-pp-tinypose",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "基于 PP-TinyPose 的浏览器单人人体关键点 SDK",
   "type": "module",
   "private": false,
@@ -42,6 +42,8 @@
     "check:package": "node tests/release-guard-cli.mjs && node scripts/check-release-ready.mjs --package-only",
     "test:demo-input": "node tests/demo-input-browser.mjs",
     "test:demo-source": "node tests/demo-source-browser.mjs",
+    "test:demo-media": "node tests/demo-media-browser.mjs",
+    "test:media-acceptance": "node tests/media-acceptance.mjs",
     "test:demo-cancel": "node tests/demo-cancel-recovery-browser.mjs",
     "test:demo-download-diagnostic": "node tests/demo-default-download-diagnostic.mjs"
   },

@@ -4,9 +4,11 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { spawnSync } from "node:child_process";
+import { controllerPath, mediaReceiptPath, mediaReceiptFixture } from "./media-receipt-fixture.mjs";
 
 const roots: string[] = [];
 const guard = resolve("scripts/check-release-ready.mjs");
+const productVersion = JSON.parse(readFileSync(resolve("package.json"), "utf8")).version;
 const productCatalog = JSON.parse(readFileSync(resolve("models/catalog.json"), "utf8"));
 const productManifest = readFileSync(resolve("sdk-manifest.yaml"), "utf8");
 const withExecutionModes = (modes: string[]) => productManifest.replace(
@@ -35,7 +37,7 @@ function fixture() {
     modelId: item.id, source: source.kind, backend, executionMode, status: "passed", keypoints: 17,
     actualBackend: backend, modelBytes: item.bytes, modelSha256: item.sha256, revision: source.revision,
   })))));
-  const report: any = { schemaVersion: 2, version: "0.2.0", testedAt: "2026-09-17T00:00:00Z", sourceCommit: "a".repeat(40), distributionVerifiedAt: "2026-09-17T00:00:00Z", origin, servedAssets, catalog, assets, results };
+  const report: any = { schemaVersion: 2, version: productVersion, testedAt: "2026-09-17T00:00:00Z", sourceCommit: "a".repeat(40), distributionVerifiedAt: "2026-09-17T00:00:00Z", origin, servedAssets, catalog, assets, results };
   const modelFiles = new Map<string, string>();
   const publishedModels = catalog.models.filter((item: any) => item.version === "0.2.0");
   for (const item of publishedModels) {
@@ -103,19 +105,34 @@ function fixture() {
     mkdirSync(resolve(root, file, ".."), { recursive: true });
     writeFileSync(join(root, file), typeof data === "string" ? data : JSON.stringify(data));
   };
-  save("package.json", { name: "web-sdk-pp-tinypose", version: "0.2.0", files: ["dist", "README.md", "README.en.md", "LICENSE", "NOTICE"] });
+  save("package.json", { name: "web-sdk-pp-tinypose", version: productVersion, files: ["dist", "README.md", "README.en.md", "LICENSE", "NOTICE"] });
   save("models/catalog.json", catalog);
   save("models/model.json", model);
   save("sdk-manifest.yaml", productManifest);
+  save(controllerPath, "合成控制器测试源码");
+  const media = mediaReceiptFixture({ version: productVersion, catalog, report, controller: "合成控制器测试源码" });
+  save(mediaReceiptPath, media);
   for (const [file, content] of contents) save(file, content);
   for (const [file, content] of modelFiles) save(file, content);
   const run = () => {
     save("reports/release-acceptance.json", report);
     save("reports/2026-09-17-variants/distribution-variants-verified.json", distribution);
-    return spawnSync(process.execPath, [guard], { cwd: root, env: { ...process.env, RELEASE_TAG: "v0.2.0" }, encoding: "utf8" });
+    return spawnSync(process.execPath, [guard], { cwd: root, env: { ...process.env, RELEASE_TAG: `v${productVersion}` }, encoding: "utf8" });
   };
-  return { root, model, catalog, report, distribution, save, run };
+  return { root, model, catalog, report, distribution, media, save, run };
 }
+
+test("拒绝缺失媒体验收", () => { const f = fixture(); rmSync(join(f.root, mediaReceiptPath)); expect(f.run().status).not.toBe(0); });
+test.each([
+  ["失败媒体报告", (m: any) => { m.status = "failed"; }],
+  ["媒体缺少组合", (m: any) => { m.results.pop(); }],
+  ["媒体构建摘要过期", (m: any) => { m.assets[0].sha256 = "0".repeat(64); }],
+  ["控制器源码摘要过期", (m: any) => { m.controllerSource.sha256 = "0".repeat(64); }],
+  ["媒体不是当前产品提交", (m: any) => { m.sourceCommit = "b".repeat(40); }],
+  ["媒体不足30帧", (m: any) => { m.results[0].frames.length = 29; }],
+  ["媒体停止后仍有结果", (m: any) => { m.results[0].afterStop++; }],
+  ["媒体窄屏黑屏", (m: any) => { m.ui[0].viewport390.pixels.nonBlackPixels = 0; }],
+])("拒绝%s", (_name, mutate) => { const f = fixture(); const media = structuredClone(f.media); mutate(media); f.save(mediaReceiptPath, media); expect(f.run().status).not.toBe(0); });
 
 test("只有 passed 字符串不能代替 24 组合真实验收", () => { const f = fixture(); delete f.report.results; expect(f.run().status).not.toBe(0); });
 test("拒绝重复组合覆盖缺失组合", () => { const f = fixture(); f.report.results[23] = f.report.results[0]; expect(f.run().status).not.toBe(0); });

@@ -2,6 +2,8 @@
 
 [中文](../zh-CN/quick-start.md)
 
+The 0.3.0 Demo has image, video and camera tabs. Select a local video or click Start camera; pause before seeking or selecting a fixed region. Defaults remain 256×192 FP32, ModelScope, CPU/WASM and Worker. It does not detect people or track the region automatically. See the [media lifecycle example](../../examples/media/README.en.md) for integration and shutdown order. The SDK still accepts one Blob/RGBA frame at a time.
+
 Run `npm install web-sdk-pp-tinypose`. Copy the package's complete `dist/` directory to `public/sdk/`, including matching ORT JS/WASM and the Worker. Copying only `index.js` is insufficient. Save `models/catalog.json` from the same source revision as your project's `catalog.json`, preserving fixed revisions and SHA-256 values. Existing integrations may continue using default `models/model.json`.
 
 ```js

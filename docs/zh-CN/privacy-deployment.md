@@ -2,6 +2,8 @@
 
 [English](../en/privacy-deployment.md)
 
+0.3.0 的本地视频及摄像头帧同样不上传、不写入 IndexedDB。Demo 只在点击开启时调用 `getUserMedia({video:true,audio:false})`，停止、配置变化、页面隐藏/pagehide 或卸载会释放自有轨道、对象 URL 与 SDK 会话。清模型缓存先等待媒体退出，防止旧下载回填；不会删除用户原始文件。相机仅在 HTTPS/可信 localhost 可用；iframe 集成还需允许 `camera` 权限策略。
+
 图片仅在浏览器解码、预处理和推理，Demo 不上传图片。模型请求发送到用户选择的 ModelScope 或 Hugging Face，ORT/Worker、页面和示例图片来自站点服务器；这些服务能看到常规网络请求信息。IndexedDB 只保存模型字节，不保存用户图片。缓存键由模型 ID、版本、SHA-256 构成，相同摘要的两源可复用。清理当前模型和全部缓存仅限 TinyPose 命名空间。
 
 先构建 SDK，再运行 `build:demo`，部署 `demo-dist/` 到 HTTPS 静态站点。构建只复制 SDK、ORT、示例、`models/catalog.json` 和兼容 `models/model.json`，不复制本地 ONNX 或 `.tmp`。npm 的 `files` 也排除权重。集成 npm 时把 `dist/` 的 ORT JS/WASM 和 `inference.worker.js`（建议完整目录）复制到 `runtimeBaseUrl`；保持同源和相同版本，`.js/.mjs` 使用 JavaScript MIME，`.wasm` 使用 `application/wasm`。

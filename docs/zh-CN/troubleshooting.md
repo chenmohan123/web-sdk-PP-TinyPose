@@ -2,6 +2,8 @@
 
 [English](../en/troubleshooting.md)
 
+媒体 Demo 另有稳定错误码：`CAMERA_UNSUPPORTED` 检查 HTTPS/可信 localhost 与浏览器媒体 API；`CAMERA_PERMISSION` 检查站点权限；`CAMERA_UNAVAILABLE` 检查设备连接及占用；`MEDIA_READ/MEDIA_DECODE/MEDIA_PLAYBACK/MEDIA_CAPTURE` 检查文件、浏览器编码支持与有效视频尺寸；`RESOURCE_RELEASE` 表示资源释放失败。停止后重新选择输入，不自动重试授权。页面隐藏会停止相机，返回后须由用户重新开启。固定人体框不随人物移动。
+
 - `DOWNLOAD`：检查当前选定 Hub 的固定 URL、网络/CORS、状态码和响应本体；不能返回 HTML 或 Git LFS pointer。先清理当前缓存再复现下载问题。可以手工换源，但 SDK/Demo 不自动换源。
 - `INTEGRITY`：字节数或 SHA-256 不符。清理当前缓存并核对正式 metadata；不要关闭校验。
 - `UNSUPPORTED`：使用 HTTPS/可信 localhost，检查 WebGPU 适配器。调用者可以明确重新选择 CPU，不自动切换。
