@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-17T09:13:04.505Z",
+  "origin": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
+  "version": "0.2.0",
+  "browser": "153.0.8010.12",
+  "defaultSource": "modelscope",
+  "model": "tinypose-enhance-128x96-w16a32",
+  "runtime": "WASM / worker",
+  "keypoints": 17,
+  "regionControlsPresent": true,
+  "viewport390NoOverflow": true,
+  "pageErrors": []
+}

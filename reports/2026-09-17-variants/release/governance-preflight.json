@@ -1,0 +1,161 @@
+{
+  "branchRuleset": {
+    "id": 23576133,
+    "name": "保护 main 分支",
+    "target": "branch",
+    "source_type": "Repository",
+    "source": "chenmohan123/web-sdk-PP-TinyPose",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/heads/main"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": false,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": [
+            "merge",
+            "squash",
+            "rebase"
+          ]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "check"
+            }
+          ]
+        }
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5R41J2zgFnvkU",
+    "created_at": "2026-09-17T10:49:41.518+08:00",
+    "updated_at": "2026-09-17T10:49:41.548+08:00",
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/chenmohan123/web-sdk-PP-TinyPose/rulesets/23576133"
+      },
+      "html": {
+        "href": "https://github.com/chenmohan123/web-sdk-PP-TinyPose/rules/23576133"
+      }
+    }
+  },
+  "pages": {
+    "url": "https://api.github.com/repos/chenmohan123/web-sdk-PP-TinyPose/pages",
+    "status": null,
+    "cname": null,
+    "custom_404": false,
+    "html_url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
+    "build_type": "workflow",
+    "source": {
+      "branch": "main",
+      "path": "/"
+    },
+    "public": true,
+    "protected_domain_state": null,
+    "pending_domain_unverified_at": null,
+    "https_enforced": true
+  },
+  "verifiedAt": "2026-09-17T06:18:25.9491972Z",
+  "tagRuleset": {
+    "id": 23576134,
+    "name": "保护 v* 发布标签",
+    "target": "tag",
+    "source_type": "Repository",
+    "source": "chenmohan123/web-sdk-PP-TinyPose",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": [
+          "refs/tags/v*"
+        ]
+      }
+    },
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "update"
+      }
+    ],
+    "node_id": "RRS_lACqUmVwb3NpdG9yec5R41J2zgFnvkY",
+    "created_at": "2026-09-17T10:49:42.343+08:00",
+    "updated_at": "2026-09-17T10:49:42.364+08:00",
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/chenmohan123/web-sdk-PP-TinyPose/rulesets/23576134"
+      },
+      "html": {
+        "href": "https://github.com/chenmohan123/web-sdk-PP-TinyPose/rules/23576134"
+      }
+    }
+  },
+  "repository": "chenmohan123/web-sdk-PP-TinyPose",
+  "environments": {
+    "total_count": 2,
+    "environments": [
+      {
+        "id": 22110759012,
+        "node_id": "EN_kwDOUeNSds8AAAAFJedoZA",
+        "name": "github-pages",
+        "url": "https://api.github.com/repos/chenmohan123/web-sdk-PP-TinyPose/environments/github-pages",
+        "html_url": "https://github.com/chenmohan123/web-sdk-PP-TinyPose/deployments/activity_log?environments_filter=github-pages",
+        "created_at": "2026-09-17T02:49:43Z",
+        "updated_at": "2026-09-17T02:49:43Z",
+        "can_admins_bypass": true,
+        "protection_rules": [
+          {
+            "id": 65819536,
+            "node_id": "GA_kwDOUeNSds4D7FOQ",
+            "type": "branch_policy"
+          }
+        ],
+        "deployment_branch_policy": {
+          "protected_branches": true,
+          "custom_branch_policies": false
+        }
+      },
+      {
+        "id": 22110759416,
+        "node_id": "EN_kwDOUeNSds8AAAAFJedp-A",
+        "name": "npm",
+        "url": "https://api.github.com/repos/chenmohan123/web-sdk-PP-TinyPose/environments/npm",
+        "html_url": "https://github.com/chenmohan123/web-sdk-PP-TinyPose/deployments/activity_log?environments_filter=npm",
+        "created_at": "2026-09-17T02:49:43Z",
+        "updated_at": "2026-09-17T02:49:43Z",
+        "can_admins_bypass": true,
+        "protection_rules": [],
+        "deployment_branch_policy": null
+      }
+    ]
+  }
+}
