@@ -1,0 +1,444 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "version": "0.3.0",
+  "testedAt": "2026-09-17T17:28:24.059Z",
+  "sourceCommit": "7c1f6a1f7d0aeb06cc02e19cb6fcdbd0f8387835",
+  "origin": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
+  "browser": "153.0.8010.12",
+  "os": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "cpu": "Intel(R) Core(TM) i5-10400F CPU @ 2.90GHz"
+  },
+  "assets": [
+    {
+      "file": "demo-dist/assets/index-OAWb8VLg.js",
+      "bytes": 287369,
+      "sha256": "10e11a38478dd13a52a96b53e1f55d50497b242c79d84356090ba6f7a18bb01c"
+    },
+    {
+      "file": "demo-dist/assets/index-QoZIeRni.css",
+      "bytes": 12878,
+      "sha256": "3aeb46a6640e1d4a797185b7aca2ee23fc4a6675f59fe199c0788f6bcb23428e"
+    },
+    {
+      "file": "demo-dist/examples/person.jpg",
+      "bytes": 43079,
+      "sha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6"
+    },
+    {
+      "file": "demo-dist/examples/vanilla.html",
+      "bytes": 1248,
+      "sha256": "bc2e3ffb054c7ebc8a2f582602a0bc4c7f23642df70cb2ad8b8869e86c54ebbe"
+    },
+    {
+      "file": "demo-dist/index.html",
+      "bytes": 456,
+      "sha256": "454d0cbea1e5adc3e3a082222a70c9285a9ab164936bf64e2cffd4c0b5168012"
+    },
+    {
+      "file": "demo-dist/models/catalog.json",
+      "bytes": 5294,
+      "sha256": "8a0e035aa5a76bb1fe978f5279e916ee7ef12b189407d42bfa9a4b62c5dd76cb"
+    },
+    {
+      "file": "demo-dist/models/model.json",
+      "bytes": 1563,
+      "sha256": "7162a20c8bd37ccf8a6b56eb5893e98a9d2350c06e608ca913bc7bdb1b728ebd"
+    },
+    {
+      "file": "demo-dist/sdk/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73"
+    },
+    {
+      "file": "demo-dist/sdk/engine.d.ts",
+      "bytes": 614,
+      "sha256": "297936b3a3acd186ba0fefc6c5a11b9a4684d080cfc0cb9235975745bd37d1d7"
+    },
+    {
+      "file": "demo-dist/sdk/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0"
+    },
+    {
+      "file": "demo-dist/sdk/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330"
+    },
+    {
+      "file": "demo-dist/sdk/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d"
+    },
+    {
+      "file": "demo-dist/sdk/index.js",
+      "bytes": 27209,
+      "sha256": "60b236b4b7d4e8f0c16a02c3c4992d9e5796f3c06046be001c2e227538f78807"
+    },
+    {
+      "file": "demo-dist/sdk/index.js.map",
+      "bytes": 53742,
+      "sha256": "8e80952020d7463bccb1f01524bef6e46493b16185f1979f142dc4d9209fb62b"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js",
+      "bytes": 14796,
+      "sha256": "3b072681f9e39c4af47855327f41da0968cd786a4300e2295ab9018e9b9318be"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js.map",
+      "bytes": 31232,
+      "sha256": "249e32ae6b80e4c23210f90ce97fc0a5a728ef457da41aa278c3f5dd457e55a7"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a"
+    },
+    {
+      "file": "demo-dist/sdk/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907"
+    },
+    {
+      "file": "demo-dist/sdk/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53"
+    },
+    {
+      "file": "demo-dist/sdk/pose.d.ts",
+      "bytes": 960,
+      "sha256": "4d535970820eae0facddbd852cd3a27b0f69b69517ef636dbfb3e3a14216649b"
+    },
+    {
+      "file": "demo-dist/sdk/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2"
+    },
+    {
+      "file": "demo-dist/sdk/types.d.ts",
+      "bytes": 2430,
+      "sha256": "094c3f64042f8f4a2e941ed4a1c614b5add2aca426fc3867f750dc408cf7aac9"
+    },
+    {
+      "file": "dist/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73"
+    },
+    {
+      "file": "dist/engine.d.ts",
+      "bytes": 614,
+      "sha256": "297936b3a3acd186ba0fefc6c5a11b9a4684d080cfc0cb9235975745bd37d1d7"
+    },
+    {
+      "file": "dist/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0"
+    },
+    {
+      "file": "dist/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330"
+    },
+    {
+      "file": "dist/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 27209,
+      "sha256": "60b236b4b7d4e8f0c16a02c3c4992d9e5796f3c06046be001c2e227538f78807"
+    },
+    {
+      "file": "dist/index.js.map",
+      "bytes": 53742,
+      "sha256": "8e80952020d7463bccb1f01524bef6e46493b16185f1979f142dc4d9209fb62b"
+    },
+    {
+      "file": "dist/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "file": "dist/inference.worker.js",
+      "bytes": 14796,
+      "sha256": "3b072681f9e39c4af47855327f41da0968cd786a4300e2295ab9018e9b9318be"
+    },
+    {
+      "file": "dist/inference.worker.js.map",
+      "bytes": 31232,
+      "sha256": "249e32ae6b80e4c23210f90ce97fc0a5a728ef457da41aa278c3f5dd457e55a7"
+    },
+    {
+      "file": "dist/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655"
+    },
+    {
+      "file": "dist/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a"
+    },
+    {
+      "file": "dist/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907"
+    },
+    {
+      "file": "dist/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53"
+    },
+    {
+      "file": "dist/pose.d.ts",
+      "bytes": 960,
+      "sha256": "4d535970820eae0facddbd852cd3a27b0f69b69517ef636dbfb3e3a14216649b"
+    },
+    {
+      "file": "dist/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2"
+    },
+    {
+      "file": "dist/types.d.ts",
+      "bytes": 2430,
+      "sha256": "094c3f64042f8f4a2e941ed4a1c614b5add2aca426fc3867f750dc408cf7aac9"
+    }
+  ],
+  "servedAssets": [
+    {
+      "file": "demo-dist/assets/index-OAWb8VLg.js",
+      "bytes": 287369,
+      "sha256": "10e11a38478dd13a52a96b53e1f55d50497b242c79d84356090ba6f7a18bb01c",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/assets/index-OAWb8VLg.js"
+    },
+    {
+      "file": "demo-dist/assets/index-QoZIeRni.css",
+      "bytes": 12878,
+      "sha256": "3aeb46a6640e1d4a797185b7aca2ee23fc4a6675f59fe199c0788f6bcb23428e",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/assets/index-QoZIeRni.css"
+    },
+    {
+      "file": "demo-dist/examples/person.jpg",
+      "bytes": 43079,
+      "sha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/examples/person.jpg"
+    },
+    {
+      "file": "demo-dist/examples/vanilla.html",
+      "bytes": 1248,
+      "sha256": "bc2e3ffb054c7ebc8a2f582602a0bc4c7f23642df70cb2ad8b8869e86c54ebbe",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/examples/vanilla.html"
+    },
+    {
+      "file": "demo-dist/index.html",
+      "bytes": 456,
+      "sha256": "454d0cbea1e5adc3e3a082222a70c9285a9ab164936bf64e2cffd4c0b5168012",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/index.html"
+    },
+    {
+      "file": "demo-dist/models/catalog.json",
+      "bytes": 5294,
+      "sha256": "8a0e035aa5a76bb1fe978f5279e916ee7ef12b189407d42bfa9a4b62c5dd76cb",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/models/catalog.json"
+    },
+    {
+      "file": "demo-dist/models/model.json",
+      "bytes": 1563,
+      "sha256": "7162a20c8bd37ccf8a6b56eb5893e98a9d2350c06e608ca913bc7bdb1b728ebd",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/models/model.json"
+    },
+    {
+      "file": "demo-dist/sdk/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/cache.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/engine.d.ts",
+      "bytes": 614,
+      "sha256": "297936b3a3acd186ba0fefc6c5a11b9a4684d080cfc0cb9235975745bd37d1d7",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/engine.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/errors.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/image.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/index.js",
+      "bytes": 27209,
+      "sha256": "60b236b4b7d4e8f0c16a02c3c4992d9e5796f3c06046be001c2e227538f78807",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.js"
+    },
+    {
+      "file": "demo-dist/sdk/index.js.map",
+      "bytes": 53742,
+      "sha256": "8e80952020d7463bccb1f01524bef6e46493b16185f1979f142dc4d9209fb62b",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.js.map"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js",
+      "bytes": 14796,
+      "sha256": "3b072681f9e39c4af47855327f41da0968cd786a4300e2295ab9018e9b9318be",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.js"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js.map",
+      "bytes": 31232,
+      "sha256": "249e32ae6b80e4c23210f90ce97fc0a5a728ef457da41aa278c3f5dd457e55a7",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.js.map"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort-wasm-simd-threaded.asyncify.mjs"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort-wasm-simd-threaded.asyncify.wasm"
+    },
+    {
+      "file": "demo-dist/sdk/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort.webgpu.bundle.min.mjs"
+    },
+    {
+      "file": "demo-dist/sdk/pose.d.ts",
+      "bytes": 960,
+      "sha256": "4d535970820eae0facddbd852cd3a27b0f69b69517ef636dbfb3e3a14216649b",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/pose.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/runtime.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/types.d.ts",
+      "bytes": 2430,
+      "sha256": "094c3f64042f8f4a2e941ed4a1c614b5add2aca426fc3867f750dc408cf7aac9",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/types.d.ts"
+    }
+  ],
+  "controllerSource": {
+    "path": "demo/src/media/controller.ts",
+    "bytes": 29045,
+    "sha256": "32fa0c862edaa270e9a2d2f0d2234b57a0f7e8d76c9b65344f16af0065fa2472"
+  },
+  "controllerBundle": {
+    "bytes": 25310,
+    "sha256": "0839b5d93e321440015f6f8f4cc4ef1a786fa2e8b8d6db38e9ef553a39872447"
+  },
+  "fixture": {
+    "path": "tests/fixtures/media/person-motion.mp4",
+    "bytes": 71751,
+    "sha256": "0a870b3faec51daf77986318542d17b349f5f202bf9a57d8b2519970c0d6c0c5"
+  },
+  "cameraFixture": {
+    "format": "Y4M",
+    "bytes": 55296803,
+    "sha256": "71aa74c9b564fe015290da0cc25d9cd844aa29f6f74480dcd2997f860efc8ebf"
+  },
+  "results": [],
+  "ui": [
+    {
+      "kind": "video",
+      "status": "passed",
+      "processed": 6,
+      "runtime": "WASM / worker",
+      "pixels": {
+        "pixels": 307200,
+        "nonBlackPixels": 178259,
+        "rgbMin": 0,
+        "rgbMax": 255,
+        "rgbLevels": 256
+      },
+      "viewport390": {
+        "noOverflow": true,
+        "pixels": {
+          "pixels": 307200,
+          "nonBlackPixels": 178259,
+          "rgbMin": 0,
+          "rgbMax": 255,
+          "rgbLevels": 256
+        }
+      },
+      "tracksEnded": true,
+      "cameraStreams": 0,
+      "errors": [],
+      "cameraDevice": "not-applicable"
+    },
+    {
+      "kind": "camera",
+      "status": "passed",
+      "processed": 6,
+      "runtime": "WASM / worker",
+      "pixels": {
+        "pixels": 307200,
+        "nonBlackPixels": 178452,
+        "rgbMin": 0,
+        "rgbMax": 255,
+        "rgbLevels": 256
+      },
+      "viewport390": {
+        "noOverflow": true,
+        "pixels": {
+          "pixels": 307200,
+          "nonBlackPixels": 178452,
+          "rgbMin": 0,
+          "rgbMax": 255,
+          "rgbLevels": 256
+        }
+      },
+      "tracksEnded": true,
+      "cameraStreams": 1,
+      "errors": [],
+      "cameraDevice": "Chromium fake-device Y4M"
+    }
+  ],
+  "scope": "线上生产Demo UI验收默认模型CPU/Worker本地视频和Chromium fake-device摄像头，含双语/390px；本轮不重跑12组合。素材为人物图片的平移缩放，不证明真实动作质量、跟踪、物理摄像头或手机兼容。"
+}
