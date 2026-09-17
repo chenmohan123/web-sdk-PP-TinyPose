@@ -1,0 +1,4025 @@
+{
+  "method": "固定 64 图中的全部有效人体，使用 GT 框、上游扩框、DARK、COCO sigma 与 segmentation area；结果不是全量 AP",
+  "models": {
+    "tinypose-enhance-128x96": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.7270500087190297,
+        "oksAt50Ratio": 0.8363636363636363,
+        "oksAt75Ratio": 0.6636363636363637
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.7048188226817718
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.5721344182081116
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.8047427015638718
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7345889515903102
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.8166233991438734
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.8991256575962008
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.7315006221523696
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9422269224886286
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.9049894511801144
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 4.751203085277379e-05
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.9014190165312767
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.9551173539440668
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.956098216204866
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.9023641690172615
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.5273727628963819
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.8770474478414536
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.8604648757635872
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.9436685753927954
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.932121998096195
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.21510122909982674
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.7547748524337045
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.8558103416411095
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.34570591670905404
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.6630765486359038
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.794871715184798
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.7943387744101829
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.6776083263428468
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.7699671361636519
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.8956982231054572
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.682317352826567
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.8761912661137806
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.6471523592130813
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.5249052836536025
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.20909136305428205
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.22621034960319308
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.0029724663170162167
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.6520850480694986
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.4342927998988206
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.059046321094885855
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.9060516580930441
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8721587440809663
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.9501668250087335
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8069595717070974
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.8065484781821866
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8965097440217499
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.7749686609995761
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.849723558896552
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.8579408734930809
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.7992653283732513
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.7192453873889301
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9166327860411391
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9093766746998052
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.7776155959492521
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.8599815536981779
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.7321928286383492
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.9021264840074058
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.851303287711627
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.7525910380144835
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.9398935941746632
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.9108117913438257
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.8173819001888735
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.9141617037436901
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8444634584708571
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9359541953990805
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.3408979048681357
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.9094608644043713
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.11605937233924388
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8501390865947274
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.7515694796857857
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.818269267400616
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.7023742369598059
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.9196760789468849
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9529789038639552
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9383342007551683
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8692880826674874
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9658724440480713
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9095395630791373
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9272803939671357
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.7730825370562878
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8470979976150529
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.8459852444722259
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.964009865073501
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9387537544827039
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9505880649744906
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.9022127895443928
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.6990769802611934
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.8080455916508751
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.19490337395831525
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.9181504068414915
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9168464087498416
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.6763197478159787
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.6087211366948128
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 0.4698509644985531
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9490125373639962
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.6934639865461161
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.012920855418566178
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.41779317452431997
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.5860482731209543
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.08733078335985776
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.018707762795105578
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9654101860782188
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.9599646576530604
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.8831812754268279
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.9056040559439447
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.9392237224467384
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.0024195980302009687
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.8954708629615528
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.869094725265832
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.09643222892119165
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.8563212597448697
+        }
+      ]
+    },
+    "tinypose-enhance-256x192": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.7909925880613419,
+        "oksAt50Ratio": 0.8727272727272727,
+        "oksAt75Ratio": 0.7727272727272727
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.8237939672815964
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.6433486452011102
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.8633198318395857
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7808299850439356
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.8374847124893222
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.963921436001694
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.8661706895329165
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9716757142384143
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.8263460378776224
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 0.4767850515858407
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.9198430954430732
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.9456908580047859
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.9603841754453355
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.9492303601830738
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.9830827199944233
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.943050407188913
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.9388521917974284
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.9599386860950019
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.9334958646932858
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.10383225822458715
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.7673656354632163
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.9052187265341827
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.496978835929884
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.8312288060708133
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.6768036398636774
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.9423690833127232
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.8246905889456677
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.935192173773417
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.9509578257263545
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.9293796079781669
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.9053660437709526
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.8715488018385119
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.680511798552834
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.37669330382964283
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.6661657112719602
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.0006795309760144467
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.6930239612532121
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.787037990065214
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.2920946028685247
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.8763089131935818
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8783765287303592
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.9599855748739594
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8880227515888971
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.7969091403619231
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8405876877025413
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.7905320835360876
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.9062196041445424
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.8685840941969863
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.8702343828247818
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.7387450595576441
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9292424401031528
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9577082551583965
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.9101860022015812
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.9243431928252359
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.8382505882706796
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.9292273508995254
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.8747462780938654
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.8834152959161553
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.975733879892466
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.9174059187644357
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.844482657105034
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.9356669934750994
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8767212463040904
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9588925565187448
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.30640060980546496
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.926236653209178
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.3144650482970402
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8099851345799376
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.9069683697352476
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.8531993518942117
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.8311169329240004
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.9712398595002815
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9839430394860823
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9771757314935985
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8911318943675945
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9724263307233029
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9620172586756792
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9163925484341948
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.8438101214148754
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8593599680590116
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.9217581522552798
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.9603464806745334
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9233150894973424
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9802638313637528
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.966156155412277
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.8334471472038631
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.8635151121570271
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.1382806742127879
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.8919324557710802
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9459708756609426
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.6702451935237731
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.5728232011076486
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 2.550146494221081e-07
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9536746077486004
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.7520851793678354
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.016151813594789878
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.6610493356523081
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.7406677744735626
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.045038338671788566
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.5293594671959333
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9655472022363375
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.9587021954096048
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.9275042188229871
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.9572810368453423
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.9566454358310725
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.10214813265179573
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.9332122645503486
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.8936958452566933
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.2920315863718723
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.9355549431853957
+        }
+      ]
+    },
+    "tinypose-enhance-128x96-fp16": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.7284569332053769,
+        "oksAt50Ratio": 0.8363636363636363,
+        "oksAt75Ratio": 0.6454545454545455
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.7037543061178513
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.5858428685968499
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.801477149380279
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7464493188962581
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.7982944143486931
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.8269018658525173
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.7503120946314876
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9296780838163505
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.9087078699478601
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 0.0002565197236940956
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.9087222560533156
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.946733160563006
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.9615903465414565
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.8986208728979663
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.572337155456963
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.8865613819600783
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.8544703859278904
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.9372439658514443
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.9309918178717678
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.22462128573850274
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.7466526584783725
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.851401091380006
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.3953197537134133
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.6821570580201595
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.7945688234380476
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.8094772375946523
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.6647999771141713
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.7419024311750015
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.8947455302283145
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.6942153722416559
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.8852714863801993
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.6873263048738444
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.5528283648031179
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.1996808210653011
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.32576026234769184
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.0014228063637754937
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.6613338624520132
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.43823863976317856
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.06916085140642635
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.8745921664271002
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8776531007498509
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.9526570344550296
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8021922126861909
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.8272786913165664
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8764961704793465
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.7760886782046141
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.840048875890177
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.8721466020798867
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.7743921640674871
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.6805401407127971
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9274973831729606
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9130452416621557
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.7767878350938298
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.8729686481821504
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.7367701175495819
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.8975530144065016
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.8549023574892597
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.7538607588756012
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.9403931205128868
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.8983580484559547
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.8220413106005401
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.8923050484273566
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8416889833404326
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9382851820372722
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.3001133489742137
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.9108695395521047
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.14587029762400866
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8377742720254934
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.7245796000668107
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.7768322307388902
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.7222738907618276
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.9201385918455913
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9502226857522446
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9565022011175964
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8714063948664771
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9565681133630716
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9163226580338845
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9210292619029365
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.7674556674267107
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8498595145657732
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.8403782150710445
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.9300804665702946
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9332333442674802
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9495492789043487
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.9096639609934747
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.7012357632873307
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.8008126948715677
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.18620742951035066
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.898073761195026
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9000848516886567
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.7132272865419801
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.5727738219355668
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 0.4708212784913685
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9480248607912727
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.6407735191646434
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.009570509790846756
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.39550154791951025
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.5737297318196033
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.09439921522287299
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.01372095005630927
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9651371180189363
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.9542420949934214
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.8824139756015519
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.9060850156239001
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.9483097154503455
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.004271787708170908
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.8920325670391107
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.8441906654561101
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.3910578381916944
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.8424677779079088
+        }
+      ]
+    },
+    "tinypose-enhance-256x192-fp16": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.7930156347080335,
+        "oksAt50Ratio": 0.8727272727272727,
+        "oksAt75Ratio": 0.7636363636363637
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.8211986085175554
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.6451534200252246
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.8624466033889018
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7408617511355777
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.8345320107467809
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.9557783649927089
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.8652279693751387
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9677625701635317
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.8240863488204075
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 0.47595380136738846
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.920712403356897
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.9435131933468448
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.9596947297770797
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.9455228759148273
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.9826812974999933
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.9437760501136173
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.9341130488770086
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.959295536491013
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.9361752982678099
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.10755592016349376
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.771181357085908
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.9044930079994687
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.697927715005903
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.8400343955442644
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.6775172265577308
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.9355173020592886
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.8283439863876757
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.9300099249621703
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.9524027756712696
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.9030371811039579
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.9095735366298989
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.8714009032193485
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.6725528367290267
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.3774727507963659
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.6587979247277659
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.0007173557921838387
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.696702740220595
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.7860981074433114
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.2926494904458443
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.8766414768029542
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8777814555953131
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.9607336692728151
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8886256492075193
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.7961284148117431
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8382117242478455
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.7899365865255257
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.9048102901893315
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.8758666529817154
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.8670731591132149
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.7417404495413095
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9284892544488691
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9569736330911636
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.9094173090275628
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.9248858939155716
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.8526640133332848
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.9297284430792129
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.873882649388048
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.8864695834988356
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.9779664660242285
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.9294616622551634
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.8546365834037731
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.9353601452536281
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8774736005834135
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9590577378547284
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.31019589415532045
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.9250673904362022
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.2830199811590293
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8046493206493177
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.888643574582363
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.8529001962443727
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.832451436287554
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.9676186263819322
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9836866530899325
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9742013360934088
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8844284258216067
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9745708298294945
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9632916536050649
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9099203090144465
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.84023177082923
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8563061959537797
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.9207284469387658
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.9596224000123988
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9225064649650894
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9800207117346358
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.9657203618249182
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.8351466994139987
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.8687699367229863
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.16001179694045897
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.897070466206399
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9458176858991036
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.6712156571305571
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.6068956104603745
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 0.15685310635302915
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9530662595737416
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.7573663637633925
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.016151813594789878
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.6597576955281017
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.7300101618369459
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.04193849181642195
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.4716721715956465
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9641030793481501
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.9608768032028462
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.9273481662763133
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.955916999364775
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.9555210781453051
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.10126379586514128
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.9343103369544604
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.8919825478913265
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.2883249645204077
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.934057325699605
+        }
+      ]
+    },
+    "tinypose-enhance-128x96-w16a32": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.7271062327655552,
+        "oksAt50Ratio": 0.8363636363636363,
+        "oksAt75Ratio": 0.6636363636363637
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.7050027885260302
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.5717775985297845
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.8044611320277918
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7344750329312585
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.8161964425043443
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.8986962047911462
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.7311696911426068
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9420560908261322
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.9042869512219911
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 4.6883821816909146e-05
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.9011260117917029
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.9550866675017621
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.9559251995521373
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.9023996521826285
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.5252825443518934
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.8769244403205761
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.8603986977823177
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.9437189908555116
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.9324824578838011
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.21766782818643302
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.7561177903901488
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.857791305314175
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.3431198855723737
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.6632983467139165
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.7961551588859088
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.7929880218489772
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.6787215538511483
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.7701819256748945
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.8957924994055734
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.6825551749752794
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.876055874463131
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.647430549720584
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.5218595756838006
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.20875328756300682
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.22626390025770934
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.002928747319236606
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.6519877167691623
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.4311363337891593
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.05983612131144138
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.904458071236546
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8723362005481311
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.950158110821094
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8070927972160251
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.8067973685539191
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8961222332666128
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.7743448851165914
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.8504077771260559
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.857991292323726
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.7992224794915749
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.7194157394601722
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9168123891819295
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9092151686258012
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.7782486938527846
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.8607561298833706
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.7323262756029573
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.901946851926109
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.8510943890915571
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.7527514826409728
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.9398504460651165
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.9109834424999398
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.8170913507172558
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.9142432000964427
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8447439931431988
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9360558875754962
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.3425770885037493
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.9093834718975629
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.12292792351844743
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8499439049549813
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.753865662135839
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.8183622704404511
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.7008424483667008
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.9198814306658262
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9529557262805466
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9381689652801617
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8693287559388873
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9657989009263244
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9097788303784381
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9271232857626113
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.7730959342423378
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8469543805085386
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.8458998413167745
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.9641672308127658
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9386792235405464
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9505765010202223
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.9022778013034103
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.698999187031641
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.8080332993298467
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.19426617352745876
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.9178838412997887
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9163056924492017
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.6764809964821122
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.6094734819672148
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 0.4689752340483668
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9488439383751861
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.6931401434034463
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.013232696159336706
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.41801847362030237
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.5890444871859936
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.08673207550283907
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.01870937345887197
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9655692606081817
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.959986470034735
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.883728898455584
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.9056064769901657
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.9389687991459553
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.0027025426603810927
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.8955741941898269
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.8693684232327475
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.09600214061610247
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.8568279943359676
+        }
+      ]
+    },
+    "tinypose-enhance-256x192-w16a32": {
+      "summary": {
+        "people": 110,
+        "meanOks": 0.791352720031689,
+        "oksAt50Ratio": 0.8727272727272727,
+        "oksAt75Ratio": 0.7727272727272727
+      },
+      "cases": [
+        {
+          "case": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "oks": 0.8253571891511858
+        },
+        {
+          "case": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "oks": 0.6436213681108631
+        },
+        {
+          "case": 2,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "oks": 0.8632989810719992
+        },
+        {
+          "case": 3,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "oks": 0.7857895581405215
+        },
+        {
+          "case": 4,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "oks": 0.8369540698858744
+        },
+        {
+          "case": 5,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "oks": 0.9634405355634922
+        },
+        {
+          "case": 6,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "oks": 0.8664863995504164
+        },
+        {
+          "case": 7,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "oks": 0.9710063685449015
+        },
+        {
+          "case": 8,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "oks": 0.8266124698989963
+        },
+        {
+          "case": 9,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "oks": 0.4791079176139905
+        },
+        {
+          "case": 10,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "oks": 0.9197579146787083
+        },
+        {
+          "case": 11,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "oks": 0.9461027500413691
+        },
+        {
+          "case": 12,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "oks": 0.960438383396783
+        },
+        {
+          "case": 13,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "oks": 0.9488857477259207
+        },
+        {
+          "case": 14,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "oks": 0.9829626030367233
+        },
+        {
+          "case": 15,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "oks": 0.9431273933844826
+        },
+        {
+          "case": 16,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "oks": 0.9387796725778181
+        },
+        {
+          "case": 17,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "oks": 0.959954536122629
+        },
+        {
+          "case": 18,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "oks": 0.9341508421743607
+        },
+        {
+          "case": 19,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "oks": 0.10435491198942974
+        },
+        {
+          "case": 20,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "oks": 0.775836744991143
+        },
+        {
+          "case": 21,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "oks": 0.9035772447918533
+        },
+        {
+          "case": 22,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "oks": 0.49762571832438224
+        },
+        {
+          "case": 23,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "oks": 0.8301599286069858
+        },
+        {
+          "case": 24,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "oks": 0.6774047426881789
+        },
+        {
+          "case": 25,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "oks": 0.9407799593495639
+        },
+        {
+          "case": 26,
+          "imageId": 227478,
+          "annotationId": 510848,
+          "oks": 0.8250791471945828
+        },
+        {
+          "case": 27,
+          "imageId": 227478,
+          "annotationId": 528407,
+          "oks": 0.9348394966261646
+        },
+        {
+          "case": 28,
+          "imageId": 235836,
+          "annotationId": 448645,
+          "oks": 0.950948154213513
+        },
+        {
+          "case": 29,
+          "imageId": 238410,
+          "annotationId": 482181,
+          "oks": 0.9296859258716712
+        },
+        {
+          "case": 30,
+          "imageId": 238410,
+          "annotationId": 497914,
+          "oks": 0.905454241831967
+        },
+        {
+          "case": 31,
+          "imageId": 238410,
+          "annotationId": 512201,
+          "oks": 0.8713079600521959
+        },
+        {
+          "case": 32,
+          "imageId": 238410,
+          "annotationId": 527689,
+          "oks": 0.6794342071426791
+        },
+        {
+          "case": 33,
+          "imageId": 238410,
+          "annotationId": 534445,
+          "oks": 0.37637784238352856
+        },
+        {
+          "case": 34,
+          "imageId": 238410,
+          "annotationId": 545582,
+          "oks": 0.6618296515410749
+        },
+        {
+          "case": 35,
+          "imageId": 238410,
+          "annotationId": 545917,
+          "oks": 0.0007109428683103876
+        },
+        {
+          "case": 36,
+          "imageId": 238410,
+          "annotationId": 1263111,
+          "oks": 0.7018939368854672
+        },
+        {
+          "case": 37,
+          "imageId": 238410,
+          "annotationId": 1714196,
+          "oks": 0.787200626363684
+        },
+        {
+          "case": 38,
+          "imageId": 250282,
+          "annotationId": 1239036,
+          "oks": 0.29204075966149745
+        },
+        {
+          "case": 39,
+          "imageId": 250282,
+          "annotationId": 1266498,
+          "oks": 0.8764162134136436
+        },
+        {
+          "case": 40,
+          "imageId": 250282,
+          "annotationId": 1268931,
+          "oks": 0.8783451224517824
+        },
+        {
+          "case": 41,
+          "imageId": 250282,
+          "annotationId": 1277720,
+          "oks": 0.9600866708123199
+        },
+        {
+          "case": 42,
+          "imageId": 250282,
+          "annotationId": 1283647,
+          "oks": 0.8885063769272108
+        },
+        {
+          "case": 43,
+          "imageId": 250282,
+          "annotationId": 1287577,
+          "oks": 0.7966964058350366
+        },
+        {
+          "case": 44,
+          "imageId": 250282,
+          "annotationId": 1288295,
+          "oks": 0.8406064804033897
+        },
+        {
+          "case": 45,
+          "imageId": 250282,
+          "annotationId": 1290703,
+          "oks": 0.790715421396216
+        },
+        {
+          "case": 46,
+          "imageId": 250282,
+          "annotationId": 1309947,
+          "oks": 0.9078170071682408
+        },
+        {
+          "case": 47,
+          "imageId": 250282,
+          "annotationId": 1311929,
+          "oks": 0.8764061436419494
+        },
+        {
+          "case": 48,
+          "imageId": 250282,
+          "annotationId": 1313686,
+          "oks": 0.8702730659339197
+        },
+        {
+          "case": 49,
+          "imageId": 250282,
+          "annotationId": 1314770,
+          "oks": 0.7389666587412872
+        },
+        {
+          "case": 50,
+          "imageId": 250282,
+          "annotationId": 2032542,
+          "oks": 0.9291202687188318
+        },
+        {
+          "case": 51,
+          "imageId": 256868,
+          "annotationId": 479129,
+          "oks": 0.9576371830894738
+        },
+        {
+          "case": 52,
+          "imageId": 256868,
+          "annotationId": 540517,
+          "oks": 0.9109296889444898
+        },
+        {
+          "case": 53,
+          "imageId": 256868,
+          "annotationId": 545031,
+          "oks": 0.924533027107054
+        },
+        {
+          "case": 54,
+          "imageId": 276024,
+          "annotationId": 183536,
+          "oks": 0.8421117970385907
+        },
+        {
+          "case": 55,
+          "imageId": 276024,
+          "annotationId": 202348,
+          "oks": 0.9291062948734783
+        },
+        {
+          "case": 56,
+          "imageId": 284698,
+          "annotationId": 189674,
+          "oks": 0.8770858420115687
+        },
+        {
+          "case": 57,
+          "imageId": 341828,
+          "annotationId": 448341,
+          "oks": 0.8837091696505547
+        },
+        {
+          "case": 58,
+          "imageId": 352760,
+          "annotationId": 473214,
+          "oks": 0.9757450312770878
+        },
+        {
+          "case": 59,
+          "imageId": 356094,
+          "annotationId": 451122,
+          "oks": 0.9190523895995947
+        },
+        {
+          "case": 60,
+          "imageId": 356094,
+          "annotationId": 459049,
+          "oks": 0.8446435629772576
+        },
+        {
+          "case": 61,
+          "imageId": 368212,
+          "annotationId": 1221298,
+          "oks": 0.9357688436742035
+        },
+        {
+          "case": 62,
+          "imageId": 376093,
+          "annotationId": 492810,
+          "oks": 0.8768146933331173
+        },
+        {
+          "case": 63,
+          "imageId": 376093,
+          "annotationId": 507696,
+          "oks": 0.9588851692173719
+        },
+        {
+          "case": 64,
+          "imageId": 376093,
+          "annotationId": 554597,
+          "oks": 0.3059175229733096
+        },
+        {
+          "case": 65,
+          "imageId": 376093,
+          "annotationId": 1744490,
+          "oks": 0.9262488098672036
+        },
+        {
+          "case": 66,
+          "imageId": 376093,
+          "annotationId": 1747930,
+          "oks": 0.30512717789162186
+        },
+        {
+          "case": 67,
+          "imageId": 376900,
+          "annotationId": 1247748,
+          "oks": 0.8088377524770568
+        },
+        {
+          "case": 68,
+          "imageId": 376900,
+          "annotationId": 1266676,
+          "oks": 0.907018462354452
+        },
+        {
+          "case": 69,
+          "imageId": 376900,
+          "annotationId": 1290153,
+          "oks": 0.8531134046179096
+        },
+        {
+          "case": 70,
+          "imageId": 376900,
+          "annotationId": 1291851,
+          "oks": 0.8311385473503548
+        },
+        {
+          "case": 71,
+          "imageId": 376900,
+          "annotationId": 1723902,
+          "oks": 0.971125396128072
+        },
+        {
+          "case": 72,
+          "imageId": 386879,
+          "annotationId": 1226196,
+          "oks": 0.9839834364688101
+        },
+        {
+          "case": 73,
+          "imageId": 438862,
+          "annotationId": 437418,
+          "oks": 0.9771824076315608
+        },
+        {
+          "case": 74,
+          "imageId": 438862,
+          "annotationId": 517952,
+          "oks": 0.8911472453437025
+        },
+        {
+          "case": 75,
+          "imageId": 438862,
+          "annotationId": 2203909,
+          "oks": 0.9724303506443166
+        },
+        {
+          "case": 76,
+          "imageId": 438862,
+          "annotationId": 2203958,
+          "oks": 0.9618794805409806
+        },
+        {
+          "case": 77,
+          "imageId": 438862,
+          "annotationId": 2204034,
+          "oks": 0.9162714345486596
+        },
+        {
+          "case": 78,
+          "imageId": 439854,
+          "annotationId": 190251,
+          "oks": 0.84384497929983
+        },
+        {
+          "case": 79,
+          "imageId": 439854,
+          "annotationId": 203671,
+          "oks": 0.8589091732671204
+        },
+        {
+          "case": 80,
+          "imageId": 439854,
+          "annotationId": 213169,
+          "oks": 0.9217199111794856
+        },
+        {
+          "case": 81,
+          "imageId": 458325,
+          "annotationId": 494456,
+          "oks": 0.9602265927863547
+        },
+        {
+          "case": 82,
+          "imageId": 459195,
+          "annotationId": 485858,
+          "oks": 0.9232654781159825
+        },
+        {
+          "case": 83,
+          "imageId": 459195,
+          "annotationId": 513289,
+          "oks": 0.9802765839004245
+        },
+        {
+          "case": 84,
+          "imageId": 459195,
+          "annotationId": 2152845,
+          "oks": 0.9660882601609849
+        },
+        {
+          "case": 85,
+          "imageId": 472623,
+          "annotationId": 1709874,
+          "oks": 0.8335192523478637
+        },
+        {
+          "case": 86,
+          "imageId": 481386,
+          "annotationId": 228697,
+          "oks": 0.864116530680648
+        },
+        {
+          "case": 87,
+          "imageId": 483999,
+          "annotationId": 503413,
+          "oks": 0.13981934174208363
+        },
+        {
+          "case": 88,
+          "imageId": 483999,
+          "annotationId": 508113,
+          "oks": 0.8925870119698099
+        },
+        {
+          "case": 89,
+          "imageId": 483999,
+          "annotationId": 537932,
+          "oks": 0.9458558205881561
+        },
+        {
+          "case": 90,
+          "imageId": 483999,
+          "annotationId": 542206,
+          "oks": 0.6709806279532802
+        },
+        {
+          "case": 91,
+          "imageId": 483999,
+          "annotationId": 543757,
+          "oks": 0.5827803767796463
+        },
+        {
+          "case": 92,
+          "imageId": 483999,
+          "annotationId": 546252,
+          "oks": 2.659510059910406e-07
+        },
+        {
+          "case": 93,
+          "imageId": 483999,
+          "annotationId": 551394,
+          "oks": 0.9536359040434922
+        },
+        {
+          "case": 94,
+          "imageId": 483999,
+          "annotationId": 552234,
+          "oks": 0.7508111990649585
+        },
+        {
+          "case": 95,
+          "imageId": 483999,
+          "annotationId": 1247145,
+          "oks": 0.016151813594789878
+        },
+        {
+          "case": 96,
+          "imageId": 497599,
+          "annotationId": 509594,
+          "oks": 0.6610342209690716
+        },
+        {
+          "case": 97,
+          "imageId": 497599,
+          "annotationId": 1707783,
+          "oks": 0.7446246487513887
+        },
+        {
+          "case": 98,
+          "imageId": 497599,
+          "annotationId": 1737290,
+          "oks": 0.04505546549238806
+        },
+        {
+          "case": 99,
+          "imageId": 497599,
+          "annotationId": 2160005,
+          "oks": 0.5281276715791552
+        },
+        {
+          "case": 100,
+          "imageId": 541123,
+          "annotationId": 1256354,
+          "oks": 0.9654774954925508
+        },
+        {
+          "case": 101,
+          "imageId": 541123,
+          "annotationId": 1309097,
+          "oks": 0.9587091332912248
+        },
+        {
+          "case": 102,
+          "imageId": 546219,
+          "annotationId": 1254598,
+          "oks": 0.9273903559780161
+        },
+        {
+          "case": 103,
+          "imageId": 546219,
+          "annotationId": 1256683,
+          "oks": 0.957247823789835
+        },
+        {
+          "case": 104,
+          "imageId": 546219,
+          "annotationId": 1270683,
+          "oks": 0.956381671379596
+        },
+        {
+          "case": 105,
+          "imageId": 546219,
+          "annotationId": 1694449,
+          "oks": 0.10235934506270046
+        },
+        {
+          "case": 106,
+          "imageId": 546219,
+          "annotationId": 1694567,
+          "oks": 0.9329092060957145
+        },
+        {
+          "case": 107,
+          "imageId": 546219,
+          "annotationId": 1704546,
+          "oks": 0.8936912275856914
+        },
+        {
+          "case": 108,
+          "imageId": 546219,
+          "annotationId": 1705095,
+          "oks": 0.29186186522365043
+        },
+        {
+          "case": 109,
+          "imageId": 546219,
+          "annotationId": 1706452,
+          "oks": 0.9355631482442783
+        }
+      ]
+    }
+  }
+}

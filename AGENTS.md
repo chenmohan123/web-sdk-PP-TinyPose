@@ -10,4 +10,4 @@
 发布必须运行测试、类型、SDK/Demo 构建、输入竞争与来源回归、打包 guard，并由真实双源 × CPU/GPU × main/worker 验收生成 reports/release-acceptance.json。不能手写 passed；guard 绑定模型身份、分发完整 GET 回执和全部构建资产摘要。
 
 pnpm 命令加 `--config.verify-deps-before-run=false --config.manage-package-manager-versions=false`。
-保留旧分支、用户文件和历史证据；新证据放 reports/2026-09-17-release。执行 gh 前复用宿主机登录状态，使用后保持状态。远程写入与发布只能在用户授权范围内进行。
+保留旧分支、用户文件和历史证据；发布证据放 `reports/2026-09-17-release`，模型变体转换与 Python 质量证据放 `reports/2026-09-17-variants`。执行 gh 前复用宿主机登录状态，使用后保持状态。远程写入与发布只能在用户授权范围内进行。

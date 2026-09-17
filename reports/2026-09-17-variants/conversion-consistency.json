@@ -1,0 +1,2398 @@
+{
+  "thresholds": {
+    "maxHeatmapAbs": 0.0001,
+    "maxReliablePointErrorPx": 0.5
+  },
+  "specs": {
+    "tinypose-enhance-128x96": {
+      "summary": {
+        "cases": 32,
+        "allFinite": true,
+        "maxHeatmapAbs": 1.055002212524414e-05,
+        "maxReliablePointErrorPx": 0.0005196956335566938,
+        "passed": true
+      },
+      "cases": [
+        {
+          "caseId": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "bbox": [
+            244.53,
+            164.96,
+            138.58,
+            150.97
+          ],
+          "expanded": [
+            223,
+            141,
+            403,
+            337
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\00\\input.f32",
+            "bytes": 147456,
+            "sha256": "eb1ad212a044fe4cd50b2c5f151a268c51f9aa310124caf653a9911da1896cc1"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\00\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "ff3e5e7caef3a0d7237ad9920e1898c372b010fc8008c236fbecfea1612da629"
+          },
+          "maxHeatmapAbs": 4.589557647705078e-06,
+          "reliablePoints": 16,
+          "maxReliablePointErrorPx": 0.0001100326917367056
+        },
+        {
+          "caseId": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "bbox": [
+            161.58,
+            444.3,
+            54.56,
+            56.17
+          ],
+          "expanded": [
+            152,
+            435,
+            224,
+            508
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\01\\input.f32",
+            "bytes": 147456,
+            "sha256": "ed92a103f0bd91fc85991b6202fcf2b651d3ed0fd518b0f982dadb0c58ebe6aa"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\01\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "b00ab0082895621aff7d61fee05fd11ebbedcfe56e9366bb87d34966212020e7"
+          },
+          "maxHeatmapAbs": 5.602836608886719e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 5.50163458683528e-05
+        },
+        {
+          "caseId": 2,
+          "imageId": 26690,
+          "annotationId": 561562,
+          "bbox": [
+            254.8,
+            497.63,
+            43.05,
+            41.81
+          ],
+          "expanded": [
+            247,
+            490,
+            303,
+            545
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\02\\input.f32",
+            "bytes": 147456,
+            "sha256": "2a1b4fba4017327d48fe4d9c713bdb4a8940111c3c6ba1409f008d30a78aa163"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\02\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "210974899621731aa0b24fd0c4aba23efecaccf6e3798ad5cebcfb74c4888985"
+          },
+          "maxHeatmapAbs": 6.094574928283691e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 3,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "bbox": [
+            327.02,
+            548.28,
+            46.14,
+            91.72
+          ],
+          "expanded": [
+            305,
+            534,
+            394,
+            639
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\03\\input.f32",
+            "bytes": 147456,
+            "sha256": "d1f7d075e08e695e5a0694f454c32b3a5a4e3806c38684581e9be57f3075f47f"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\03\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "acd9ce5127bc6e768cc0812c0925faf524755c0ef869864c522355edbbfeb141"
+          },
+          "maxHeatmapAbs": 3.5315752029418945e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 6.823938019806519e-05
+        },
+        {
+          "caseId": 4,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "bbox": [
+            367.66,
+            564.42,
+            42.75,
+            75.58
+          ],
+          "expanded": [
+            351,
+            552,
+            425,
+            639
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\04\\input.f32",
+            "bytes": 147456,
+            "sha256": "85a3c8ec482dc833a60479ba41438567e15931c26ab0fa8bca663f729d93579e"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\04\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "81145a4260a43f3fe88f178eb71cff9c309ecfc972a593063aeddfc892bda91f"
+          },
+          "maxHeatmapAbs": 2.5779008865356445e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 6.823938019806519e-05
+        },
+        {
+          "caseId": 5,
+          "imageId": 26690,
+          "annotationId": 1710149,
+          "bbox": [
+            82.81,
+            400.71,
+            33.11,
+            62.11
+          ],
+          "expanded": [
+            68,
+            390,
+            128,
+            471
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\05\\input.f32",
+            "bytes": 147456,
+            "sha256": "fcd31b6dcf4526043fd9bdc397d92df4eff2f522c6d2c444c9c0b4799812b972"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\05\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "e4a4fb80e34be842570ad5faba81cb1ebd17575f56329875b5d186f296e606fb"
+          },
+          "maxHeatmapAbs": 2.592802047729492e-06,
+          "reliablePoints": 8,
+          "maxReliablePointErrorPx": 3.1456798751605675e-05
+        },
+        {
+          "caseId": 6,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "bbox": [
+            217.22,
+            470.52,
+            33.53,
+            69.39
+          ],
+          "expanded": [
+            199,
+            459,
+            267,
+            549
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\06\\input.f32",
+            "bytes": 147456,
+            "sha256": "206b909e0f157f15fdf823513af71bf3d4a60a32c07ab8bea29a3d44bbc77d2d"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\06\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "b982358be545f49020c722c2fddc4c4ed79aa1ba6a8c0b523fb88ca2caf9b30e"
+          },
+          "maxHeatmapAbs": 1.2218952178955078e-06,
+          "reliablePoints": 10,
+          "maxReliablePointErrorPx": 6.103515625e-05
+        },
+        {
+          "caseId": 7,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "bbox": [
+            34.82,
+            297.33,
+            70.3,
+            152.22
+          ],
+          "expanded": [
+            0,
+            274,
+            143,
+            471
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\07\\input.f32",
+            "bytes": 147456,
+            "sha256": "b124d1ef1e09af540fe57b04eeef0a0a8faf6e4f16844778fe83c87758ceddbf"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\07\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "8d32ab27da33ef4c39343de831eb30c7ea69c4894426c426acca5fe41a0d783c"
+          },
+          "maxHeatmapAbs": 1.4901161193847656e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 3.075507265748456e-05
+        },
+        {
+          "caseId": 8,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "bbox": [
+            0.92,
+            346.71,
+            47.89,
+            74.27
+          ],
+          "expanded": [
+            0,
+            334,
+            60,
+            431
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\08\\input.f32",
+            "bytes": 147456,
+            "sha256": "9c642342545d8bf12323dd9982c0b537063eb622677eba8412c33b15ba93b0d9"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\08\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "55becae6e33a7f14ec44fe713d19e076a0fbaad235d4c840148ac0803971b1a5"
+          },
+          "maxHeatmapAbs": 1.3709068298339844e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 9,
+          "imageId": 26690,
+          "annotationId": 2029215,
+          "bbox": [
+            103.67,
+            433.31,
+            32.03,
+            39.41
+          ],
+          "expanded": [
+            98,
+            427,
+            139,
+            477
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\09\\input.f32",
+            "bytes": 147456,
+            "sha256": "4dc8bffa69f1e6cbc91bd56d335297c74d41860e35b3a6bde0ac1bedaf873865"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\09\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "2f9f568ddda5815c75c7058afb1ff25a08bc3feda8c98a9e1e1e1c320cf7cedb"
+          },
+          "maxHeatmapAbs": 5.424022674560547e-06,
+          "reliablePoints": 6,
+          "maxReliablePointErrorPx": 4.8851961764739826e-05
+        },
+        {
+          "caseId": 10,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "bbox": [
+            162.77,
+            38.39,
+            248.0,
+            383.96
+          ],
+          "expanded": [
+            98,
+            0,
+            473,
+            427
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\27186.rgba",
+            "width": 640,
+            "height": 428,
+            "bytes": 1095680,
+            "sha256": "2ce02c45993bad9d885b10837c1688ccbaa92b89b18d770e540b02185873038d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\10\\input.f32",
+            "bytes": 147456,
+            "sha256": "a7bab04e6ea6dff1f12cc721ce7df24e91af76475391f8ff4da8383333ce20c1"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\10\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "5d18cdf88cb745b2d653a4f24c735f6509404565c0f65450c400f57d57c71ab6"
+          },
+          "maxHeatmapAbs": 4.231929779052734e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 0.000152587890625
+        },
+        {
+          "caseId": 11,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "bbox": [
+            168.97,
+            38.31,
+            100.09,
+            181.89
+          ],
+          "expanded": [
+            129,
+            10,
+            307,
+            247
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\60823.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "2af77fa839e9c23ceca04859c4ff272f4fea0802dd7dba25b9855f3b4248a92d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\11\\input.f32",
+            "bytes": 147456,
+            "sha256": "df26fbdf8aa4261170768a33029dc864929a22338f64bd2031b5e4168ea11429"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\11\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "49046a39ade87e58781a868b9eb71d3dbe1497d7d205c67b5b61e215dc584af3"
+          },
+          "maxHeatmapAbs": 8.493661880493164e-07,
+          "reliablePoints": 15,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 12,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "bbox": [
+            38.31,
+            52.51,
+            89.6,
+            148.35
+          ],
+          "expanded": [
+            10,
+            29,
+            154,
+            222
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\60823.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "2af77fa839e9c23ceca04859c4ff272f4fea0802dd7dba25b9855f3b4248a92d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\12\\input.f32",
+            "bytes": 147456,
+            "sha256": "ce4534280499846b0caf174fd8f7427b9ab402b32c29297c77e23c08d69a4d31"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\12\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "2cc1b6aa9be349d7c511cefe760b177f343454468ee6d1468a76492f026e4aab"
+          },
+          "maxHeatmapAbs": 2.7641654014587402e-06,
+          "reliablePoints": 0,
+          "maxReliablePointErrorPx": 0.0
+        },
+        {
+          "caseId": 13,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "bbox": [
+            396.74,
+            110.18,
+            97.99,
+            213.92
+          ],
+          "expanded": [
+            340,
+            77,
+            549,
+            356
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\13\\input.f32",
+            "bytes": 147456,
+            "sha256": "8ae325e48142f852d3544799308cdcb878dd7684120e6fc5f230470779903902"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\13\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "16890784d5bd30e526f19b6c8fff01c04ae18d12823ab1794a2fa18be2ae4fb7"
+          },
+          "maxHeatmapAbs": 1.2814998626708984e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 14,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "bbox": [
+            537.64,
+            181.84,
+            37.57,
+            113.78
+          ],
+          "expanded": [
+            500,
+            163,
+            611,
+            312
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\14\\input.f32",
+            "bytes": 147456,
+            "sha256": "fcd22f27f91b118184e499b67fab380d7d02d2d5dde58c79916bb3a94f4e5073"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\14\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "acc9712ff77995b55e337220505d6d980f12762d192846375929ce9fe4b38bc8"
+          },
+          "maxHeatmapAbs": 1.3113021850585938e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 15,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "bbox": [
+            316.24,
+            173.0,
+            45.05,
+            128.74
+          ],
+          "expanded": [
+            276,
+            153,
+            400,
+            320
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\15\\input.f32",
+            "bytes": 147456,
+            "sha256": "d65a7a6c6f52baf7ed393f373cf1ae70a7f9871ff557f3f3e813585b9c957c7a"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\15\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "c56bdba64d34f4fc92658fe8a586340a2c81493eb7cd84626e4835927449909c"
+          },
+          "maxHeatmapAbs": 1.1622905731201172e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 16,
+          "imageId": 105264,
+          "annotationId": 230485,
+          "bbox": [
+            482.99,
+            214.53,
+            38.58,
+            65.82
+          ],
+          "expanded": [
+            469,
+            204,
+            533,
+            289
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\16\\input.f32",
+            "bytes": 147456,
+            "sha256": "528cf55c02ccb36d57ac2f6242663d78d2e92a31123dac6e226a9f7213a50fa0"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\16\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "52f56451b12f5deabce352e9535b2a43ead8d06e5ed40bc626c62eeb1f70a6f9"
+          },
+          "maxHeatmapAbs": 1.1175870895385742e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 17,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "bbox": [
+            15.43,
+            202.17,
+            46.51,
+            81.61
+          ],
+          "expanded": [
+            0,
+            189,
+            77,
+            295
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\17\\input.f32",
+            "bytes": 147456,
+            "sha256": "95a3782f9e1d8a7e2d6851803fc935ec36486e110a6c01a7d80be5714420445f"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\17\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "8d55aa0b2ff4d9dbb0e5b491f0b19c5f9eb39ffbdbc6796a7fe8e132e778b497"
+          },
+          "maxHeatmapAbs": 1.4603137969970703e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 1.7059845049516298e-05
+        },
+        {
+          "caseId": 18,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "bbox": [
+            40.84,
+            255.22,
+            45.44,
+            57.67
+          ],
+          "expanded": [
+            33,
+            246,
+            92,
+            320
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\18\\input.f32",
+            "bytes": 147456,
+            "sha256": "4b2d16c389965ff5c2e8bace732e2683a6f7b7ac0ddcd377c7939a47ed50a177"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\18\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "53eb91fcfcbd0c2d8858c3d61f61425afaadb2a192f0689623fe5e0824697a24"
+          },
+          "maxHeatmapAbs": 2.2426247596740723e-06,
+          "reliablePoints": 4,
+          "maxReliablePointErrorPx": 7.62939453125e-05
+        },
+        {
+          "caseId": 19,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "bbox": [
+            371.7,
+            207.65,
+            38.71,
+            144.31
+          ],
+          "expanded": [
+            320,
+            185,
+            460,
+            372
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\119516.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "2caa62e01dc8ac4956247293767d908423f12e816c963a95fa50e96e55c28ada"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\19\\input.f32",
+            "bytes": 147456,
+            "sha256": "dbc2eada16312d0b01fc33f5080af210d4a5e1e1e5c6bf59e99520db596dd7c9"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\19\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "2cfcac47bb9f460581c844014a0948e2a1b842fbed37dc2d95c77e841b1f2fe7"
+          },
+          "maxHeatmapAbs": 1.3113021850585938e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 4.57763671875e-05
+        },
+        {
+          "caseId": 20,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "bbox": [
+            247.13,
+            216.91,
+            61.11,
+            137.95
+          ],
+          "expanded": [
+            210,
+            195,
+            344,
+            374
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\129756.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "5fef2fa0c8c69da87226bec459fa1f634ffc00e30040e23461338d442d14307f"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\20\\input.f32",
+            "bytes": 147456,
+            "sha256": "690bd1ca2037922b6c8781d7eb9e7884d7d357a61d081f62d5be2dce1db80e78"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\20\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "8f166cf6e334a559613ae4cdbdcc0fad53656c087c39ada2bfa064ceb6eb444c"
+          },
+          "maxHeatmapAbs": 7.748603820800781e-07,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 21,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "bbox": [
+            148.73,
+            135.3,
+            237.01,
+            283.06
+          ],
+          "expanded": [
+            112,
+            92,
+            420,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\21\\input.f32",
+            "bytes": 147456,
+            "sha256": "f113418241a97194d6dfdecef9688521ae8f92b9cfd893254c68bff373eb76bd"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\21\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "768a9e9086f7bcdb0ca595ac5c8b3e8e6ad3af4945d2acbf5a6f0d39ab1b0e9c"
+          },
+          "maxHeatmapAbs": 3.904104232788086e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 0.0001954078470589593
+        },
+        {
+          "caseId": 22,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "bbox": [
+            385.09,
+            172.82,
+            254.91,
+            253.82
+          ],
+          "expanded": [
+            346,
+            133,
+            639,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\22\\input.f32",
+            "bytes": 147456,
+            "sha256": "0fe89df652c01b27acd619e43852deb2cc62080718452f8b04e39dce89328fcd"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\22\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "4ff2717d9121d82a57c8d8dd8e6b0eccf114d315593a124efcab5a7e5a162dad"
+          },
+          "maxHeatmapAbs": 4.1425228118896484e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 0.00033009808976203203
+        },
+        {
+          "caseId": 23,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "bbox": [
+            1.92,
+            144.89,
+            198.63,
+            276.35
+          ],
+          "expanded": [
+            0,
+            102,
+            235,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\23\\input.f32",
+            "bytes": 147456,
+            "sha256": "047003d21f2d90febe07877608c49574ec20682e71b0a043a19f0058fecf8cdf"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\23\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "6d35df419f102877b1ebc25eb6b7af19da8576f9879d4d326378dceb685e2300"
+          },
+          "maxHeatmapAbs": 5.230307579040527e-06,
+          "reliablePoints": 7,
+          "maxReliablePointErrorPx": 0.0003294803318567574
+        },
+        {
+          "caseId": 24,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "bbox": [
+            104.69,
+            161.88,
+            60.35,
+            151.06
+          ],
+          "expanded": [
+            60,
+            138,
+            208,
+            334
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\24\\input.f32",
+            "bytes": 147456,
+            "sha256": "66cc45e0986c62e0c475c8184deff39d1d85d26915eebb3d525e23e9f1a3c8e0"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\24\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "f2296312d7e1e4ad1d40726c204c2ff3266eda0cb45c49138360e345a84191e0"
+          },
+          "maxHeatmapAbs": 1.055002212524414e-05,
+          "reliablePoints": 7,
+          "maxReliablePointErrorPx": 0.0005196956335566938
+        },
+        {
+          "caseId": 25,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "bbox": [
+            361.22,
+            153.73,
+            69.53,
+            121.87
+          ],
+          "expanded": [
+            336,
+            134,
+            454,
+            293
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\25\\input.f32",
+            "bytes": 147456,
+            "sha256": "b70232d94344d2bf4c18ea274767c5ba0cfd6a38a5fc2b0def655b132dcca453"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\25\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "fd4df5e2656e3230f0bee9e58592dbfb7921a5e5fa401fdbf8b53623d68f3609"
+          },
+          "maxHeatmapAbs": 6.16908073425293e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 0.0001373291015625
+        },
+        {
+          "caseId": 26,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "bbox": [
+            154.55,
+            161.89,
+            60.71,
+            56.76
+          ],
+          "expanded": [
+            144,
+            152,
+            224,
+            226
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\26\\input.f32",
+            "bytes": 147456,
+            "sha256": "2fc878c94e23095d7f951c32e9ee01faa6b89f5021b63f2e6e01f3c285c217e0"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\26\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "2bdc8f1306215826d0e1cfcecafcc7e7b8287f73d83b9b36a37db4875c6c9a79"
+          },
+          "maxHeatmapAbs": 1.0207295417785645e-05,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 0.000152587890625
+        },
+        {
+          "caseId": 27,
+          "imageId": 203629,
+          "annotationId": 1284704,
+          "bbox": [
+            436.37,
+            158.97,
+            34.37,
+            55.54
+          ],
+          "expanded": [
+            425,
+            149,
+            480,
+            222
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\27\\input.f32",
+            "bytes": 147456,
+            "sha256": "17d8819f242ec550d0f8542f8c942c2133dd99b1b1bd189e414707de126624f4"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\27\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "9674e2711f5b3f4296f924865271e9527804116208ad2a95d08cf10c2b4f028a"
+          },
+          "maxHeatmapAbs": 5.543231964111328e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 3.4119690099032596e-05
+        },
+        {
+          "caseId": 28,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "bbox": [
+            418.41,
+            182.82,
+            51.3,
+            45.87
+          ],
+          "expanded": [
+            410,
+            175,
+            476,
+            234
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\28\\input.f32",
+            "bytes": 147456,
+            "sha256": "c2e48ad388cbaaf9f9798be1df99f9f06e1ce1efe0708109cb18a22100a3aa83"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\28\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "604b746c0b0dc81333ea63dbc6ef3bf0c80b160dfffa7dd4bbf61399fab698d5"
+          },
+          "maxHeatmapAbs": 3.378838300704956e-06,
+          "reliablePoints": 7,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 29,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "bbox": [
+            459.73,
+            156.95,
+            43.64,
+            59.96
+          ],
+          "expanded": [
+            451,
+            147,
+            510,
+            225
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\29\\input.f32",
+            "bytes": 147456,
+            "sha256": "c0f05ba78f2d91b2ac7b4fcc183c9e41517a7d51dc9d27e1bdfb1517433f0562"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\29\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "4a1f913386838daa92d5d9ed746dfb4fff60765bf0a293a3bbccbe23101ba694"
+          },
+          "maxHeatmapAbs": 6.496906280517578e-06,
+          "reliablePoints": 11,
+          "maxReliablePointErrorPx": 7.62939453125e-05
+        },
+        {
+          "caseId": 30,
+          "imageId": 203629,
+          "annotationId": 1299756,
+          "bbox": [
+            94.59,
+            154.52,
+            36.78,
+            71.46
+          ],
+          "expanded": [
+            77,
+            143,
+            147,
+            235
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\30\\input.f32",
+            "bytes": 147456,
+            "sha256": "846c6d6adb43e2a64616744c5ce34c6e532da98fcb506b324ce5fe017cb3d859"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\30\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "ccd14d2937b58165fcd8d75fe03ec19b72ad3641162531e930a28bc1fc230ceb"
+          },
+          "maxHeatmapAbs": 2.1010637283325195e-06,
+          "reliablePoints": 3,
+          "maxReliablePointErrorPx": 4.31583721365314e-05
+        },
+        {
+          "caseId": 31,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "bbox": [
+            86.06,
+            13.41,
+            446.71,
+            397.53
+          ],
+          "expanded": [
+            19,
+            0,
+            598,
+            469
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\212166.rgba",
+            "width": 612,
+            "height": 612,
+            "bytes": 1498176,
+            "sha256": "cd607e80c49d7efbb3d32c15b939a5c75cca2dfc9a064d6d815510a9bc1ac8a5"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\31\\input.f32",
+            "bytes": 147456,
+            "sha256": "7b6509befb92fa8a006e6dc44b108637fb3bb928976ea20b90b6c776ce6bd24c"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\96x128\\31\\paddle-heatmap.f32",
+            "bytes": 52224,
+            "sha256": "7b795e071792f7fbc2cb6476601663294e03b95246758dd68b1d360e7298a93b"
+          },
+          "maxHeatmapAbs": 4.112720489501953e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 0.00035589304752647877
+        }
+      ]
+    },
+    "tinypose-enhance-256x192": {
+      "summary": {
+        "cases": 32,
+        "allFinite": true,
+        "maxHeatmapAbs": 2.086162567138672e-05,
+        "maxReliablePointErrorPx": 0.0019631129689514637,
+        "passed": true
+      },
+      "cases": [
+        {
+          "caseId": 0,
+          "imageId": 26690,
+          "annotationId": 433108,
+          "bbox": [
+            244.53,
+            164.96,
+            138.58,
+            150.97
+          ],
+          "expanded": [
+            223,
+            141,
+            403,
+            337
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\00\\input.f32",
+            "bytes": 589824,
+            "sha256": "45a4c83ef08768167f537c9b9774f75c80d5e53c703d67097cf3f47c9d5a2c93"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\00\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "662e42a249672dd90d1896f501d31a85b8dcbc9d9053c5bfe3945d934b6f9e0b"
+          },
+          "maxHeatmapAbs": 3.159046173095703e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 0.0001100326917367056
+        },
+        {
+          "caseId": 1,
+          "imageId": 26690,
+          "annotationId": 557870,
+          "bbox": [
+            161.58,
+            444.3,
+            54.56,
+            56.17
+          ],
+          "expanded": [
+            152,
+            435,
+            224,
+            508
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\01\\input.f32",
+            "bytes": 589824,
+            "sha256": "2c4e686a3760be345d8d713a3f44de8093832303cab16ce8d8186d9dd5b6e658"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\01\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "cc0e3da759f17bd1df6f74c1f7e36d29462544c7bfdc8af272045cbda4cc5479"
+          },
+          "maxHeatmapAbs": 2.086162567138672e-05,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 0.00013647876039613038
+        },
+        {
+          "caseId": 2,
+          "imageId": 26690,
+          "annotationId": 561562,
+          "bbox": [
+            254.8,
+            497.63,
+            43.05,
+            41.81
+          ],
+          "expanded": [
+            247,
+            490,
+            303,
+            545
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\02\\input.f32",
+            "bytes": 589824,
+            "sha256": "35bc84c32e69c7360fc3d0c4e3470a10e183cd8d9983fecdabf7901ef414164c"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\02\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "0372760964b78723ec87239318ea944c08848158b2d8078fe2d999c13bf8ee7c"
+          },
+          "maxHeatmapAbs": 7.569789886474609e-06,
+          "reliablePoints": 7,
+          "maxReliablePointErrorPx": 9.1552734375e-05
+        },
+        {
+          "caseId": 3,
+          "imageId": 26690,
+          "annotationId": 567078,
+          "bbox": [
+            327.02,
+            548.28,
+            46.14,
+            91.72
+          ],
+          "expanded": [
+            305,
+            534,
+            394,
+            639
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\03\\input.f32",
+            "bytes": 589824,
+            "sha256": "48bd98a41b0c1c8644fe68e6a20fc2d57519a1a7de52a03588e471c4c71bca12"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\03\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "9d9e47250e22391a8e8dd24f6658198adc76aa75be9c40d31e8c475e22b9beb6"
+          },
+          "maxHeatmapAbs": 1.0222196578979492e-05,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 8.63167442730628e-05
+        },
+        {
+          "caseId": 4,
+          "imageId": 26690,
+          "annotationId": 567317,
+          "bbox": [
+            367.66,
+            564.42,
+            42.75,
+            75.58
+          ],
+          "expanded": [
+            351,
+            552,
+            425,
+            639
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\04\\input.f32",
+            "bytes": 589824,
+            "sha256": "974ce3db961364cd401dcdf8899d3e8131af40155019b69cb28e35aa61619692"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\04\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "dca8ce00e15e43e761bc7c44991480e435b8711493a877b3cf1c07139c22d31f"
+          },
+          "maxHeatmapAbs": 3.993511199951172e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 0.00027295752079226077
+        },
+        {
+          "caseId": 5,
+          "imageId": 26690,
+          "annotationId": 1710149,
+          "bbox": [
+            82.81,
+            400.71,
+            33.11,
+            62.11
+          ],
+          "expanded": [
+            68,
+            390,
+            128,
+            471
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\05\\input.f32",
+            "bytes": 589824,
+            "sha256": "c62306e3a1020c8d2f1fb98cec0e277610d828848c0dd0b7fb95e9e76dfdd13c"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\05\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "6a03f8665a5a724801f2cb9c6d140c9306e0a09313bb843a3285a6dbc341d587"
+          },
+          "maxHeatmapAbs": 1.039355993270874e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 3.1456798751605675e-05
+        },
+        {
+          "caseId": 6,
+          "imageId": 26690,
+          "annotationId": 1737185,
+          "bbox": [
+            217.22,
+            470.52,
+            33.53,
+            69.39
+          ],
+          "expanded": [
+            199,
+            459,
+            267,
+            549
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\06\\input.f32",
+            "bytes": 589824,
+            "sha256": "c1a20471f3b79024f72fd69c279f617cf9b2939f83741f9bb0f3c6627f064315"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\06\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "c068a42b7e14f6ad8205ac9c46291327d47b07202ce5c3220773525dbc773288"
+          },
+          "maxHeatmapAbs": 1.2218952178955078e-06,
+          "reliablePoints": 12,
+          "maxReliablePointErrorPx": 6.291359750321135e-05
+        },
+        {
+          "caseId": 7,
+          "imageId": 26690,
+          "annotationId": 1747398,
+          "bbox": [
+            34.82,
+            297.33,
+            70.3,
+            152.22
+          ],
+          "expanded": [
+            0,
+            274,
+            143,
+            471
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\07\\input.f32",
+            "bytes": 589824,
+            "sha256": "d53719aa164415ea08a987c334dd4af53fad02c2fd916b5373ef1df75741adfe"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\07\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "e2b5bcbb68146d96cbc74279d05181997b4f9a1ba5377b392949f79da2b047b1"
+          },
+          "maxHeatmapAbs": 8.344650268554688e-07,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 8,
+          "imageId": 26690,
+          "annotationId": 2018614,
+          "bbox": [
+            0.92,
+            346.71,
+            47.89,
+            74.27
+          ],
+          "expanded": [
+            0,
+            334,
+            60,
+            431
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\08\\input.f32",
+            "bytes": 589824,
+            "sha256": "3b67d162152a0497a34e3a9827726a01ae4f1830abeff28443552f7c34db25ef"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\08\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "e98a650791d22c26f14cb7713f478dba285308a1b1e5e932982306b22aa7b2a4"
+          },
+          "maxHeatmapAbs": 1.2516975402832031e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 7.62939453125e-06
+        },
+        {
+          "caseId": 9,
+          "imageId": 26690,
+          "annotationId": 2029215,
+          "bbox": [
+            103.67,
+            433.31,
+            32.03,
+            39.41
+          ],
+          "expanded": [
+            98,
+            427,
+            139,
+            477
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\26690.rgba",
+            "width": 427,
+            "height": 640,
+            "bytes": 1093120,
+            "sha256": "532e02bdaf4b85b04c6cf002fe269eee8e1a4f1a97bb7ebd1613bd0dc48bf34d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\09\\input.f32",
+            "bytes": 589824,
+            "sha256": "59ae395932fb3682e4499826acb9cb840835ba15a1296d6f2691e714f00243de"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\09\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "bcc494c903aa2c5183b8e6735bc94b8e4553b7ee705ff01a7e87ec1f4d97b74f"
+          },
+          "maxHeatmapAbs": 2.8014183044433594e-06,
+          "reliablePoints": 3,
+          "maxReliablePointErrorPx": 0.0
+        },
+        {
+          "caseId": 10,
+          "imageId": 27186,
+          "annotationId": 469199,
+          "bbox": [
+            162.77,
+            38.39,
+            248.0,
+            383.96
+          ],
+          "expanded": [
+            98,
+            0,
+            473,
+            427
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\27186.rgba",
+            "width": 640,
+            "height": 428,
+            "bytes": 1095680,
+            "sha256": "2ce02c45993bad9d885b10837c1688ccbaa92b89b18d770e540b02185873038d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\10\\input.f32",
+            "bytes": 589824,
+            "sha256": "e4609ec113149fda56e33b5ba46f105e255acd1373b636840bbb4e42b93939e6"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\10\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "b041ddceffecf8eff01538e92577be3bf8a0891b4d270270bbcf5c0a40212ab2"
+          },
+          "maxHeatmapAbs": 1.9058585166931152e-05,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 0.0019631129689514637
+        },
+        {
+          "caseId": 11,
+          "imageId": 60823,
+          "annotationId": 186814,
+          "bbox": [
+            168.97,
+            38.31,
+            100.09,
+            181.89
+          ],
+          "expanded": [
+            129,
+            10,
+            307,
+            247
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\60823.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "2af77fa839e9c23ceca04859c4ff272f4fea0802dd7dba25b9855f3b4248a92d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\11\\input.f32",
+            "bytes": 589824,
+            "sha256": "6fd9f183a6badd2007adb599b6f6f6751c9d72badcee8a02edfe038eb2b1be88"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\11\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "f16b6a4719d2a23eb90ee0b22efacd8819b0c2869408ea8c7bacbd2bb9a621fb"
+          },
+          "maxHeatmapAbs": 7.152557373046875e-07,
+          "reliablePoints": 16,
+          "maxReliablePointErrorPx": 2.15791860682657e-05
+        },
+        {
+          "caseId": 12,
+          "imageId": 60823,
+          "annotationId": 2004722,
+          "bbox": [
+            38.31,
+            52.51,
+            89.6,
+            148.35
+          ],
+          "expanded": [
+            10,
+            29,
+            154,
+            222
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\60823.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "2af77fa839e9c23ceca04859c4ff272f4fea0802dd7dba25b9855f3b4248a92d"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\12\\input.f32",
+            "bytes": 589824,
+            "sha256": "1908b5ca288773647b55b95986edafe1ea49c9f792b1519964ce944e44682da7"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\12\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "de271bc230d459ddffa5bc7e95f3b05665c14f390b65330db9f32c20cb5f6203"
+          },
+          "maxHeatmapAbs": 1.7881393432617188e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 3.890243169735186e-05
+        },
+        {
+          "caseId": 13,
+          "imageId": 105264,
+          "annotationId": 187569,
+          "bbox": [
+            396.74,
+            110.18,
+            97.99,
+            213.92
+          ],
+          "expanded": [
+            340,
+            77,
+            549,
+            356
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\13\\input.f32",
+            "bytes": 589824,
+            "sha256": "8ded9f845d5c6506ff387872304851da4c45357005b0899965302b12c8e4132b"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\13\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "5bc93ff9598d1835d383f3cd4038e9c84f275959a7debc57a29dc5cf4206b1e6"
+          },
+          "maxHeatmapAbs": 1.7583370208740234e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 4.31583721365314e-05
+        },
+        {
+          "caseId": 14,
+          "imageId": 105264,
+          "annotationId": 216588,
+          "bbox": [
+            537.64,
+            181.84,
+            37.57,
+            113.78
+          ],
+          "expanded": [
+            500,
+            163,
+            611,
+            312
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\14\\input.f32",
+            "bytes": 589824,
+            "sha256": "e37a50d5d2eb37be1e19b70b6fa2bebf169e445b06c42d89ed2e2dab001cd9ba"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\14\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "3ba33a4fa27e76baff365d7b9b03495c288be151743a2ab8fab44294a6697d34"
+          },
+          "maxHeatmapAbs": 8.940696716308594e-07,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 1.52587890625e-05
+        },
+        {
+          "caseId": 15,
+          "imageId": 105264,
+          "annotationId": 228229,
+          "bbox": [
+            316.24,
+            173.0,
+            45.05,
+            128.74
+          ],
+          "expanded": [
+            276,
+            153,
+            400,
+            320
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\15\\input.f32",
+            "bytes": 589824,
+            "sha256": "3c5176a266a40ad204fabd0984af21069023caf20f9c13071d91772bbddb4576"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\15\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "77084910a3e95b352cec5ec427488b222b8582f005aba0fdbbb40d039df2518c"
+          },
+          "maxHeatmapAbs": 1.6316771507263184e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 16,
+          "imageId": 105264,
+          "annotationId": 230485,
+          "bbox": [
+            482.99,
+            214.53,
+            38.58,
+            65.82
+          ],
+          "expanded": [
+            469,
+            204,
+            533,
+            289
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\16\\input.f32",
+            "bytes": 589824,
+            "sha256": "78ff32a596a672d24abf05260ca2a526c5ecacdf28baefd61245389c0fca1047"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\16\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "ec22d9c98897f26c7e8ff04384f3532c96e84f9c2759c3834275011348898ed7"
+          },
+          "maxHeatmapAbs": 1.7881393432617188e-06,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 0.0
+        },
+        {
+          "caseId": 17,
+          "imageId": 105264,
+          "annotationId": 238036,
+          "bbox": [
+            15.43,
+            202.17,
+            46.51,
+            81.61
+          ],
+          "expanded": [
+            0,
+            189,
+            77,
+            295
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\17\\input.f32",
+            "bytes": 589824,
+            "sha256": "0d538c9f96aa8f15e8095c9910e6d04aa12aa451f9aab29d21a754e21b1f421e"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\17\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "c1b6f27f28d0bd72e47bc57099e81c983d2b7ffc799217cb55fee7eb1c8aed49"
+          },
+          "maxHeatmapAbs": 8.642673492431641e-07,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 1.52587890625e-05
+        },
+        {
+          "caseId": 18,
+          "imageId": 105264,
+          "annotationId": 1233572,
+          "bbox": [
+            40.84,
+            255.22,
+            45.44,
+            57.67
+          ],
+          "expanded": [
+            33,
+            246,
+            92,
+            320
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\105264.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "c1484bd40befe366c144264048e50622dd297f429492b1ac5eae772a993b2e51"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\18\\input.f32",
+            "bytes": 589824,
+            "sha256": "820cf050ef7910bd5cee292d17df9d1ebedd3708568d8bea821f9ab28ff35ffa"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\18\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "9b8c695161fe64ada44359dda970205e6f0c3cc230c32825427781cabeeafe13"
+          },
+          "maxHeatmapAbs": 1.341104507446289e-06,
+          "reliablePoints": 5,
+          "maxReliablePointErrorPx": 7.62939453125e-06
+        },
+        {
+          "caseId": 19,
+          "imageId": 119516,
+          "annotationId": 187761,
+          "bbox": [
+            371.7,
+            207.65,
+            38.71,
+            144.31
+          ],
+          "expanded": [
+            320,
+            185,
+            460,
+            372
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\119516.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "2caa62e01dc8ac4956247293767d908423f12e816c963a95fa50e96e55c28ada"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\19\\input.f32",
+            "bytes": 589824,
+            "sha256": "05974735cc04063b83b1098b4840908033af9a7be28c08c7fb0c8a1f3a488448"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\19\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "22496589e8d1fca7636b0979a533ae17ab5f1a20a1094380bf19a3862c91680b"
+          },
+          "maxHeatmapAbs": 7.748603820800781e-07,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 20,
+          "imageId": 129756,
+          "annotationId": 193845,
+          "bbox": [
+            247.13,
+            216.91,
+            61.11,
+            137.95
+          ],
+          "expanded": [
+            210,
+            195,
+            344,
+            374
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\129756.rgba",
+            "width": 640,
+            "height": 480,
+            "bytes": 1228800,
+            "sha256": "5fef2fa0c8c69da87226bec459fa1f634ffc00e30040e23461338d442d14307f"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\20\\input.f32",
+            "bytes": 589824,
+            "sha256": "6860170cad221b8eb9468cca73613b5c9f671fdc765a75980ec4fe5aa4dfa47f"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\20\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "ec03c68379e8313808d8b17b111b97835833204148bfef9a9935377d270b8047"
+          },
+          "maxHeatmapAbs": 5.960464477539062e-07,
+          "reliablePoints": 17,
+          "maxReliablePointErrorPx": 1.52587890625e-05
+        },
+        {
+          "caseId": 21,
+          "imageId": 203629,
+          "annotationId": 1211192,
+          "bbox": [
+            148.73,
+            135.3,
+            237.01,
+            283.06
+          ],
+          "expanded": [
+            112,
+            92,
+            420,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\21\\input.f32",
+            "bytes": 589824,
+            "sha256": "0046f65724b9bda461e5349504ef88be000c6b452bd2c018f965e92751753cd8"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\21\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "215fd0acdf03e0bafa9e5b1e56f20351c38f1e7c5cbcd20f606c95653f2c804e"
+          },
+          "maxHeatmapAbs": 7.763504981994629e-06,
+          "reliablePoints": 14,
+          "maxReliablePointErrorPx": 0.000492081162519753
+        },
+        {
+          "caseId": 22,
+          "imageId": 203629,
+          "annotationId": 1245502,
+          "bbox": [
+            385.09,
+            172.82,
+            254.91,
+            253.82
+          ],
+          "expanded": [
+            346,
+            133,
+            639,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\22\\input.f32",
+            "bytes": 589824,
+            "sha256": "ef72b3efa73f64d7553d9d7c47b0e9d70a91bf32783fada9e38bc5d9fed70d66"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\22\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "bc46c2fb1fd4b7aac7deab4d9a1558cae8cec2d237be8af33c55cb18be3979ee"
+          },
+          "maxHeatmapAbs": 1.5158206224441528e-05,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 0.0008379840292036533
+        },
+        {
+          "caseId": 23,
+          "imageId": 203629,
+          "annotationId": 1247354,
+          "bbox": [
+            1.92,
+            144.89,
+            198.63,
+            276.35
+          ],
+          "expanded": [
+            0,
+            102,
+            235,
+            426
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\23\\input.f32",
+            "bytes": 589824,
+            "sha256": "f8c60092a64e80e8161b5e470168a216c863d543989c1cd7bba52dc5a17d2746"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\23\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "b35a4d7e0145b4bd819c431c184c3b794cc2252a55b323420c24ce4a672c4ca0"
+          },
+          "maxHeatmapAbs": 4.76837158203125e-06,
+          "reliablePoints": 8,
+          "maxReliablePointErrorPx": 0.0001726334885461256
+        },
+        {
+          "caseId": 24,
+          "imageId": 203629,
+          "annotationId": 1268849,
+          "bbox": [
+            104.69,
+            161.88,
+            60.35,
+            151.06
+          ],
+          "expanded": [
+            60,
+            138,
+            208,
+            334
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\24\\input.f32",
+            "bytes": 589824,
+            "sha256": "2d381b43ab847a05e2900ce9448f0dde1a26503ad63ac64001ededc1f22f388e"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\24\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "4406a99d33a37368394472b99805b2402be74b6a03697f464df55ccea37a5a49"
+          },
+          "maxHeatmapAbs": 3.7103891372680664e-06,
+          "reliablePoints": 6,
+          "maxReliablePointErrorPx": 7.62939453125e-05
+        },
+        {
+          "caseId": 25,
+          "imageId": 203629,
+          "annotationId": 1278966,
+          "bbox": [
+            361.22,
+            153.73,
+            69.53,
+            121.87
+          ],
+          "expanded": [
+            336,
+            134,
+            454,
+            293
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\25\\input.f32",
+            "bytes": 589824,
+            "sha256": "5a843d76618a63ac02dda1948d11cf7a0d2cbf0106b1661337c666194b9ca556"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\25\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "f1691729069cb20cafeb3d2420d9f2a1aa0a852edb473de877d73c8b798ca534"
+          },
+          "maxHeatmapAbs": 5.930662155151367e-06,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 8.217109279939905e-05
+        },
+        {
+          "caseId": 26,
+          "imageId": 203629,
+          "annotationId": 1284289,
+          "bbox": [
+            154.55,
+            161.89,
+            60.71,
+            56.76
+          ],
+          "expanded": [
+            144,
+            152,
+            224,
+            226
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\26\\input.f32",
+            "bytes": 589824,
+            "sha256": "3682a5df563261aa0ba887dc1e79da81d83cb7a222487fb8d249605a1c71634f"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\26\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "75ec72c4e1068686cd83c78d817d9651359bc7b14548ca4a5cea46977aac885c"
+          },
+          "maxHeatmapAbs": 2.771615982055664e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 6.823938019806519e-05
+        },
+        {
+          "caseId": 27,
+          "imageId": 203629,
+          "annotationId": 1284704,
+          "bbox": [
+            436.37,
+            158.97,
+            34.37,
+            55.54
+          ],
+          "expanded": [
+            425,
+            149,
+            480,
+            222
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\27\\input.f32",
+            "bytes": 589824,
+            "sha256": "96bc0b479a3423d090c26ca349e418636e751083e4fcfce8a64e5369a3dd4853"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\27\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "1c91e72ea244ec8a3d94835a214086768fef553932e5dfcf9f74c0297386a1eb"
+          },
+          "maxHeatmapAbs": 3.2335519790649414e-06,
+          "reliablePoints": 9,
+          "maxReliablePointErrorPx": 1.52587890625e-05
+        },
+        {
+          "caseId": 28,
+          "imageId": 203629,
+          "annotationId": 1295926,
+          "bbox": [
+            418.41,
+            182.82,
+            51.3,
+            45.87
+          ],
+          "expanded": [
+            410,
+            175,
+            476,
+            234
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\28\\input.f32",
+            "bytes": 589824,
+            "sha256": "103e187e13570ce4e2b80126a8d65d7ea3f3ba6baa2655d827196f1a2e3dd504"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\28\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "a745221b9ff0219b7bca8fa71065c029c90b0d3a5d6ad1e7d0c10f7f3dfa6677"
+          },
+          "maxHeatmapAbs": 4.783272743225098e-06,
+          "reliablePoints": 6,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 29,
+          "imageId": 203629,
+          "annotationId": 1298996,
+          "bbox": [
+            459.73,
+            156.95,
+            43.64,
+            59.96
+          ],
+          "expanded": [
+            451,
+            147,
+            510,
+            225
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\29\\input.f32",
+            "bytes": 589824,
+            "sha256": "2c7613177f103d86d75fa37b9d7a50328097dd78bd302f5f7df1852b916f3ab8"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\29\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "d9f3023295951a22d7169ae853804b5c66ea78d8ddc872aa6b917a5192113eb0"
+          },
+          "maxHeatmapAbs": 2.3245811462402344e-06,
+          "reliablePoints": 11,
+          "maxReliablePointErrorPx": 3.0517578125e-05
+        },
+        {
+          "caseId": 30,
+          "imageId": 203629,
+          "annotationId": 1299756,
+          "bbox": [
+            94.59,
+            154.52,
+            36.78,
+            71.46
+          ],
+          "expanded": [
+            77,
+            143,
+            147,
+            235
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\203629.rgba",
+            "width": 640,
+            "height": 427,
+            "bytes": 1093120,
+            "sha256": "5eb8ca7ea10a37123240e5d1b952a3c27c6a80f1431c93c77426d6bed9c147b3"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\30\\input.f32",
+            "bytes": 589824,
+            "sha256": "0f62a1f8dacf749a6eab27b1847c94c771494d9f351ea31923dccfa49f73b0da"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\30\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "1c0e44a258dcc15afc411d16fc5e086219cb1224868c1194c4144414ce5fa35f"
+          },
+          "maxHeatmapAbs": 2.8312206268310547e-06,
+          "reliablePoints": 2,
+          "maxReliablePointErrorPx": 3.4119690099032596e-05
+        },
+        {
+          "caseId": 31,
+          "imageId": 212166,
+          "annotationId": 444333,
+          "bbox": [
+            86.06,
+            13.41,
+            446.71,
+            397.53
+          ],
+          "expanded": [
+            19,
+            0,
+            598,
+            469
+          ],
+          "originalRgba": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\images\\212166.rgba",
+            "width": 612,
+            "height": 612,
+            "bytes": 1498176,
+            "sha256": "cd607e80c49d7efbb3d32c15b939a5c75cca2dfc9a064d6d815510a9bc1ac8a5"
+          },
+          "input": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\31\\input.f32",
+            "bytes": 589824,
+            "sha256": "3582915f0518e39d908ba108c6ebd28d8e8e27d1d1328ec5b3294f3083651cd3"
+          },
+          "paddleHeatmap": {
+            "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\.worktrees\\tinypose-variants\\.tmp\\variants\\fixtures\\192x256\\31\\paddle-heatmap.f32",
+            "bytes": 208896,
+            "sha256": "7553995e1ab1975f7dceb60c3cc10fbd81240847feb508c06e8c93d706a4edff"
+          },
+          "maxHeatmapAbs": 1.0535120964050293e-05,
+          "reliablePoints": 13,
+          "maxReliablePointErrorPx": 0.001329530030488968
+        }
+      ]
+    }
+  }
+}

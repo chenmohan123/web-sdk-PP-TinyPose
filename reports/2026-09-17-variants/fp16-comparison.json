@@ -1,0 +1,35 @@
+{
+  "thresholds": {
+    "maxMeanOksDrop": 0.005,
+    "maxPersonOksDrop": 0.05,
+    "reliablePointErrorP95Px": 1.0,
+    "maxReliablePointErrorPx": 5.0,
+    "minSizeReductionRatio": 0.3
+  },
+  "comparisons": {
+    "tinypose-enhance-128x96-fp16": {
+      "status": "evaluated",
+      "people": 110,
+      "meanOksDrop": -0.0014069244863471608,
+      "maxPersonOksDrop": 0.07222379174368343,
+      "reliablePoints": 1394,
+      "reliablePointErrorP95Px": 4.509932446479794,
+      "maxReliablePointErrorPx": 60.06492233276367,
+      "allFinite": true,
+      "sizeReductionRatio": 0.4552710361835336,
+      "passed": false
+    },
+    "tinypose-enhance-256x192-fp16": {
+      "status": "evaluated",
+      "people": 110,
+      "meanOksDrop": -0.0020230466466916175,
+      "maxPersonOksDrop": 0.05768729560028679,
+      "reliablePoints": 1460,
+      "reliablePointErrorP95Px": 1.287612748146056,
+      "maxReliablePointErrorPx": 73.89550018310547,
+      "allFinite": true,
+      "sizeReductionRatio": 0.4552693732349815,
+      "passed": false
+    }
+  }
+}
