@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-09-17T04:16:27Z",
+  "verificationMethod": "用户完成安全密钥验证后，读取 npm 网页成功提示与已保存的 Trusted Publisher 列表",
+  "pageUrl": "https://www.npmjs.com/package/web-sdk-pp-tinypose/access",
+  "package": "web-sdk-pp-tinypose",
+  "status": "configured",
+  "successMessage": "Successfully added new Trusted Publisher connection.",
+  "provider": "GitHub Actions",
+  "repositoryOwner": "chenmohan123",
+  "repositoryName": "web-sdk-PP-TinyPose",
+  "workflowFilename": "release.yml",
+  "environment": "npm",
+  "label": "TinyPose 正式发布",
+  "permissions": ["npm publish", "npm stage publish"],
+  "workflowEvidence": {
+    "path": ".github/workflows/release.yml",
+    "sourceCommit": "1d3ecb0ddc921d837723409327a31d665e694361",
+    "job": "npm",
+    "environment": "npm",
+    "idTokenPermission": "write",
+    "command": "npm publish package.tgz --provenance --access public"
+  },
+  "oidcPublicationVerified": false,
+  "initialVersion": "0.1.0",
+  "initialVersionHasProvenance": false,
+  "boundary": "仅验证远程绑定配置；实际 OIDC 新版本发布与 provenance 生成待下一次正式版本验证。本次没有重发首版或创建额外版本。"
+}

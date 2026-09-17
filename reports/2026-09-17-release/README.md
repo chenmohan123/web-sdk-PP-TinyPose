@@ -43,6 +43,8 @@ npm 新包需先创建才能配置 Trusted Publishing。用户已完成本机 np
 
 ## 后续自动发布配置
 
-npm 首版与 GitHub Release 已完成，但不据此推断 OIDC Trusted Publishing 已配置。CLI 首次在用户完成安全验证后返回 `POST /-/package/web-sdk-pp-tinypose/trust` 的 HTTP 400；后续诊断的读取请求成功且配置为空，保存请求要求独立验证。已告知用户可以在 npm 包 Settings 的 Trusted Publisher 中配置 GitHub Actions：用户 `chenmohan123`、仓库 `web-sdk-PP-TinyPose`、workflow `release.yml`、environment `npm`。网页配置尚待用户完成和确认；在配置完成前，后续版本的 OIDC 发布仍属于未验证能力。
+npm Trusted Publishing 已于 2026-09-17 在登录后的 npm Settings 页面配置成功，用户完成安全密钥验证后，页面显示 `Successfully added new Trusted Publisher connection.`。实际保存结果绑定 GitHub Actions 仓库 `chenmohan123/web-sdk-PP-TinyPose`、workflow `release.yml`、environment `npm`，标签为“TinyPose 正式发布”，权限包含 `npm publish` 与 npm 默认允许的 `npm stage publish`。记录见 `npm-trusted-publishing.json`；字段与现有 release workflow 的环境及发布命令一致。
+
+此前 CLI 的保存请求返回 HTTP 400，后续读取验证没有完成保存；这段失败历史不作为配置成功证据，也未确认其根因。此次成功由网页提示与保存后的配置列表证实。该回执证明绑定已建立，实际 OIDC 新版本发布及 provenance 生成仍待下一次正式版本验证；没有为验证绑定而重发 0.1.0 或创建额外版本，首版本机上传仍不含 provenance。
 
 兼容边界仍是本次 Windows/Chromium 桌面 CPU/GPU，不新增手机、WebNN/NPU、自动多人或视频能力承诺。
