@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-09-17T16:28:17.998Z",
+  "testedAt": "2026-09-17T16:53:26.293Z",
   "browser": "153.0.8010.12",
   "origin": "http://127.0.0.1:4188/",
   "results": [
@@ -18,8 +18,8 @@
     },
     {
       "file": "tests/demo-source-browser.mjs",
-      "bytes": 8639,
-      "sha256": "5892e7582e660f937d4912f614acd4928430e5b2c80b509e667cd5809ad9dcab"
+      "bytes": 8667,
+      "sha256": "bc4ef04b0b3f64bfa597b659b370267fd1e4b121a1ab445027d8d1edc7d1a8b0"
     },
     {
       "file": "models/model.json",
