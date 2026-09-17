@@ -29,7 +29,7 @@
 - [x] 审查产品变更并完成桌面真实双源 × CPU/GPU × main/worker 验收、标准 after。
 - [x] GitHub 最小 main 初始化后以 PR 合并，创建默认分支/标签 Rulesets、Pages 环境；CI 成功后部署。
 - [x] 完成 npm 首发认证、发布不可变 v0.1.0 与 GitHub Release；线上验收回读并归档远程治理。
-- [ ] 完成 npm Trusted Publishing 配置与回读；CLI 保存接口返回 400，网页配置待用户完成，首版发布不受影响。
+- [x] 完成 npm Trusted Publishing 配置与网页回读；绑定 GitHub 仓库、release.yml 和 npm 环境，允许 npm publish。实际 OIDC 新版本发布待下一次正式版本验证，首版仍不含 provenance。
 - [x] 门户第五 SDK PR #39 已合并部署；正式门户桌面与390px定向验收通过，报告实际完成和剩余配置阻塞。
 
 ### Task 1: 正式双源 Demo 与发布包
