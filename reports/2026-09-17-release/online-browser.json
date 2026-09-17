@@ -1,0 +1,4084 @@
+{
+  "schemaVersion": 1,
+  "version": "0.1.0",
+  "testedAt": "2026-09-17T03:40:49.812Z",
+  "sourceCommit": "5033f05818157d086dcfe2523082a9d939b4ac04",
+  "origin": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
+  "model": {
+    "id": "tinypose-enhance-256x192",
+    "version": "0.1.0",
+    "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+    "bytes": 5685847,
+    "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+    "defaultSource": "modelscope",
+    "sources": [
+      {
+        "kind": "modelscope",
+        "repository": "chenmohan/web-sdk-pp-tinypose",
+        "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+        "path": "tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+        "downloadUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+        "bytes": 5685847,
+        "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+      },
+      {
+        "kind": "huggingface",
+        "repository": "chenmohan/web-sdk-pp-tinypose",
+        "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+        "path": "tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+        "downloadUrl": "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx",
+        "bytes": 5685847,
+        "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "file": "demo-dist/assets/index-BiVoZHR3.js",
+      "bytes": 259609,
+      "sha256": "ca8cb2ac3ae57ca3fc9c4719d1b55c276df964494c02e78c5f3e73bcf6198b42"
+    },
+    {
+      "file": "demo-dist/assets/index-LplzTzkX.css",
+      "bytes": 11621,
+      "sha256": "ea2fd965a6f612308387de0718f38c74d4a6e77ecba83822102b44c29dcf6d7d"
+    },
+    {
+      "file": "demo-dist/examples/person.jpg",
+      "bytes": 43079,
+      "sha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6"
+    },
+    {
+      "file": "demo-dist/examples/vanilla.html",
+      "bytes": 1248,
+      "sha256": "bc2e3ffb054c7ebc8a2f582602a0bc4c7f23642df70cb2ad8b8869e86c54ebbe"
+    },
+    {
+      "file": "demo-dist/index.html",
+      "bytes": 456,
+      "sha256": "1cbe5da90d0d9f213fa46111c592adb47bf240b82a8e5f8299ff40d3487ae979"
+    },
+    {
+      "file": "demo-dist/models/model.json",
+      "bytes": 1410,
+      "sha256": "2cf767a27946bb9947f10fcd043939ac72e3407b3a709ade3677772d06965728"
+    },
+    {
+      "file": "demo-dist/sdk/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73"
+    },
+    {
+      "file": "demo-dist/sdk/engine.d.ts",
+      "bytes": 568,
+      "sha256": "2d664f935b6e69ec04677f48d36f9c47e183e1b65f59c81ae9e3b109f6ae0fff"
+    },
+    {
+      "file": "demo-dist/sdk/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0"
+    },
+    {
+      "file": "demo-dist/sdk/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330"
+    },
+    {
+      "file": "demo-dist/sdk/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d"
+    },
+    {
+      "file": "demo-dist/sdk/index.js",
+      "bytes": 25631,
+      "sha256": "a1cc6c0a71ab70d2d0fd8136bb401336a8b1aa04779bb35c891b1d14f447be58"
+    },
+    {
+      "file": "demo-dist/sdk/index.js.map",
+      "bytes": 50912,
+      "sha256": "dfb1d97f7afe23e9ce1130dfba353ad8d0a152b5d1f3d6c4fbe0e1dc2ac6ace8"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js",
+      "bytes": 13850,
+      "sha256": "e31d0775eff54bc8b895502ab5c00ed8ea627983ffeef08799d62464fd7f0f7f"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js.map",
+      "bytes": 29543,
+      "sha256": "2d28e88d1469aca1681a52489b6e44f429ca0a81ff3e64e3b5fbe13b8568f8a6"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a"
+    },
+    {
+      "file": "demo-dist/sdk/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907"
+    },
+    {
+      "file": "demo-dist/sdk/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53"
+    },
+    {
+      "file": "demo-dist/sdk/pose.d.ts",
+      "bytes": 891,
+      "sha256": "32c8758f92ec9292c21a36302278849f2d61d58ab8ffe46b9117a4627ffc15f5"
+    },
+    {
+      "file": "demo-dist/sdk/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2"
+    },
+    {
+      "file": "demo-dist/sdk/types.d.ts",
+      "bytes": 2325,
+      "sha256": "ee9f7ca24785720e6178a1e05d5bcfbd08feeae1f686dca2870b5a340e64048c"
+    },
+    {
+      "file": "dist/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73"
+    },
+    {
+      "file": "dist/engine.d.ts",
+      "bytes": 568,
+      "sha256": "2d664f935b6e69ec04677f48d36f9c47e183e1b65f59c81ae9e3b109f6ae0fff"
+    },
+    {
+      "file": "dist/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0"
+    },
+    {
+      "file": "dist/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330"
+    },
+    {
+      "file": "dist/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 25631,
+      "sha256": "a1cc6c0a71ab70d2d0fd8136bb401336a8b1aa04779bb35c891b1d14f447be58"
+    },
+    {
+      "file": "dist/index.js.map",
+      "bytes": 50912,
+      "sha256": "dfb1d97f7afe23e9ce1130dfba353ad8d0a152b5d1f3d6c4fbe0e1dc2ac6ace8"
+    },
+    {
+      "file": "dist/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
+    },
+    {
+      "file": "dist/inference.worker.js",
+      "bytes": 13850,
+      "sha256": "e31d0775eff54bc8b895502ab5c00ed8ea627983ffeef08799d62464fd7f0f7f"
+    },
+    {
+      "file": "dist/inference.worker.js.map",
+      "bytes": 29543,
+      "sha256": "2d28e88d1469aca1681a52489b6e44f429ca0a81ff3e64e3b5fbe13b8568f8a6"
+    },
+    {
+      "file": "dist/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655"
+    },
+    {
+      "file": "dist/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a"
+    },
+    {
+      "file": "dist/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907"
+    },
+    {
+      "file": "dist/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53"
+    },
+    {
+      "file": "dist/pose.d.ts",
+      "bytes": 891,
+      "sha256": "32c8758f92ec9292c21a36302278849f2d61d58ab8ffe46b9117a4627ffc15f5"
+    },
+    {
+      "file": "dist/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2"
+    },
+    {
+      "file": "dist/types.d.ts",
+      "bytes": 2325,
+      "sha256": "ee9f7ca24785720e6178a1e05d5bcfbd08feeae1f686dca2870b5a340e64048c"
+    }
+  ],
+  "servedAssets": [
+    {
+      "file": "demo-dist/assets/index-BiVoZHR3.js",
+      "bytes": 259609,
+      "sha256": "ca8cb2ac3ae57ca3fc9c4719d1b55c276df964494c02e78c5f3e73bcf6198b42",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/assets/index-BiVoZHR3.js"
+    },
+    {
+      "file": "demo-dist/assets/index-LplzTzkX.css",
+      "bytes": 11621,
+      "sha256": "ea2fd965a6f612308387de0718f38c74d4a6e77ecba83822102b44c29dcf6d7d",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/assets/index-LplzTzkX.css"
+    },
+    {
+      "file": "demo-dist/examples/person.jpg",
+      "bytes": 43079,
+      "sha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/examples/person.jpg"
+    },
+    {
+      "file": "demo-dist/examples/vanilla.html",
+      "bytes": 1248,
+      "sha256": "bc2e3ffb054c7ebc8a2f582602a0bc4c7f23642df70cb2ad8b8869e86c54ebbe",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/examples/vanilla.html"
+    },
+    {
+      "file": "demo-dist/index.html",
+      "bytes": 456,
+      "sha256": "1cbe5da90d0d9f213fa46111c592adb47bf240b82a8e5f8299ff40d3487ae979",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/index.html"
+    },
+    {
+      "file": "demo-dist/models/model.json",
+      "bytes": 1410,
+      "sha256": "2cf767a27946bb9947f10fcd043939ac72e3407b3a709ade3677772d06965728",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/models/model.json"
+    },
+    {
+      "file": "demo-dist/sdk/cache.d.ts",
+      "bytes": 607,
+      "sha256": "18fbb9141d1ac8bc34443ae5e82169ae62283e9be8875ba6e4b9e23a26983a73",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/cache.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/engine.d.ts",
+      "bytes": 568,
+      "sha256": "2d664f935b6e69ec04677f48d36f9c47e183e1b65f59c81ae9e3b109f6ae0fff",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/engine.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/errors.d.ts",
+      "bytes": 396,
+      "sha256": "4fc437ee08d0daf0073a8920dcf57361f1d8f8ff6dc21090c154afeb7c5bdfd0",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/errors.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/image.d.ts",
+      "bytes": 148,
+      "sha256": "9d27b396d5c2d3c752937f01a33f94c16c5051197cb9da836bc31faefc01b330",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/image.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/index.d.ts",
+      "bytes": 267,
+      "sha256": "3f382c33d497ce9a3f8ef5238e4ed912367da8c9eca7c4542d13d97a63b19a0d",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/index.js",
+      "bytes": 25631,
+      "sha256": "a1cc6c0a71ab70d2d0fd8136bb401336a8b1aa04779bb35c891b1d14f447be58",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.js"
+    },
+    {
+      "file": "demo-dist/sdk/index.js.map",
+      "bytes": 50912,
+      "sha256": "dfb1d97f7afe23e9ce1130dfba353ad8d0a152b5d1f3d6c4fbe0e1dc2ac6ace8",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/index.js.map"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.d.ts",
+      "bytes": 11,
+      "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js",
+      "bytes": 13850,
+      "sha256": "e31d0775eff54bc8b895502ab5c00ed8ea627983ffeef08799d62464fd7f0f7f",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.js"
+    },
+    {
+      "file": "demo-dist/sdk/inference.worker.js.map",
+      "bytes": 29543,
+      "sha256": "2d28e88d1469aca1681a52489b6e44f429ca0a81ff3e64e3b5fbe13b8568f8a6",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/inference.worker.js.map"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.mjs",
+      "bytes": 47507,
+      "sha256": "7236653b8565da4046e459cd0e274123419a1d9f1f8f18fd36c28058346ca655",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort-wasm-simd-threaded.asyncify.mjs"
+    },
+    {
+      "file": "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.wasm",
+      "bytes": 24254953,
+      "sha256": "7e83cd6cee77e478bc96a7e91b198144fb5e4126287daf1f9b54bb195ebcd55a",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort-wasm-simd-threaded.asyncify.wasm"
+    },
+    {
+      "file": "demo-dist/sdk/ort.d.ts",
+      "bytes": 219,
+      "sha256": "ac4a0a2bb6021c858509894a705e25443a7938dbcf1e408aabf750a0da9f3907",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/ort.webgpu.bundle.min.mjs",
+      "bytes": 113035,
+      "sha256": "3a18c7f261e05d44a15b2eef18a28e5f53c044d5d140bcea6066baf1f09c8b53",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/ort.webgpu.bundle.min.mjs"
+    },
+    {
+      "file": "demo-dist/sdk/pose.d.ts",
+      "bytes": 891,
+      "sha256": "32c8758f92ec9292c21a36302278849f2d61d58ab8ffe46b9117a4627ffc15f5",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/pose.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/runtime.d.ts",
+      "bytes": 134,
+      "sha256": "0e09b2695568ae8d72b99c9cc00ef3aa33e0a04aeb3fc8b0dae1fad3cec4aae2",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/runtime.d.ts"
+    },
+    {
+      "file": "demo-dist/sdk/types.d.ts",
+      "bytes": 2325,
+      "sha256": "ee9f7ca24785720e6178a1e05d5bcfbd08feeae1f686dca2870b5a340e64048c",
+      "url": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/sdk/types.d.ts"
+    }
+  ],
+  "browserAssetRequests": [
+    "demo-dist/assets/index-BiVoZHR3.js",
+    "demo-dist/assets/index-LplzTzkX.css",
+    "demo-dist/examples/person.jpg",
+    "demo-dist/index.html",
+    "demo-dist/sdk/index.js",
+    "demo-dist/sdk/inference.worker.js",
+    "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.mjs",
+    "demo-dist/sdk/ort-wasm-simd-threaded.asyncify.wasm",
+    "demo-dist/sdk/ort.webgpu.bundle.min.mjs"
+  ],
+  "results": [
+    {
+      "source": "modelscope",
+      "backend": "wasm",
+      "executionMode": "main",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "wasm",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+      "requests": [
+        "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 21.69999998807907,
+          "inferenceMs": 136.90000000596046,
+          "postprocessMs": 26.19999998807907,
+          "totalMs": 257.59999999403954
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 13.5,
+          "inferenceMs": 76.2999999821186,
+          "postprocessMs": 13.700000017881393,
+          "totalMs": 110.30000001192093
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 3034.5999999940395,
+        "modelCacheReadMs": 1,
+        "integrityMs": 24.299999982118607,
+        "sessionMs": 3501.0999999940395
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "modelscope",
+      "backend": "wasm",
+      "executionMode": "worker",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "wasm",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+      "requests": [
+        "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 10.700000017881393,
+          "inferenceMs": 96.30000001192093,
+          "postprocessMs": 17,
+          "totalMs": 131.2999999821186
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 5.9000000059604645,
+          "inferenceMs": 58.10000002384186,
+          "postprocessMs": 10.699999988079071,
+          "totalMs": 81
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 576.4000000059605,
+        "modelCacheReadMs": 0.5,
+        "integrityMs": 15.900000005960464,
+        "sessionMs": 3013.300000011921
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "modelscope",
+      "backend": "webgpu",
+      "executionMode": "main",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "webgpu",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+      "requests": [
+        "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0.000021579186437577746,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 10,
+          "inferenceMs": 927,
+          "postprocessMs": 12.799999982118607,
+          "totalMs": 956.8999999761581
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 10.5,
+          "inferenceMs": 54.099999994039536,
+          "postprocessMs": 35.400000005960464,
+          "totalMs": 104.30000001192093
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 640.0999999940395,
+        "modelCacheReadMs": 0.4000000059604645,
+        "integrityMs": 15.899999976158142,
+        "sessionMs": 2710.100000023842
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": {
+        "vendor": "nvidia",
+        "architecture": "blackwell",
+        "device": "",
+        "description": ""
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "modelscope",
+      "backend": "webgpu",
+      "executionMode": "worker",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "webgpu",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "68e7b987b5daf36080fb16ed90bf67b64d722b20",
+      "requests": [
+        "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0.000021579186437577746,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 12.599999994039536,
+          "inferenceMs": 639.5,
+          "postprocessMs": 15.5,
+          "totalMs": 675.6999999880791
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 9.099999994039536,
+          "inferenceMs": 41.69999998807907,
+          "postprocessMs": 23.400000005960464,
+          "totalMs": 79.40000000596046
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 637.9000000059605,
+        "modelCacheReadMs": 0.5999999940395355,
+        "integrityMs": 19.80000001192093,
+        "sessionMs": 2819.9000000059605
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": {
+        "vendor": "nvidia",
+        "architecture": "blackwell",
+        "device": "",
+        "description": ""
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "huggingface",
+      "backend": "wasm",
+      "executionMode": "main",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "wasm",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+      "requests": [
+        "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 10.700000017881393,
+          "inferenceMs": 112.5,
+          "postprocessMs": 19.200000017881393,
+          "totalMs": 149.7000000178814
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 14.100000023841858,
+          "inferenceMs": 65.89999997615814,
+          "postprocessMs": 9.900000005960464,
+          "totalMs": 100.5
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 1809.0999999940395,
+        "modelCacheReadMs": 0.30000001192092896,
+        "integrityMs": 16.30000001192093,
+        "sessionMs": 3037.699999988079
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "huggingface",
+      "backend": "wasm",
+      "executionMode": "worker",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "wasm",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+      "requests": [
+        "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 9.900000005960464,
+          "inferenceMs": 126.5,
+          "postprocessMs": 19.69999998807907,
+          "totalMs": 164.19999998807907
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13878631591797,
+            "score": 0.9862793684005737
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.597591400146484,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51756286621094,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.908573150634766,
+            "score": 0.8358896374702454
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.74697875976562,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.939648449420929
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.749755859375,
+            "y": 96.96113586425781,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831844329834
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.93480384349823
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872060775757
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875899314880371
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.943697988986969
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705538511276245
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.8250604867935181
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.9331785440444946
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.41964721679688,
+            "y": 356.5565185546875,
+            "score": 0.8802366256713867
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 7,
+          "inferenceMs": 62,
+          "postprocessMs": 10.099999994039536,
+          "totalMs": 86.40000000596046
+        },
+        "runtime": {
+          "requestedBackend": "wasm",
+          "actualBackend": "wasm",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 1588.0999999940395,
+        "modelCacheReadMs": 0.7999999821186066,
+        "integrityMs": 16.400000005960464,
+        "sessionMs": 2771.7000000178814
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": null,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "huggingface",
+      "backend": "webgpu",
+      "executionMode": "main",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "webgpu",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+      "requests": [
+        "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0.000021579186437577746,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 15.200000017881393,
+          "inferenceMs": 886.7000000178814,
+          "postprocessMs": 14.400000005960464,
+          "totalMs": 925.8000000119209
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 10.400000005960464,
+          "inferenceMs": 49.79999998211861,
+          "postprocessMs": 14.300000011920929,
+          "totalMs": 79.5
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "main"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 1694.199999988079,
+        "modelCacheReadMs": 0.5,
+        "integrityMs": 15.599999994039536,
+        "sessionMs": 2967.4000000059605
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": {
+        "vendor": "nvidia",
+        "architecture": "blackwell",
+        "device": "",
+        "description": ""
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    },
+    {
+      "source": "huggingface",
+      "backend": "webgpu",
+      "executionMode": "worker",
+      "status": "passed",
+      "keypoints": 17,
+      "actualBackend": "webgpu",
+      "modelSha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9",
+      "revision": "8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158",
+      "requests": [
+        "https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx"
+      ],
+      "requestFailures": [],
+      "assetErrors": [],
+      "maxReliableErrorPx": 0.000021579186437577746,
+      "result": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 15.199999988079071,
+          "inferenceMs": 653.7000000178814,
+          "postprocessMs": 14.399999976158142,
+          "totalMs": 691.6999999880791
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "warm": {
+        "keypoints": [
+          {
+            "id": 0,
+            "name": "nose",
+            "x": 187.88189697265625,
+            "y": 55.13877868652344,
+            "score": 0.9862796068191528
+          },
+          {
+            "id": 1,
+            "name": "left_eye",
+            "x": 191.92127990722656,
+            "y": 47.59758377075195,
+            "score": 0.9380912184715271
+          },
+          {
+            "id": 2,
+            "name": "right_eye",
+            "x": 179.51754760742188,
+            "y": 49.069942474365234,
+            "score": 0.9245026707649231
+          },
+          {
+            "id": 3,
+            "name": "left_ear",
+            "x": 197.46470642089844,
+            "y": 51.9085693359375,
+            "score": 0.8358898162841797
+          },
+          {
+            "id": 4,
+            "name": "right_ear",
+            "x": 165.7469940185547,
+            "y": 53.7300910949707,
+            "score": 0.9891709089279175
+          },
+          {
+            "id": 5,
+            "name": "left_shoulder",
+            "x": 217.32154846191406,
+            "y": 94.83830261230469,
+            "score": 0.9396483898162842
+          },
+          {
+            "id": 6,
+            "name": "right_shoulder",
+            "x": 150.74977111816406,
+            "y": 96.96112060546875,
+            "score": 0.9666701555252075
+          },
+          {
+            "id": 7,
+            "name": "left_elbow",
+            "x": 230.9854278564453,
+            "y": 151.50149536132812,
+            "score": 0.9898831248283386
+          },
+          {
+            "id": 8,
+            "name": "right_elbow",
+            "x": 137.43788146972656,
+            "y": 149.2935028076172,
+            "score": 0.8996551632881165
+          },
+          {
+            "id": 9,
+            "name": "left_wrist",
+            "x": 244.4467315673828,
+            "y": 202.4674530029297,
+            "score": 0.9348041415214539
+          },
+          {
+            "id": 10,
+            "name": "right_wrist",
+            "x": 119.09892272949219,
+            "y": 189.8057861328125,
+            "score": 0.9228872656822205
+          },
+          {
+            "id": 11,
+            "name": "left_hip",
+            "x": 201.4943084716797,
+            "y": 202.8945770263672,
+            "score": 0.8875903487205505
+          },
+          {
+            "id": 12,
+            "name": "right_hip",
+            "x": 171.34329223632812,
+            "y": 204.74359130859375,
+            "score": 0.9436984062194824
+          },
+          {
+            "id": 13,
+            "name": "left_knee",
+            "x": 182.92662048339844,
+            "y": 277.8072509765625,
+            "score": 0.8705537915229797
+          },
+          {
+            "id": 14,
+            "name": "right_knee",
+            "x": 187.16294860839844,
+            "y": 279.1668701171875,
+            "score": 0.825060248374939
+          },
+          {
+            "id": 15,
+            "name": "left_ankle",
+            "x": 172.47280883789062,
+            "y": 361.0332946777344,
+            "score": 0.933178186416626
+          },
+          {
+            "id": 16,
+            "name": "right_ankle",
+            "x": 201.4196319580078,
+            "y": 356.5565185546875,
+            "score": 0.8802363872528076
+          }
+        ],
+        "crop": {
+          "x": 0,
+          "y": 0,
+          "width": 359,
+          "height": 423
+        },
+        "image": {
+          "width": 359,
+          "height": 423
+        },
+        "timings": {
+          "preprocessMs": 8.700000017881393,
+          "inferenceMs": 42.80000001192093,
+          "postprocessMs": 23.5,
+          "totalMs": 81
+        },
+        "runtime": {
+          "requestedBackend": "webgpu",
+          "actualBackend": "webgpu",
+          "executionMode": "worker"
+        },
+        "model": {
+          "id": "tinypose-enhance-256x192",
+          "version": "0.1.0",
+          "sha256": "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+        }
+      },
+      "loadTimings": {
+        "modelDownloadMs": 1920.2000000178814,
+        "modelCacheReadMs": 0.5,
+        "integrityMs": 15.699999988079071,
+        "sessionMs": 2796.800000011921
+      },
+      "progress": [
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "downloading",
+        "integrity",
+        "loading",
+        "ready"
+      ],
+      "imageSha256": "68bbb631ebb95e3c9ff5c82bcf8baf445d938771501014440541bf4dbc71c1b6",
+      "gpu": {
+        "vendor": "nvidia",
+        "architecture": "blackwell",
+        "device": "",
+        "description": ""
+      },
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+      "secureContext": true
+    }
+  ],
+  "distributionVerifiedAt": "2026-09-17T02:47:41.592181+00:00",
+  "browser": "153.0.8010.12",
+  "os": {
+    "platform": "win32",
+    "release": "10.0.26200"
+  },
+  "scope": "桌面双源冷启动与实际公开 SDK 图片推理；非全量 AP，不新增手机或 NPU 兼容承诺"
+}

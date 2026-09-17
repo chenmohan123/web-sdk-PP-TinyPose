@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-09-17T03:52:15.105844+00:00",
+  "registryUrl": "https://registry.npmjs.org/web-sdk-pp-tinypose/0.1.0",
+  "name": "web-sdk-pp-tinypose",
+  "version": "0.1.0",
+  "dist": {
+    "shasum": "884a494a318784dc5246ad05d8f1ec9fad00a57a",
+    "tarball": "https://registry.npmjs.org/web-sdk-pp-tinypose/-/web-sdk-pp-tinypose-0.1.0.tgz",
+    "fileCount": 22,
+    "integrity": "sha512-uRdICzzeDSDQzkDfbQ/0pe9ot/NxdCNUBLnh9Zw/CizUSgFOYw0VGQ1acWZfYGr/8Gq7l8iyQ2PGBEvRpOm0Ug==",
+    "signatures": [
+      {
+        "sig": "MEUCIQDGqLfFSaQ6mstZJrdasBgWJXCpN3WNTmz2RZ40gVBRMQIgW/M1NL53Mg6kp0Sui8aG4EpZmnLEknv81tSUU6l5geQ=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 24565633
+  },
+  "tarballBytes": 6064996,
+  "tarballSha256": "6671506a1fa907e57c3c013cff0c164a6f20142231980f2a8d7363def7afe148",
+  "ciRun": 35178746680,
+  "ciSourceCommit": "459a8396bda3e09aa1e11dde8147690781e7fe14",
+  "ciArtifactIdentical": true,
+  "fileCount": 22,
+  "containsOnnx": false,
+  "publicationMode": "首次本机上传已验收的 Linux CI 产物；不含 provenance"
+}
