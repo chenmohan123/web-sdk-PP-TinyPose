@@ -59,3 +59,20 @@ it("Worker 初始化脚本失败会拒绝在途请求", async () => {
   await rejected;
   await runner.dispose();
 });
+it("Worker load 透传已验证的输入规格", async () => {
+  vi.stubGlobal("Worker", TestWorker);
+  const runner = createRunner({
+    backend: "wasm",
+    executionMode: "worker",
+    runtimeBaseUrl: "https://example.com/sdk/",
+    inputSize: { width: 96, height: 128 },
+  });
+  const loading = runner.load(new Uint8Array([1]));
+  expect(workers[0].messages[0].options.inputSize).toEqual({
+    width: 96,
+    height: 128,
+  });
+  workers[0].reply();
+  await loading;
+  await runner.dispose();
+});

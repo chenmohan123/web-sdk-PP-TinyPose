@@ -3,7 +3,7 @@
  * Copyright (c) 2021 PaddlePaddle Authors. Apache-2.0。
  * 原实现及上游 MMPose/DARK 归因见仓库 NOTICE。
  */
-import type { Box, PixelImage, Keypoint } from "./types";
+import type { Box, PixelImage, Keypoint, PoseInputSize } from "./types";
 import { TinyPoseError } from "./errors";
 export const COCO_KEYPOINT_NAMES = [
   "nose",
@@ -73,6 +73,7 @@ export function validatePixels(image: PixelImage): void {
 export function preprocessPose(
   image: PixelImage,
   region?: Box,
+  inputSize: PoseInputSize = { width: 192, height: 256 },
 ): { data: Float32Array; crop: Box } {
   validatePixels(image);
   let crop: Box = { x: 0, y: 0, width: image.width, height: image.height };
@@ -104,20 +105,22 @@ export function preprocessPose(
     )
       throw new TinyPoseError("INVALID_INPUT", "人体框与图像没有有效裁剪交集");
   }
-  const data = new Float32Array(3 * 256 * 192),
+  const { width: inputWidth, height: inputHeight } = inputSize,
+    planeSize = inputWidth * inputHeight,
+    data = new Float32Array(3 * planeSize),
     means = [0.485, 0.456, 0.406].map(f),
     std = [0.229, 0.224, 0.225].map(f);
-  const factor = crop.width / 192,
-    shiftY = crop.height / 2 - factor * 128;
+  const factor = crop.width / inputWidth,
+    shiftY = crop.height / 2 - factor * (inputHeight / 2);
   // 对齐 OpenCV warpAffine：AB_BITS=10，INTER_BITS=5，零边界和 uint8 四舍五入。
-  const xs = Array.from({ length: 192 }, (_, x) =>
+  const xs = Array.from({ length: inputWidth }, (_, x) =>
     roundEven(x * factor * 1024),
   );
-  for (let y = 0; y < 256; y++) {
+  for (let y = 0; y < inputHeight; y++) {
     const fy = (roundEven((y * factor + shiftY) * 1024) + 16) >> 5,
       sy = fy >> 5,
       wy = fy & 31;
-    for (let x = 0; x < 192; x++) {
+    for (let x = 0; x < inputWidth; x++) {
       const fx = (xs[x] + 16) >> 5,
         sx = fx >> 5,
         wx = fx & 31;
@@ -136,21 +139,33 @@ export function preprocessPose(
                 (dy ? wy : 32 - wy);
           }
         const byte = Math.floor((value + 512) / 1024);
-        data[c * 49152 + y * 192 + x] = f(f(f(byte / 255) - means[c]) / std[c]);
+        data[c * planeSize + y * inputWidth + x] = f(
+          f(f(byte / 255) - means[c]) / std[c],
+        );
       }
     }
   }
   return { data, crop };
 }
-export function decodePose(data: Float32Array, crop: Box): Keypoint[] {
-  if (!(data instanceof Float32Array) || data.length !== 17 * 64 * 48)
-    throw new TinyPoseError("INFERENCE", "模型热力图应为 float32 [1,17,64,48]");
+export function decodePose(
+  data: Float32Array,
+  crop: Box,
+  inputSize: PoseInputSize = { width: 192, height: 256 },
+): Keypoint[] {
+  const heatmapWidth = inputSize.width / 4,
+    heatmapHeight = inputSize.height / 4,
+    heatmapPlane = heatmapWidth * heatmapHeight;
+  if (!(data instanceof Float32Array) || data.length !== 17 * heatmapPlane)
+    throw new TinyPoseError(
+      "INFERENCE",
+      `模型热力图应为 float32 [1,17,${heatmapHeight},${heatmapWidth}]`,
+    );
   const points: Keypoint[] = [];
   for (let j = 0; j < 17; j++) {
-    const offset = j * 3072;
+    const offset = j * heatmapPlane;
     let score = -Infinity,
       index = 0;
-    for (let i = 0; i < 3072; i++) {
+    for (let i = 0; i < heatmapPlane; i++) {
       const value = data[offset + i];
       if (!Number.isFinite(value))
         throw new TinyPoseError("INFERENCE", "热力图包含非有限数值");
@@ -159,30 +174,41 @@ export function decodePose(data: Float32Array, crop: Box): Keypoint[] {
         index = i;
       }
     }
-    let x = score > 0 ? index % 48 : 0,
-      y = score > 0 ? Math.floor(index / 48) : 0;
-    if (x > 1 && x < 46 && y > 1 && y < 62) {
-      const blurred = new Float32Array(3072);
+    let x = score > 0 ? index % heatmapWidth : 0,
+      y = score > 0 ? Math.floor(index / heatmapWidth) : 0;
+    if (
+      x > 1 &&
+      x < heatmapWidth - 2 &&
+      y > 1 &&
+      y < heatmapHeight - 2
+    ) {
+      const blurred = new Float32Array(heatmapPlane);
       let max = -Infinity;
-      for (let yy = 0; yy < 64; yy++)
-        for (let xx = 0; xx < 48; xx++) {
+      for (let yy = 0; yy < heatmapHeight; yy++)
+        for (let xx = 0; xx < heatmapWidth; xx++) {
           let sum = 0;
           for (let dy = -1; dy <= 1; dy++)
             for (let dx = -1; dx <= 1; dx++)
-              if (xx + dx >= 0 && xx + dx < 48 && yy + dy >= 0 && yy + dy < 64)
+              if (
+                xx + dx >= 0 &&
+                xx + dx < heatmapWidth &&
+                yy + dy >= 0 &&
+                yy + dy < heatmapHeight
+              )
                 sum +=
-                  (data[offset + (yy + dy) * 48 + xx + dx] *
+                  (data[offset + (yy + dy) * heatmapWidth + xx + dx] *
                     (dy === 0 ? 2 : 1) *
                     (dx === 0 ? 2 : 1)) /
                   16;
           const value = f(sum);
-          blurred[yy * 48 + xx] = value;
+          blurred[yy * heatmapWidth + xx] = value;
           max = Math.max(max, value);
         }
       const ratio = f(score / max);
-      for (let i = 0; i < 3072; i++)
+      for (let i = 0; i < heatmapPlane; i++)
         blurred[i] = f(Math.log(Math.max(f(blurred[i] * ratio), f(1e-10))));
-      const at = (dx: number, dy: number) => blurred[(y + dy) * 48 + x + dx];
+      const at = (dx: number, dy: number) =>
+        blurred[(y + dy) * heatmapWidth + x + dx];
       const dx = 0.5 * f(at(1, 0) - at(-1, 0)),
         dy = 0.5 * f(at(0, 1) - at(0, -1));
       const dxx = 0.25 * (at(2, 0) - 2 * at(0, 0) + at(-2, 0)),
@@ -202,13 +228,17 @@ export function decodePose(data: Float32Array, crop: Box): Keypoint[] {
       name: COCO_KEYPOINT_NAMES[j],
       x:
         crop.x +
-        f((x * crop.width) / 48 + roundEven(crop.width / 2) - crop.width / 2),
+        f(
+          (x * crop.width) / heatmapWidth +
+            roundEven(crop.width / 2) -
+            crop.width / 2,
+        ),
       y:
         crop.y +
         f(
-          (y * crop.width) / 48 +
+          (y * crop.width) / heatmapWidth +
             roundEven(crop.height / 2) -
-            (crop.width * 64) / 96,
+            (crop.width * heatmapHeight) / (heatmapWidth * 2),
         ),
       score,
     });

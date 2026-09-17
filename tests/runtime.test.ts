@@ -7,6 +7,7 @@ const fake = vi.hoisted(() => ({
   loadGate: undefined as undefined | Promise<void>,
   runGate: undefined as undefined | Promise<void>,
   backendFailure: false,
+  runnerOptions: [] as unknown[],
 }));
 vi.mock("../src/cache", () => ({
   readModelCache: async (key: string) => fake.cache.get(key)?.slice(),
@@ -19,7 +20,9 @@ vi.mock("../src/cache", () => ({
 }));
 // ORT 会话依赖浏览器；边界替身仅控制执行完成时间，断言 SDK 的公开结果与资源所有权。
 vi.mock("../src/engine", () => ({
-  createRunner: () => ({
+  createRunner: (options: unknown) => {
+    fake.runnerOptions.push(options);
+    return {
     load: async () => {
       fake.loads++;
       await fake.loadGate;
@@ -43,7 +46,8 @@ vi.mock("../src/engine", () => ({
     dispose: async () => {
       fake.release++;
     },
-  }),
+    };
+  },
 }));
 import { createTinyPose } from "../src/runtime";
 const bytes = new Uint8Array([1, 2, 3, 4]);
@@ -68,6 +72,7 @@ beforeEach(() => {
   fake.loadGate = undefined;
   fake.runGate = undefined;
   fake.backendFailure = false;
+  fake.runnerOptions = [];
   vi.stubGlobal(
     "fetch",
     vi.fn(async () => new Response(bytes)),
@@ -185,6 +190,22 @@ describe("实例生命周期与模型完整性", () => {
     expect(sdk.manifest.sha256).toBe(model.sha256);
     await sdk.dispose();
   });
+  it("复制并冻结 128 输入规格，且传给 Runner", async () => {
+    const inputSize = { width: 96, height: 128 };
+    const sdk = createTinyPose({
+      model: { ...model, inputSize },
+      executionMode: "main",
+    });
+    inputSize.width = 192;
+    inputSize.height = 256;
+    expect(sdk.manifest.inputSize).toEqual({ width: 96, height: 128 });
+    expect(Object.isFrozen(sdk.manifest.inputSize)).toBe(true);
+    await sdk.load();
+    expect(fake.runnerOptions).toContainEqual(
+      expect.objectContaining({ inputSize: { width: 96, height: 128 } }),
+    );
+    await sdk.dispose();
+  });
 });
 it("推理中并发释放等待内核完成并拒绝结果", async () => {
   const sdk = createTinyPose({ model, executionMode: "main" });
@@ -221,5 +242,19 @@ it("拒绝非字符串或空白模型身份", () => {
   ).toThrowError(expect.objectContaining({ code: "INVALID_MANIFEST" }));
   expect(() =>
     createTinyPose({ model: { ...model, version: "  " } }),
+  ).toThrowError(expect.objectContaining({ code: "INVALID_MANIFEST" }));
+});
+it.each([
+  null,
+  "96x128",
+  { width: 96.5, height: 128 },
+  { width: 96, height: 256 },
+  { width: Number.NaN, height: 128 },
+])("拒绝非法或不支持的模型输入规格 %#", (inputSize) => {
+  expect(() =>
+    createTinyPose({
+      model: { ...model, inputSize } as never,
+      executionMode: "main",
+    }),
   ).toThrowError(expect.objectContaining({ code: "INVALID_MANIFEST" }));
 });
