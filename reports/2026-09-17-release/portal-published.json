@@ -1,0 +1,25 @@
+{
+  "ci": {
+    "conclusion": "success",
+    "headSha": "03072555542afe582a4a3c54535a59c7d3b1a9e5",
+    "status": "completed",
+    "url": "https://github.com/chenmohan123/chenmohan123.github.io/actions/runs/35180353989"
+  },
+  "pullRequest": {
+    "mergeCommit": {
+      "oid": "03072555542afe582a4a3c54535a59c7d3b1a9e5"
+    },
+    "mergedAt": "2026-09-17T04:01:32Z",
+    "state": "MERGED",
+    "url": "https://github.com/chenmohan123/chenmohan123.github.io/pull/39"
+  },
+  "home": "https://chenmohan123.github.io/",
+  "verifiedAt": "2026-09-17T04:04:21.2105978+00:00",
+  "deployment": {
+    "conclusion": "success",
+    "headSha": "03072555542afe582a4a3c54535a59c7d3b1a9e5",
+    "status": "completed",
+    "url": "https://github.com/chenmohan123/chenmohan123.github.io/actions/runs/35180353981"
+  },
+  "detail": "https://chenmohan123.github.io/models/pp-tinypose/"
+}

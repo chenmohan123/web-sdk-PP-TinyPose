@@ -25,4 +25,24 @@ GitHub：`chenmohan123/web-sdk-PP-TinyPose`。默认 main 分支通过 PR 和必
 
 npm 新包需先创建才能配置 Trusted Publishing。用户已完成本机 npm 身份认证，首次发布使用 CI 产物；后续版本配置 GitHub OIDC。不得把首版本机上传描述为具有 npm provenance。
 
+## 正式 HTTPS 验收
+
+- SDK PR #2 已合并，部署提交为 `5033f05818157d086dcfe2523082a9d939b4ac04`。
+- CI `35178910625` 和 Pages `35178910629` 均成功；正式地址为 <https://chenmohan123.github.io/web-sdk-PP-TinyPose/>。
+- `online-browser.json`：线上双源 × WASM/WebGPU × main/worker 八组合均通过，23 个完整服务文件与已验收构建摘要一致。
+- `online-ui/demo-browser.json`：正式 Demo 四组合、框选布局、上传、取消恢复、缓存、双语、390px 布局与 Vanilla 示例通过；同目录保留两张截图。
+- `github-governance.json`：四项远程治理规则的实际 GitHub API 回读，部署 ID 为 `6495088153`。
+- `ci-package-verified.json`：CI `35178746680` 的 22 文件首发包清单，打包内容与本地已验收 SDK 一致；tarball SHA-256 为 `6671506a1fa907e57c3c013cff0c164a6f20142231980f2a8d7363def7afe148`。
+
+## 正式发布与门户
+
+- `npm-published.json`：`web-sdk-pp-tinypose@0.1.0` 已公开发布，完整下载的 6,064,996 字节 tarball 与上述 CI 包逐字节一致，22 文件且不含 ONNX。首版本机上传不含 provenance。
+- `github-release.json`、`release-workflow.json`：正式 `v0.1.0` Release 已发布，工作流 `35179928143` 成功；标签固定在 `5033f05818157d086dcfe2523082a9d939b4ac04`。工作流独立重建并比较已发布 npm 包的 integrity，没有重新上传或移动标签。
+- `portal-published.json`：门户 PR #39 已合并为 `03072555542afe582a4a3c54535a59c7d3b1a9e5`，main CI 与 Pages 部署均成功。
+- `portal-browser.json`、`portal-ui/`：正式门户 1280px 与 390px 两项定向浏览器用例通过，验证第五个条目、人体姿态筛选、包名搜索、分类/详情跳转、独立 GitHub/npm/Demo 链接和无横向溢出。
+
+## 后续自动发布配置
+
+npm 首版与 GitHub Release 已完成，但不据此推断 OIDC Trusted Publishing 已配置。CLI 首次在用户完成安全验证后返回 `POST /-/package/web-sdk-pp-tinypose/trust` 的 HTTP 400；后续诊断的读取请求成功且配置为空，保存请求要求独立验证。已告知用户可以在 npm 包 Settings 的 Trusted Publisher 中配置 GitHub Actions：用户 `chenmohan123`、仓库 `web-sdk-PP-TinyPose`、workflow `release.yml`、environment `npm`。网页配置尚待用户完成和确认；在配置完成前，后续版本的 OIDC 发布仍属于未验证能力。
+
 兼容边界仍是本次 Windows/Chromium 桌面 CPU/GPU，不新增手机、WebNN/NPU、自动多人或视频能力承诺。

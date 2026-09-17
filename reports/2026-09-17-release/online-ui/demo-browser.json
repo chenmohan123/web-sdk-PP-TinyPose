@@ -1,0 +1,68 @@
+{
+  "testedAt": "2026-09-17T03:42:14.864Z",
+  "browser": "153.0.8010.12",
+  "origin": "https://chenmohan123.github.io/web-sdk-PP-TinyPose/",
+  "results": [
+    {
+      "backend": "wasm",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WASM / main"
+    },
+    {
+      "backend": "wasm",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WASM / worker"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "main",
+      "count": "17 / 17",
+      "actual": "WEBGPU / main"
+    },
+    {
+      "backend": "webgpu",
+      "mode": "worker",
+      "count": "17 / 17",
+      "actual": "WEBGPU / worker"
+    }
+  ],
+  "selectionKeepsImageY": true,
+  "languageToggle": true,
+  "upload": true,
+  "cancelAndRecover": true,
+  "currentAndAllCacheClear": true,
+  "vanillaPoints": 17,
+  "viewport390NoOverflow": true,
+  "viewport390ActionsDoNotOverlap": true,
+  "resetAndReload": true,
+  "pageErrors": [],
+  "source": [
+    {
+      "file": "demo/src/App.tsx",
+      "bytes": 33247,
+      "sha256": "8404b7262266507f86a3a803b1afdc5b6e2f8f733389be635747f3f8ff556426"
+    },
+    {
+      "file": "demo/src/style.css",
+      "bytes": 14167,
+      "sha256": "4cfa7b57208a1822899befc22fa2248653628326edc2bffbb0d7febdb805d053"
+    },
+    {
+      "file": "models/model.json",
+      "bytes": 1410,
+      "sha256": "2cf767a27946bb9947f10fcd043939ac72e3407b3a709ade3677772d06965728"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 25631,
+      "sha256": "a1cc6c0a71ab70d2d0fd8136bb401336a8b1aa04779bb35c891b1d14f447be58"
+    },
+    {
+      "file": "dist/inference.worker.js",
+      "bytes": 13850,
+      "sha256": "e31d0775eff54bc8b895502ab5c00ed8ea627983ffeef08799d62464fd7f0f7f"
+    }
+  ]
+}

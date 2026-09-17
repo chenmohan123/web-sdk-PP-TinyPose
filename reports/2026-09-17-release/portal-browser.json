@@ -1,0 +1,167 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "F:\\git\\00_chenmohan\\github\\chenmohan123.github.io\\.worktrees\\portal-picodet-precision\\node_modules\\playwright\\cli.js",
+      "test",
+      "--config",
+      ".tmp/tinypose-online.config.mjs"
+    ],
+    "configFile": "F:\\git\\00_chenmohan\\github\\chenmohan123.github.io\\.worktrees\\portal-picodet-precision\\.tmp\\tinypose-online.config.mjs",
+    "rootDir": "F:/git/00_chenmohan/github/chenmohan123.github.io/.worktrees/portal-picodet-precision/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "F:/git/00_chenmohan/github/web-sdk-PP-TinyPose/reports/2026-09-17-release/portal-ui",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "F:/git/00_chenmohan/github/chenmohan123.github.io/.worktrees/portal-picodet-precision/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "portal.spec.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "F:/git/00_chenmohan/github/web-sdk-PP-TinyPose/reports/2026-09-17-release/portal-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "portal.spec.ts",
+      "file": "portal.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "TinyPose 在 1280px 支持首页筛选、人体姿态分类和独立 SDK 链接",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4734,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-17T04:03:21.566Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\reports\\2026-09-17-release\\portal-ui\\portal-TinyPose-在-1280px-支持首页筛选、人体姿态分类和独立-SDK-链接\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "291f6c0e7fe47579f0c2-96f270030ba7c5bb7179",
+          "file": "portal.spec.ts",
+          "line": 4,
+          "column": 3
+        },
+        {
+          "title": "TinyPose 在 390px 支持首页筛选、人体姿态分类和独立 SDK 链接",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1698,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-17T04:03:26.754Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "F:\\git\\00_chenmohan\\github\\web-sdk-PP-TinyPose\\reports\\2026-09-17-release\\portal-ui\\portal-TinyPose-在-390px-支持首页筛选、人体姿态分类和独立-SDK-链接\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "291f6c0e7fe47579f0c2-7fa0f1f8400e076b39d5",
+          "file": "portal.spec.ts",
+          "line": 4,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-17T04:03:20.449Z",
+    "duration": 8614.366000000002,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
