@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "status": "passed",
+  "scope": "W16A32 / WebGPU / Worker 模型下载取消与同页恢复",
+  "startedAt": "2026-09-17T08:05:56.844Z",
+  "origin": "http://127.0.0.1:4186/",
+  "environment": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.0.0 Safari/537.36",
+    "browserSecureContext": true,
+    "crossOriginIsolated": false,
+    "webgpuAvailable": true,
+    "adapterInfo": {}
+  },
+  "statusEvents": [
+    {
+      "atMs": 136.69999998807907,
+      "text": "选择一张单人图片开始"
+    },
+    {
+      "atMs": 556.4000000059605,
+      "text": "正在读取图片"
+    },
+    {
+      "atMs": 577.9000000059605,
+      "text": "图片已就绪"
+    },
+    {
+      "atMs": 748.4000000059605,
+      "text": "缓存已清理"
+    },
+    {
+      "atMs": 801.5,
+      "text": "正在加载模型"
+    },
+    {
+      "atMs": 814.5999999940395,
+      "text": "正在下载模型"
+    },
+    {
+      "atMs": 850.0999999940395,
+      "text": "已取消"
+    },
+    {
+      "atMs": 883,
+      "text": "正在加载模型"
+    },
+    {
+      "atMs": 897.8000000119209,
+      "text": "正在下载模型"
+    },
+    {
+      "atMs": 2536.9000000059605,
+      "text": "正在校验模型"
+    },
+    {
+      "atMs": 2549.5999999940395,
+      "text": "正在加载模型"
+    },
+    {
+      "atMs": 4716.5,
+      "text": "正在识别"
+    },
+    {
+      "atMs": 5579.5999999940395,
+      "text": "识别完成"
+    }
+  ],
+  "networkEvents": [
+    {
+      "type": "request",
+      "atMs": 1008.5544,
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx"
+    },
+    {
+      "type": "route",
+      "atMs": 1009.0935999999999,
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx"
+    },
+    {
+      "type": "requestfailed",
+      "atMs": 1057.0364,
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "error": "net::ERR_ABORTED"
+    },
+    {
+      "type": "request",
+      "atMs": 1090.9828,
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx"
+    },
+    {
+      "type": "response",
+      "atMs": 2287.0337,
+      "url": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+      "status": 302
+    }
+  ],
+  "cancellation": {
+    "interceptedUrl": "https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/97c04100baef646f1b9c4d83295d8e2f14b4324d/tinypose-128x96/0.2.0/w16a32/tinypose-128x96-w16a32.onnx",
+    "interceptedAtMs": 47.75709999999981,
+    "cancelledAtMs": 86.27799999999979
+  },
+  "recovery": {
+    "elapsedMs": 4728.169,
+    "status": "识别完成",
+    "runtime": "WEBGPU / worker",
+    "model": "模型信息姿态模型PP-TinyPose Enhance 128 × 96模型版本0.2.0模型大小3,150,847 bytes模型格式FP16 权重（FP32 计算） · ONNX opset 17运行时ORT Web 1.27.0请求后端WEBGPU / worker实际运行WEBGPU / worker许可Apache-2.0模型来源PaddleDetection · tinypose_enhanceSHA-2568671c7b424d85d4f017b6410602de6095b1fbb9fffca38ad5489039dd2a0cfea验证环境2026-09-17 · Windows 11 · Chromium 153 · WASM / WebGPU · main / Worker参数量约 1.32M（官方报告）已验证桌面环境；手机、NPU 和全量 COCO AP 尚未验证。单人图片或手工选框；响应分数不代表可见性概率。",
+    "count": "17 / 17"
+  },
+  "completedAt": "2026-09-17T08:06:02.640Z",
+  "elapsedMs": 5795.8781
+}
