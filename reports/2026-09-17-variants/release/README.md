@@ -12,6 +12,10 @@
 
 审查记录见 `review-summary.md`。继续保留两个非阻塞项：下一次扩展评测前自动将本地张量病例绑定到已跟踪报告；390px 英文精度选择器收起文字显示不完整。选项展开和模型信息仍完整，未发现影响模型选择或推理的问题。
 
+[门户详情](https://chenmohan123.github.io/models/pp-tinypose/)已通过 [PR #40](https://github.com/chenmohan123/chenmohan123.github.io/pull/40) 同步，部署提交为 `96d7bcc498424d7d6222b06b69697ed5faa051c3`。`portal-pages.json` 记录成功部署；`portal-online-browser.json` 记录 2026-09-17 的 1280px/390px 线上用例均通过，覆盖目录筛选、版本、三项资产、独立 SDK/Demo/npm 链接、固定版本对比入口及横向溢出检查。门户未引入 SDK runtime 或组合 Workflow。旧门户 256 模型 ID 保留兼容，两个新增模型 ID 与 SDK catalog 一致。
+
+门户线上验证首次指定了另一个项目的浏览器缓存，浏览器未启动；改用本机已安装的门户 Playwright 对应浏览器后，两项验证通过。最终离线标准检查见 `standard-final.json`；GitHub 远程设置分别见 `governance-final.json` 和 `portal-governance.json`，没有用离线 skip 代替远程通过。
+
 ## English
 
 Version 0.2.0 was published on 2026-09-17 at immutable tag `v0.2.0`, commit `3ef812307359d0d9b7f11ebd606007a464a301bc`. The existing 256×192 FP32 remains the default; 128×96 FP32 and W16A32 are added. ModelScope is the default, with explicit Hugging Face selection.
@@ -21,3 +25,5 @@ The npm tarball is byte-identical to the CI release artifact. All 17 SDK files m
 npm accepted the initial upload but took about seven and a half minutes to expose the version. Immediate verification returned 404. After it became visible, the failed jobs were rerun and completed; the package was not uploaded again and the tag was not moved. A bounded ten-minute visibility wait is added for future releases; timeout and digest mismatch remain failures.
 
 W16A32 stores weights in FP16 and computes in FP32, reducing bytes by about 44.6% without a speedup claim. Failed mixed-FP16 and 256×192 W16A32 candidates remain unpublished. Subset OKS is not full COCO AP; mobile and NPU are unverified. Two non-blocking follow-ups remain: automatic binding of local tensor cases to tracked evidence, and truncated English precision text in the collapsed 390px selector.
+
+The portal was updated through PR #40 and deployed from `96d7bcc498424d7d6222b06b69697ed5faa051c3`. Both public 1280px and 390px tests passed, covering directory filtering, version, all three assets, independent SDK/Demo/npm links, the pinned comparison link and horizontal overflow. The portal contains no SDK runtime or composed Workflow. The existing 256 model ID is retained for compatibility; new model IDs match the SDK catalog. An initial browser launch failed because the test used another project's browser cache; using the installed matching browser resolved this setup issue. Dated deployment, browser and governance receipts are archived alongside the final offline standard report.
