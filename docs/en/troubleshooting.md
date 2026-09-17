@@ -1,12 +1,14 @@
 # Troubleshooting
 
-[简体中文](../zh-CN/troubleshooting.md)
+[中文](../zh-CN/troubleshooting.md)
 
-- DOWNLOAD: prepare the local model and check that the URL returns ONNX bytes rather than HTML.
-- INTEGRITY: bytes or SHA-256 do not match. Clear this model's cache and check the asset; do not bypass verification.
-- UNSUPPORTED: use HTTPS/trusted localhost and check GPU availability. The caller may explicitly choose CPU; the SDK does not switch automatically.
-- INVALID_INPUT: RGBA length must equal width×height×4; regions need finite coordinates, positive size, and image intersection.
-- SESSION/INFERENCE: match the ORT JS/WASM versions, inspect the error code, and reduce simultaneous model instances.
-- BUSY/ABORTED/DISPOSED: wait, handle cancellation, or create a new instance. Cancellation does not guarantee immediate kernel interruption.
+- `DOWNLOAD`: check the selected Hub's fixed URL, network/CORS, HTTP status and body. The response must not be HTML or a Git LFS pointer. Clear model cache before reproducing a download issue. Switching sources is explicit, never automatic.
+- `INTEGRITY`: size or SHA-256 does not match. Clear current cache and check formal metadata; never disable verification.
+- `UNSUPPORTED`: use HTTPS/trusted localhost and check the WebGPU adapter. Callers may explicitly choose CPU; there is no automatic fallback.
+- `INVALID_INPUT`: RGBA length must equal width×height×4. A box must be finite, positive-sized and intersect the image.
+- `SESSION/INFERENCE`: ensure matching, complete, same-origin ORT JS/WASM/Worker files at `runtimeBaseUrl`; reduce simultaneous instances.
+- `BUSY/ABORTED/DISPOSED/NOT_LOADED`: wait, load or create a new instance as appropriate, and handle cancellation through the lifecycle. Submitted hardware kernels may not stop immediately.
 
-Multiple people or truncated bodies can reduce quality. Select a complete person. Low-response points are not action decisions or visibility labels.
+A source switch without a download can be a valid cache hit for the same model ID/version/checksum. Clear cache before testing source availability. The Demo disposes the old instance and clears old results on source changes; late downloads or inference results must not overwrite current state.
+
+Multiple people, cropped bodies and occlusion can reduce quality. Select one complete person; low responses are not action or visibility conclusions. For npm or Demo 404 errors, verify publication/deployment receipts first. A candidate version number is not proof of an upload.

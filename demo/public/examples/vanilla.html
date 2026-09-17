@@ -3,8 +3,19 @@ import {createTinyPose} from '../sdk/index.js';
 const button=document.querySelector('#run'), output=document.querySelector('#result');
 button.onclick=async()=>{
   button.disabled=true;
-  const model={id:'tinypose-enhance-256x192',version:'0.1.0-alpha.0',url:new URL('../models/tinypose-256x192-fp32.onnx',location.href).href,bytes:5685847,sha256:'7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9'};
-  const pose=createTinyPose({model,backend:'wasm',executionMode:'main',runtimeBaseUrl:new URL('../sdk/',location.href).href});
-  try{await pose.load();const image=await(await fetch('./person.jpg')).blob();const result=await pose.run({image});output.textContent=JSON.stringify(result,null,2);}catch(error){output.textContent=String(error);}finally{await pose.dispose();button.disabled=false;}
+  let pose;
+  try {
+    const response=await fetch('../models/model.json');
+    if(!response.ok) throw new Error(`模型 metadata HTTP ${response.status}`);
+    const metadata=await response.json();
+    const source=metadata.sources.find(source=>source.kind===metadata.defaultSource);
+    const model={...metadata,url:source.downloadUrl};
+    pose=createTinyPose({model,backend:'wasm',executionMode:'main',runtimeBaseUrl:new URL('../sdk/',location.href).href});
+    await pose.load();
+    const image=await(await fetch('./person.jpg')).blob();
+    const result=await pose.run({image});
+    output.textContent=JSON.stringify(result,null,2);
+  } catch(error) {output.textContent=String(error);}
+  finally {await pose?.dispose();button.disabled=false;}
 };
 </script></html>

@@ -1,54 +1,111 @@
-name: 准备 GitHub Release 草稿
+name: 正式发布
 on:
+  push:
+    tags: ['v*']
   workflow_dispatch:
     inputs:
       tag:
         description: 已存在的不可变版本标签（例如 v0.1.0）
         required: true
         type: string
+      mode:
+        description: Trusted Publishing 发布，或验证已由本机发布的首版
+        type: choice
+        options: [publish, verify-only]
+        default: publish
 permissions:
   contents: read
 concurrency:
   group: tinypose-release
   cancel-in-progress: false
 jobs:
-  prepare:
+  verify:
     runs-on: ubuntu-latest
     env:
-      RELEASE_TAG: ${{ inputs.tag }}
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.tag }}
+          ref: ${{ inputs.tag || github.ref_name }}
+          fetch-depth: 0
           persist-credentials: false
+      - name: 校验不可变正式标签与 main 祖先关系
+        run: |
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          tag_commit=$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")
+          test "$tag_commit" = "$(git rev-parse HEAD)"
+          git merge-base --is-ancestor "$tag_commit" origin/main
       - uses: actions/setup-node@v4
         with: { node-version: "24" }
       - uses: pnpm/action-setup@v4
         with: { version: 11.21.0 }
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
-      - name: 阻止本地候选误发布
-        run: node scripts/check-release-ready.mjs
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck:demo
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build:demo
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false check:package
+      - run: node scripts/check-release-ready.mjs
+      - name: 验收产品提交必须存在于当前发布历史
+        run: |
+          tested_commit=$(node -p 'JSON.parse(require("fs").readFileSync("reports/release-acceptance.json")).sourceCommit')
+          git cat-file -e "$tested_commit^{commit}"
+          git merge-base --is-ancestor "$tested_commit" HEAD
       - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false pack --out package.tgz
       - uses: actions/upload-artifact@v4
-        with: { name: sdk-package, path: package.tgz }
-  draft:
-    needs: prepare
+        with: { name: release-package, path: package.tgz }
+  npm:
+    needs: verify
+    environment: npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
+      RELEASE_MODE: ${{ inputs.mode || 'publish' }}
+    steps:
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: actions/download-artifact@v4
+        with: { name: release-package }
+      - name: 使用 Trusted Publishing，或验证已发布首版
+        run: |
+          package_version="${RELEASE_TAG#v}"
+          if npm view "web-sdk-pp-tinypose@$package_version" version > /dev/null 2>&1; then
+            echo "此版本已发布，继续独立校验 npm 资产"
+          elif [ "$RELEASE_MODE" = 'verify-only' ]; then
+            echo '指定版本尚未存在，不能完成独立验证' >&2
+            exit 1
+          else
+            npm publish package.tgz --provenance --access public
+          fi
+          npm view "web-sdk-pp-tinypose@$package_version" dist.integrity --json > published-integrity.json
+          node --input-type=module -e 'import {readFileSync} from "node:fs"; import {createHash} from "node:crypto"; import assert from "node:assert/strict"; const actual="sha512-"+createHash("sha512").update(readFileSync("package.tgz")).digest("base64"); assert.equal(JSON.parse(readFileSync("published-integrity.json")),actual,"npm 资产与已验收打包产物不一致")'
+      # setup-node 不写入 token 占位配置；发布身份由 npm Trusted Publishing 的 OIDC 提供。
+  release:
+    needs: npm
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref_name }}
+          persist-credentials: false
       - uses: actions/github-script@v7
         env:
-          RELEASE_TAG: ${{ inputs.tag }}
+          RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
         with:
           script: |
-            await github.rest.repos.createRelease({
-              ...context.repo,
-              tag_name: process.env.RELEASE_TAG,
-              name: process.env.RELEASE_TAG,
-              draft: true,
-              generate_release_notes: true,
-            });
+            const fs = require('fs');
+            const tag = process.env.RELEASE_TAG;
+            const body = fs.readFileSync('CHANGELOG.md', 'utf8');
+            try {
+              const existing = await github.rest.repos.getReleaseByTag({...context.repo, tag});
+              await github.rest.repos.updateRelease({...context.repo, release_id: existing.data.id, draft: false, body});
+            } catch (error) {
+              if (error.status !== 404) throw error;
+              await github.rest.repos.createRelease({...context.repo, tag_name: tag, name: tag, draft: false, body});
+            }

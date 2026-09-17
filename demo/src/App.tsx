@@ -22,18 +22,19 @@ import type {
   PoseModel,
   PoseResult,
 } from "../../dist/index.js";
-import localModel from "../../models/model.json";
-
-const model: PoseModel = {
-  ...localModel,
-  url: new URL(localModel.url, document.baseURI).href,
+import metadata from "../../models/model.json";
+import packageInfo from "../../package.json";
+type ModelSource = { kind: "modelscope" | "huggingface"; downloadUrl: string };
+const publishedModel = metadata as PoseModel & {
+  defaultSource: ModelSource["kind"];
+  sources: ModelSource[];
 };
 const copy = {
   zh: {
     title: "人体姿态",
     modelLabel: "姿态模型",
     sourceLabel: "模型来源",
-    localSource: "本地验证模型",
+    sourceSelect: "来源",
     precision: "模型精度",
     preview: "姿态预览",
     resultEmpty: "识别后在这里查看关键点",
@@ -43,7 +44,7 @@ const copy = {
     requestedBackend: "请求后端",
     actualBackend: "实际运行",
     score: "响应分数",
-    upstream: "GitHub（上游）",
+    upstream: "GitHub",
     modelVersion: "模型版本",
     format: "模型格式",
     modelSize: "模型大小",
@@ -51,7 +52,6 @@ const copy = {
     license: "许可",
     verification: "验证环境",
     subtitle: "PP-TinyPose",
-    alpha: "本地验证版",
     upload: "选择图片",
     reset: "重置",
     downloadTime: "下载",
@@ -97,7 +97,7 @@ const copy = {
     region: "已框选",
     full: "整张图片",
     unavailable: "尚未运行",
-    scope: "桌面本地验证；模型尚未公开分发。",
+    scope: "已验证桌面环境；手机、NPU 和全量 COCO AP 尚未验证。",
     deleted: "缓存已清理",
     fileName: "当前图片",
     choose: "使用此示例",
@@ -106,7 +106,7 @@ const copy = {
     title: "Human pose",
     modelLabel: "Pose model",
     sourceLabel: "Model source",
-    localSource: "Local preview model",
+    sourceSelect: "Source",
     precision: "Precision",
     preview: "Pose preview",
     resultEmpty: "Keypoints will appear here after estimation",
@@ -116,7 +116,7 @@ const copy = {
     requestedBackend: "Requested backend",
     actualBackend: "Actual runtime",
     score: "Response score",
-    upstream: "GitHub (upstream)",
+    upstream: "GitHub",
     modelVersion: "Model version",
     format: "Format",
     modelSize: "Model size",
@@ -124,7 +124,6 @@ const copy = {
     license: "License",
     verification: "Verified environment",
     subtitle: "PP-TinyPose",
-    alpha: "Local preview",
     upload: "Choose image",
     reset: "Reset",
     downloadTime: "Download",
@@ -171,7 +170,7 @@ const copy = {
     region: "Region selected",
     full: "Full image",
     unavailable: "Not run yet",
-    scope: "Local desktop verification; model distribution is not published.",
+    scope: "Verified desktop environment; mobile, NPU and full COCO AP are unverified.",
     deleted: "Cache cleared",
     fileName: "Current image",
     choose: "Use this example",
@@ -226,6 +225,9 @@ export function App() {
   const t = copy[language];
   const [backend, setBackend] = useState<Backend>("wasm");
   const [mode, setMode] = useState<ExecutionMode>("worker");
+  const [sourceKind, setSourceKind] = useState(publishedModel.defaultSource);
+  const selectedSource = publishedModel.sources.find((item) => item.kind === sourceKind)!;
+  const model: PoseModel = { ...publishedModel, url: selectedSource.downloadUrl };
   const [blob, setBlob] = useState<Blob>();
   const [source, setSource] = useState<HTMLImageElement>();
   const [name, setName] = useState("");
@@ -371,10 +373,12 @@ export function App() {
     setResult(undefined);
     setSelecting(false);
     try {
-      const key = `${backend}/${mode}`;
+      const key = JSON.stringify([backend, mode, sourceKind, model.id, model.version, model.sha256, model.url]);
       if (instanceKey.current !== key) {
-        await instance.current?.dispose();
+        const previous = instance.current;
         instance.current = undefined;
+        await previous?.dispose();
+        if (generation.current !== token || abort.signal.aborted) return;
       }
       if (!instance.current) {
         instance.current = createTinyPose({
@@ -385,19 +389,21 @@ export function App() {
         });
         instanceKey.current = key;
       }
+      const estimator = instance.current;
       setStatus("loading");
-      await instance.current.load({
+      await estimator.load({
         signal: abort.signal,
         onProgress: (event) => {
-          if (!abort.signal.aborted) setStatus(event.phase);
+          if (generation.current === token && !abort.signal.aborted) setStatus(event.phase);
         },
       });
+      if (generation.current !== token || abort.signal.aborted) return;
       setInitMs(
-        Object.values(instance.current.loadTimings).reduce((a, b) => a + b, 0),
+        Object.values(estimator.loadTimings).reduce((a, b) => a + b, 0),
       );
-      setLoadTimes(instance.current.loadTimings);
+      setLoadTimes(estimator.loadTimings);
       setStatus("running");
-      const next = await instance.current.run(
+      const next = await estimator.run(
         { image: blob, region },
         { signal: abort.signal },
       );
@@ -405,7 +411,7 @@ export function App() {
         setResult(next);
         setStatus("success");
       }
-      await refreshCache();
+      if (generation.current === token) await refreshCache();
     } catch (cause) {
       if (generation.current !== token) return;
       if (
@@ -420,27 +426,51 @@ export function App() {
         );
       }
     } finally {
-      setBusy(false);
+      if (generation.current === token) setBusy(false);
       if (controller.current === abort) controller.current = undefined;
     }
   }
+  function changeSource(next: ModelSource["kind"]) {
+    if (next === sourceKind) return;
+    ++generation.current;
+    controller.current?.abort();
+    controller.current = undefined;
+    inputController.current?.abort();
+    inputController.current = undefined;
+    const previous = instance.current;
+    instance.current = undefined;
+    instanceKey.current = "";
+    void previous?.dispose().catch(() => {});
+    setSourceKind(next);
+    setBusy(false);
+    setPreparing(false);
+    setResult(undefined);
+    setInitMs(undefined);
+    setLoadTimes(undefined);
+    setError("");
+    setStatus(blob ? "picked" : "idle");
+  }
   async function clear(all: boolean) {
+    const token = generation.current;
     controller.current?.abort();
     setBusy(true);
     setError("");
     try {
       await instance.current?.dispose();
+      if (generation.current !== token) return;
       instance.current = undefined;
       instanceKey.current = "";
       if (all) await clearAllModelCache();
       else await clearCurrentModelCache(model);
       await refreshCache();
+      if (generation.current !== token) return;
       setStatus("deleted");
     } catch (cause) {
+      if (generation.current !== token) return;
       setStatus("error");
       setError(String(cause));
     } finally {
-      setBusy(false);
+      if (generation.current === token) setBusy(false);
     }
   }
   function coordinate(event: React.PointerEvent<HTMLCanvasElement>) {
@@ -487,13 +517,12 @@ export function App() {
         <div className="brand-block">
           <span className="eyebrow">ONNX RUNTIME WEB</span>
           <h1>{t.subtitle}</h1>
-          <span className="version">SDK 0.1.0-alpha.0</span>
+          <span className="version">SDK {packageInfo.version}</span>
         </div>
         <div className="top-actions">
-          <span className="preview-badge">{t.alpha}</span>
           <a
             className="text-button repository-link"
-            href="https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose"
+            href="https://github.com/chenmohan123/web-sdk-PP-TinyPose"
             target="_blank"
             rel="noreferrer"
           >
@@ -518,7 +547,11 @@ export function App() {
             </div>
             <div className="control-group">
               <span className="control-label">{t.sourceLabel}</span>
-              <div className="control-value">{t.localSource}</div>
+              <select className="control-value" aria-label={t.sourceSelect} value={sourceKind}
+                onChange={(event) => changeSource(event.target.value as ModelSource["kind"])}>
+                <option value="modelscope">ModelScope</option>
+                <option value="huggingface">Hugging Face</option>
+              </select>
             </div>
             <div className="control-group" role="group" aria-label={t.backend}>
               <span className="control-label">{t.backend}</span>

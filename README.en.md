@@ -1,40 +1,60 @@
 # web-sdk-pp-tinypose
 
-[简体中文](README.md)
+[中文](README.md)
 
-Browser human pose estimation with PP-TinyPose. **0.1.0-alpha.0 is a local preview**, with no published npm package, model hubs, or production Demo yet.
+PP-TinyPose **0.1.0** is a framework-neutral browser SDK for a single-person image or an image with a caller-supplied person box. It returns 17 COCO keypoints in original-image coordinates. CPU (WASM), GPU (WebGPU), main-thread and Worker execution are explicit choices, without silent fallback.
 
-- Official enhanced 256×192 FP32 model, 5,685,847 bytes.
-- Single-person image or caller-supplied person region; 17 COCO keypoints in original image coordinates.
-- Explicit WASM / WebGPU and main / Worker execution. The SDK is framework-independent.
-- No automatic multi-person detection, tracking, action recognition, FP16, or NPU. Scores are not visibility probabilities.
+- [Live Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) · [GitHub](https://github.com/chenmohan123/web-sdk-PP-TinyPose) · [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose)
+- Model: upstream enhanced 256×192 FP32, ONNX opset 17, 5,685,847 bytes, about 1.32M parameters (upstream report).
+- Sources: [ModelScope](https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose) and [Hugging Face](https://huggingface.co/chenmohan/web-sdk-pp-tinypose). ModelScope is the default; these are the only two choices. Failure of the selected source never triggers a request to the other Hub.
+- SHA-256: `7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9`. See [metadata](models/model.json) and the [standard manifest](sdk-manifest.yaml) for fixed revisions, download URLs, original licensing and conversion evidence.
 
-## Local setup
+## Install and use
 
-```powershell
+```sh
+npm install web-sdk-pp-tinypose
+```
+
+Copy the complete `node_modules/web-sdk-pp-tinypose/dist/` directory into your application's `public/sdk/`. Matching ORT JS/WASM and `inference.worker.js` must be served at `runtimeBaseUrl`. Save `models/model.json` from this repository's **v0.1.0** tag as your application's `model.json`. All three examples consume this same metadata instead of maintaining separate model hashes or URLs. The npm package contains no ONNX weights.
+
+```js
+import { createTinyPose } from 'web-sdk-pp-tinypose';
+import metadata from './model.json';
+const source = metadata.sources.find(item => item.kind === metadata.defaultSource);
+const pose = createTinyPose({
+  model: { ...metadata, url: source.downloadUrl },
+  backend: 'wasm', executionMode: 'worker',
+  runtimeBaseUrl: new URL('./sdk/', location.href).href,
+});
+try {
+  await pose.load();
+  const result = await pose.run({ image: file }); // Blob
+  console.log(result.keypoints, result.runtime, result.timings);
+} finally { await pose.dispose(); }
+```
+
+## Demo and local development
+
+The Demo starts in Chinese with an English toggle. It provides source selection, upload, person-box selection, skeleton overlay, CPU/GPU and main/Worker controls, timing details and cache cleanup. It retains the PP-Detection workbench layout and stacks its panels at 390px. Changing sources cancels the previous task and clears its result.
+
+```sh
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
-node scripts/prepare-model.mjs <path-to-tinypose-256x192-fp32.onnx>
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
 pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false dev
 ```
 
-Open the [local Demo](http://localhost:4186/). It starts in Chinese and supports English, manual person selection, skeleton overlay, explicit CPU/GPU, main/Worker, timing details, and this SDK's cache cleanup. Model bytes are downloaded and verified on first use and reused by digest. Images stay in the browser.
+Open the localhost URL printed in your terminal. No local ONNX setup is required: the Demo downloads from the selected fixed Hub URL at runtime. The production Demo build contains no weights. Images stay in the browser; IndexedDB stores model bytes only. The cache key uses model ID, version and SHA-256, allowing identical weights from both sources to share a cache entry.
 
-The Demo follows the PP-Detection workbench style: a dark header, controls on the left, preview and samples in the center, and keypoints with collapsible information on the right. These regions stack vertically on narrow screens.
+## Guides and examples
 
-Production distribution will use ModelScope by default and Hugging Face as the other source. Local development assets are not a third production source; no hub revisions have been invented. The planned [GitHub repository](https://github.com/chenmohan123/web-sdk-PP-TinyPose), [npm package](https://www.npmjs.com/package/web-sdk-pp-tinypose), and [production Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) are not published or availability evidence.
+[Quick start](docs/en/quick-start.md) · [API](docs/en/api.md) · [Compatibility](docs/en/compatibility.md) · [Troubleshooting](docs/en/troubleshooting.md) · [Privacy/deployment](docs/en/privacy-deployment.md) · [Performance](docs/en/performance.md). Examples: [Vanilla](examples/vanilla/README.md), [React](examples/react/README.md), [Vite](examples/vite/README.md).
 
-## Documentation and checks
+## Evidence, release status and limits
 
-- [Quick start](docs/en/quick-start.md) · [API](docs/en/api.md) · [Compatibility](docs/en/compatibility.md)
-- [Troubleshooting](docs/en/troubleshooting.md) · [Privacy and deployment](docs/en/privacy-deployment.md) · [Performance](docs/en/performance.md)
-- [Model feasibility evidence](reports/2026-09-16-feasibility/README.md) · [Design](docs/superpowers/specs/2026-09-16-pp-tinypose-web-sdk-design.md)
+Full GET and checksum verification of both fixed Hub commits completed on 2026-09-17; see the [distribution receipt](reports/2026-09-17-release/distribution-weights-verified.json). This code targets version 0.1.0. A candidate build, distributed weights, a published npm package and a deployed Demo are separate states. Check the services and release receipts for actual npm, GitHub Release and HTTPS Demo availability; a version string does not prove publication.
 
-```powershell
-pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
-pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
-pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
-pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build:demo
-```
+Dated desktop SDK evidence covers Windows 11, Chromium 153 and ORT Web 1.27.0 in all four backend/execution combinations; see the compatibility guide. Release additionally requires eight real source/backend/execution combinations and verification against current build hashes. Mobile, other browsers, WeChat web-view, WebNN/NPU and full COCO AP remain unverified; 390px means a desktop viewport check only. Automatic multi-person detection, camera/video, tracking, action recognition and FP16 are not included. Scores are heatmap responses, not visibility probabilities.
 
-See [sdk-manifest.yaml](sdk-manifest.yaml) for model identity and local URLs, and [LICENSE](LICENSE) / [NOTICE](NOTICE) for provenance. Full COCO keypoint AP, mobile devices, and WebNN/NPU are unverified. A fixed-tensor model probe does not establish end-to-end SDK image processing parity.
+Validation: `pnpm … test`, `typecheck`, `build`, `typecheck:demo`, `build:demo`, `check:package`, where `…` means the two configuration flags above. `test:demo-input` and `test:demo-source` require a running development server. A release also runs `RELEASE_TAG=v0.1.0 node scripts/check-release-ready.mjs`; simulated local results must never stand in for a real acceptance receipt.
+
+SDK and model are Apache-2.0. Retain [LICENSE](LICENSE), [NOTICE](NOTICE) and upstream attribution.

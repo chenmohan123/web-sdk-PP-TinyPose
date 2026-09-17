@@ -1,7 +1,7 @@
 {
   "name": "web-sdk-pp-tinypose",
-  "version": "0.1.0-alpha.0",
-  "description": "基于 PP-TinyPose 的浏览器人体关键点 SDK（本地验证版）",
+  "version": "0.1.0",
+  "description": "基于 PP-TinyPose 的浏览器单人人体关键点 SDK",
   "type": "module",
   "private": false,
   "license": "Apache-2.0",
@@ -37,7 +37,10 @@
     "build:demo": "vite build --config demo/vite.config.ts",
     "preview": "vite preview --config demo/vite.config.ts --host 127.0.0.1",
     "test:browser": "node tests/browser.mjs",
-    "typecheck:demo": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --jsx react-jsx --resolveJsonModule --strict --skipLibCheck --lib ES2022,DOM,DOM.Iterable demo/src/main.tsx demo/src/App.tsx demo/vite.config.ts"
+    "typecheck:demo": "tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --jsx react-jsx --resolveJsonModule --strict --skipLibCheck --lib ES2022,DOM,DOM.Iterable demo/src/main.tsx demo/src/App.tsx demo/vite.config.ts",
+    "check:package": "node scripts/check-release-ready.mjs --package-only",
+    "test:demo-input": "node tests/demo-input-browser.mjs",
+    "test:demo-source": "node tests/demo-source-browser.mjs"
   },
   "dependencies": {
     "onnxruntime-web": "1.27.0"
@@ -54,6 +57,7 @@
     "react-dom": "^19.1.0",
     "typescript": "5.9.3",
     "vite": "^7.1.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "yaml": "2.8.2"
   }
 }

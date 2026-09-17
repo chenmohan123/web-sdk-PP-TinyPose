@@ -1,17 +1,25 @@
 # Quick start
 
-[简体中文](../zh-CN/quick-start.md)
+[中文](../zh-CN/quick-start.md)
 
-This version is local and unpublished. Follow the root README to install dependencies, run `scripts/prepare-model.mjs`, build the SDK, and start the Demo. Use the example or upload a single-person image; select one person manually in a multi-person image.
+Run `npm install web-sdk-pp-tinypose`. Copy the package's complete `dist/` directory to `public/sdk/`, including matching ORT JS/WASM and the Worker. Copying only `index.js` is insufficient. Save `models/model.json` from the repository's v0.1.0 tag as your project's `model.json`, preserving fixed revisions and SHA-256 values.
 
 ```js
-import { createTinyPose } from './sdk/index.js';
-const pose = createTinyPose({ model, backend: 'wasm', executionMode: 'worker', runtimeBaseUrl: new URL('./sdk/', location.href).href });
+import { createTinyPose } from 'web-sdk-pp-tinypose';
+import metadata from './model.json';
+const selected = metadata.sources.find(s => s.kind === metadata.defaultSource);
+const pose = createTinyPose({
+  model: { ...metadata, url: selected.downloadUrl },
+  backend: 'wasm', executionMode: 'worker',
+  runtimeBaseUrl: new URL('./sdk/', location.href).href,
+});
 try {
-  await pose.load();
-  const result = await pose.run({ image: file }); // file is a Blob
+  await pose.load({ onProgress: event => console.log(event.phase) });
+  const result = await pose.run({ image: file }); // Single-person Blob; region is optional
   console.log(result.keypoints, result.runtime, result.timings);
 } finally { await pose.dispose(); }
 ```
 
-`model` contains `id/version/url/bytes/sha256`; use the local identity in `sdk-manifest.yaml` and the Vanilla example. Serve the complete SDK build directory including ORT and Worker assets. Use trusted localhost or HTTPS. GPU failure never silently switches to CPU.
+Use HTTPS or trusted localhost and serve correct JavaScript/WASM MIME types. Images are processed locally; validated weights are cached in IndexedDB. ModelScope is the default. Callers may explicitly select the `huggingface` entry. Errors never silently change source or backend. To switch manually, cancel the previous operation, dispose its instance, and create a new one.
+
+See the root [README](../../README.en.md) for Demo installation, build and launch commands. No local ONNX preparation is needed. Choose the sample or upload a single-person image; select one person manually when an image contains several. Vanilla, React and Vite consume the same formal metadata.

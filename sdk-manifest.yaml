@@ -1,63 +1,105 @@
-schemaVersion: "1.1.0"
+schemaVersion: 1.1.0
 id: pp-tinypose
 name: PP-TinyPose
-summary: 浏览器本地单人人体关键点估计首版，支持显式 CPU/GPU 与主线程/Worker，尚未公开发布。
-package: { name: web-sdk-pp-tinypose, version: 0.1.0-alpha.0 }
+summary: 浏览器单人人体关键点估计 SDK，支持显式 CPU/GPU 与主线程/Worker，模型双源固定提交分发。
+package:
+  name: web-sdk-pp-tinypose
+  version: 0.1.0
 repository: https://github.com/chenmohan123/web-sdk-PP-TinyPose
 demo:
-  url: http://localhost:4186/
+  url: https://chenmohan123.github.io/web-sdk-PP-TinyPose/
   defaultLanguage: zh-CN
   framework: react
   localProcessing: true
-docs: { zhCN: docs/zh-CN/quick-start.md, en: docs/en/quick-start.md }
+docs:
+  zhCN: docs/zh-CN/quick-start.md
+  en: docs/en/quick-start.md
 runtime:
-  backends: [wasm, webgpu]
-  executionModes: [main, worker]
+  backends:
+    - wasm
+    - webgpu
+  executionModes:
+    - main
+    - worker
   actualBackendReported: true
   runtimeVersion: onnxruntime-web@1.27.0
 model:
   id: tinypose-enhance-256x192
-  version: 0.1.0-alpha.0
+  version: 0.1.0
   format: onnx
   parameterCount: null
-  precision: [fp32]
+  precision:
+    - fp32
   source: https://github.com/PaddlePaddle/PaddleDetection/tree/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose
   license: Apache-2.0
   defaultVariant: fp32
-  defaultSource: custom
+  defaultSource: modelscope
   assets:
     - id: fp32
       bytes: 5685847
       precision: fp32
-      url: http://localhost:4186/models/tinypose-256x192-fp32.onnx
-      sha256: "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9"
+      url: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
+      sha256: 7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9
+  variants:
+    - id: fp32
+      precision: fp32
+      quantization: null
+      opset: 17
+      bytes: 5685847
+      parameterCount: null
+      backends:
+        - wasm
+        - webgpu
+      sources:
+        - kind: modelscope
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 68e7b987b5daf36080fb16ed90bf67b64d722b20
+          path: tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
+          downloadUrl: https://www.modelscope.cn/models/chenmohan/web-sdk-pp-tinypose/resolve/68e7b987b5daf36080fb16ed90bf67b64d722b20/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
+          bytes: 5685847
+          sha256: 7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9
+        - kind: huggingface
+          repository: chenmohan/web-sdk-pp-tinypose
+          revision: 8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158
+          path: tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
+          downloadUrl: https://huggingface.co/chenmohan/web-sdk-pp-tinypose/resolve/8aa6bd0a3f1aeb401b1c45744f0d88c95fb07158/tinypose-256x192/0.1.0/tinypose-256x192-fp32.onnx
+          bytes: 5685847
+          sha256: 7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9
 performance:
   timings:
-    [
-      modelDownloadMs,
-      modelCacheReadMs,
-      integrityMs,
-      sessionMs,
-      preprocessMs,
-      inferenceMs,
-      postprocessMs,
-      totalMs,
-    ]
+    - modelDownloadMs
+    - modelCacheReadMs
+    - integrityMs
+    - sessionMs
+    - preprocessMs
+    - inferenceMs
+    - postprocessMs
+    - totalMs
   coldStartDefined: true
   warmRunDefined: true
 cache:
-  storage: [indexeddb]
+  storage:
+    - indexeddb
   versionedKeys: true
   clearCurrent: true
   clearAll: true
   estimate: true
 examples:
-  vanilla: { status: available, path: examples/vanilla }
-  react: { status: available, path: examples/react }
-  vue: { status: unsupported }
-  cdn: { status: unsupported }
-  vite: { status: available, path: examples/vite }
-  wechatWebView: { status: unsupported }
+  vanilla:
+    status: available
+    path: examples/vanilla
+  react:
+    status: available
+    path: examples/react
+  vue:
+    status: unsupported
+  cdn:
+    status: unsupported
+  vite:
+    status: available
+    path: examples/vite
+  wechatWebView:
+    status: unsupported
 verification:
   environments:
     - browser: Chromium 153.0.8010.12
