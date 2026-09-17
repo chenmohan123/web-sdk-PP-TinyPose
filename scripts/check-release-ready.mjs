@@ -1,5 +1,6 @@
 // 发布校验只消费真实验收回执；此脚本不生成通过标记或远程证据。
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { execSync } from "node:child_process";
 import { parse } from "yaml";
@@ -7,6 +8,8 @@ import { readBuildAssets, verifySdkCopies, verifyServedReceipt } from "./release
 
 const json = async file => JSON.parse(await readFile(file, "utf8"));
 const dated = value => typeof value === "string" && Number.isFinite(Date.parse(value));
+const sourceKinds = ["huggingface", "modelscope"];
+const digestPattern = /^[a-f0-9]{64}$/i;
 const expectedIdentity = new Map([
   ["tinypose-enhance-256x192", { version: "0.1.0", precision: "fp32", width: 192, height: 256, bytes: 5685847, sha256: "7614d17acbe957200a8505e11a4fb8445103f9e44a7087115d8a1ea85f88b1b9" }],
   ["tinypose-enhance-128x96", { version: "0.2.0", precision: "fp32", width: 96, height: 128, bytes: 5685846, sha256: "a0e2edd5272f48243a9cbd571151eda966f1bfa865a954f39e1e344aa5a14cf8" }],
@@ -39,6 +42,11 @@ function verifyMetadata({ package: pkg, catalog, model, manifest }) {
   assert.equal(manifest.model.version, defaultModel.version, "manifest 默认模型版本不一致");
   assert.equal(manifest.model.defaultVariant, catalog.defaultModelId, "manifest defaultVariant 不一致");
   assert.equal(manifest.model.defaultSource, defaultModel.defaultSource, "manifest 默认来源不一致");
+  assert.deepEqual(
+    [...(manifest.runtime?.executionModes ?? [])].sort(),
+    ["main", "worker"],
+    "runtime executionModes 必须恰好声明 main 与 worker",
+  );
   for (const item of catalog.models) {
     const expected = expectedIdentity.get(item.id);
     assert.deepEqual({ version: item.version, precision: item.precision, width: item.inputSize?.width, height: item.inputSize?.height, bytes: item.bytes, sha256: item.sha256 }, expected, `模型 ${item.id} 身份不符`);
@@ -78,7 +86,7 @@ function verifyAcceptance({ pkg, catalog, report, assets, manifest }) {
   assert.deepEqual(report.catalog, catalog, "验收 catalog 与当前 catalog 不一致");
   assert.deepEqual(report.assets, assets, "构建资产回执与当前构建不一致");
   assert(Array.isArray(report.results), "验收结果缺失");
-  const modes = manifest.runtime?.executionModes ?? ["main", "worker"];
+  const modes = ["main", "worker"];
   const expected = new Set(catalog.models.flatMap(item => item.sources.flatMap(source => item.backends.flatMap(backend => modes.map(mode => `${item.id}/${source.kind}/${backend}/${mode}`)))));
   for (const result of report.results) {
     const key = `${result.modelId}/${result.source}/${result.backend}/${result.executionMode}`;
@@ -92,6 +100,98 @@ function verifyAcceptance({ pkg, catalog, report, assets, manifest }) {
     assert.deepEqual({ bytes: result.modelBytes, sha256: result.modelSha256, revision: result.revision }, { bytes: item.bytes, sha256: item.sha256, revision: source.revision }, `验收模型身份不符：${key}`);
   }
   assert.equal(expected.size, 0, `验收组合缺项：${[...expected].join(", ")}`);
+}
+
+const identity = async file => {
+  const bytes = await readFile(file);
+  return {
+    bytes: bytes.length,
+    sha256: createHash("sha256").update(bytes).digest("hex"),
+  };
+};
+
+function verifyRevisionMap(value, label) {
+  assert(value && typeof value === "object", `${label} 缺失`);
+  assert.deepEqual(Object.keys(value).sort(), sourceKinds, `${label} 必须恰好包含双源`);
+  for (const source of sourceKinds)
+    assert.match(value[source], /^[a-f0-9]{40,64}$/i, `${label}.${source} 必须是固定 revision`);
+}
+
+function receiptUrl(source, revision, path) {
+  const prefix = source === "modelscope" ? "https://www.modelscope.cn/models/" : "https://huggingface.co/";
+  return `${prefix}chenmohan/web-sdk-pp-tinypose/resolve/${revision}/${path}`;
+}
+
+function verifyReceiptRows(rows, expected, revisions, label) {
+  assert(Array.isArray(rows), `${label}逐文件回执缺失`);
+  for (const row of rows) {
+    const key = `${row.source}/${row.path}`;
+    const wanted = expected.get(key);
+    assert(wanted, `${label}回执重复或未知：${key}`);
+    expected.delete(key);
+    assert.equal(row.passed, true, `${label}完整 GET 未通过：${key}`);
+    assert(dated(row.verifiedAt), `${label}验证时间缺失：${key}`);
+    assert.equal(row.revision, revisions[row.source], `${label} revision 不一致：${key}`);
+    assert.equal(row.url, receiptUrl(row.source, row.revision, row.path), `${label}固定 URL 不一致：${key}`);
+    if (wanted.identity)
+      assert.deepEqual({ bytes: row.bytes, sha256: row.sha256 }, wanted.identity, `${label}文件身份与仓库不一致：${key}`);
+    else {
+      assert(Number.isSafeInteger(row.bytes) && row.bytes > 0, `${label}字节数无效：${key}`);
+      assert.match(row.sha256, digestPattern, `${label}摘要无效：${key}`);
+    }
+  }
+  assert.equal(expected.size, 0, `${label}回执缺项：${[...expected.keys()].join(", ")}`);
+}
+
+async function verifyDistribution({ pkg, catalog, distribution }) {
+  assert.equal(distribution.schemaVersion, 2, "分发回执 schemaVersion 必须为 2");
+  assert.equal(distribution.status, "passed", "分发回执未通过");
+  assert(dated(distribution.verifiedAt), "分发验证时间缺失");
+  assert.deepEqual(distribution.catalog, catalog, "分发回执 catalog 与产品不一致");
+
+  const weights = distribution.weights;
+  const metadata = distribution.metadata;
+  assert(weights && typeof weights === "object", "weights 阶段回执缺失");
+  assert(metadata && typeof metadata === "object", "metadata 阶段回执缺失");
+  assert.equal(weights.schemaVersion, 2, "weights schemaVersion 必须为 2");
+  assert.equal(weights.status, "passed", "weights 阶段未通过");
+  assert.equal(weights.phase, "weights", "weights 阶段标识错误");
+  assert(dated(weights.verifiedAt), "weights 验证时间缺失");
+  assert.deepEqual(weights.catalog, catalog, "weights catalog 与产品不一致");
+  verifyRevisionMap(weights.parents, "weights parents");
+  verifyRevisionMap(weights.revisions, "weights revisions");
+  verifyRevisionMap(metadata.parents, "metadata parents");
+  verifyRevisionMap(metadata.revisions, "metadata revisions");
+  assert.deepEqual(metadata.parents, weights.revisions, "metadata 必须承接 weights revision");
+
+  const published = catalog.models.filter(item => item.version === pkg.version);
+  assert.equal(published.length, 2, "当前版本必须恰好分发两个新模型");
+  const expectedWeights = new Map();
+  const expectedMetadata = new Map();
+  const catalogIdentity = await identity("models/catalog.json");
+  for (const source of sourceKinds) {
+    const revisions = new Set(published.map(item => item.sources.find(candidate => candidate.kind === source)?.revision));
+    assert.deepEqual([...revisions], [weights.revisions[source]], `weights revision 与 catalog 不一致：${source}`);
+    expectedWeights.set(`${source}/README.md`, { identity: null });
+    expectedMetadata.set(`${source}/catalog.json`, { identity: catalogIdentity });
+    for (const item of published) {
+      const itemSource = item.sources.find(candidate => candidate.kind === source);
+      assert(itemSource, `模型 ${item.id} 缺少 ${source}`);
+      const folder = itemSource.path.slice(0, itemSource.path.lastIndexOf("/"));
+      for (const name of ["README.md", "README.en.md", "LICENSE", "NOTICE", "conversion.json"])
+        expectedWeights.set(`${source}/${folder}/${name}`, { identity: await identity(`models/${folder}/${name}`) });
+      expectedWeights.set(`${source}/${itemSource.path}`, { identity: { bytes: item.bytes, sha256: item.sha256 } });
+      expectedMetadata.set(`${source}/${folder}/manifest.json`, { identity: await identity(`models/${folder}/manifest.json`) });
+    }
+  }
+  verifyReceiptRows(weights.results, expectedWeights, weights.revisions, "weights");
+  verifyReceiptRows(metadata.results, expectedMetadata, metadata.revisions, "metadata");
+  const rootCards = sourceKinds.map(source => weights.results.find(row => row.source === source && row.path === "README.md"));
+  assert.deepEqual(
+    rootCards.map(row => ({ bytes: row.bytes, sha256: row.sha256 })),
+    rootCards.map(() => ({ bytes: rootCards[0].bytes, sha256: rootCards[0].sha256 })),
+    "双源根模型卡身份不一致",
+  );
 }
 
 const fixtureIndex = process.argv.indexOf("--fixture");
@@ -127,9 +227,7 @@ if (packageOnly) {
   verifyAcceptance({ pkg, catalog, report, assets, manifest });
   verifyServedReceipt(report.servedAssets, assets, report.origin);
   const distribution = await json("reports/2026-09-17-variants/distribution-variants-verified.json");
-  assert.equal(distribution.status, "passed");
-  assert(dated(distribution.verifiedAt));
-  assert.deepEqual(distribution.catalog, catalog, "分发回执 catalog 与产品不一致");
+  await verifyDistribution({ pkg, catalog, distribution });
   const expected = new Set(catalog.models.flatMap(item => item.sources.map(source => `${item.id}/${source.kind}`)));
   for (const row of distribution.results) {
     const key = `${row.modelId}/${row.source}`;

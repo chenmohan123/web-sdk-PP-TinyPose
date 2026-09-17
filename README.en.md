@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-PP-TinyPose **0.2.0 candidate** is a framework-neutral browser SDK for a single-person image or an image with a caller-supplied person box. It returns 17 COCO keypoints in original-image coordinates. CPU (WASM), GPU (WebGPU), main-thread and Worker execution are explicit choices, without silent fallback.
+PP-TinyPose **0.2.0 browser SDK** is framework-neutral and supports a single-person image or an image with a caller-supplied person box. It returns 17 COCO keypoints in original-image coordinates. CPU (WASM), GPU (WebGPU), main-thread and Worker execution are explicit choices, without silent fallback.
 
 - [Live Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) · [GitHub](https://github.com/chenmohan123/web-sdk-PP-TinyPose) · [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose)
 - Stable models: 256×192 FP32 (default, 0.1.0), 128×96 FP32 (0.2.0), and 128×96 FP16 weights (FP32 compute, 0.2.0). All use ONNX opset 17; the upstream report states about 1.32M parameters.
@@ -60,9 +60,9 @@ Open the localhost URL printed in your terminal. No local ONNX setup is required
 
 ## Evidence, release status and limits
 
-All three stable models passed full GET and checksum verification from both fixed Hub commits on 2026-09-17; see the [0.2.0 distribution receipt](reports/2026-09-17-variants/distribution-variants-verified.json). This source is a 0.2.0 candidate. Distributed model files do not prove npm, GitHub Release or Pages publication; Task 4 service receipts determine those states.
+All three stable models passed full GET and checksum verification from both fixed Hub commits on 2026-09-17; see the [0.2.0 distribution receipt](reports/2026-09-17-variants/distribution-variants-verified.json). All 24 model/source/backend/execution combinations passed against the current build; see the [release acceptance receipt](reports/release-acceptance.json). Current availability is determined by the actual content on [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose), [GitHub Releases](https://github.com/chenmohan123/web-sdk-PP-TinyPose/releases), and the [live Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/).
 
-Dated desktop evidence covers all three models under the four runtime combinations on Windows 11, Chromium 153 and ORT Web 1.27.0; see the compatibility guide. Candidate release additionally requires 24 real model/source/backend/execution combinations tied to current build hashes. Mobile, other browsers, WeChat web-view, WebNN/NPU and full COCO AP remain unverified; 390px means a desktop viewport check only. Automatic multi-person detection, camera/video, tracking and action recognition are outside scope. Scores are heatmap responses, not visibility probabilities.
+Dated desktop evidence covers all three models under the four runtime combinations on Windows 11, Chromium 153 and ORT Web 1.27.0; see the compatibility guide. Mobile, other browsers, WeChat web-view, WebNN/NPU and full COCO AP remain unverified; 390px means a desktop viewport check only. Automatic multi-person detection, camera/video, tracking and action recognition are outside scope. Scores are heatmap responses, not visibility probabilities.
 
 Validation: `pnpm … test`, `typecheck`, `build`, `typecheck:demo`, `build:demo`, `check:package`, where `…` means the two configuration flags above. `test:demo-input` and `test:demo-source` require a running development server. A release also runs `RELEASE_TAG=v0.2.0 node scripts/check-release-ready.mjs`; simulated local results must never stand in for a real acceptance receipt.
 

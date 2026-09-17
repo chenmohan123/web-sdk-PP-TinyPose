@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-PP-TinyPose **0.2.0 候选**浏览器单人人体关键点 SDK，运行时不依赖 React。支持单人图片或原图与调用者提供的人体框，输出原图坐标的 17 个 COCO 关键点。CPU（WASM）/GPU（WebGPU）、主线程/Worker 均显式选择，不静默回退。
+PP-TinyPose **0.2.0 浏览器 SDK**，用于单人人体关键点推理，运行时不依赖 React。支持单人图片或原图与调用者提供的人体框，输出原图坐标的 17 个 COCO 关键点。CPU（WASM）/GPU（WebGPU）、主线程/Worker 均显式选择，不静默回退。
 
 - [在线 Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) · [GitHub](https://github.com/chenmohan123/web-sdk-PP-TinyPose) · [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose)
 - 稳定模型：256×192 FP32（默认、0.1.0）、128×96 FP32（0.2.0）、128×96 FP16 权重（FP32 计算，0.2.0）；均为 ONNX opset 17，官方报告约 1.32M 参数。
@@ -60,9 +60,9 @@ pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versi
 
 ## 证据、发布与边界
 
-2026-09-17 三项稳定模型已完成双 Hub 固定提交的完整 GET 和摘要回读，见 [0.2.0 分发回执](reports/2026-09-17-variants/distribution-variants-verified.json)。当前源码是 0.2.0 候选；模型已分发不等于 npm、GitHub Release 或 Pages 已发布，正式可用状态以 Task 4 的真实服务回执为准。
+2026-09-17 三项稳定模型已完成双 Hub 固定提交的完整 GET 和摘要回读，见 [0.2.0 分发回执](reports/2026-09-17-variants/distribution-variants-verified.json)。三模型 × 双源 × CPU/GPU × main/Worker 共 24 组合已通过当前构建验收，见 [发布验收回执](reports/release-acceptance.json)。可用状态以 [npm](https://www.npmjs.com/package/web-sdk-pp-tinypose)、[GitHub Releases](https://github.com/chenmohan123/web-sdk-PP-TinyPose/releases) 和 [在线 Demo](https://chenmohan123.github.io/web-sdk-PP-TinyPose/) 的实际内容为准。
 
-已有带日期的 Windows 11 / Chromium 153 / ORT Web 1.27.0 三模型四运行组合证据，详见兼容性文档。候选发布还要求真实三模型×双源×CPU/GPU×main/Worker 共 24 组合与当前构建摘要校验。手机、其他浏览器、微信 web-view、WebNN/NPU、全量 COCO AP 尚未验证；390px 只是桌面视口检查。没有自动多人检测、相机、视频、跟踪或动作判断。score 是热力图响应，不是可见性概率。
+已有带日期的 Windows 11 / Chromium 153 / ORT Web 1.27.0 三模型四运行组合证据，详见兼容性文档。手机、其他浏览器、微信 web-view、WebNN/NPU、全量 COCO AP 尚未验证；390px 只是桌面视口检查。没有自动多人检测、相机、视频、跟踪或动作判断。score 是热力图响应，不是可见性概率。
 
 验证命令：`pnpm … test`、`typecheck`、`build`、`typecheck:demo`、`build:demo`、`check:package`（省略号为上面两个固定配置参数）。输入和来源/模型竞争测试分别为 `test:demo-input` / `test:demo-source`，需要已启动的开发服务器。正式发布额外运行 `RELEASE_TAG=v0.2.0 node scripts/check-release-ready.mjs`；不能用本地模拟结果伪造验收回执。
 

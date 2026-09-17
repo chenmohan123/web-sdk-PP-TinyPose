@@ -15,7 +15,7 @@
 
 ## 分发
 
-分发脚本采用 weights、metadata 两阶段，只向既有 ModelScope/Hugging Face 仓库追加文件，不删除旧路径。ModelScope 没有 CAS 接口，因此上传前对目标路径执行双 HEAD 不存在检查，上传后从固定 revision 完整回读；Hugging Face 使用父 revision 提交。
+分发脚本采用 weights、metadata 两阶段，只向既有 ModelScope/Hugging Face 仓库追加文件，不删除旧路径。ModelScope 没有 CAS 接口，因此上传前连续两次读取仓库 HEAD revision 并要求与固定父提交一致，上传后从固定 revision 完整回读；这项检查不能证明目标路径预先不存在。Hugging Face 使用父 revision 提交。
 
 | 阶段 | ModelScope revision | Hugging Face revision |
 | --- | --- | --- |
@@ -63,3 +63,15 @@ RELEASE_TAG=v0.2.0 check     -> 正式版本、分发、24 组合和构建摘要
 - 标准：`standard-task3-before.json`、`standard-task3-after.json`
 
 证据限定为报告所列 Windows 桌面 Headless Chromium 153、固定样图和固定模型；不代表 COCO 全量 AP、手机、NPU 或普遍性能承诺。390px 英文 Precision 下拉在收起状态会截断部分 `FP32 compute` 文本，但展开选项和模型信息完整，记录为非阻塞体验项，本任务未扩大 UI 范围。
+
+## Fix round 1
+
+独立审查发现发布守卫可由 manifest 缩减执行模式，并忽略 weights/metadata 两阶段逐文件回执。修复采用真实完整发布分支的 CLI 夹具，不使用 `--fixture` 捷径：
+
+- RED：仅 `main` 配 12 行、空模式配 0 行、重复模式、缺 weights、缺 metadata、模型卡 `passed:false`、模型卡摘要漂移共 7 项均错误退出 0；既有 14 项通过。
+- GREEN：守卫固定要求 executionModes 恰好包含 `main`、`worker`，验收期望集合固定为 24 项；要求 weights 和 metadata 都存在，校验阶段状态、父/新 revision、承接关系、完整唯一路径、固定 URL、时间和逐行通过状态。
+- 模型卡、LICENSE、NOTICE、conversion、catalog 和 manifest 的字节数与 SHA-256 绑定当前仓库文件；ONNX 身份绑定 catalog。双源根模型卡没有仓库内同源文件，只校验两源完整回读身份一致，不把它描述为本地内容绑定。
+- 相关 `release-guard` 与 `distribution-assets` 测试共 25 项通过；真实 CLI 正负 fixture 通过；`RELEASE_TAG=v0.2.0` 完整守卫继续通过现有 41 项构建摘要与 24 行验收，无须重跑浏览器矩阵。
+- 修正 ModelScope 文案：实现检查的是上传前仓库 HEAD revision 连续一致性，并不证明目标路径不存在。
+- M1 的 390px 英文精度文本截断保持非阻塞记录；本轮未改 UI。
+- npm 中英文 README 改为中性 0.2.0 产品文案，移除内部 Task 编号和候选措辞，改为引用现有 24 组合回执与 npm、GitHub Releases、在线 Demo 的实际可用状态；性能文档将 5.69MB 明确限定为 256×192 FP32 模型。
