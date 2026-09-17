@@ -1,0 +1,35 @@
+{
+  "testedAt": "2026-09-17T16:28:17.998Z",
+  "browser": "153.0.8010.12",
+  "origin": "http://127.0.0.1:4188/",
+  "results": [
+    "模型规格与精度切换取消旧任务并绑定新缓存身份",
+    "默认 ModelScope、仅两个来源且中英文可访问",
+    "换源后旧load完成不能恢复结果或解除新任务忙状态",
+    "换源后旧run完成不能恢复结果或解除新任务忙状态",
+    "显式来源下载失败不请求另一 Hub"
+  ],
+  "scope": "UI 竞争使用可控 SDK 边界；来源失败使用真实 SDK 和拦截的 HTTP 503；不代表远程 Hub 推理验收",
+  "source": [
+    {
+      "file": "demo/src/App.tsx",
+      "bytes": 42289,
+      "sha256": "8569689db9768ee45dd51932a743cbf71952d7e6db345473bb3400983cbf2033"
+    },
+    {
+      "file": "tests/demo-source-browser.mjs",
+      "bytes": 8639,
+      "sha256": "5892e7582e660f937d4912f614acd4928430e5b2c80b509e667cd5809ad9dcab"
+    },
+    {
+      "file": "models/model.json",
+      "bytes": 1563,
+      "sha256": "7162a20c8bd37ccf8a6b56eb5893e98a9d2350c06e608ca913bc7bdb1b728ebd"
+    },
+    {
+      "file": "models/catalog.json",
+      "bytes": 5294,
+      "sha256": "8a0e035aa5a76bb1fe978f5279e916ee7ef12b189407d42bfa9a4b62c5dd76cb"
+    }
+  ]
+}

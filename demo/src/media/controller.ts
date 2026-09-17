@@ -161,7 +161,34 @@ const defaultDependencies: MediaControllerDependencies = {
   revokeObjectURL: (url) => URL.revokeObjectURL(url),
   async waitForReady(video, signal) {
     if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) return;
-    await waitForEvent(video, "loadeddata", "error", signal);
+    if (typeof video.requestVideoFrameCallback !== "function") {
+      await waitForEvent(video, "loadeddata", "error", signal);
+      return;
+    }
+    // loadeddata 可以早于首帧可读时刻；视频帧回调保证解码画面已经提交。
+    await new Promise<void>((resolve, reject) => {
+      let handle: number;
+      const cleanup = () => {
+        video.cancelVideoFrameCallback(handle);
+        video.removeEventListener("error", fail);
+        signal.removeEventListener("abort", abort);
+      };
+      const fail = () => {
+        cleanup();
+        reject(new MediaControllerError("MEDIA_DECODE", "媒体解码失败"));
+      };
+      const abort = () => {
+        cleanup();
+        reject(abortError());
+      };
+      handle = video.requestVideoFrameCallback(() => {
+        cleanup();
+        resolve();
+      });
+      video.addEventListener("error", fail, { once: true });
+      signal.addEventListener("abort", abort, { once: true });
+      if (signal.aborted) abort();
+    });
   },
   async seekVideo(video, seconds, signal) {
     if (Math.abs(video.currentTime - seconds) < 0.000_001) return;
@@ -172,7 +199,12 @@ const defaultDependencies: MediaControllerDependencies = {
   captureFrame(video) {
     const width = video.videoWidth;
     const height = video.videoHeight;
-    if (!Number.isInteger(width) || width <= 0 || !Number.isInteger(height) || height <= 0)
+    if (
+      !Number.isInteger(width) ||
+      width <= 0 ||
+      !Number.isInteger(height) ||
+      height <= 0
+    )
       throw new MediaControllerError("MEDIA_CAPTURE", "媒体帧尺寸无效");
     const canvas = document.createElement("canvas");
     canvas.width = width;
@@ -185,7 +217,8 @@ const defaultDependencies: MediaControllerDependencies = {
     return { width, height, data: new Uint8ClampedArray(pixels) };
   },
   now: () => performance.now(),
-  requestAnimationFrame: (callback) => globalThis.requestAnimationFrame(callback),
+  requestAnimationFrame: (callback) =>
+    globalThis.requestAnimationFrame(callback),
   cancelAnimationFrame: (handle) => globalThis.cancelAnimationFrame(handle),
 };
 
@@ -305,19 +338,26 @@ export function createMediaController(
   };
 
   const assertUsable = () => {
-    if (disposed) throw new MediaControllerError("DISPOSED", "媒体控制器已销毁");
+    if (disposed)
+      throw new MediaControllerError("DISPOSED", "媒体控制器已销毁");
   };
 
   const syncMediaState = (patch: Partial<MediaState> = {}) => {
     const width = video.videoWidth;
     const height = video.videoHeight;
-    if (state.width && state.height && (state.width !== width || state.height !== height))
+    if (
+      state.width &&
+      state.height &&
+      (state.width !== width || state.height !== height)
+    )
       region = undefined;
     reportState({
       width: Number.isInteger(width) && width > 0 ? width : 0,
       height: Number.isInteger(height) && height > 0 ? height : 0,
       duration:
-        state.kind === "video" && Number.isFinite(video.duration) && video.duration >= 0
+        state.kind === "video" &&
+        Number.isFinite(video.duration) &&
+        video.duration >= 0
           ? video.duration
           : 0,
       currentTime:
@@ -330,7 +370,8 @@ export function createMediaController(
 
   const cancelFrame = () => {
     if (frameHandle === undefined) return;
-    if (frameHandleKind === "video") video.cancelVideoFrameCallback(frameHandle);
+    if (frameHandleKind === "video")
+      video.cancelVideoFrameCallback(frameHandle);
     else dependencies.cancelAnimationFrame(frameHandle);
     frameHandle = undefined;
     frameHandleKind = undefined;
@@ -443,7 +484,11 @@ export function createMediaController(
     try {
       await release;
     } catch (error) {
-      const normalized = mediaError(error, "RESOURCE_RELEASE", "媒体资源释放失败");
+      const normalized = mediaError(
+        error,
+        "RESOURCE_RELEASE",
+        "媒体资源释放失败",
+      );
       if (generation === sourceGeneration) {
         reportState({ phase: "error", kind: "none" });
         reportError(normalized);
@@ -608,7 +653,11 @@ export function createMediaController(
     try {
       await release;
     } catch (error) {
-      const normalized = mediaError(error, "RESOURCE_RELEASE", "媒体资源释放失败");
+      const normalized = mediaError(
+        error,
+        "RESOURCE_RELEASE",
+        "媒体资源释放失败",
+      );
       if (generation === sourceGeneration) {
         reportState({ phase: "error", kind: "none" });
         reportError(normalized);
@@ -678,7 +727,11 @@ export function createMediaController(
         syncMediaState({ phase: "ready" });
       } catch (error) {
         if (generation !== sourceGeneration || abort.signal.aborted) return;
-        const normalized = mediaError(error, "MEDIA_DECODE", "视频读取或解码失败");
+        const normalized = mediaError(
+          error,
+          "MEDIA_DECODE",
+          "视频读取或解码失败",
+        );
         throw await failAndTeardown(normalized);
       } finally {
         if (operationAbort === abort) operationAbort = undefined;
@@ -692,7 +745,10 @@ export function createMediaController(
       operationAbort = abort;
       let acquired: MediaStream;
       try {
-        acquired = await dependencies.getUserMedia({ video: true, audio: false });
+        acquired = await dependencies.getUserMedia({
+          video: true,
+          audio: false,
+        });
       } catch (error) {
         if (generation !== sourceGeneration || abort.signal.aborted) return;
         throw await failAndTeardown(cameraError(error));
@@ -720,7 +776,11 @@ export function createMediaController(
         syncMediaState({ phase: "ready" });
       } catch (error) {
         if (generation !== sourceGeneration || abort.signal.aborted) return;
-        const normalized = mediaError(error, "MEDIA_PLAYBACK", "摄像头画面播放失败");
+        const normalized = mediaError(
+          error,
+          "MEDIA_PLAYBACK",
+          "摄像头画面播放失败",
+        );
         throw await failAndTeardown(normalized);
       } finally {
         if (operationAbort === abort) operationAbort = undefined;
@@ -777,7 +837,10 @@ export function createMediaController(
     async step() {
       assertUsable();
       if (state.kind === "none")
-        throw new MediaControllerError("INVALID_INPUT", "当前没有可处理的媒体帧");
+        throw new MediaControllerError(
+          "INVALID_INPUT",
+          "当前没有可处理的媒体帧",
+        );
       const expectedSource = sourceGeneration;
       await pauseCurrent();
       if (expectedSource !== sourceGeneration) return;
@@ -794,9 +857,10 @@ export function createMediaController(
       const generation = sourceGeneration;
       await pauseCurrent();
       if (generation !== sourceGeneration) return;
-      const duration = Number.isFinite(video.duration) && video.duration >= 0
-        ? video.duration
-        : seconds;
+      const duration =
+        Number.isFinite(video.duration) && video.duration >= 0
+          ? video.duration
+          : seconds;
       const target = Math.min(seconds, duration);
       const abort = new AbortController();
       operationAbort = abort;

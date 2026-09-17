@@ -205,6 +205,76 @@ a svg,
   gap: 7px;
   min-width: 0;
 }
+.scenario-tabs {
+  grid-column: 1 / -1;
+}
+.demo-workspace.has-media {
+  grid-template-areas: "controls preview results";
+  grid-template-rows: minmax(0, 1fr);
+}
+.media-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  min-height: 36px;
+}
+.media-controls button {
+  font-size: 12px;
+}
+.media-fps-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sdk-color-muted-text);
+  font-size: 12px;
+}
+.media-fps-control select {
+  min-height: 34px;
+  width: 54px;
+  border: 1px solid var(--sdk-color-border);
+  border-radius: var(--sdk-radius-sm);
+  background: var(--sdk-color-panel);
+}
+.media-timeline {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  gap: 8px;
+  align-items: center;
+  min-height: 36px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.media-timeline input {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--sdk-color-action);
+}
+.media-timeline output:last-child {
+  text-align: right;
+}
+.media-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  margin: 10px 0 0;
+  min-height: 28px;
+  font-size: 12px;
+}
+.media-metrics > div {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+}
+.media-metrics dt {
+  color: var(--sdk-color-muted-text);
+}
+.media-metrics dd {
+  margin: 0;
+  min-width: 28px;
+  font-variant-numeric: tabular-nums;
+}
 .control-label,
 .threshold-control > span {
   color: #475569;
@@ -620,6 +690,10 @@ a svg,
   font-size: 12px;
 }
 @media (max-width: 1199px) {
+  .demo-workspace.has-media {
+    grid-template-areas: "controls preview" "controls results";
+    grid-template-rows: auto 1fr;
+  }
   .demo-workspace {
     grid-template-columns: 250px minmax(0, 1fr);
     grid-template-rows: auto auto 1fr;
