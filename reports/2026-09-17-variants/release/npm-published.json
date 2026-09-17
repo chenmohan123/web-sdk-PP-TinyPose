@@ -1,0 +1,90 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-17T09:15:11.175494+00:00",
+  "registryUrl": "https://registry.npmjs.org/web-sdk-pp-tinypose/0.2.0",
+  "name": "web-sdk-pp-tinypose",
+  "version": "0.2.0",
+  "dist": {
+    "shasum": "d54454cf41e4e78279da6dd50bb58c16b85cfddd",
+    "tarball": "https://registry.npmjs.org/web-sdk-pp-tinypose/-/web-sdk-pp-tinypose-0.2.0.tgz",
+    "fileCount": 22,
+    "integrity": "sha512-ll4qLncqSDHTyoQxuZQugE2piUbxpKMcODF+9fDDZ79ny3P7naDqrErrzRmWIK4c7BCDQyZNl4lSw8nhDfJwjQ==",
+    "signatures": [
+      {
+        "sig": "MEYCIQClMT3sBdWC7gS0w+sG/wnwl9TQ1QcM3w5p1z3/QufSwAIhAOvHsAngMsF8gZzSLHWVoVqdTd+zokbJs7wIx9UeZJW4",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "sig": "MEYCIQDhrnT7HPv0uAOBtZSK0Tlt9EmCle9DAoRep1EuKzcckQIhANW+HPu8Va7nZ/tEbmRpGSsBbol5hsG0sS9jrxnzqz9m",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "attestations": {
+      "url": "https://registry.npmjs.org/-/npm/v1/attestations/web-sdk-pp-tinypose@0.2.0",
+      "provenance": {
+        "predicateType": "https://slsa.dev/provenance/v1"
+      }
+    },
+    "unpackedSize": 24575281
+  },
+  "tarball": {
+    "bytes": 6066954,
+    "sha256": "1d31566cdc02c4d5b2e037e0e5c25d65d4ee7db652ce1d363cb12b8d349bc6e4"
+  },
+  "ciRun": "35203318021",
+  "releaseCommit": "3ef812307359d0d9b7f11ebd606007a464a301bc",
+  "ciArtifactIdentical": true,
+  "sdkAssetsMatchAcceptance": true,
+  "fileCount": 22,
+  "containsOnnx": false,
+  "provenance": [
+    {
+      "_type": "https://in-toto.io/Statement/v1",
+      "subject": [
+        {
+          "name": "pkg:npm/web-sdk-pp-tinypose@0.2.0",
+          "digest": {
+            "sha512": "965e2a2e772a4831d3ca8431b9942e804da98946f1a4a31c38317ef5f0c367bf67cb73fb9da0eaac4aebcd199620ae1cec108343264d978952c3c9e10df2708d"
+          }
+        }
+      ],
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://slsa-framework.github.io/github-actions-buildtypes/workflow/v1",
+          "externalParameters": {
+            "workflow": {
+              "ref": "refs/tags/v0.2.0",
+              "repository": "https://github.com/chenmohan123/web-sdk-PP-TinyPose",
+              "path": ".github/workflows/release.yml"
+            }
+          },
+          "internalParameters": {
+            "github": {
+              "event_name": "push",
+              "repository_id": "1373852278",
+              "repository_owner_id": "5992155"
+            }
+          },
+          "resolvedDependencies": [
+            {
+              "uri": "git+https://github.com/chenmohan123/web-sdk-PP-TinyPose@refs/tags/v0.2.0",
+              "digest": {
+                "gitCommit": "3ef812307359d0d9b7f11ebd606007a464a301bc"
+              }
+            }
+          ]
+        },
+        "runDetails": {
+          "builder": {
+            "id": "https://github.com/actions/runner/github-hosted"
+          },
+          "metadata": {
+            "invocationId": "https://github.com/chenmohan123/web-sdk-PP-TinyPose/actions/runs/35203318021/attempts/1"
+          }
+        }
+      }
+    }
+  ],
+  "verificationBoundary": "完整回读 npm/CI 包并核对字节、清单及 provenance 内容；没有自行验证 Sigstore 签名链。"
+}

@@ -3,7 +3,7 @@
 文档、回复、注释和 git 提交使用中文；公共 README 与六组指南提供完整英文对应。
 先读相邻门户 `standards/v1/README.md` 及受影响的 SDK、Demo、发布契约；SDK 改动前后从门户运行 `pnpm sdk:check -- --repo <此仓库>`。
 
-当前候选目标版本为 0.2.0，默认模型仍是 0.1.0 的 256×192 FP32。三个稳定模型已完成 ModelScope/Hugging Face 固定提交分发与回读，默认 ModelScope；npm、GitHub Release、Pages 是否已公开可用必须读取相应远程回执，不能从版本或 workflow 推断。
+当前正式版本为 0.2.0，默认模型仍是 0.1.0 的 256×192 FP32。三个稳定模型已完成 ModelScope/Hugging Face 固定提交分发与回读，默认 ModelScope；npm、GitHub Release、Pages 与线上 24 组合均已验证，回执见 reports/2026-09-17-variants/release 和 online-browser.json。后续版本仍须读取真实远程回执，不能从版本或 workflow 推断。
 保留公共 createTinyPose API、框架无关 runtime 与 Detection 风格 Demo。仅单人图片或调用者人体框；不把桌面/390px验证说成手机、微信或 NPU 兼容。
 
 模型身份集中在 models/catalog.json；models/model.json 是默认模型兼容入口，两者与 sdk-manifest.yaml 保持一致。显式来源失败不能静默换源。npm 与生产 Demo 都不含 ONNX。生产构建不得依赖 demo/public/models 的本地权重。
