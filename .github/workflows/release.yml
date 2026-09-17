@@ -90,7 +90,7 @@ jobs:
             remaining_seconds=$((poll_deadline - SECONDS))
             query_timeout=$((remaining_seconds < 10 ? remaining_seconds : 10))
             if timeout "${query_timeout}s" npm view "web-sdk-pp-tinypose@$package_version" dist.integrity --json > published-integrity.tmp 2>/dev/null \
-              && node --input-type=module -e 'import {readFileSync} from "node:fs"; const value=JSON.parse(readFileSync(process.argv[1],"utf8")); if(typeof value!=="string" || !value.startsWith("sha512-")) process.exit(1)' published-integrity.tmp; then
+              && node --input-type=module -e 'import {readFileSync} from "node:fs"; const value=JSON.parse(readFileSync(process.argv[1],"utf8")); const prefix="sha512-"; if(typeof value!=="string" || !value.startsWith(prefix)) process.exit(1); const encoded=value.slice(prefix.length); const digest=Buffer.from(encoded,"base64"); if(digest.length!==64 || digest.toString("base64")!==encoded) process.exit(1)' published-integrity.tmp; then
               mv published-integrity.tmp published-integrity.json
               integrity_ready=true
               break
