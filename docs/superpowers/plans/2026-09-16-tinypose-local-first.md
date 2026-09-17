@@ -43,27 +43,27 @@ await estimator.dispose();
 
 导出 `COCO_KEYPOINT_NAMES`、`COCO_SKELETON`（索引对）、`clearCurrentModelCache(model)`、`clearAllModelCache()`、`getModelCacheInfo(model)`（`{entries,bytes}`）。全局清理只清理本 SDK 的数据库。
 
-- [ ] 先编写有意义的数学与生命周期失败测试：边界框/奇数尺寸、DARK 位移、无效像素/零面积框、预取消、显式后端失败、忙碌、释放后调用、缓存损坏与实例命名空间。
-- [ ] 实现纯函数 `preprocessPose`/`decodePose`，与官方 OpenCV 和 DARK 的固定参考夹具对照；保留 Apache 归因。框扩展、裁剪及逆变换遵循设计。
-- [ ] 实现下载/hash/缓存、主线程与 Worker 路径；输入缓存和调用者像素不能被 Worker 转移后失效。并发 load/dispose、run/dispose 和取消时清理所有临时 tensor/会话。
-- [ ] 构建 ESM SDK、类型声明、模块 Worker 和相同版本的 ORT 文件。SDK `dist` 不含模型；复制到 `demo/public/sdk` 仅供 Demo 独立构建。避免 Worker 中未解析的 npm 裸导入。
-- [ ] 运行 `pnpm ... test`、`typecheck`、`build`，记录命令与实际结果后提交，交独立审查。
+- [x] 先编写有意义的数学与生命周期失败测试：边界框/奇数尺寸、DARK 位移、无效像素/零面积框、预取消、显式后端失败、忙碌、释放后调用、缓存损坏与实例命名空间。
+- [x] 实现纯函数 `preprocessPose`/`decodePose`，与官方 OpenCV 和 DARK 的固定参考夹具对照；保留 Apache 归因。框扩展、裁剪及逆变换遵循设计。
+- [x] 实现下载/hash/缓存、主线程与 Worker 路径；输入缓存和调用者像素不能被 Worker 转移后失效。并发 load/dispose、run/dispose 和取消时清理所有临时 tensor/会话。
+- [x] 构建 ESM SDK、类型声明、模块 Worker 和相同版本的 ORT 文件。SDK `dist` 不含模型；复制到 `demo/public/sdk` 仅供 Demo 独立构建。避免 Worker 中未解析的 npm 裸导入。
+- [x] 运行 `pnpm ... test`、`typecheck`、`build`，记录命令与实际结果后提交，交独立审查。
 
 ## Task 2: 单 SDK Demo 与文档
 
 **文件：** `demo/index.html`、`demo/src/App.tsx`、`demo/src/style.css`、`demo/vite.config.ts`、`examples/vanilla/`、`examples/react/`、`README.md`、`README.en.md`、`docs/zh-CN/`、`docs/en/`、`sdk-manifest.yaml`。
 
-- [ ] 用 Task 1 公共接口创建单人图片 Demo：图片、手工框选、清除框、后端/执行模式、运行与取消、原图骨架。结果紧邻预览，不增加占位说明框导致跳动。
-- [ ] 使用共享 UI tokens；提供中英文和规定的 cache/model/runtime/timing 标记。无文件时不渲染破图，390px 不溢出。
-- [ ] 模型由本地 `models/model.json` 描述，准备脚本按摘要核对本地 ONNX 后复制到不跟踪的 Demo 资产；不构造伪造的远程下载地址。
-- [ ] 填写模板与双语快速开始、API、兼容、排障、隐私部署、性能文档；保存当前模型、依赖和源码许可。
-- [ ] 完成本地标准 checker，任何尚未发布的远程规则明确 skip；不声称已发布/完整合规。
+- [x] 用 Task 1 公共接口创建单人图片 Demo：图片、手工框选、清除框、后端/执行模式、运行与取消、原图骨架。结果紧邻预览，不增加占位说明框导致跳动。
+- [x] 使用共享 UI tokens；提供中英文和规定的 cache/model/runtime/timing 标记。无文件时不渲染破图，390px 不溢出。
+- [x] 模型由本地 `models/model.json` 描述，准备脚本按摘要核对本地 ONNX 后复制到不跟踪的 Demo 资产；不构造伪造的远程下载地址。
+- [x] 填写模板与双语快速开始、API、兼容、排障、隐私部署、性能文档；保存当前模型、依赖和源码许可。
+- [x] 完成本地标准 checker，任何尚未发布的远程规则明确 skip；不声称已发布/完整合规。
 
 ## Task 3: 固定模型端到端验收与归档
 
 **文件：** `tools/feasibility/`、`reports/2026-09-16-feasibility/`、`tests/browser.mjs`。
 
-- [ ] 固定官方 ZIP、源码文件及模型摘要，保存 Paddle→ONNX 的 32 个真实裁剪参考与浏览器四组合模型探针，记录只覆盖同输入张量的边界。
-- [ ] 在真实浏览器通过公开 SDK 执行固定 RGBA 输入和 Blob 输入，记录 CPU/GPU×main/worker 四组合；原图坐标对齐参考且模型输出有限。用参考图独立检查预处理，避免 JPEG/ICC 解码混入模型误差。
-- [ ] 验证本地 Demo 上传、框选、取消、复用/释放、中英文、390px布局；运行类型检查、相关单测和构建。
-- [ ] 归档环境、性能口径和实际验证范围。更新计划勾选状态并提交本地成果。新 SDK 外部发布与门户登记仍需正式发布验收，不包含在本地首版成功声明中。
+- [x] 固定官方 ZIP、源码文件及模型摘要，保存 Paddle→ONNX 的 32 个真实裁剪参考与浏览器四组合模型探针，记录只覆盖同输入张量的边界。
+- [x] 在真实浏览器通过公开 SDK 执行固定 RGBA 输入和 Blob 输入，记录 CPU/GPU×main/worker 四组合；原图坐标对齐参考且模型输出有限。用参考图独立检查预处理，避免 JPEG/ICC 解码混入模型误差。
+- [x] 验证本地 Demo 上传、框选、取消、复用/释放、中英文、390px布局；运行类型检查、相关单测和构建。
+- [x] 归档环境、性能口径和实际验证范围。更新计划勾选状态并提交本地成果。新 SDK 外部发布与门户登记仍需正式发布验收，不包含在本地首版成功声明中。

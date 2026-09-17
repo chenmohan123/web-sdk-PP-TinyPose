@@ -1,0 +1,47 @@
+name: SDK 检查
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { persist-credentials: false }
+      - uses: actions/setup-node@v4
+        with: { node-version: "24" }
+      - uses: pnpm/action-setup@v4
+        with: { version: 11.21.0 }
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false install --frozen-lockfile
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false test
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false typecheck:demo
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false build:demo
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false check:package
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false pack --out package.tgz
+      - uses: actions/upload-artifact@v4
+        with: { name: sdk-package, path: package.tgz }
+      - run: pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false exec playwright install --with-deps chromium
+      - name: Demo 输入与来源竞争回归
+        env:
+          TINYPOSE_DEMO_URL: http://127.0.0.1:4187/
+          TINYPOSE_REPORT_DIR: reports/ci-browser
+        run: |
+          pnpm --config.verify-deps-before-run=false --config.manage-package-manager-versions=false dev --port 4187 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          node -e 'for(let i=0;i<60;i++){try{if((await fetch(process.env.TINYPOSE_DEMO_URL)).ok)process.exit(0)}catch{}await new Promise(r=>setTimeout(r,500))}process.exit(1)'
+          node tests/demo-input-browser.mjs
+          node tests/demo-source-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: demo-regression, path: reports/ci-browser, if-no-files-found: ignore }
+      # CPU/GPU 真实网络推理保留独立桌面环境证据，CI 不冒充 GPU 验收。

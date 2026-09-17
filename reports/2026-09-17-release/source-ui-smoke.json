@@ -1,0 +1,10 @@
+{
+  "testedAt": "2026-09-17T03:03:44.105Z",
+  "browser": "153.0.8010.12",
+  "origin": "http://127.0.0.1:4186/",
+  "defaultSource": "modelscope",
+  "viewport390NoOverflow": true,
+  "viewport390ActionsDoNotOverlap": true,
+  "vanillaMetadataFailureRecoversButton": true,
+  "pageErrors": []
+}

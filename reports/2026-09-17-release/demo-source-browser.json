@@ -1,0 +1,29 @@
+{
+  "testedAt": "2026-09-17T03:01:56.355Z",
+  "browser": "153.0.8010.12",
+  "origin": "http://127.0.0.1:4187/",
+  "results": [
+    "默认 ModelScope、仅两个来源且中英文可访问",
+    "换源后旧load完成不能恢复结果或解除新任务忙状态",
+    "换源后旧run完成不能恢复结果或解除新任务忙状态",
+    "显式来源下载失败不请求另一 Hub"
+  ],
+  "scope": "UI 竞争使用可控 SDK 边界；来源失败使用真实 SDK 和拦截的 HTTP 503；不代表远程 Hub 推理验收",
+  "source": [
+    {
+      "file": "demo/src/App.tsx",
+      "bytes": 33247,
+      "sha256": "8404b7262266507f86a3a803b1afdc5b6e2f8f733389be635747f3f8ff556426"
+    },
+    {
+      "file": "tests/demo-source-browser.mjs",
+      "bytes": 6663,
+      "sha256": "4211aaad13e94e44b4f2e61424dc7339d411d3a574a375d5e128c3714e02baed"
+    },
+    {
+      "file": "models/model.json",
+      "bytes": 1410,
+      "sha256": "2cf767a27946bb9947f10fcd043939ac72e3407b3a709ade3677772d06965728"
+    }
+  ]
+}

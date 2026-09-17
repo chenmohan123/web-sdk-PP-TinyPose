@@ -1,0 +1,6 @@
+[Paddle2ONNX] Start to parse PaddlePaddle model...
+[Paddle2ONNX] Model file path: .tmp/tinypose-feasibility/exported/tinypose_256x192\model.pdmodel
+[Paddle2ONNX] Parameters file path: .tmp/tinypose-feasibility/exported/tinypose_256x192\model.pdiparams
+[Paddle2ONNX] Start to parsing Paddle model...
+[Paddle2ONNX] Use opset_version = 17 for ONNX export.
+[Paddle2ONNX] PaddlePaddle model is exported as ONNX format now.

@@ -1,0 +1,22 @@
+PP-TinyPose 浏览器 SDK
+
+模型与参考算法来源：PaddlePaddle/PaddleDetection。
+Copyright (c) 2021 PaddlePaddle Authors. All Rights Reserved.
+Apache License, Version 2.0，详见 LICENSE。
+固定源码：b25522a0f4bde8c80603f3ba5e3472059972e3b5。
+
+裁剪、TopDownEvalAffine 与 DARK 的 TypeScript 实现基于以下文件改编：
+deploy/python/keypoint_preprocess.py
+deploy/python/keypoint_postprocess.py
+deploy/python/keypoint_infer.py
+原预处理引用 OpenMMLab/mmpose 的 post_transforms.py；DARK 算法引用
+ilovepose/DarkPose 的 lib/core/inference.py。本仓库保留上游说明，未复制训练代码。
+
+权重来自官方 tinypose_enhance/tinypose_256x192.zip 模型表。
+ZIP 不包含独立权重许可证，发布归属与仓库 Apache-2.0 许可一并记录；
+COCO、AI Challenger 和上游业务训练数据的说明不构成额外的权重授权书。
+
+Demo 样图来自上述固定源码 demo/hrnet_demo.jpg，保留为上游姿态示例。
+运行依赖 ONNX Runtime Web（Microsoft，MIT）；其发行包保留自身许可。
+共享 UI token 来源：chenmohan123.github.io/standards/v1/ui-tokens.json。
+Demo 图标使用 Lucide（ISC）；仅用于 Demo，不是 SDK 运行依赖。

@@ -1,0 +1,330 @@
+{
+  "testedAt": "2026-09-17T02:24:23.361Z",
+  "browser": "153.0.8010.12",
+  "reference": "https://chenmohan123.github.io/web-sdk-PP-Detection/",
+  "rows": [
+    {
+      "lang": "zh",
+      "width": 1440,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 270,
+        "height": 832
+      },
+      "preview": {
+        "x": 270,
+        "y": 68,
+        "width": 830,
+        "height": 698
+      },
+      "details": {
+        "x": 1100,
+        "y": 68,
+        "width": 340,
+        "height": 832
+      },
+      "samples": {
+        "x": 270,
+        "y": 766,
+        "width": 830,
+        "height": 134
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "zh",
+      "width": 1280,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 270,
+        "height": 832
+      },
+      "preview": {
+        "x": 270,
+        "y": 68,
+        "width": 670,
+        "height": 698
+      },
+      "details": {
+        "x": 940,
+        "y": 68,
+        "width": 340,
+        "height": 832
+      },
+      "samples": {
+        "x": 270,
+        "y": 766,
+        "width": 670,
+        "height": 134
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "zh",
+      "width": 1024,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 250,
+        "height": 1124
+      },
+      "preview": {
+        "x": 250,
+        "y": 68,
+        "width": 774,
+        "height": 576
+      },
+      "details": {
+        "x": 250,
+        "y": 644,
+        "width": 774,
+        "height": 398
+      },
+      "samples": {
+        "x": 250,
+        "y": 1042,
+        "width": 774,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "zh",
+      "width": 700,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 250,
+        "height": 1124
+      },
+      "preview": {
+        "x": 250,
+        "y": 68,
+        "width": 450,
+        "height": 576
+      },
+      "details": {
+        "x": 250,
+        "y": 644,
+        "width": 450,
+        "height": 398
+      },
+      "samples": {
+        "x": 250,
+        "y": 1042,
+        "width": 450,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "zh",
+      "width": 390,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 116,
+        "width": 390,
+        "height": 507.09375
+      },
+      "preview": {
+        "x": 0,
+        "y": 623.09375,
+        "width": 390,
+        "height": 442
+      },
+      "details": {
+        "x": 0,
+        "y": 1065.09375,
+        "width": 390,
+        "height": 398
+      },
+      "samples": {
+        "x": 0,
+        "y": 1463.09375,
+        "width": 390,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "en",
+      "width": 1440,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 270,
+        "height": 832
+      },
+      "preview": {
+        "x": 270,
+        "y": 68,
+        "width": 830,
+        "height": 698
+      },
+      "details": {
+        "x": 1100,
+        "y": 68,
+        "width": 340,
+        "height": 832
+      },
+      "samples": {
+        "x": 270,
+        "y": 766,
+        "width": 830,
+        "height": 134
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "en",
+      "width": 1280,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 270,
+        "height": 832
+      },
+      "preview": {
+        "x": 270,
+        "y": 68,
+        "width": 670,
+        "height": 698
+      },
+      "details": {
+        "x": 940,
+        "y": 68,
+        "width": 340,
+        "height": 832
+      },
+      "samples": {
+        "x": 270,
+        "y": 766,
+        "width": 670,
+        "height": 134
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "en",
+      "width": 1024,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 250,
+        "height": 1124
+      },
+      "preview": {
+        "x": 250,
+        "y": 68,
+        "width": 774,
+        "height": 576
+      },
+      "details": {
+        "x": 250,
+        "y": 644,
+        "width": 774,
+        "height": 398
+      },
+      "samples": {
+        "x": 250,
+        "y": 1042,
+        "width": 774,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "en",
+      "width": 700,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 68,
+        "width": 250,
+        "height": 1124
+      },
+      "preview": {
+        "x": 250,
+        "y": 68,
+        "width": 450,
+        "height": 576
+      },
+      "details": {
+        "x": 250,
+        "y": 644,
+        "width": 450,
+        "height": 398
+      },
+      "samples": {
+        "x": 250,
+        "y": 1042,
+        "width": 450,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    },
+    {
+      "lang": "en",
+      "width": 390,
+      "overflow": false,
+      "header": "rgb(17, 24, 39)",
+      "controls": {
+        "x": 0,
+        "y": 116,
+        "width": 390,
+        "height": 507.09375
+      },
+      "preview": {
+        "x": 0,
+        "y": 623.09375,
+        "width": 390,
+        "height": 442
+      },
+      "details": {
+        "x": 0,
+        "y": 1065.09375,
+        "width": 390,
+        "height": 398
+      },
+      "samples": {
+        "x": 0,
+        "y": 1463.09375,
+        "width": 390,
+        "height": 150
+      },
+      "expandedNoOverflow": true
+    }
+  ],
+  "buildAssets": [
+    {
+      "url": "http://127.0.0.1:4186/assets/index-DZLOdveV.js",
+      "bytes": 257942,
+      "sha256": "ab202c100f4d95d15c625fd8466499c794678e9c9889854d3d4b0e9d617e2a70"
+    },
+    {
+      "url": "http://127.0.0.1:4186/assets/index-LplzTzkX.css",
+      "bytes": 11621,
+      "sha256": "ea2fd965a6f612308387de0718f38c74d4a6e77ecba83822102b44c29dcf6d7d"
+    }
+  ],
+  "errors": []
+}

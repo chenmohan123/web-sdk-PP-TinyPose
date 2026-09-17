@@ -1,0 +1,47 @@
+{
+  "revision": "b25522a0f4bde8c80603f3ba5e3472059972e3b5",
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/LICENSE",
+      "path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357,
+      "snapshot": "upstream/LICENSE.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose/README.md",
+      "path": "configs/keypoint/tiny_pose/README.md",
+      "sha256": "8593fc029f79462b1cebd34b4c61aeea7708cf18baf9e742e12377acd3523fc3",
+      "bytes": 22471,
+      "snapshot": "upstream/configs__keypoint__tiny_pose__README.md.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/configs/keypoint/tiny_pose/tinypose_256x192.yml",
+      "path": "configs/keypoint/tiny_pose/tinypose_256x192.yml",
+      "sha256": "fab0d5d5a43cb163393b39225ee54b2b9fe860e6f8b9d07cc39a8b1df6a81744",
+      "bytes": 3189,
+      "snapshot": "upstream/configs__keypoint__tiny_pose__tinypose_256x192.yml.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/deploy/python/keypoint_preprocess.py",
+      "path": "deploy/python/keypoint_preprocess.py",
+      "sha256": "0bb7c833ca65105267adc2f083e1fe95ab645daa830358aff46cbb9f8948155c",
+      "bytes": 8238,
+      "snapshot": "upstream/deploy__python__keypoint_preprocess.py.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/deploy/python/keypoint_postprocess.py",
+      "path": "deploy/python/keypoint_postprocess.py",
+      "sha256": "2ccf000782204fa155ecbce1d022c8a90f424926b1bcf9497d1c153bcd382925",
+      "bytes": 14967,
+      "snapshot": "upstream/deploy__python__keypoint_postprocess.py.gz"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleDetection/b25522a0f4bde8c80603f3ba5e3472059972e3b5/deploy/python/keypoint_infer.py",
+      "path": "deploy/python/keypoint_infer.py",
+      "sha256": "1c397491d23cda454c474f386c656a3ff12ccc37973b034f8b28f6e0310bf30a",
+      "bytes": 16938,
+      "snapshot": "upstream/deploy__python__keypoint_infer.py.gz"
+    }
+  ]
+}

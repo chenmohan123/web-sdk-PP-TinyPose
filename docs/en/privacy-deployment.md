@@ -1,0 +1,11 @@
+# Privacy and deployment
+
+[中文](../zh-CN/privacy-deployment.md)
+
+Images are decoded, preprocessed and inferred inside the browser; the Demo does not upload them. Model requests go to the selected ModelScope or Hugging Face source. ORT/Worker files, the page and sample image come from the site host, which can observe ordinary request metadata. IndexedDB stores only model bytes, not user images. Cache identity uses model ID, version and SHA-256, so both sources can share identical weights. Current-model and all-cache cleanup affect only TinyPose's namespace.
+
+Build the SDK, then run `build:demo` and deploy `demo-dist/` on HTTPS. The build copies only SDK, ORT, sample assets and formal metadata, never local ONNX weights. npm's `files` excludes weights as well. For npm integration, copy ORT JS/WASM and `inference.worker.js` from `dist/` to `runtimeBaseUrl` (copying the entire directory is recommended). Keep them same-origin and on matching versions; serve `.js/.mjs` as JavaScript and `.wasm` as `application/wasm`.
+
+Production offers only ModelScope and Hugging Face, with ModelScope as default. Downloads are fixed to immutable commits and checked by byte size and SHA-256. Failure of an explicitly selected source never silently accesses the other Hub. Redirects are controlled by the selected Hub; do not substitute an unverified mirror or weights.
+
+CI checks tests, types, SDK/Demo builds and packaging. Pages deploys protected main through official Actions, the `github-pages` environment and serialized deployments. Release tags must be main ancestors and protected against updates/deletion. Subsequent npm releases use OIDC Trusted Publishing with provenance. npm requires an existing package before trust configuration, so the first release uses a local authenticated publish of the CI-verified tarball without provenance, followed by trust setup. After that initial local npm publish, release's `verify-only` mode independently compares registry package integrity before creating a GitHub Release. Active Rulesets, environments and HTTPS require real remote receipts; workflow files alone do not prove successful deployment.
