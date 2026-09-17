@@ -14,6 +14,18 @@
 
 初次独立控制器审查提出停止/释放/播放的三项异步竞态，已修复并补回归；后续独立审查复核这三项修复成立。工作台独立审查提出场景切换锁死、首帧后解码错误未清理和缓存计数过期，已修复并新增5项控制器和3组浏览器回归，同时修复停止等待期间再次单帧操作。
 
-验收与发布脚本独立审查提出媒体报告未被发布守卫消费、RGB黑屏和390px画面证据不足，已修复；新增9项守卫负向回归先失败后通过。语言按钮定位器与桌面viewport设置同步纠正。主代理逐段复核修复差异，正式真实12/24组合与发布守卫已通过；上述后续修复尚未记录独立复审结论，不将主代理复核写作独立批准。
+验收与发布脚本独立审查提出媒体报告未被发布守卫消费、RGB黑屏和390px画面证据不足，已修复；新增9项守卫负向回归先失败后通过。语言按钮定位器与桌面viewport设置同步纠正。后续整分支只读审查复核这些修复，并指出已在9238aa2修复的CI构建顺序问题；未发现其他发布前待修复问题，详见 [最终审查记录](release/review-summary.md)。
 
-线上 npm、Release、Pages 和门户以 `release/` 中后续真实回执为准，本地验收不代表发布已完成。
+## 正式发布
+
+0.3.0 已由 [PR #7](https://github.com/chenmohan123/web-sdk-PP-TinyPose/pull/7) 合并到 `7c1f6a1f7d0aeb06cc02e19cb6fcdbd0f8387835`，不可变标签为 `v0.3.0`。
+
+- `release/github-published.json`：GitHub API 读取的 PR、Release、标签、发布流程、Pages部署与仓库治理证据。发布运行35252810480与Pages运行35252761567成功。
+- `release/npm-published.json`：公开npm包与发布CI包逐字节一致，17项SDK资产与0.2.0一致；provenance内容中的仓库、提交、工作流及产物身份匹配。未自行验证Sigstore签名链。
+- `release/online-media.json`：生产站点全部资产与正式构建一致，默认配置的视频与fake-device摄像头实际推理、暂停、单帧、停止、双语及390px通过；截图为 `release/online-video*.png` 和 `release/online-camera*.png`。
+- `release/online-image.json`：生产图片模式的默认ModelScope、128×96 W16A32实际WASM/Worker推理17点、人体框控件及双语390px通过；脚本与截图一并归档。
+
+- `release/portal-published.json`：门户PR41最新CI通过，合并提交 `ad9844a4dc9eb54d175aad4607fd6d9540fe1d9a` 的Pages运行35254745859成功；GitHub部署6508748056绑定同一提交。
+- `release/portal-online.json`：生产门户1280px与390px的目录筛选、详情版本、三项资产、能力边界、分类及独立链接通过，无横向溢出；`portal-detail-*.png` 已目视检查。
+
+后续证据归档提交不移动0.3.0标签，也不重新发布npm或模型。

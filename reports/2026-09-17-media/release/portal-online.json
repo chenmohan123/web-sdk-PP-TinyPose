@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-17T17:47:53.483Z",
+  "origin": "https://chenmohan123.github.io",
+  "version": "0.3.0",
+  "browser": "151.0.7922.34",
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 844,
+      "directory": true,
+      "detail": true,
+      "category": true,
+      "independentLinks": true,
+      "noOverflow": true,
+      "pageErrors": []
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "directory": true,
+      "detail": true,
+      "category": true,
+      "independentLinks": true,
+      "noOverflow": true,
+      "pageErrors": []
+    }
+  ]
+}

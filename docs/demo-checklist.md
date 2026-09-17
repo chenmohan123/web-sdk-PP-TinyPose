@@ -20,6 +20,6 @@
 - [x] 摄像头由用户触发且audio:false；拒绝、晚到授权、stop、隐藏、pagehide、配置变化和场景切换释放轨道。
 - [x] 最大并发1、默认15FPS及5/10/15/30选项，处理/主动跳过计数、瞬时FPS、采集时间。
 - [x] 正式构建真实12组合连续帧和默认配置的本地视频/fake-device摄像头通过；以 media-acceptance.json 为证。
-- [ ] 线上0.3.0页面回读、媒体基本流程和部署提交相符。
+- [x] 线上0.3.0页面回读、媒体基本流程和部署提交相符；见 `reports/2026-09-17-media/release/online-media.json`、`online-image.json` 与 `github-published.json`。
 
 物理摄像头、手机、微信、NPU、自动多人和跟踪均不在本轮兼容声明内。
